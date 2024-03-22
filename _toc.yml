@@ -6,9 +6,12 @@ root: index
 parts:
   - caption: Generell info
     chapters:
-    -  file: generell
+    - file: markdown
+    - file: content/generell
   - caption: Uke 1
     chapters:
-    - file: markdown
     - file: notebooks
     - file: markdown-notebooks
+  #- caption: Uke 2
+  #  chapters:
+
