@@ -6,12 +6,34 @@ root: index
 parts:
   - caption: Generell info
     chapters:
-    - file: markdown
-    - file: content/generell
+    - file: content/pages/00_generell
+    - file: content/pages/00_laeringsmaal
+    - file: content/pages/00_ovingsoppgaver
+    - file: content/pages/00_karakterer
+    - file: content/pages/00_installere-python
   - caption: Uke 1
     chapters:
-    - file: notebooks
-    - file: markdown-notebooks
-  #- caption: Uke 2
-  #  chapters:
+    - file: content/pages/01_info
+    - file: content/pages/01_bakgrunn
+    - file: content/pages/01_oving-1
+  - caption: Uke 2
+    chapters:
+    - file: content/pages/02_info
+    - file: content/notebooks/02_geometriske_objekter
+  - caption: Uke 3
+    chapters:
+    - file: content/pages/03_info
+    - file: content/pages/03_begreper
+    - file: content/notebooks/03_geopandas
+    - file: content/notebooks/03_vektor
+    - file: content/notebooks/03_projeksjoner
+    - file: content/notebooks/03_filstier
+  - caption: Uke 4
+    chapters:
+    #- file: content/pages/04_info
+    - file: content/notebooks/04_geokoding_i_geopandas
+  - caption: Prosjektarbeid
+    chapters:
+    - file: content/pages/13_prosjektarbeid
+    - file: content/pages/13_prosjektkarakter
 
