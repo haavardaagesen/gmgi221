@@ -1,0 +1,31 @@
+id;adr
+100;Statsråd Mathiesens vei 25, 0594 OSLO
+101;Slimeveien 15, 1275 OSLO
+102;Sognsveien 80, 0855 OSLO
+103;Ullevålsveien 5, 0165 OSLO
+104;Nydalsveien 30b, 0484 OSLO
+105;Vestre Elvebakke 3, 0182 OSLO
+106;Etterstadsletta 5, 0660 OSLO
+107;Steenstrups gate 20, 0554 OSLO
+108;Fyrstikkalleen 21, 0661 OSLO
+109;Niels Juels gate 56, 0259 OSLO
+110;Wilhelm Stenersens vei 6, 0671 OSLO
+111;Herslebs gate 20B, 0561 OSLO
+112;Ekebergveien 124, 1178 OSLO
+113;Ullevål sykehus, 0450 OSLO
+114;Kongsveien 30, 0193 OSLO
+115;Gladengveien 3B, 0661 OSLO
+116;Kabelgata 10, 0580 OSLO
+117;Cecilie Thoresens vei 6, 1153 OSLO
+118;Sognsvannsveien 67, 0372 OSLO
+119;Nydalsveien 30c, 0484 OSLO
+120;Parkveien 65, 0254 OSLO
+121;Ullevålsveien 31, 0131 OSLO
+122;Gamle Hovsetervei 1, 0768 OSLO
+123;Karl Fossums vei 25, 0913 OSLO
+124;Sognsvannsveien 11, 0372 OSLO
+125;Ullernchaussèen 66, 0379 OSLO
+126;Tor Jonssons veg 5, 0688 OSLO
+127;Innspurten 16, 0663 OSLO
+128;Cort Adelers gate 30, 0254 OSLO
+129;Lørenveien 11, 0585 OSLO
