@@ -30,7 +30,7 @@ parts:
     - file: content/notebooks/03_filstier
   - caption: Uke 4
     chapters:
-    #- file: content/pages/04_info
+    - file: content/pages/04_geokoding
     - file: content/notebooks/04_geokoding_i_geopandas
   - caption: Prosjektarbeid
     chapters:

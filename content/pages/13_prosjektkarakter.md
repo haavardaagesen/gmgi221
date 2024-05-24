@@ -12,9 +12,9 @@ Følgende aspekter vurderes i vurderingen
 
 * Kvalitet på visualiseringer (kart, grafer)
 
-* Er koden skrevet på en modulær måte (unngå gjentakelse f.eks. ved hjelp av funksjoner og for-løkker)
+* Er koden skrevet på en modulær måte (unngå gjentakelse f.eks. ved hjelp av funksjoner og for-løkker)?
 
-* Fungerer alt som det skal
+* Fungerer alt som det skal?
 
 * Den generelle vanskelighetsgraden av analysen tas hensyn til i vurderingen
 
@@ -26,11 +26,11 @@ Følgende aspekter vurderes i vurderingen
 
 * Er alle inngangsdata og resultatresultater (kart, grafer) presentert og forklart klart?
 
-* Er koden lett å lese og godt formatert (følger PEP8-retningslinjene)
+* Er koden lett å lese og godt formatert (følger PEP8-retningslinjene)?
 
 **Andre fortjenester i arbeidet (~1/5 av sluttgraden):**
 
-* God kodingsstil (skrive effektiv og godt dokumentert kode)
+* God kodestil (skrive effektiv og godt dokumentert kode)
 
 * Noe i arbeidet er eksepsjonelt godt gjort
 
@@ -40,6 +40,6 @@ Følgende aspekter vurderes i vurderingen
 
 * Visualiseringene er eksepsjonelt gode
 
-* Ekstra funksjoner er lagt til (f.eks. trinn 5-6 i accesViz, eller noen andre funksjoner som ikke var nødvendige)
+* Ekstra funksjoner er lagt til
 
-Arbeidsflyten skal være gjentakbar og godt dokumentert. Med andre ord, alle som får en kopi av repositoryet ditt skal kunne kjøre koden din, og lese koden din.
+Arbeidsflyten skal være repeterbar og godt dokumentert. Med andre ord, alle som får en kopi av repositoryet ditt skal kunne kjøre koden din, og lese koden din.

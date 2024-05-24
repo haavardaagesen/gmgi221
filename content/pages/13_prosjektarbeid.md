@@ -17,7 +17,6 @@ Tenk på prosjektoppgaven som en utfordring for deg selv og en mulighet til å v
 
 ## Struktur
 
-
 Her er den foreslåtte strukturen på prosjektoppgaven, som også er utgangspunktet for vurderingen:
 
 * Datainnsamling (Henting av data, delsett av data, lagring av mellomliggende resultater osv.)
@@ -37,7 +36,7 @@ Organiser all koden din / notebooks i ditt personlige "prosjektoppgave"-reposito
 
 Merk: Hvis koden din krever noen python-pakker som ikke er brukt ellers i emnet, vennligst nevn dem også i README.md-filen og gi installasjonsinstruksjoner.
 
-## Frist
+## Vurdering
 
 Vurderingen av prosjektoppgaven er basert på en typisk 0-5 skala. Se detaljerte [vurderingskriterier her](). Den endelige oppgaven vurderes basert på:
 
