@@ -30,8 +30,33 @@ parts:
     - file: content/notebooks/03_filstier
   - caption: Uke 4
     chapters:
+    - file: content/pages/04_info
     - file: content/pages/04_geokoding
     - file: content/notebooks/04_geokoding_i_geopandas
+  - caption: Uke 5
+    chapters:
+    - file: content/pages/05_info
+  - caption: Uke 6
+    chapters:
+    - file: content/pages/06_info
+  - caption: Uke 7
+    chapters:
+    - file: content/pages/07_info
+  - caption: Uke 8
+    chapters:
+    - file: content/pages/08_info
+  - caption: Uke 9
+    chapters:
+    - file: content/pages/09_info
+  - caption: Uke 10
+    chapters:
+    - file: content/pages/10_info
+  - caption: Uke 11
+    chapters:
+    - file: content/pages/11_info
+  - caption: Uke 12
+    chapters:
+    - file: content/pages/12_info
   - caption: Prosjektarbeid
     chapters:
     - file: content/pages/13_prosjektarbeid
