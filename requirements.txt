@@ -1,4 +1,7 @@
+geopandas
+geopy
 jupyter-book
 matplotlib
 numpy
+pandas
 shapely

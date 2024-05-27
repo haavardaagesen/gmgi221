@@ -20,43 +20,52 @@ parts:
     chapters:
     - file: content/pages/02_info
     - file: content/notebooks/02_geometriske_objekter
+    - file: content/notebooks/02_intersect
   - caption: Uke 3
     chapters:
     - file: content/pages/03_info
     - file: content/pages/03_begreper
-    - file: content/notebooks/03_geopandas
     - file: content/notebooks/03_vektor
-    - file: content/notebooks/03_projeksjoner
     - file: content/notebooks/03_filstier
   - caption: Uke 4
     chapters:
     - file: content/pages/04_info
-    - file: content/pages/04_geokoding
-    - file: content/notebooks/04_geokoding_i_geopandas
+    - file: content/notebooks/04_projeksjoner
+    - file: content/notebooks/04_geopandas
   - caption: Uke 5
     chapters:
     - file: content/pages/05_info
+    - file: content/pages/05_geokoding
+    - file: content/notebooks/05_geokoding_i_geopandas
   - caption: Uke 6
     chapters:
     - file: content/pages/06_info
+    - file: content/notebooks/06_punkt_i_polygon
   - caption: Uke 7
     chapters:
     - file: content/pages/07_info
+    - file: content/notebooks/07_romlig_kobling
   - caption: Uke 8
     chapters:
     - file: content/pages/08_info
   - caption: Uke 9
     chapters:
     - file: content/pages/09_info
+    - file: content/notebooks/09_overlay
   - caption: Uke 10
     chapters:
     - file: content/pages/10_info
+    - file: content/notebooks/10_aggregering_av_data
   - caption: Uke 11
     chapters:
     - file: content/pages/11_info
+    - file: content/notebooks/11_statiske_kart
+    - file: content/notebooks/11_interaktive_kart
   - caption: Uke 12
     chapters:
     - file: content/pages/12_info
+    - file: content/notebooks/12_nettverksanalyse
+    - file: content/notebooks/12_OSM_data
   - caption: Prosjektarbeid
     chapters:
     - file: content/pages/13_prosjektarbeid
