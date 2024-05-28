@@ -21,51 +21,62 @@ parts:
     - file: content/pages/02_info
     - file: content/notebooks/02_geometriske_objekter
     - file: content/notebooks/02_intersect
+    - file: content/pages/02_oving-2
   - caption: Uke 3
     chapters:
     - file: content/pages/03_info
     - file: content/pages/03_begreper
     - file: content/notebooks/03_vektor
     - file: content/notebooks/03_filstier
+    - file: content/pages/03_oving-3
   - caption: Uke 4
     chapters:
     - file: content/pages/04_info
     - file: content/notebooks/04_projeksjoner
     - file: content/notebooks/04_geopandas
+    - file: content/pages/04_oving-4
   - caption: Uke 5
     chapters:
     - file: content/pages/05_info
     - file: content/pages/05_geokoding
     - file: content/notebooks/05_geokoding_i_geopandas
+    - file: content/pages/05_oving-5
   - caption: Uke 6
     chapters:
     - file: content/pages/06_info
     - file: content/notebooks/06_punkt_i_polygon
+    - file: content/pages/06_oving-6
   - caption: Uke 7
     chapters:
     - file: content/pages/07_info
     - file: content/notebooks/07_romlig_kobling
+    - file: content/pages/07_oving-7
   - caption: Uke 8
     chapters:
     - file: content/pages/08_info
+    - file: content/pages/08_oving-8
   - caption: Uke 9
     chapters:
     - file: content/pages/09_info
     - file: content/notebooks/09_overlay
+    - file: content/pages/09_oving-9
   - caption: Uke 10
     chapters:
     - file: content/pages/10_info
     - file: content/notebooks/10_aggregering_av_data
+    - file: content/pages/10_oving-10
   - caption: Uke 11
     chapters:
     - file: content/pages/11_info
     - file: content/notebooks/11_statiske_kart
     - file: content/notebooks/11_interaktive_kart
+    - file: content/pages/11_oving-11
   - caption: Uke 12
     chapters:
     - file: content/pages/12_info
     - file: content/notebooks/12_nettverksanalyse
     - file: content/notebooks/12_OSM_data
+    - file: content/pages/12_oving-12
   - caption: Prosjektarbeid
     chapters:
     - file: content/pages/13_prosjektarbeid

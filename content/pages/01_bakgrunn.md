@@ -1,4 +1,4 @@
-# Bakgrunn for emnet
+# 📖 Bakgrunn for emnet
 
 ## Generell bakgrunn
 

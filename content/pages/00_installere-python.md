@@ -1,4 +1,4 @@
-# Installering av Python og Python pakker
+# 📖 Installering av Python og Python pakker
 
 :::{admonition} Do I need to install anything?
 :class: note

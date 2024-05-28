@@ -1,4 +1,4 @@
-# Karaktersetting for prosjektoppgaven
+# 📖 Karaktersetting for prosjektoppgaven
 
 Vurderingen er basert på en vanlig 0-5 skala.
 

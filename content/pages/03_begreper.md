@@ -1,4 +1,4 @@
-# Nøkkelbegreper
+# 📖 Nøkkelbegreper
 
 :::{admonition} **Sjekk din forståelse**
 Før du dykker inn i denne ukens Python-leksjon, bør du allerede være kjent med noen grunnleggende

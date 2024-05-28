@@ -1,4 +1,4 @@
-# Læringsmål
+# 📖 Læringsmål
 
 Læringsmål for emnet.
 

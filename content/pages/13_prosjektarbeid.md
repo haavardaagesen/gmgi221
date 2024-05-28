@@ -1,4 +1,4 @@
-# Prosjektarbeid
+# 📖 Prosjektarbeid
 
 I prosjektoppgaven er målet å bruke Python-programmering til å automatisere en GIS-analyseprosess. Hovedmålet er å lage en arbeidsflyt for GIS-prosesser som enkelt kan gjentas for lignende input-data.
 
