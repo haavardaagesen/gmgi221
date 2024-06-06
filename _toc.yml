@@ -77,8 +77,8 @@ parts:
   - caption: Uke 12
     chapters:
     - file: content/pages/12_info
-    - file: content/notebooks/12_nettverksanalyse
     - file: content/notebooks/12_OSM_data
+    - file: content/notebooks/12_nettverksanalyse
     - file: content/pages/12_oving-12
   - caption: Prosjektarbeid
     chapters:

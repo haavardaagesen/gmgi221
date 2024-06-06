@@ -1,3 +1,4 @@
+contextily
 folium
 geopandas
 geopy
@@ -7,5 +8,5 @@ matplotlib
 mapclassify>= 2.4.0
 numpy
 pandas
-shapely==2.0.4
+shapely==2.0.3
 osmnx==1.9.3
