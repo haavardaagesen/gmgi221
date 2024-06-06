@@ -30,8 +30,8 @@ Forelesningene vil finne sted i XYZ kl XZ hver onsdag.
 | 5           | 02.10.24    | Geokoding                   |
 | 6           | 09.10.24    | Punkt i polygon             |
 | 7           | 16.10.24    | Romlige koblinger           |
-| 8           | 23.10.24    | Nærmeste nabo               |
-| 9           | 30.10.24    | Overlay                     |
+| 8           | 23.10.24    | Overlay	                  |
+| 9           | 30.10.24    | Reklassifisering            |
 | 10          | 06.11.24    | Data aggregering            |
 | 11          | 13.11.24    | Statiske og interaktive kart|
 | 12          | 20.11.24    | Nettverksanalyse            |

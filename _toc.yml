@@ -40,7 +40,6 @@ parts:
     - file: content/pages/05_info
     - file: content/pages/05_geokoding
     - file: content/notebooks/05_geokoding_i_geopandas
-    - file: content/notebooks/05_reklassifisering
     - file: content/notebooks/05_simplifisering
     - file: content/pages/05_oving-5
   - caption: Uke 6
@@ -56,11 +55,13 @@ parts:
   - caption: Uke 8
     chapters:
     - file: content/pages/08_info
+    - file: content/notebooks/08_overlay
     - file: content/pages/08_oving-8
   - caption: Uke 9
     chapters:
     - file: content/pages/09_info
-    - file: content/notebooks/09_overlay
+    
+    - file: content/notebooks/09_reklassifisering
     - file: content/pages/09_oving-9
   - caption: Uke 10
     chapters:

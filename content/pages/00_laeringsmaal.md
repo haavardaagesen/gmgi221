@@ -36,11 +36,11 @@ Romlige koblinger
 
 ## Uke 8
 
-Nærmeste nabo-analyse
+Overlay-analyse
 
 ## Uke 9
 
-Overlay-analyse
+Reklassifisering
 
 ## Uke 10
 
