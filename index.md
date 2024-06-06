@@ -6,7 +6,7 @@ Velkommen til nettsiden for GMGI221 - Automatisering av GIS-prosesser ved NMBU h
 Emnet gir en innføring i programmering for geografiske analyser og programmatisk behandling av geografiske data. Gjennom emnet vil du få en innføring i ulike analysemetoder innenfor geografisk informasjonsvitenskap (GIS), og praktisk erfaring i databehandling og analyse med geografiske data.
 
 ## Formål med emnet
-Etter å ha gjennomført kurset skal pu være i stand til å utføre grunnleggende analyser av og med geografiske data i Python, skrive kode som analyserer og visualiserer geografiske data, samt kunne lese og forstå programmer på tilsvarende kompleksitetsnivå.
+Etter å ha gjennomført kurset skal du være i stand til å utføre grunnleggende analyser av og med geografiske data i Python, skrive kode som analyserer og visualiserer geografiske data, samt kunne lese og forstå programmer på tilsvarende kompleksitetsnivå.
 
 ## Formatet til emnet
 Mesteparten av emnet vil bli brukt foran en datamaskin hvor vi lærer å programmere i Python. Emnet består av interaktive forelesninger og ukentlige øvinger. Øvingene vil fokusere på å utvikle grunnleggende programmeringsferdigheter ved bruk av Python og anvende disse ferdighetene til å manipulere og analysere geografisk informasjon.
