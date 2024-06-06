@@ -7,5 +7,5 @@ matplotlib
 mapclassify>= 2.4.0
 numpy
 pandas
-shapely==1.5.0
-osmnx
+shapely==2.0.4
+osmnx==1.9.3
