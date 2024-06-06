@@ -1,6 +1,7 @@
 folium
 geopandas
 geopy
+geos
 jupyter-book
 matplotlib
 mapclassify>= 2.4.0
