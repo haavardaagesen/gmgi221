@@ -3,6 +3,8 @@ geopandas
 geopy
 jupyter-book
 matplotlib
+mapclassify>= 2.4.0
 numpy
 pandas
-shapely
+shapely=1.5.0
+osmnx
