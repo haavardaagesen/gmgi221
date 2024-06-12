@@ -1,11 +1,11 @@
 # 📖 Installering av Python og Python pakker
 
-:::{admonition} Do I need to install anything?
+```{admonition} Do I need to install anything?
 :class: note
 
 You can complete *Automating GIS processes* without installing anything on your computer. The code of each lesson can be run **interactively in the web browser.**
 
-:::
+```
 
 If you want to use Python to write scripts and programmes on your own computer,
 you need to install Python, and possibly some of the many packages for it that
@@ -46,7 +46,7 @@ conda 4.12.0
 
 ### MacOS
 
-:::{warning}
+```{warning}
 
 One of the two installation methods *conda* offers to MacOS users is using the
 `curl | sh` (anti-)pattern. Learn more about why it can be problematic <a
@@ -56,7 +56,7 @@ Below, we describe the *other* officially supported method (but if you already
 use a package manager such as `homebrew` or `macports`, please install using
 that).
 
-:::
+```
 
 
 Download the latest installation package from the [Miniconda download
@@ -83,7 +83,7 @@ conda 4.12.0
 
 ### Linux
 
-:::{warning}
+```{warning}
 
 The *condas* webpage instructs to install using the `curl | sh` (anti-)pattern.
 That is <a href="https://0x46.net/thoughts/2019/04/27/piping-curl-to-shell/">
@@ -94,7 +94,7 @@ installed files, manage security fixes, and update software to stay consistent
 with the operating system. For *most* distributions, most software packages are
 available in official package repositories. 
 
-:::
+```
 
 
 #### RedHat and RedHat-based distributions (e.g., Fedora, CentOS, RockyLinux)
@@ -170,16 +170,16 @@ conda install -c geopandas
 ```
 
 
-:::{note}
+```{note}
 
 [Conda channels](https://docs.conda.io/projects/conda/en/latest/user-guide/concepts/channels.html)
 are remote locations where packages are stored. During this course, we download
 most packages from the [conda-forge](https://conda-forge.org/#about) channel.
 
-:::
+```
 
 
-:::{admonition} Conflicting packages
+```{admonition} Conflicting packages
 :class: hint
 
 A good rule of thumb is to **always install packages from the same channel**
@@ -189,7 +189,7 @@ In case you encounter an error message when installing new packages, you might
 want to first check the versions and channels of existing packages using the
 `conda list` command before trying again.
 
-:::
+```
 
 
 ## Install JupyterLab

@@ -1,6 +1,6 @@
 # 📖 Nøkkelbegreper
 
-:::{admonition} **Sjekk din forståelse**
+```{admonition} **Sjekk din forståelse**
 Før du dykker inn i denne ukens Python-leksjon, bør du allerede være kjent med noen grunnleggende
 romlige datafilformater og projeksjonsdefinisjoner, som disse:
 
@@ -9,9 +9,9 @@ romlige datafilformater og projeksjonsdefinisjoner, som disse:
 - CRS
 - Datum
 - EPSG
-:::
+```
 
-:::{admonition} **Definisjoner**
+```{admonition} **Definisjoner**
 **Shapefile:** et vektor dataformat for lagring av stedsinformasjon og relaterte attributter.
 En shapefile består av flere filer med et felles prefiks som må lagres i samme katalog.
 `.shp`, `shx` og `.dbf` er påkrevde filutvidelser i en shapefile. Andre filutvidelser er ikke påkrevd,
@@ -37,4 +37,4 @@ ETRS89 er et datum som brukes i Europa. Koordinatreferansesystemer er ofte navng
 EPSG står for "European Petroleum Survey Group" som opprinnelig publiserte en database for romlige referansesystemer.
 For eksempel, [EPSG:3067](https://spatialreference.org/ref/epsg/3067/) refererer til koordinatreferansesystemet ETRS-TM35FIN som er mye brukt i Finland.
 [EPSG:4326](https://spatialreference.org/ref/epsg/4326/) refererer til WGS84. Du kan søke etter EPSG-koder på: <https://spatialreference.org/>
-:::
+```

@@ -59,12 +59,12 @@ Heldigvis, Nominatim, som er en geokoder basert på OpenStreetMap data krever ik
 en API-nøkkel for å bruke tjenesten hvis den brukes til å geokode bare et lite
 antall adresser.
 
-:::{note}
+```{note}
 Sjekk alltid vilkårene for tjenesten til geokodingstjenesten du bruker!
-:::
+```
 
-:::{caution}
+```{caution}
 Som bemerket i [geopy-dokumentasjonen for Nominatim-geokoderen](https://geopy.readthedocs.io/en/stable/#nominatim)
 vi må spesifisere en tilpasset `user_agent` parameter når vi lager forespørsler for ikke å bryte
 [Nominatim brukerpolitikk](https://operations.osmfoundation.org/policies/nominatim/).
-:::
+```

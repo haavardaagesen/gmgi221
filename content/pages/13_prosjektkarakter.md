@@ -1,7 +1,5 @@
 # 📖 Karaktersetting for prosjektoppgaven
 
-Vurderingen er basert på en vanlig 0-5 skala.
-
 Følgende aspekter vurderes i vurderingen
 
 **Dataforberedelse, analyse og visualisering (3/5 av endelig karakter):**
