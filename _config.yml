@@ -3,6 +3,7 @@
 
 title: GMGI221 - Automatisering av GIS-prosesser
 author: Håvard Wallin Aagesen
+copyright: "2024"
 logo: logo.png
 exclude_patterns: [ "**.ipynb_checkpoints"]
 #only_build_toc_files: true

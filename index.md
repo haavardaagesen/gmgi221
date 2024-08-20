@@ -15,9 +15,10 @@ De fleste øvingene innebærer eksempler og data fra den virkelige verden. For h
 
 ## 🏫 Forelesninger
 
-Forelesningene vil finne sted i XYZ kl XZ hver onsdag.
+Forelesningene vil finne sted i TF3-103 kl 14-16 hver tirsdag.
 
-<iframe style="overflow: hidden;" src="https://use.mazemap.com/embed.html#v=1&amp;zlevel=2&amp;center=10.775965,59.665577&amp;zoom=18&amp;sharepoitype=poi&amp;sharepoi=730070&amp;campusid=241&amp;utm_medium=iframe" width="720" height="405"></iframe>
+<iframe style="overflow: hidden;" src="https://use.mazemap.com/embed.html#v=1&campusid=241&zlevel=1&center=10.777810,59.665583&zoom=19&sharepoitype=poi&sharepoi=698987&utm_medium=iframe" width="720" height="405"></iframe>
+
 
 ### Forelesningsplan
 
@@ -36,7 +37,7 @@ Forelesningene vil finne sted i XYZ kl XZ hver onsdag.
 | 11          | 13.11.24    | Statiske og interaktive kart|
 | 12          | 20.11.24    | Nettverksanalyse            |
 | 13          | 27.11.24    | Ingen undervisning          |
-| 14          | 04.12.24    | Oppsummering                |
+| 14          | 04.12.24    | Ingen undervisning          |
 
 
 ## 💻 Nettsider
@@ -51,7 +52,6 @@ Nettsiden vil bli oppdatert fortløpende gjennom semesteret med nytt innhold for
 
 Bruken av Canvas i dette emnet 
 
-Canvas-rommet finner du her:
 
 
 

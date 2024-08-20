@@ -4,6 +4,14 @@
 
 I løpet av kurset ‘Automatisering av GIS-prosesser’ vil du lære å håndtere og analysere romlig data ved hjelp av Python. I kurset vil du også bli kjent med noen av de mange Python-pakkene som har blitt skrevet spesielt for GIS-relaterte formål. 
 
+I tillegg til å lære å programmere, er målet også å lære en rekke andre ferdigheter knyttet til åpen vitenskap. Disse inkluderer:
+
+1. Skrive programmer som er enkle å forstå og dele
+2. Holde en logg over endringene du gjør i programmene dine
+3. Lage programmer som sikrer at vitenskapen din er reproduserbar
+4. Produsere enkle, effektive datavisualiseringer som gjør resultatene dine tilgjengelige og enkle å forstå
+
+
 ## Læringsmål
 
 Ved slutten av kurset vil du være i stand til å:

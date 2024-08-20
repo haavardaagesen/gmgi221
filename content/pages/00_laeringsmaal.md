@@ -54,6 +54,6 @@ Statiske og interaktive kart
 
 OpenStreetMap og Nettverksanalyse
 
-## Uke 13
+## Resten av semesteret
 
 Prosjektarbeid
