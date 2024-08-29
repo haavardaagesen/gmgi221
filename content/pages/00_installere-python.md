@@ -9,7 +9,7 @@
    - **macOS/Linux**: Åpne et terminalvindu og kjør det nedlastede skriptet. Følg instruksjonene for å fullføre installasjonen.
 
 3. **Last ned YAML-filen til emnet**
-   - Last ned [YAML-filen](../gmgi221-environment.yml) og lagre den lokalt.
+   - Høyreklikk på [denne linken til YAML-filen](https://raw.githubusercontent.com/haavardaagesen/gmgi221/main/content/gmgi221.yml) og lagre den lokalt.
 
 4. **Opprett miljøet fra YAML-filen**:
    - Åpne et terminalvindu (eller Anaconda Prompt på Windows).
