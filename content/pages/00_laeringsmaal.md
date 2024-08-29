@@ -24,7 +24,7 @@ Jobbe med ulike projeksjoner
 
 ## Uke 5
 
-Geocoding i geopandas
+Geokoding i geopandas
 
 ## Uke 6
 
