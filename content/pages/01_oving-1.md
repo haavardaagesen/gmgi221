@@ -1,5 +1,5 @@
 # 📥 Øving 1
 
-Den første øvingen er i bunn og grunn for at dere skal ha få satt opp Python-miljøet riktig og være kjent med 
+Den første øvingen går ut på å få satt opp et riktig Python-miljø og skrive litt Python-kode.
 
-[Eksempel](https://github.com/Automating-GIS-processes-II-2023/Exercise-1)
+Øvingsoppgaven finner du på Canvas under Oppgaver.

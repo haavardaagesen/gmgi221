@@ -50,10 +50,7 @@ Nettsiden vil bli oppdatert fortløpende gjennom semesteret med nytt innhold for
 
 ## 📖 Canvas
 
-Bruken av Canvas i dette emnet 
-
-
-
+Canvas-rommet for emnet vil brukt til forelesningsnotater, innleveringer av øvingsoppgaver og kunngjøringer i løpet av semesteret.
 
 ## 🧑‍🏫 Foreleser
 

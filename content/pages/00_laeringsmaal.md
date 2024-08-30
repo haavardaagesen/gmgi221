@@ -1,59 +1,61 @@
 # 📖 Læringsmål
 
-Læringsmål for emnet.
+På denne siden finner du læringsmålene for emnet og en repetisjon av læringsmålene for hver uke.
+
+Emnet gir en innføring i programmering for geografiske analyser og programmatisk behandling av geografiske data. Gjennom emnet vil du få en innføring i ulike analysemetoder innenfor geografisk informasjonsvitenskap (GIS), og praktisk erfaring i databehandling og analyse med geografiske data.
+
+Studenten skal etter gjennomført kurs være i stand til å utføre grunnleggende analyser av og med geografiske data i Python, skrive kode som analyserer og visualiserer geografiske data, samt kunne lese og forstå programmer på tilsvarende kompleksitetsnivå.
 
 ## Uke 1
 
 Introduksjon til emnet og administative ting
 
-Studenten skal etter gjennomført kurs være i stand til å utføre grunnleggende analyser av og med geografiske data i Python, skrive kode som analyserer og visualiserer geografiske data, samt kunne lese og forstå programmer på tilsvarende kompleksitetsnivå.
+Første uke består av informasjon av emnet og introduksjon til hvordan sette opp et fungerende miljø for kurset. Vi starter også med en liten praktisk innføring i Python.
 
-Grunnleggende Python for geografisk analyse
+%## Uke 2
 
-## Uke 2
+%Geometriske objekter i Shapely
 
-Geometriske objekter i Shapely
+%## Uke 3
 
-## Uke 3
+%Geopandas
 
-Geopandas
+%## Uke 4
 
-## Uke 4
+%Jobbe med ulike projeksjoner
 
-Jobbe med ulike projeksjoner
+%## Uke 5
 
-## Uke 5
+%Geokoding i geopandas
 
-Geokoding i geopandas
+%## Uke 6
 
-## Uke 6
+%Punkt i poygon-analyse
 
-Punkt i poygon-analyse
+%## Uke 7
 
-## Uke 7
+%Romlige koblinger
 
-Romlige koblinger
+%## Uke 8
 
-## Uke 8
+%Overlay-analyse
 
-Overlay-analyse
+%## Uke 9
 
-## Uke 9
+%Reklassifisering
 
-Reklassifisering
+%## Uke 10
 
-## Uke 10
+%Data aggregering
 
-Data aggregering
+%## Uke 11
 
-## Uke 11
+%Statiske og interaktive kart
 
-Statiske og interaktive kart
+%## Uke 12
 
-## Uke 12
+%OpenStreetMap og Nettverksanalyse
 
-OpenStreetMap og Nettverksanalyse
+%## Resten av semesteret
 
-## Resten av semesteret
-
-Prosjektarbeid
+%Prosjektarbeid

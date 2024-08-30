@@ -8,10 +8,15 @@ Forelesningene vil finne sted i TF3-103 kl 14-16 hver tirsdag.
 
 <iframe style="overflow: hidden;" src="https://use.mazemap.com/embed.html#v=1&campusid=241&zlevel=1&center=10.777810,59.665583&zoom=19&sharepoitype=poi&sharepoi=698987&utm_medium=iframe" width="720" height="405"></iframe>
 
+## Øvinger
+
+Hver uke skal dere levere inn øvingsoppgaver her på Canvas, i form av en eller flere Notebook-filer. Øvingstimene er frivillige, men er også hovedarenaen for å få hjelp underveis. Øvingstimene vil foregå torsdager kl 10-12 i TF1-105.
+
+<iframe style="overflow: hidden;" src="https://use.mazemap.com/embed.html#v=1&amp;campusid=241&amp;zlevel=1&amp;center=10.775900,59.665513&amp;zoom=18&amp;sharepoitype=poi&amp;sharepoi=730117&amp;utm_medium=iframe" width="720" height="405"></iframe></p>
 
 ## Canvas 📖
 
-Canvas-rommet er her:
+Canvas-rommet for emnet vil brukt til forelesningsnotater, innleveringer av øvingsoppgaver og kunngjøringer i løpet av semesteret.
 
 ## Nettsider 💻 
 
