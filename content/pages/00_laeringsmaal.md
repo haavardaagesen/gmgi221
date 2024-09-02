@@ -12,6 +12,11 @@ Introduksjon til emnet og administative ting
 
 Første uke består av informasjon av emnet og introduksjon til hvordan sette opp et fungerende miljø for kurset. Vi starter også med en liten praktisk innføring i Python.
 
+* Definere og bruke variabler i Python.
+* Identifisere og bruke ulike Python-datatyper, så som heltall, flyttall, strenger, boolske verdier og lister.
+* Forstå hvordan datatyper brukes i med romlige data, som koordinater og attributtinformasjon.
+* Utføre grunnleggende operasjoner og manipulasjoner på forskjellige datatyper.
+
 %## Uke 2
 
 %Geometriske objekter i Shapely

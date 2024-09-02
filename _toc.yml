@@ -16,6 +16,7 @@ parts:
     chapters:
       - file: content/pages/01_info
       - file: content/pages/01_bakgrunn
+      - file: content/notebooks/01_smakebit
       - file: content/pages/01_oving-1
 #  - caption: Uke 2
 #    chapters:
