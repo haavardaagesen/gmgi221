@@ -13,8 +13,8 @@ I dette emnet, så anbefales det sterkt at du setter opp et Python-miljø på di
 
 4. **Opprett miljøet fra YAML-filen**:
    - Åpne et terminalvindu (eller Anaconda Prompt på Windows).
-   - Naviger til mappen der `gmgmi221-environment.yml` er lagret.
-   - Bruk kommandoen: `conda env create -f gmgmi221-environment.yml`
+   - Naviger til mappen der `gmgi221-environment.yml` er lagret.
+   - Bruk kommandoen: `conda env create -f gmgi221-environment.yml`
 
 5. **Aktiver miljøet**:
    - **Windows/Linux**: `conda activate gmgi221`
