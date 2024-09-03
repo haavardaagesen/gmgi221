@@ -1,6 +1,6 @@
 # 📖 Installering av Python og Python pakker
 
-
+I dette emnet, så anbefales det sterkt at du setter opp et Python-miljø på din egen datamaskin. Under finner du en guide til hvordan du kan gjøre det, og hvis du har utfordringer med å få satt det opp, så anbefaler jeg å møte opp og få hjelp i øvingstimene!
 
 1. **Last ned Miniconda**: Besøk [Miniconda nedlastingssiden](https://docs.conda.io/en/latest/miniconda.html) og last ned installasjonsprogrammet for ditt operativsystem (Windows, macOS eller Linux).
 
