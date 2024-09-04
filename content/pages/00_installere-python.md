@@ -12,7 +12,10 @@ I dette emnet, så anbefales det sterkt at du setter opp et Python-miljø på di
    - Høyreklikk på [denne linken til YAML-filen](https://raw.githubusercontent.com/haavardaagesen/gmgi221/main/content/gmgi221-environment.yml) og lagre den lokalt.
 
 4. **Opprett miljøet fra YAML-filen**:
-   - Åpne et terminalvindu (eller Anaconda Prompt på Windows).
+   - Åpne et terminalvindu (eller Mini Prompt på Windows).
+   - Først kan det være lurt å oppdatere conda, bruk kommandoen: `conda update -n base conda`
+   - For å gjøre installasjonen raskere kan du installere og bruke libmamba, bruk kommanoen `conda install -n base conda-libmamba-solver`
+   - Bruk så kommandoen `conda config --set solver libmamba`
    - Naviger til mappen der `gmgi221-environment.yml` er lagret.
    - Bruk kommandoen: `conda env create -f gmgi221-environment.yml`
 
