@@ -25,19 +25,19 @@ Forelesningene vil finne sted i TF3-103 kl 14-16 hver tirsdag.
 | Uke         | Dato        | Tema                        |
 | ----------- | ----------- | --------------------------- |
 | 1           | 04.09.24    | Intro                       |
-| 2           | 11.09.24    | Shapely                     |
-| 3           | 18.09.24    | Geopandas                   |
-| 4           | 25.09.24    | Projeksjoner                |
-| 5           | 02.10.24    | Geokoding                   |
-| 6           | 09.10.24    | Punkt i polygon             |
-| 7           | 16.10.24    | Romlige koblinger           |
-| 8           | 23.10.24    | Overlay	                  |
-| 9           | 30.10.24    | Reklassifisering            |
-| 10          | 06.11.24    | Data aggregering            |
-| 11          | 13.11.24    | Statiske og interaktive kart|
-| 12          | 20.11.24    | Nettverksanalyse            |
-| 13          | 27.11.24    | Ingen undervisning          |
-| 14          | 04.12.24    | Ingen undervisning          |
+| 2           | 10.09.24    | Shapely                     |
+| 3           | 17.09.24    | Geopandas                   |
+| 4           | 24.09.24    | Projeksjoner                |
+| 5           | 01.10.24    | Geokoding                   |
+| 6           | 08.10.24    | Punkt i polygon             |
+| 7           | 15.10.24    | Romlige koblinger           |
+| 8           | 22.10.24    | Overlay	                  |
+| 9           | 29.10.24    | Reklassifisering            |
+| 10          | 05.11.24    | Data aggregering            |
+| 11          | 12.11.24    | Statiske og interaktive kart|
+| 12          | 19.11.24    | Nettverksanalyse            |
+| 13          | 26.11.24    | Ingen undervisning          |
+| 14          | 03.12.24    | Ingen undervisning          |
 
 
 ## 💻 Nettsider

@@ -17,9 +17,13 @@ Første uke består av informasjon av emnet og introduksjon til hvordan sette op
 * Forstå hvordan datatyper brukes i med romlige data, som koordinater og attributtinformasjon.
 * Utføre grunnleggende operasjoner og manipulasjoner på forskjellige datatyper.
 
-%## Uke 2
+## Uke 2
 
-%Geometriske objekter i Shapely
+Geometriske objekter i Shapely
+
+* finne Python-pakker for GIS og romlig analyse,
+* forstå og beskrive hvordan geometriske objekter (punkter, linjer, polygoner) håndteres og lagres ved bruk av shapely, og
+* opprette geometriske objekter gitt deres koordinatverdier.
 
 %## Uke 3
 

@@ -18,12 +18,13 @@ parts:
       - file: content/pages/01_bakgrunn
       - file: content/notebooks/01_smakebit
       - file: content/pages/01_oving-1
-#  - caption: Uke 2
-#    chapters:
-#      - file: content/pages/02_info
-#      - file: content/notebooks/02_geometriske_objekter
-#      - file: content/notebooks/02_intersect
-#      - file: content/pages/02_oving-2
+  - caption: Uke 2
+    chapters:
+      - file: content/pages/02_info
+      - file: content/notebooks/02_geometriske_objekter
+      - file: content/notebooks/02_intersect
+      - file: content/notebooks/02_assertions
+      - file: content/pages/02_oving-2
 #  - caption: Uke 3
 #    chapters:
 #      - file: content/pages/03_info
