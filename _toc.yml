@@ -25,18 +25,18 @@ parts:
       - file: content/notebooks/02_intersect
       - file: content/notebooks/02_assertions
       - file: content/pages/02_oving-2
-#  - caption: Uke 3
-#    chapters:
-#      - file: content/pages/03_info
-#      - file: content/pages/03_begreper
-#      - file: content/notebooks/03_vektor
-#      - file: content/notebooks/03_filstier
-#      - file: content/pages/03_oving-3
+  - caption: Uke 3
+    chapters:
+      - file: content/pages/03_info
+      - file: content/pages/03_begreper
+      - file: content/notebooks/03_filstier
+      - file: content/notebooks/03_vektor
+      - file: content/notebooks/03_geopandas
+      - file: content/pages/03_oving-3
 #  - caption: Uke 4
 #    chapters:
 #      - file: content/pages/04_info
 #      - file: content/notebooks/04_projeksjoner
-#      - file: content/notebooks/04_geopandas
 #      - file: content/pages/04_oving-4
 #  - caption: Uke 5
 #    chapters:
