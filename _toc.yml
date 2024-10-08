@@ -41,25 +41,27 @@ parts:
       - file: content/notebooks/04_geometriske_operasjoner
       - file: content/notebooks/04_geokoding_i_geopandas
       - file: content/pages/04_oving-4
-#  - caption: Uke 5
-#    chapters:
-#      - file: content/pages/05_info
-#      - file: content/notebooks/05_simplifisering
-#      - file: content/pages/05_oving-5
+  - caption: Uke 5
+    chapters:
+      - file: content/pages/05_info
+      - file: content/notebooks/05_romlig_utvelgelse
+      - file: content/notebooks/05_romlig_kobling
+      - file: content/pages/05_oving-5
 #  - caption: Uke 6
 #    chapters:
 #      - file: content/pages/06_info
-#      - file: content/notebooks/06_punkt_i_polygon
+#      - file: content/notebooks/06_overlay
+#      - eksamensoppgave
 #      - file: content/pages/06_oving-6
 #  - caption: Uke 7
 #    chapters:
 #      - file: content/pages/07_info
-#      - file: content/notebooks/07_romlig_kobling
+
 #      - file: content/pages/07_oving-7
 #  - caption: Uke 8
 #    chapters:
 #      - file: content/pages/08_info
-#      - file: content/notebooks/08_overlay
+
 #      - file: content/pages/08_oving-8
 #  - caption: Uke 9
 #    chapters:
