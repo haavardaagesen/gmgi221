@@ -47,16 +47,17 @@ parts:
       - file: content/notebooks/05_romlig_utvelgelse
       - file: content/notebooks/05_romlig_kobling
       - file: content/pages/05_oving-5
-#  - caption: Uke 6
-#    chapters:
-#      - file: content/pages/06_info
-#      - file: content/notebooks/06_overlay
-#      - eksamensoppgave
-#      - file: content/pages/06_oving-6
+  - caption: Uke 6
+    chapters:
+      - file: content/pages/06_info
+      - file: content/notebooks/06_reklassifisering
+      - file: content/notebooks/06_aggregering_av_data
+      - file: content/pages/06_oving-6
 #  - caption: Uke 7
 #    chapters:
 #      - file: content/pages/07_info
-
+#      - file: content/notebooks/07_overlay
+#      - eksamensoppgave
 #      - file: content/pages/07_oving-7
 #  - caption: Uke 8
 #    chapters:
@@ -66,12 +67,12 @@ parts:
 #  - caption: Uke 9
 #    chapters:
 #      - file: content/pages/09_info
-#      - file: content/notebooks/09_reklassifisering
+
 #      - file: content/pages/09_oving-9
 #  - caption: Uke 10
 #    chapters:
 #      - file: content/pages/10_info
-#      - file: content/notebooks/10_aggregering_av_data
+
 #      - file: content/pages/10_oving-10
 #  - caption: Uke 11
 #    chapters:
@@ -89,4 +90,5 @@ parts:
 #    chapters:
 #      - file: content/pages/13_prosjektarbeid
 #      - file: content/pages/13_prosjektkarakter
+#      - file: content/pages/13_prosjekttips
 
