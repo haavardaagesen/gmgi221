@@ -30,9 +30,11 @@ Arbeidsflyten skal være gjentakbar og godt dokumentert. Med andre ord, alle som
 
 ## Hva skal leveres?
 
-Organiser all koden din / notebooks i en mappe og legg til lenker til alle relevante filer i README.md-filen. Alle som laster ned repositoriet skal kunne lese koden din og dokumentasjonen og forstå hva som skjer, og kjøre koden din for å reprodusere de samme resultatene. Du leverer inn en zip-mappe med alle relevante filer. 
+Organiser all koden din / notebooks i en mappe og legg til lenker til alle relevante filer i README.md-filen. Man skal kunne lese koden din og dokumentasjonen og forstå hva som skjer, og kjøre koden din for å reprodusere de samme resultatene. Du leverer inn **èn zip-mappe** med alle relevante filer på Canvas. 
 
 Merk: Hvis koden din krever noen python-pakker som ikke er brukt ellers i emnet, vennligst nevn dem også i README.md-filen og gi installasjonsinstruksjoner.
+
+Frist for å levere er **03.12.2024**.
 
 ## Vurdering
 

@@ -53,12 +53,10 @@ parts:
       - file: content/notebooks/06_reklassifisering
       - file: content/notebooks/06_aggregering_av_data
       - file: content/pages/06_oving-6
-#  - caption: Uke 7
-#    chapters:
-#      - file: content/pages/07_info
-#      - file: content/notebooks/07_overlay
-#      - eksamensoppgave
-#      - file: content/pages/07_oving-7
+  - caption: Uke 7
+    chapters:
+      - file: content/pages/07_info
+      - file: content/notebooks/07_overlay
 #  - caption: Uke 8
 #    chapters:
 #      - file: content/pages/08_info
@@ -86,9 +84,9 @@ parts:
 #      - file: content/notebooks/12_OSM_data
 #      - file: content/notebooks/12_nettverksanalyse
 #      - file: content/pages/12_oving-12
-#  - caption: Prosjektarbeid
-#    chapters:
-#      - file: content/pages/13_prosjektarbeid
-#      - file: content/pages/13_prosjektkarakter
-#      - file: content/pages/13_prosjekttips
+  - caption: Prosjektarbeid
+    chapters:
+      - file: content/pages/13_prosjektarbeid
+      - file: content/pages/13_prosjektkarakter
+      - file: content/pages/13_prosjekttips
 
