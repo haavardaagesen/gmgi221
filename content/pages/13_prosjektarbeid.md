@@ -104,7 +104,7 @@ Verktøyet bør beregne 2-4 indikatorer om de urbane områdene. Her er noen ekse
 **Gate nettverksmålinger**
 
  - Hent gatenettverksdata
- - Beregn gatenettverksmålinger (se forelesning 12 og eksempler fra [her](https://github.com/gboeing/osmnx-examples/tree/master/notebooks))
+ - Beregn gatenettverksmålinger (se forelesning om nettverksanalyse og eksempler fra [her](https://github.com/gboeing/osmnx-examples/tree/master/notebooks))
  - Visualiser resultatene
 
 **Bygningsdensitet**
