@@ -63,11 +63,12 @@ parts:
       - file: content/notebooks/08_statiske_kart
       - file: content/notebooks/08_interaktive_kart
       - file: content/pages/08_oving-8
-#  - caption: Uke 9
-#    chapters:
-#      - file: content/pages/09_info
-
-#      - file: content/pages/09_oving-9
+  - caption: Uke 9
+    chapters:
+      - file: content/pages/09_info
+      - file: content/notebooks/09_OSM_data
+      - file: content/notebooks/09_nettverksanalyse
+      - file: content/pages/09_oving-9
 #  - caption: Uke 10
 #    chapters:
 #      - file: content/pages/10_info
@@ -81,8 +82,7 @@ parts:
 #  - caption: Uke 12
 #    chapters:
 #      - file: content/pages/12_info
-#      - file: content/notebooks/12_OSM_data
-#      - file: content/notebooks/12_nettverksanalyse
+
 #      - file: content/pages/12_oving-12
   - caption: Prosjektarbeid
     chapters:
