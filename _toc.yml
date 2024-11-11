@@ -69,11 +69,10 @@ parts:
       - file: content/notebooks/09_OSM_data
       - file: content/notebooks/09_nettverksanalyse
       - file: content/pages/09_oving-9
-#  - caption: Uke 10
-#    chapters:
-#      - file: content/pages/10_info
-
-#      - file: content/pages/10_oving-10
+  - caption: Uke 10
+    chapters:
+      - file: content/pages/10_info
+      - file: content/notebooks/10_raster
 #  - caption: Uke 11
 #    chapters:
 #      - file: content/pages/11_info
