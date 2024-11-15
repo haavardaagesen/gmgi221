@@ -58,7 +58,7 @@ God dokumentasjon av koden og prosjektet ditt er høyt verdsatt! Du bør legge t
 
 ### Urbane indikatorer
 
-I denne oppgaven er målet å utvikle et verktøy for urban analyse og anvende det på minst bydeler i Oslo. Hovedideen er å beregne et sett med målinger / indikatorer basert på den urbane formen og/eller befolkningen, og å sammenligne bydelene basert på disse målingene. Denne oppgaven er ikke nøyaktig definert, da ideen er å la deg bruke din egen fantasi og interesse til å utforske forskjellige datasett og utføre analyser som interesserer deg, samtidig som du gir nyttige innsikter om de urbane områdene ved å bruke et spesifikt sett med indikatorer (du bør bruke 2-4 forskjellige indikatorer, se eksempler nedenfor).
+I denne oppgaven er målet å utvikle et verktøy for urban analyse og anvende det på minst to bydeler i Oslo. Hovedideen er å beregne et sett med målinger / indikatorer basert på den urbane formen og/eller befolkningen, og å sammenligne bydelene basert på disse målingene. Denne oppgaven er ikke nøyaktig definert, da ideen er å la deg bruke din egen fantasi og interesse til å utforske forskjellige datasett og utføre analyser som interesserer deg, samtidig som du gir nyttige innsikter om de urbane områdene ved å bruke et spesifikt sett med indikatorer (du bør bruke 2-4 forskjellige indikatorer, se eksempler nedenfor).
 
 ### Data
 Du kan bruke hvilken som helst (romlig) data som du kan finne, og generere din egen rapport som beskriver hvordan bydelene skiller seg fra hverandre basert på forskjellige perspektiver (se nedenfor for hint om mulige analyser). Du kan bruke hvilken som helst data som er tilgjengelig, for eksempel fra følgende kilder:
