@@ -2,7 +2,7 @@
 # Velkommen til GMGI221 
 ![Logo](logo.png)
 
-Velkommen til nettsiden for GMGI221 - Automatisering av GIS-prosesser ved NMBU høsten 2024.
+Velkommen til nettsiden for GMGI221 - Automatisering av GIS-prosesser ved NMBU høsten 2025.
 Emnet gir en innføring i programmering for geografiske analyser og programmatisk behandling av geografiske data. Gjennom emnet vil du få en innføring i ulike analysemetoder innenfor geografisk informasjonsvitenskap (GIS), og praktisk erfaring i databehandling og analyse med geografiske data.
 
 ## Formål med emnet
@@ -15,29 +15,30 @@ De fleste øvingene innebærer eksempler og data fra den virkelige verden. For h
 
 ## 🏫 Forelesninger
 
-Forelesningene vil finne sted i TF3-103 kl 14-16 hver tirsdag.
+Forelesningene vil finne sted i TF1-105 kl 10-12 torsdager.
 
-<iframe style="overflow: hidden;" src="https://use.mazemap.com/embed.html#v=1&campusid=241&zlevel=1&center=10.777810,59.665583&zoom=19&sharepoitype=poi&sharepoi=698987&utm_medium=iframe" width="720" height="405"></iframe>
-
+<iframe style="overflow: hidden;" src="https://use.mazemap.com/embed.html#v=1&amp;campusid=241&amp;zlevel=1&amp;center=10.775907,59.665473&amp;zoom=19.3&amp;sharepoitype=poi&amp;sharepoi=730117&amp;utm_medium=iframe" width="720" height="405"></iframe>
 
 ### Forelesningsplan
- 
+
+
 | Uke         | Dato        | Tema                        |
 | ----------- | ----------- | --------------------------- |
-| 1           | 04.09.24    | Intro                       |
-| 2           | 10.09.24    | Shapely                     |
-| 3           | 17.09.24    | Geopandas                   |
-| -           | 24.09.24    | Ingen undervisning          |
-| 4           | 01.10.24    | Projeksjoner og geokoding   |
-| 5           | 08.10.24    | Romlige utvelgelser og koblinger|
-| 6           | 15.10.24    | Reklassifisering og aggregering|
-| 7           | 22.10.24    | Overlay og prosjekt         |
-| 8           | 29.10.24    | Statiske og interaktive kart|
-| 9           | 05.11.24    | Nettverksanalyse og OSM     |
-| 10          | 12.11.24    | Rasteranalyse               |
-| 11          | 19.11.24    | Prosjektveiledning (frivillig)|
-| 12          | 26.11.24    | Ingen undervisning          |
-| 13          | 03.12.24    | Ingen undervisning          |
+| -           | 04.09.25    | Ingen undervisning                       |
+| 1           | 11.09.25    | Intro                     |
+| 2           | 18.09.25    | Shapely                   |
+| 3           | 25.09.25    | Geopandas|
+| -           | 02.10.25    | Høstferie|
+| 4           | 09.10.25    | Projeksjoner og geokoding   |
+| 5           | 16.10.25    | Romlige utvelgelser og koblinger|
+| 6           | 23.10.25    | Reklassifisering og aggregering|
+| 7           | 30.10.25    | Overlay og prosjekt         |
+| 8           | 06.11.25    | Statiske og interaktive kart|
+| -           | 13.11.25    | Ingen undervisning|
+| 9           | 20.11.25    | Nettverksanalyse og OSM     |
+| 10          | 27.11.25    | Rasteranalyse               |
+| -          | 04.12.25    | Prosjektveiledning (frivillig)|
+
 
 
 ## 💻 Nettsider
