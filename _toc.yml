@@ -7,7 +7,7 @@ parts:
   - caption: Generell info
     chapters:
       - file: content/pages/00_generell
-      - file: content/pages/00_laeringsmaal
+      #      - file: content/pages/00_laeringsmaal
       - file: content/pages/00_ovingsoppgaver
       - file: content/pages/00_karakterer
       - file: content/pages/00_installere-python
@@ -73,19 +73,10 @@ parts:
       #    chapters:
       #      - file: content/pages/10_info
       #      - file: content/notebooks/10_raster
-#  - caption: Uke 11
-#    chapters:
-#      - file: content/pages/11_info
 
-#      - file: content/pages/11_oving-11
-#  - caption: Uke 12
-#    chapters:
-#      - file: content/pages/12_info
-
-#      - file: content/pages/12_oving-12
-#  - caption: Prosjektarbeid
-#    chapters:
-#      - file: content/pages/13_prosjektarbeid
-#      - file: content/pages/13_prosjektkarakter
-#      - file: content/pages/13_prosjekttips
+      #  - caption: Prosjektarbeid
+      #    chapters:
+      #      - file: content/pages/13_prosjektarbeid
+      #      - file: content/pages/13_prosjektkarakter
+      #      - file: content/pages/13_prosjekttips
 
