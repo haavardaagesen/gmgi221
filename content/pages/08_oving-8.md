@@ -1,6 +1,6 @@
 # 📥 Øving 8 Kartografisk visualisering
 
-Øvingsoppgaven finner du på Canvas under Oppgaver, eller på [dette GitHub-repoet](https://github.com/GMGI221-2024/gmgi221-ovinger).
+Øvingsoppgaven finner du på Canvas under Oppgaver, eller på [dette GitHub-repoet](https://github.com/GMGI221/gmgi221-oving).
 
 Last den ned, åpne den i Jupyter Notebooks/Lab eller den editoren du bruker og følg instruksjonene i Notebooken. Lever den så inn på Canvas sammen med inputfilene etter du har endret navn til "oving8-ditt_navn.ipynb".
 
