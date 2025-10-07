@@ -3,14 +3,6 @@
 <head>
     
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    
-        <script>
-            L_NO_TOUCH = false;
-            L_DISABLE_3D = false;
-        </script>
-    
-    <style>html, body {width: 100%;height: 100%;margin: 0;padding: 0;}</style>
-    <style>#map {position:absolute;top:0;bottom:0;right:0;left:0;}</style>
     <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
@@ -25,7 +17,7 @@
             <meta name="viewport" content="width=device-width,
                 initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
             <style>
-                #map_2d5f246595b6a0f90f70dcfa24327c0b {
+                #map_39560001dab0cf346632f580b76b146d {
                     position: relative;
                     width: 100.0%;
                     height: 100.0%;
@@ -34,43 +26,80 @@
                 }
                 .leaflet-container { font-size: 1rem; }
             </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
         
 </head>
 <body>
     
     
-            <div class="folium-map" id="map_2d5f246595b6a0f90f70dcfa24327c0b" ></div>
+            <div class="folium-map" id="map_39560001dab0cf346632f580b76b146d" ></div>
         
 </body>
 <script>
     
     
-            var map_2d5f246595b6a0f90f70dcfa24327c0b = L.map(
-                "map_2d5f246595b6a0f90f70dcfa24327c0b",
+            var map_39560001dab0cf346632f580b76b146d = L.map(
+                "map_39560001dab0cf346632f580b76b146d",
                 {
                     center: [59.665, 10.776],
                     crs: L.CRS.EPSG3857,
-                    zoom: 10,
-                    zoomControl: true,
-                    preferCanvas: false,
+                    ...{
+  "zoom": 10,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
                 }
             );
-            L.control.scale().addTo(map_2d5f246595b6a0f90f70dcfa24327c0b);
+            L.control.scale().addTo(map_39560001dab0cf346632f580b76b146d);
 
             
 
         
     
-            var tile_layer_6319c9a9ed0f20b43d77fd170e80294a = L.tileLayer(
+            var tile_layer_9045d99debb2d61571f2a84048440229 = L.tileLayer(
                 "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
-                {"attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors", "detectRetina": false, "maxNativeZoom": 19, "maxZoom": 19, "minZoom": 0, "noWrap": false, "opacity": 1, "subdomains": "abc", "tms": false}
+                {
+  "minZoom": 0,
+  "maxZoom": 19,
+  "maxNativeZoom": 19,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
             );
         
     
-            tile_layer_6319c9a9ed0f20b43d77fd170e80294a.addTo(map_2d5f246595b6a0f90f70dcfa24327c0b);
+            tile_layer_9045d99debb2d61571f2a84048440229.addTo(map_39560001dab0cf346632f580b76b146d);
         
     
-            tile_layer_6319c9a9ed0f20b43d77fd170e80294a.addTo(map_2d5f246595b6a0f90f70dcfa24327c0b);
+            tile_layer_9045d99debb2d61571f2a84048440229.addTo(map_39560001dab0cf346632f580b76b146d);
         
 </script>
 </html>
