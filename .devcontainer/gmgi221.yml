@@ -1,0 +1,36 @@
+name: gmgi221
+
+channels:
+    - conda-forge
+    - defaults
+
+dependencies:
+    - python=3.11
+
+    # sphinx + dependencies
+    - myst-nb
+    - sphinx
+    - sphinx-book-theme
+
+    # JupyterLab
+    - jupyterlab
+    - jupyterlab-git
+    - jupyterlab-myst
+    - jupytext
+
+    # lessons
+    - bokeh
+    - contextily
+    - folium
+    - geojson
+    - geopandas
+    - geopy
+    - ipykernel
+    - mapclassify
+    - matplotlib
+    - osmnx
+    - pyproj
+    - pyrosm
+    - requests
+    - scikit-learn
+    - shapely
