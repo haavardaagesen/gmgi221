@@ -34,7 +34,7 @@ Organiser all koden din / notebooks i en mappe og legg til lenker til alle relev
 
 Merk: Hvis koden din krever noen python-pakker som ikke er brukt ellers i emnet, vennligst nevn dem også i README.md-filen og gi installasjonsinstruksjoner.
 
-Frist for å levere er **03.12.2024**.
+Frist for å levere er **10.12.2025**.
 
 ## Vurdering
 
