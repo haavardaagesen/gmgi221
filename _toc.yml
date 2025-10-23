@@ -47,12 +47,12 @@ parts:
       - file: content/notebooks/05_romlig_utvelgelse
       - file: content/notebooks/05_romlig_kobling
       - file: content/pages/05_oving-5
-      #  - caption: Uke 6
-      #    chapters:
-      #      - file: content/pages/06_info
-      #      - file: content/notebooks/06_reklassifisering
-      #      - file: content/notebooks/06_aggregering_av_data
-      #      - file: content/pages/06_oving-6
+  - caption: Uke 6
+    chapters:
+      - file: content/pages/06_info
+      - file: content/notebooks/06_reklassifisering
+      - file: content/notebooks/06_aggregering_av_data
+      - file: content/pages/06_oving-6
       #  - caption: Uke 7
       #    chapters:
       #      - file: content/pages/07_info
