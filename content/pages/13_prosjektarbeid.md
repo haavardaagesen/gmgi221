@@ -134,7 +134,7 @@ Pass på at du:
     * Lag kart (statisk eller interaktivt)
     * Lag andre typer grafer (f.eks. stolpediagrammer, linjediagrammer, spredningsplott osv.)
     * Bruk underplott som gjør det enkelt å sammenligne resultater side om side
-* Når du skriver kodene, anbefaler vi sterkt at du bruker og skriver funksjoner for repeterende deler av koden. Som en motivasjon: tenk at du skal gjenta analysene dine for alle byer i Finland, skriv kodene dine på en måte som gjør dette mulig. Videre anbefaler vi at du lagrer disse funksjonene i en egen .py-skriptfil som du importerer til notatboken
+* Når du skriver kodene, anbefaler vi sterkt at du bruker og skriver funksjoner for repeterende deler av koden. Som en motivasjon: tenk at du skal gjenta analysene dine for alle byer i Norge, skriv kodene dine på en måte som gjør dette mulig. Videre anbefaler vi at du lagrer disse funksjonene i en egen .py-skriptfil som du importerer til notatboken
 
 ### Egendefinert prosjekt
 
