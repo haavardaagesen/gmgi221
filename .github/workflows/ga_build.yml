@@ -55,7 +55,7 @@ jobs:
     # Build the book
     - name: Build the book
       run: |
-        set -uo pipefail
+        set -euo pipefail
         echo "Disable notebook execution in CI: set execute_notebooks: off in _config.yml"
         if [ -f _config.yml ]; then
           if grep -q "execute_notebooks" _config.yml; then
@@ -68,7 +68,7 @@ jobs:
         else
           echo "_config.yml not found; skipping CI execution disable"
         fi
-        # Don't exit immediately; we'll try several builds and collect logs for diagnosis.
+
         echo "Working directory: $(pwd)"
         echo "Repo root listing (top-level):"
         ls -la || true
@@ -81,17 +81,17 @@ jobs:
         echo "-- head of index.md --"
         if [ -f index.md ]; then head -n 80 index.md || echo "index.md cannot be read"; else echo "index.md not found"; fi
 
-        echo "Attempting jupyter-book build on repository root (verbose). Logs -> build_root.log"
-        jupyter-book build . -v > build_root.log 2>&1 || echo "jupyter-book build . exited non-zero (see build_root.log)"
+        echo "Attempting jupyter-book build on repository root (force HTML). Logs -> build_root.log"
+        jupyter-book build . --html -v > build_root.log 2>&1 || echo "jupyter-book build . --html exited non-zero (see build_root.log)"
 
-        echo "Attempting jupyter-book build on content/ (verbose). Logs -> build_content.log"
-        jupyter-book build content -v > build_content.log 2>&1 || echo "jupyter-book build content exited non-zero (see build_content.log)"
+        echo "Attempting jupyter-book build on content/ (force HTML). Logs -> build_content.log"
+        jupyter-book build content --html -v > build_content.log 2>&1 || echo "jupyter-book build content --html exited non-zero (see build_content.log)"
 
-        echo "Attempting python -m jupyter_book build . (fallback). Logs -> build_root_py.log"
-        python -m jupyter_book build . > build_root_py.log 2>&1 || echo "python -m jupyter_book build . exited non-zero (see build_root_py.log)"
+        echo "Attempting python -m jupyter_book build . (fallback, force HTML). Logs -> build_root_py.log"
+        python -m jupyter_book build . --html > build_root_py.log 2>&1 || echo "python -m jupyter_book build . --html exited non-zero (see build_root_py.log)"
 
-        echo "Attempting python -m jupyter_book build content (fallback). Logs -> build_content_py.log"
-        python -m jupyter_book build content > build_content_py.log 2>&1 || echo "python -m jupyter_book build content exited non-zero (see build_content_py.log)"
+        echo "Attempting python -m jupyter_book build content (fallback, force HTML). Logs -> build_content_py.log"
+        python -m jupyter_book build content --html > build_content_py.log 2>&1 || echo "python -m jupyter_book build content --html exited non-zero (see build_content_py.log)"
 
         echo "-- Print last 200 lines of each build log file for quick inspection --"
         for f in build_root.log build_content.log build_root_py.log build_content_py.log; do
