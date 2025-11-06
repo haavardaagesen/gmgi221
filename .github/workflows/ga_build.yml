@@ -109,7 +109,7 @@ jobs:
         echo "-- List _build if present --"
         if [ -d _build ]; then ls -la _build || true; else echo "_build not present"; fi
 
-    - name: Diagnostic: show installed jupyter-book/sphinx packages
+    - name: Diagnostic show installed jupyter-book/sphinx packages
       run: |
         echo "--- pip list (filtered) ---"
         pip list --disable-pip-version-check --format=columns | egrep -i 'jupyter-book|jupyter_book|sphinx|myst|sphinx-book-theme|myst-nb|myst-parser' || true
