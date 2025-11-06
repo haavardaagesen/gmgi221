@@ -49,7 +49,14 @@ jobs:
     # Build the book
     - name: Build the book
       run: |
-        jupyter-book build .
+        # Print versions for debugging
+        echo "Python: $(python --version)"
+        echo "pip: $(pip --version)"
+        jupyter-book --version || true
+
+        # Preferred invocation: use the python module to avoid CLI entrypoint ambiguities
+        # This will build the HTML into _build/html
+        python -m jupyter_book build . --builder html
 
     - name: Verify build output
       run: |
