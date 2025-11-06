@@ -49,14 +49,31 @@ jobs:
     # Build the book
     - name: Build the book
       run: |
+        set -euo pipefail
         # Print versions for debugging
+        echo "Working directory: $(pwd)"
+        echo "Repo root listing (top-level):"
+        ls -la
         echo "Python: $(python --version)"
         echo "pip: $(pip --version)"
         jupyter-book --version || true
 
-        # Preferred invocation: use the python module to avoid CLI entrypoint ambiguities
-        # This will build the HTML into _build/html
-        python -m jupyter_book build . --builder html
+        echo "-- head of _toc.yml --"
+        if [ -f _toc.yml ]; then head -n 200 _toc.yml || true; else echo "_toc.yml not found"; fi
+        echo "-- head of index.md --"
+        if [ -f index.md ]; then head -n 80 index.md || true; else echo "index.md not found"; fi
+
+        # Try the normal CLI first (this is the recommended usage). If it fails, fall back to the
+        # python module entrypoint.
+        if jupyter-book build .; then
+          echo "jupyter-book build succeeded"
+        else
+          echo "jupyter-book CLI failed, trying python -m jupyter_book build ."
+          python -m jupyter_book build . || (
+            echo "Both jupyter-book CLI and python -m jupyter_book failed";
+            exit 1
+          )
+        fi
 
     - name: Verify build output
       run: |
