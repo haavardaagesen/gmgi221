@@ -108,6 +108,20 @@ jobs:
 
         echo "-- List _build if present --"
         if [ -d _build ]; then ls -la _build || true; else echo "_build not present"; fi
+        echo "-- Show contents of _build/logs (if present) --"
+        if [ -d _build/logs ]; then
+          for lg in _build/logs/*; do
+            echo "==== file: $lg ===="
+            sed -n '1,200p' "$lg" || true
+          done
+        else
+          echo "_build/logs not present"
+        fi
+
+        echo "-- Full build_root.log (if present) --"
+        if [ -f build_root.log ]; then
+          sed -n '1,500p' build_root.log || true
+        fi
 
     - name: Diagnostic show installed jupyter-book/sphinx packages
       run: |
