@@ -57,12 +57,12 @@ parts:
     chapters:
       - file: content/pages/07_info
       - file: content/notebooks/07_overlay
-      #  - caption: Uke 8
-      #    chapters:
-      #      - file: content/pages/08_info
-      #      - file: content/notebooks/08_statiske_kart
-      #      - file: content/notebooks/08_interaktive_kart
-      #      - file: content/pages/08_oving-8
+  - caption: Uke 8
+    chapters:
+      - file: content/pages/08_info
+      - file: content/notebooks/08_statiske_kart
+      - file: content/notebooks/08_interaktive_kart
+      - file: content/pages/08_oving-8
       #  - caption: Uke 9
       #    chapters:
       #      - file: content/pages/09_info
