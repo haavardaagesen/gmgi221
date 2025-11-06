@@ -63,17 +63,23 @@ jobs:
         echo "-- head of index.md --"
         if [ -f index.md ]; then head -n 80 index.md || true; else echo "index.md not found"; fi
 
-        # Try the normal CLI first (this is the recommended usage). If it fails, fall back to the
-        # python module entrypoint.
-        if jupyter-book build .; then
+        # Try the normal CLI first (this is the recommended usage). Use verbose output so
+        # the CI logs are informative about what was processed.
+        if jupyter-book build . -v; then
           echo "jupyter-book build succeeded"
         else
-          echo "jupyter-book CLI failed, trying python -m jupyter_book build ."
+          echo "jupyter-book CLI failed, trying python -m jupyter_book build . (no extra flags)"
+          # Fall back to the module invocation without unsupported flags
           python -m jupyter_book build . || (
             echo "Both jupyter-book CLI and python -m jupyter_book failed";
             exit 1
           )
         fi
+
+        echo "-- contents of _build (if any) --"
+        if [ -d _build ]; then ls -la _build || true; fi
+        echo "-- contents of _build/logs (if any) --"
+        if [ -d _build/logs ]; then ls -la _build/logs || true; fi
 
     - name: Verify build output
       run: |
