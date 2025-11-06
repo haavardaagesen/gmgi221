@@ -83,10 +83,10 @@ jobs:
 
     - name: Verify build output
       run: |
-        echo "Listing _build directory"
-        ls -la _build || true
-        echo "Listing _build/html directory (should exist)"
-        ls -la _build/html
+        echo "Listing _build directory (if present)"
+        if [ -d "_build" ]; then ls -la _build || true; else echo "_build not present"; fi
+        echo "Listing _build/html directory (if present)"
+        if [ -d "_build/html" ]; then ls -la _build/html || true; else echo "_build/html not present"; fi
 
     # Detect where the built HTML was emitted (some jupyter-book versions/ configs
     # may write the built site to a different directory). We look for the first
