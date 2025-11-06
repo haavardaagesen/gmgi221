@@ -49,37 +49,47 @@ jobs:
     # Build the book
     - name: Build the book
       run: |
-        set -euo pipefail
-        # Print versions for debugging
+        set -uo pipefail
+        # Don't exit immediately; we'll try several builds and collect logs for diagnosis.
         echo "Working directory: $(pwd)"
         echo "Repo root listing (top-level):"
-        ls -la
+        ls -la || true
         echo "Python: $(python --version)"
         echo "pip: $(pip --version)"
         jupyter-book --version || true
 
         echo "-- head of _toc.yml --"
-        if [ -f _toc.yml ]; then head -n 200 _toc.yml || true; else echo "_toc.yml not found"; fi
+        if [ -f _toc.yml ]; then head -n 200 _toc.yml || echo "_toc.yml cannot be read"; else echo "_toc.yml not found"; fi
         echo "-- head of index.md --"
-        if [ -f index.md ]; then head -n 80 index.md || true; else echo "index.md not found"; fi
+        if [ -f index.md ]; then head -n 80 index.md || echo "index.md cannot be read"; else echo "index.md not found"; fi
 
-        # Try the normal CLI first (this is the recommended usage). Use verbose output so
-        # the CI logs are informative about what was processed.
-        if jupyter-book build . -v; then
-          echo "jupyter-book build succeeded"
-        else
-          echo "jupyter-book CLI failed, trying python -m jupyter_book build . (no extra flags)"
-          # Fall back to the module invocation without unsupported flags
-          python -m jupyter_book build . || (
-            echo "Both jupyter-book CLI and python -m jupyter_book failed";
-            exit 1
-          )
-        fi
+        echo "Attempting jupyter-book build on repository root (verbose). Logs -> build_root.log"
+        jupyter-book build . -v > build_root.log 2>&1 || echo "jupyter-book build . exited non-zero (see build_root.log)"
 
-        echo "-- contents of _build (if any) --"
-        if [ -d _build ]; then ls -la _build || true; fi
-        echo "-- contents of _build/logs (if any) --"
-        if [ -d _build/logs ]; then ls -la _build/logs || true; fi
+        echo "Attempting jupyter-book build on content/ (verbose). Logs -> build_content.log"
+        jupyter-book build content -v > build_content.log 2>&1 || echo "jupyter-book build content exited non-zero (see build_content.log)"
+
+        echo "Attempting python -m jupyter_book build . (fallback). Logs -> build_root_py.log"
+        python -m jupyter_book build . > build_root_py.log 2>&1 || echo "python -m jupyter_book build . exited non-zero (see build_root_py.log)"
+
+        echo "Attempting python -m jupyter_book build content (fallback). Logs -> build_content_py.log"
+        python -m jupyter_book build content > build_content_py.log 2>&1 || echo "python -m jupyter_book build content exited non-zero (see build_content_py.log)"
+
+        echo "-- Print last 200 lines of each build log file for quick inspection --"
+        for f in build_root.log build_content.log build_root_py.log build_content_py.log; do
+          if [ -f "$f" ]; then
+            echo "==== tail of $f ===="
+            tail -n 200 "$f" || true
+          else
+            echo "$f not found"
+          fi
+        done
+
+        echo "-- Find any generated HTML files --"
+        find . -type f -name '*.html' -print || true
+
+        echo "-- List _build if present --"
+        if [ -d _build ]; then ls -la _build || true; else echo "_build not present"; fi
 
     - name: Verify build output
       run: |
