@@ -33,7 +33,9 @@ jobs:
         python -m pip install --upgrade pip
         # Ensure jupyter-book is available so the build step can run
         pip install jupyter-book
-        # Install requirements if present; don't fail the job here for heavy native deps
+        # Install a minimal set of doc-build requirements (avoid heavy GIS packages in CI)
+        if [ -f requirements-docs.txt ]; then pip install -r requirements-docs.txt || true; fi
+        # Optionally install full requirements (may include heavy native deps) but don't fail the job
         if [ -f requirements.txt ]; then pip install -r requirements.txt || true; fi
 
     # (optional) Cache your executed notebooks between runs
@@ -45,6 +47,10 @@ jobs:
       with:
         path: _build/.jupyter_cache
         key: jupyter-book-cache-${{ hashFiles('requirements.txt') }}
+
+    - name: Validate TOC and source files
+      run: |
+        python .github/scripts/validate_toc.py
 
     # Build the book
     - name: Build the book
@@ -102,6 +108,18 @@ jobs:
 
         echo "-- List _build if present --"
         if [ -d _build ]; then ls -la _build || true; else echo "_build not present"; fi
+
+    - name: Diagnostic: show installed jupyter-book/sphinx packages
+      run: |
+        echo "--- pip list (filtered) ---"
+        pip list --disable-pip-version-check --format=columns | egrep -i 'jupyter-book|jupyter_book|sphinx|myst|sphinx-book-theme|myst-nb|myst-parser' || true
+        echo "--- pip show details ---"
+        for pkg in jupyter-book jupyter_book sphinx myst-nb myst-parser sphinx-book-theme; do
+          echo "--- pkg: $pkg ---"
+          pip show "$pkg" || true
+        done
+        echo "--- python module locations ---"
+        python .github/scripts/diagnose_modules.py
 
     - name: Verify build output
       run: |
