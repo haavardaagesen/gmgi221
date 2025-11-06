@@ -88,11 +88,30 @@ jobs:
         echo "Listing _build/html directory (should exist)"
         ls -la _build/html
 
+    # Detect where the built HTML was emitted (some jupyter-book versions/ configs
+    # may write the built site to a different directory). We look for the first
+    # index.html and use its directory as the upload path.
+    - name: Detect built site directory
+      id: find-site
+      run: |
+        set -euo pipefail
+        echo "Searching repository for a generated index.html..."
+        found=$(find . -type f -name index.html -print -quit || true)
+        if [ -n "$found" ]; then
+          dir=$(dirname "$found")
+          echo "Found index.html at: $found"
+          echo "path=$dir" >> "$GITHUB_OUTPUT"
+        else
+          # Fallback to the traditional location
+          echo "No index.html found. Falling back to _build/html"
+          echo "path=_build/html" >> "$GITHUB_OUTPUT"
+        fi
+
     # Upload the book's HTML as an artifact
     - name: Upload artifact
       uses: actions/upload-pages-artifact@v3
       with:
-        path: "_build/html"
+        path: "${{ steps.find-site.outputs.path }}"
 
     # Deploy the book's HTML to GitHub Pages
     - name: Deploy to GitHub Pages
