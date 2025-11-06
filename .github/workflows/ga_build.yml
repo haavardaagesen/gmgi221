@@ -50,6 +50,18 @@ jobs:
     - name: Build the book
       run: |
         set -uo pipefail
+        echo "Disable notebook execution in CI: set execute_notebooks: off in _config.yml"
+        if [ -f _config.yml ]; then
+          if grep -q "execute_notebooks" _config.yml; then
+            sed -i 's/execute_notebooks: force/execute_notebooks: off/' _config.yml || true
+            sed -n '1,120p' _config.yml || true
+          else
+            printf "\nexecute:\n  execute_notebooks: off\n" >> _config.yml
+            sed -n '1,120p' _config.yml || true
+          fi
+        else
+          echo "_config.yml not found; skipping CI execution disable"
+        fi
         # Don't exit immediately; we'll try several builds and collect logs for diagnosis.
         echo "Working directory: $(pwd)"
         echo "Repo root listing (top-level):"
