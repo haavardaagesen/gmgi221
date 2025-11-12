@@ -1,0 +1,766 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>📖 Prosjektarbeid &#8212; GMGI221 - Automatisering av GIS-prosesser</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=7cf0485e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'content/pages/13_prosjektarbeid';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="📖 Karaktersetting for prosjektoppgaven" href="13_prosjektkarakter.html" />
+    <link rel="prev" title="💻 Interaktive kart" href="../notebooks/08_interaktive_kart.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo.png" class="logo__image only-light" alt="GMGI221 - Automatisering av GIS-prosesser - Home"/>
+    <script>document.write(`<img src="../../_static/logo.png" class="logo__image only-dark" alt="GMGI221 - Automatisering av GIS-prosesser - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../index.html">
+                    Velkommen til GMGI221
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Generell info</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="00_generell.html">ℹ️ Generell info</a></li>
+<li class="toctree-l1"><a class="reference internal" href="00_laeringsmaal.html">📖 Læringsmål</a></li>
+<li class="toctree-l1"><a class="reference internal" href="00_ovingsoppgaver.html">📖 Øvingsoppgaver</a></li>
+<li class="toctree-l1"><a class="reference internal" href="00_karakterer.html">📖 Karakterer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="00_installere-python.html">📖 Installering av Python og Python pakker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="00_bruk_av_ai.html">📖 Bruk av KI-verktøy</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Uke 1</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01_info.html">ℹ️ Info</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_bakgrunn.html">📖 Bakgrunn for emnet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/01_smakebit.html">💻 En smakebit av Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_oving-1.html">📥 Øving 1</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Uke 2</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="02_info.html">ℹ️ Info</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/02_geometriske_objekter.html">💻 Geometriske objekter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/02_intersect.html">💻 Intersect</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/02_assertions.html">💻 Bruke <code class="docutils literal notranslate"><span class="pre">assertion</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_oving-2.html">📥 Øving 2</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Uke 3</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="03_info.html">ℹ️ Info</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_begreper.html">📖 Nøkkelbegreper</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/03_filstier.html">💻 Håndtering av filstier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/03_vektor.html">💻 Vektor Data I/O</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/03_geopandas.html">💻 Geopandas: en introduksjon</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_oving-3.html">📥 Øving 3</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Uke 4</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="04_info.html">ℹ️ Info</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_geokoding.html">📖 Geokoding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/04_projeksjoner.html">💻 Kartprojeksjoner</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/04_geometriske_operasjoner.html">💻 Vanlige geometriske operasjoner</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/04_geokoding_i_geopandas.html">💻 Geokoding i geopandas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_oving-4.html">📥 Øving 4</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Uke 5</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="05_info.html">ℹ️ Info</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/05_romlig_utvelgelse.html">💻 Romlig utvelgelse</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/05_romlig_kobling.html">💻 Romlig kobling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_oving-5.html">📥 Øving 5</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Uke 6</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="06_info.html">ℹ️ Info</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/06_reklassifisering.html">💻 Reklassifisering av data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/06_aggregering_av_data.html">💻 Aggregering av data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_oving-6.html">📥 Øving 6</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Uke 7</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="07_info.html">ℹ️ Info</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/07_overlay.html">💻 Overlay</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Uke 8</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="08_info.html">ℹ️ Info</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/08_statiske_kart.html">💻 Statiske kart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/08_interaktive_kart.html">💻 Interaktive kart</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Prosjektarbeid</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">📖 Prosjektarbeid</a></li>
+<li class="toctree-l1"><a class="reference internal" href="13_prosjektkarakter.html">📖 Karaktersetting for prosjektoppgaven</a></li>
+<li class="toctree-l1"><a class="reference internal" href="13_prosjekttips.html">📖 Tips til prosjektoppgaven</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/haavardaagesen/gmgi221" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/haavardaagesen/gmgi221/issues/new?title=Issue%20on%20page%20%2Fcontent/pages/13_prosjektarbeid.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/content/pages/13_prosjektarbeid.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>📖 Prosjektarbeid</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tema">Tema</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#struktur">Struktur</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hva-skal-leveres">Hva skal leveres?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vurdering">Vurdering</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prosjekter">Prosjekter</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#urbane-indikatorer">Urbane indikatorer</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data">Data</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#eksempel-analyser">Eksempel analyser</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#struktur-i-oppgaven-for-urbane-indikatorer">Struktur i oppgaven for urbane indikatorer</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tekniske-hensyn">Tekniske hensyn</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#egendefinert-prosjekt">Egendefinert prosjekt</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="prosjektarbeid">
+<h1>📖 Prosjektarbeid<a class="headerlink" href="#prosjektarbeid" title="Link to this heading">#</a></h1>
+<p>I prosjektoppgaven er målet å bruke Python-programmering til å automatisere en GIS-analyseprosess. Hovedmålet er å lage en arbeidsflyt for GIS-prosesser som enkelt kan gjentas for lignende input-data.</p>
+<p>Du kan velge et forhåndsdefinert tema, eller utvikle ditt eget forskningsspørsmål. Du bør dra nytte av dine programmeringsferdigheter (grunnleggende bruk av Python, definere dine egne funksjoner, lese og skrive data, dataanalyse ved hjelp av Pandas, romlig analyse ved hjelp av Geopandas, lage statiske og/eller interaktive datavisualiseringer, med mer), og gode kodingspraksiser (skrive lesbar og godt dokumentert kode) når du gjør den endelige prosjektoppgaven.</p>
+<section id="tema">
+<h2>Tema<a class="headerlink" href="#tema" title="Link to this heading">#</a></h2>
+<p>Du kan velge mellom disse to prosjektoppgavene:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#urbane-indikatorer"><span class="xref myst">Urbane indikatorer</span></a></p></li>
+<li><p><a class="reference internal" href="#egendefinert-prosjekt"><span class="xref myst">Egendefinert prosjekt</span></a></p></li>
+</ul>
+<p>Tenk på prosjektoppgaven som en utfordring for deg selv og en mulighet til å vise og implementere ferdighetene du har lært i emnet så langt.</p>
+</section>
+<section id="struktur">
+<h2>Struktur<a class="headerlink" href="#struktur" title="Link to this heading">#</a></h2>
+<p>Her er den foreslåtte strukturen på prosjektoppgaven, som også er utgangspunktet for vurderingen:</p>
+<ul class="simple">
+<li><p>Datainnsamling (Henting av data, delsett av data, lagring av mellomliggende resultater osv.)</p></li>
+<li><p>Dataanalyse (Beriking og analyse av data, f.eks. romlig kobling, overlapp, buffring, andre beregninger)</p></li>
+<li><p>Visualisering (Visualisering av hovedresultater og annen relevant informasjon som kart og grafer)</p></li>
+</ul>
+<p>Du kan skrive koden din i Python-skriptfiler og/eller jupyter-notebooks. Du kan fritt organisere prosjektoppgaven i en enkelt fil, eller flere filer (for eksempel, skrive dine egne funksjoner i en separat .py-fil og bruke dem i en eller flere jupyter-notebook .ipynb-filer.</p>
+<p>Arbeidsflyten skal være gjentakbar og godt dokumentert. Med andre ord, alle som får en kopi av koden din skal kunne kjøre koden din, og lese koden din.</p>
+</section>
+<section id="hva-skal-leveres">
+<h2>Hva skal leveres?<a class="headerlink" href="#hva-skal-leveres" title="Link to this heading">#</a></h2>
+<p>Organiser all koden din / notebooks i en mappe og legg til lenker til alle relevante filer i README.md-filen. Man skal kunne lese koden din og dokumentasjonen og forstå hva som skjer, og kjøre koden din for å reprodusere de samme resultatene. Du leverer inn <strong>èn zip-mappe</strong> med alle relevante filer på Canvas.</p>
+<p>Merk: Hvis koden din krever noen python-pakker som ikke er brukt ellers i emnet, vennligst nevn dem også i README.md-filen og gi installasjonsinstruksjoner.</p>
+<p>Frist for å levere er <strong>10.12.2025</strong>.</p>
+</section>
+<section id="vurdering">
+<h2>Vurdering<a class="headerlink" href="#vurdering" title="Link to this heading">#</a></h2>
+<p>Vurderingen av prosjektoppgaven er basert på en typisk 0-5 skala. Se detaljerte <a class="reference internal" href="13_prosjektkarakter.html"><span class="doc std std-doc">vurderingskriterier her</span></a>. Den endelige oppgaven vurderes basert på:</p>
+<ul class="simple">
+<li><p>Hovedanalysesteg (datainnhenting, dataanalyse, visualisering)</p></li>
+<li><p>Gjentakbarhet (det skal være mulig å gjenta hovedanalysetrinnene for forskjellige inngangsfiler / inngangsparametere)</p></li>
+<li><p>Kvalitet på visualiseringer (kart og grafer)</p></li>
+<li><p>Generell dokumentasjon av arbeidet (bruk markdown celler for å strukturere arbeidet, og kodekommentarer for å forklare detaljer)</p></li>
+</ul>
+<p>God dokumentasjon av koden og prosjektet ditt er høyt verdsatt! Du bør legge til nødvendige detaljer i README.md-filen, og bruke inline kommentarer og Markdown celler for å dokumentere arbeidet ditt underveis. Ta en titt på disse tipsene for å bruke markdown:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://guides.github.com/features/mastering-markdown/">General Markdown syntax guide</a></p></li>
+<li><p><a class="reference external" href="https://www.markdownguide.org/cheat-sheet/">Markdown Cheatsheet</a></p></li>
+</ul>
+</section>
+<section id="prosjekter">
+<h2>Prosjekter<a class="headerlink" href="#prosjekter" title="Link to this heading">#</a></h2>
+<section id="urbane-indikatorer">
+<h3>Urbane indikatorer<a class="headerlink" href="#urbane-indikatorer" title="Link to this heading">#</a></h3>
+<p>I denne oppgaven er målet å utvikle et verktøy for urban analyse og anvende det på minst to bydeler i Oslo. Hovedideen er å beregne et sett med målinger / indikatorer basert på den urbane formen og/eller befolkningen, og å sammenligne bydelene basert på disse målingene. Denne oppgaven er ikke nøyaktig definert, da ideen er å la deg bruke din egen fantasi og interesse til å utforske forskjellige datasett og utføre analyser som interesserer deg, samtidig som du gir nyttige innsikter om de urbane områdene ved å bruke et spesifikt sett med indikatorer (du bør bruke 2-4 forskjellige indikatorer, se eksempler nedenfor).</p>
+</section>
+<section id="data">
+<h3>Data<a class="headerlink" href="#data" title="Link to this heading">#</a></h3>
+<p>Du kan bruke hvilken som helst (romlig) data som du kan finne, og generere din egen rapport som beskriver hvordan bydelene skiller seg fra hverandre basert på forskjellige perspektiver (se nedenfor for hint om mulige analyser). Du kan bruke hvilken som helst data som er tilgjengelig, for eksempel fra følgende kilder:</p>
+<ul class="simple">
+<li><p>OpenStreetMap (f.eks. gater, bygninger, interessepunkter) etter tilnærmingen fra leksjon 6.</p></li>
+<li><p><a class="reference external" href="https://www.geonorge.no/kartdata/datasett-i-geonorge/">Geonorge</a></p></li>
+<li><p><a class="reference external" href="https://www.ssb.no/statbank">SSB sin statistikkbank</a></p></li>
+<li><p><a class="reference external" href="https://statistikkbanken.oslo.kommune.no/">Oslo kommunes statistikkbank</a></p></li>
+<li><p>Data fra <a class="reference external" href="https://oslobysykkel.no/apne-data">Oslo Bysykkel</a></p></li>
+<li><p>Datakilder er ikke begrenset til disse, så du kan også bruke andre data fra hvilken som helst kilde du kan finne (husk å dokumentere hvor dataene kommer fra!).</p></li>
+</ul>
+<section id="eksempel-analyser">
+<h4>Eksempel analyser<a class="headerlink" href="#eksempel-analyser" title="Link to this heading">#</a></h4>
+<p>Verktøyet bør beregne 2-4 indikatorer om de urbane områdene. Her er noen eksempler på potensielle målinger:</p>
+<p><strong>Befolkningsfordeling og demografi</strong></p>
+<ul class="simple">
+<li><p>Håndtering av inndata (tabellkoblinger, datarensing osv.)</p></li>
+<li><p>Beregn nøkkelstatistikker</p></li>
+<li><p>Lag kart og grafer</p></li>
+</ul>
+<p><strong>Urban befolkningsvekst</strong></p>
+<ul class="simple">
+<li><p>Hent befolkningsdata fra minst to forskjellige år</p></li>
+<li><p>Sammenlign statistikk fra forskjellige år</p></li>
+<li><p>Visualiser som grafer og kart</p></li>
+</ul>
+<!-- 
+**Tilgjengelighet**:
+
+ - Bestem hvilke reisetider du fokuserer på (gåing, kjøring, offentlig transport..)
+ - Bestem hvilke typer destinasjoner du fokuserer på (transportstasjoner, helsetjenester, utdanning, idrettsanlegg..)
+ - Få reisetidsdata fra Travel Time Matrix ELLER beregn korteste veier i et nettverk
+ - Beregn reisetids- / reiseavstandsmål, eller dominansområder
+ - Visualiser resultatene som grafer og kart
+-->
+<p><strong>Grønt areal-indeks</strong></p>
+<ul class="simple">
+<li><p>Hent grønne arealpolygoner og filtrer dataene om nødvendig</p></li>
+<li><p>Beregn prosentandelen av grønne områder i bydelene + andre statistikker</p></li>
+<li><p>Visualiser resultatene</p></li>
+</ul>
+<p><strong>Gate nettverksmålinger</strong></p>
+<ul class="simple">
+<li><p>Hent gatenettverksdata</p></li>
+<li><p>Beregn gatenettverksmålinger (se forelesning om nettverksanalyse og eksempler fra <a class="reference external" href="https://github.com/gboeing/osmnx-examples/tree/master/notebooks">her</a>)</p></li>
+<li><p>Visualiser resultatene</p></li>
+</ul>
+<p><strong>Bygningsdensitet</strong></p>
+<ul class="simple">
+<li><p>Hent dataene, og filtrer om nødvendig</p></li>
+<li><p>Beregn bygningsdensitet og andre målinger</p></li>
+<li><p>Lag kart som viser bygningstyper og densitet</p></li>
+</ul>
+</section>
+<section id="struktur-i-oppgaven-for-urbane-indikatorer">
+<h4>Struktur i oppgaven for urbane indikatorer<a class="headerlink" href="#struktur-i-oppgaven-for-urbane-indikatorer" title="Link to this heading">#</a></h4>
+<p>Du kan designe strukturen på oppgaven din fritt. Vi foreslår at du lager funksjoner i separate skriptfiler og demonstrerer bruken av disse funksjonene i en eller flere notatbøker. I tillegg bør du gi grunnleggende informasjon i README.md-filen til din endelige oppgave. Alt i alt bør arbeidet inkludere disse komponentene:</p>
+<ul class="simple">
+<li><p>Et emne for arbeidet ditt (f.eks. “Urbane indikatorer: analysere gatenettverksstrukturen i Stovner og Frogner”).</p></li>
+<li><p>En kort introduksjon til emnet (presenter 2-4 forskningsspørsmål som du har som mål å besvare ved hjelp av indikatorene)</p></li>
+<li><p>Kort beskrivelse av datasettene du brukte</p></li>
+<li><p>Kort generell beskrivelse av metodene du brukte</p></li>
+<li><p>Faktiske koder og visualiseringer for å produsere resultatene</p></li>
+<li><p>Kort diskusjon relatert til resultatene (hva bør vi forstå og se fra dem?)</p></li>
+<li><p>Kort refleksjon om analysen, for eksempel: - Hvilke antakelser, skjevheter eller usikkerheter er relatert til dataene og/eller analysene du gjorde? - Andre merknader som leseren bør vite om analysen</p></li>
+</ul>
+</section>
+<section id="tekniske-hensyn">
+<h4>Tekniske hensyn<a class="headerlink" href="#tekniske-hensyn" title="Link to this heading">#</a></h4>
+<p>Pass på at du:</p>
+<ul class="simple">
+<li><p>Dokumenterer analysene dine godt ved å bruke Markdown-celler og beskriver 1) hva du gjør og 2) hva du kan se fra dataene og resultatene dine.</p></li>
+<li><p>Bruker informative visualiseringer</p>
+<ul>
+<li><p>Lag kart (statisk eller interaktivt)</p></li>
+<li><p>Lag andre typer grafer (f.eks. stolpediagrammer, linjediagrammer, spredningsplott osv.)</p></li>
+<li><p>Bruk underplott som gjør det enkelt å sammenligne resultater side om side</p></li>
+</ul>
+</li>
+<li><p>Når du skriver kodene, anbefaler vi sterkt at du bruker og skriver funksjoner for repeterende deler av koden. Som en motivasjon: tenk at du skal gjenta analysene dine for alle byer i Norge, skriv kodene dine på en måte som gjør dette mulig. Videre anbefaler vi at du lagrer disse funksjonene i en egen .py-skriptfil som du importerer til notatboken</p></li>
+</ul>
+</section>
+</section>
+<section id="egendefinert-prosjekt">
+<h3>Egendefinert prosjekt<a class="headerlink" href="#egendefinert-prosjekt" title="Link to this heading">#</a></h3>
+<p>Utvikle ditt eget emne! Generelt bør ditt eget emne også inneholde disse seksjonene:</p>
+<ul class="simple">
+<li><p>Datainnhenting (Hente data, filtrere data, lagre midlertidig utdata osv.)</p></li>
+<li><p>Dataanalyse (Berike og analysere dataene, f.eks. romlig koblinger, overlay, buffering, andre beregninger..)</p></li>
+<li><p>Visualisering (Visualisere hovedresultater og annen relevant informasjon som kart og grafer)</p></li>
+</ul>
+<p>Men føl deg fri til å være kreativ! Ditt eget prosjekt kan for eksempel være relatert til et prosjekt i andre fag eller masteroppgave. Husk å beskrive tydelig hva du gjør i den endelige oppgavens README.md-fil. Hvis du velger et egendefinert prosjekt, må du få godkjenning på prosjektet før du setter ordentlig i gang.</p>
+<p>Det som minst kreves av det endelige prosjektet, er at du har:</p>
+<ul class="simple">
+<li><p>Fungerende kode for oppgaven / problemet / analysene som løser oppgaven</p></li>
+<li><p>God dokumentasjon (dvs. en veiledning) som forklarer hvordan verktøyet ditt fungerer ELLER en rapport om analysene dine og hva vi kan lære av dem</p></li>
+</ul>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./content/pages"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../notebooks/08_interaktive_kart.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">💻 Interaktive kart</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="13_prosjektkarakter.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">📖 Karaktersetting for prosjektoppgaven</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tema">Tema</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#struktur">Struktur</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hva-skal-leveres">Hva skal leveres?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vurdering">Vurdering</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prosjekter">Prosjekter</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#urbane-indikatorer">Urbane indikatorer</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data">Data</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#eksempel-analyser">Eksempel analyser</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#struktur-i-oppgaven-for-urbane-indikatorer">Struktur i oppgaven for urbane indikatorer</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tekniske-hensyn">Tekniske hensyn</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#egendefinert-prosjekt">Egendefinert prosjekt</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Håvard Wallin Aagesen
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  <p>This course is heavily based on the <a href="https://autogis-site.readthedocs.io/en/latest/" target="_blank">Automating GIS processes</a> course at the University of Helsinki.</p>
+
+</div>
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

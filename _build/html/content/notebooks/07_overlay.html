@@ -1,0 +1,1560 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>💻 Overlay &#8212; GMGI221 - Automatisering av GIS-prosesser</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=7cf0485e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'content/notebooks/07_overlay';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="ℹ️ Info" href="../pages/08_info.html" />
+    <link rel="prev" title="ℹ️ Info" href="../pages/07_info.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo.png" class="logo__image only-light" alt="GMGI221 - Automatisering av GIS-prosesser - Home"/>
+    <script>document.write(`<img src="../../_static/logo.png" class="logo__image only-dark" alt="GMGI221 - Automatisering av GIS-prosesser - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../index.html">
+                    Velkommen til GMGI221
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Generell info</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../pages/00_generell.html">ℹ️ Generell info</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/00_laeringsmaal.html">📖 Læringsmål</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/00_ovingsoppgaver.html">📖 Øvingsoppgaver</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/00_karakterer.html">📖 Karakterer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/00_installere-python.html">📖 Installering av Python og Python pakker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/00_bruk_av_ai.html">📖 Bruk av KI-verktøy</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Uke 1</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../pages/01_info.html">ℹ️ Info</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/01_bakgrunn.html">📖 Bakgrunn for emnet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_smakebit.html">💻 En smakebit av Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/01_oving-1.html">📥 Øving 1</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Uke 2</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../pages/02_info.html">ℹ️ Info</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_geometriske_objekter.html">💻 Geometriske objekter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_intersect.html">💻 Intersect</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_assertions.html">💻 Bruke <code class="docutils literal notranslate"><span class="pre">assertion</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/02_oving-2.html">📥 Øving 2</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Uke 3</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../pages/03_info.html">ℹ️ Info</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/03_begreper.html">📖 Nøkkelbegreper</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_filstier.html">💻 Håndtering av filstier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_vektor.html">💻 Vektor Data I/O</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_geopandas.html">💻 Geopandas: en introduksjon</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/03_oving-3.html">📥 Øving 3</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Uke 4</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../pages/04_info.html">ℹ️ Info</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/04_geokoding.html">📖 Geokoding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_projeksjoner.html">💻 Kartprojeksjoner</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="04_geometriske_operasjoner.html">💻 Vanlige geometriske operasjoner</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_geokoding_i_geopandas.html">💻 Geokoding i geopandas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/04_oving-4.html">📥 Øving 4</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Uke 5</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../pages/05_info.html">ℹ️ Info</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_romlig_utvelgelse.html">💻 Romlig utvelgelse</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_romlig_kobling.html">💻 Romlig kobling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/05_oving-5.html">📥 Øving 5</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Uke 6</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../pages/06_info.html">ℹ️ Info</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_reklassifisering.html">💻 Reklassifisering av data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_aggregering_av_data.html">💻 Aggregering av data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/06_oving-6.html">📥 Øving 6</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Uke 7</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../pages/07_info.html">ℹ️ Info</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">💻 Overlay</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Uke 8</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../pages/08_info.html">ℹ️ Info</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_statiske_kart.html">💻 Statiske kart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_interaktive_kart.html">💻 Interaktive kart</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Prosjektarbeid</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../pages/13_prosjektarbeid.html">📖 Prosjektarbeid</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/13_prosjektkarakter.html">📖 Karaktersetting for prosjektoppgaven</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/13_prosjekttips.html">📖 Tips til prosjektoppgaven</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/haavardaagesen/gmgi221" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/haavardaagesen/gmgi221/issues/new?title=Issue%20on%20page%20%2Fcontent/notebooks/07_overlay.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/content/notebooks/07_overlay.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>💻 Overlay</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#intersection">Intersection</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#union">Union</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#difference-og-symmetric-difference">Difference og symmetric difference</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overlay-med-befolkningsdata">Overlay med befolkningsdata</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="overlay">
+<h1>💻 Overlay<a class="headerlink" href="#overlay" title="Link to this heading">#</a></h1>
+<p>Overlay-analyser er GIS-operasjoner der to eller flere vektorlag er
+kombinert for å produsere nye geometrier. Typiske overlay-operasjoner inkluderer <em>union</em>,
+<em>intersection</em>, og <em>difference</em> - navngitt etter resultatet av kombinasjonen av to lag. I denne notebooken (inspirert av <a class="reference external" href="https://pythongis.org/part2/chapter-06/nb/08-overlay-analysis-with-vector-data.html">Python for Geographic Data Analysis</a>) ser vi nærmere på hvordan vi kan utføre overlay operasjoner med vektor data.</p>
+<p>Den grunnleggende ideen med vektor-overlay-operasjoner er demonstrert i figuren under, hvor de grønne områdene representerer områdene som utgjør resultatet etter overlay-operasjonen. Det er viktig å huske at overlays opererer på GeoDataFrame-nivå, ikke på individuelle geometrier, og egenskapene fra begge beholdes (ofte, men ikke alltid). I praksis utføres denne operasjonen for hver form i den venstre GeoDataFrame mot hver annen form i den høyre GeoDataFrame.</p>
+<p><img alt="Fire paneler som viser union, intersection, symmetric difference og difference av to geometrier." src="https://pythongis.org/_images/vector_overlay_processes.png" /></p>
+<p>Romlig overlay med to inputvektorlag (rektangel, sirkel). Det resulterende vektorlaget vises i grønt. <em>Kilde: <a class="reference external" href="https://docs.qgis.org/latest/en/docs/gentle_gis_introduction/vector_spatial_analysis_buffers.html#figure-overlay-operations">QGIS dokumentasjon</a></em></p>
+<div class="docutils">
+<p>For å demonstrere hvordan disse overlay-operasjonene fungerer i praksis, vil vi utføre vektor-overlay-operasjoner mellom to polygon-datasett som representerer 1) bydelene i Oslo og 2) en 5000-meter buffer rundt Oslo S. La oss starte med å lese inn datasettene og forberede dem for analysen:</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">geopandas</span>
+<span class="kn">import</span> <span class="nn">pathlib</span> 
+
+<span class="n">NOTEBOOK_PATH</span> <span class="o">=</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">()</span><span class="o">.</span><span class="n">resolve</span><span class="p">()</span>
+<span class="n">DATA_MAPPE</span> <span class="o">=</span> <span class="n">NOTEBOOK_PATH</span> <span class="o">/</span> <span class="s2">&quot;data&quot;</span>
+
+<span class="n">bydeler</span> <span class="o">=</span> <span class="n">geopandas</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="n">DATA_MAPPE</span> <span class="o">/</span> <span class="s2">&quot;oslo_bydeler&quot;</span> <span class="o">/</span> <span class="s2">&quot;oslo_bydeler_befolkning_2024.geojson&quot;</span><span class="p">)</span>
+<span class="n">oslo_s</span> <span class="o">=</span> <span class="n">geopandas</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="n">DATA_MAPPE</span> <span class="o">/</span> <span class="s2">&quot;oslo_bydeler&quot;</span> <span class="o">/</span> <span class="s2">&quot;oslo_s.geojson&quot;</span><span class="p">)</span>
+<span class="n">bydeler</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(17, 6)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">oslo_s</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>navn</th>
+      <th>geometry</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Oslo S</td>
+      <td>POINT (10.75040 59.91170)</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Her kan vi se at bydelene inneholder MultiPolygon-geometrier som representerer til sammen 17 bydeler, mens <code class="docutils literal notranslate"><span class="pre">oslo_s</span></code> representerer et enkelt punkt for Oslo S. Siden vektor-overlay-operasjoner skjer mellom to geografiske datasett, er det nødvendig å sikre at de begge deler samme koordinatsystem og i vårt tilfelle et projisert koordinatsystem, siden vi skal bruke en metrisk buffersone.
+La oss derfor først sjekke crs-attributtene og gjøre nødvendige reprojiseringer:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">bydeler</span><span class="o">.</span><span class="n">crs</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">oslo_s</span><span class="o">.</span><span class="n">crs</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>EPSG:4326
+EPSG:4326
+</pre></div>
+</div>
+</div>
+</div>
+<p>Begge datasettene våre er i <code class="docutils literal notranslate"><span class="pre">EPSG:4326</span></code>, la oss reprojisere til <code class="docutils literal notranslate"><span class="pre">EPSG:25832</span></code> som egner seg for norske data:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Reprojiser bydeler</span>
+<span class="n">bydeler</span> <span class="o">=</span> <span class="n">bydeler</span><span class="o">.</span><span class="n">to_crs</span><span class="p">(</span><span class="s2">&quot;EPSG:25832&quot;</span><span class="p">)</span>
+
+<span class="c1"># Reprojiser oslo_s</span>
+<span class="n">oslo_s</span> <span class="o">=</span> <span class="n">oslo_s</span><span class="o">.</span><span class="n">to_crs</span><span class="p">(</span><span class="n">bydeler</span><span class="o">.</span><span class="n">crs</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>La oss for sikkerhetsskyld dobbeltsjekke at lagene har samme crs:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">assert</span> <span class="n">bydeler</span><span class="o">.</span><span class="n">crs</span> <span class="o">==</span> <span class="n">oslo_s</span><span class="o">.</span><span class="n">crs</span><span class="p">,</span> <span class="s2">&quot;Ulike koordinatsystemer!&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Supert, koordinatsystemet (CRS) stemmer overens mellom lagene. Derfor kan vi fortsette og lage en 5 kilometer buffer rundt Oslo S som vi vil bruke i våre vektor-overlay-operasjoner:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">oslo_s_buffer</span> <span class="o">=</span> <span class="n">oslo_s</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">oslo_s_buffer</span><span class="p">[</span><span class="s2">&quot;geometry&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">oslo_s_buffer</span><span class="o">.</span><span class="n">buffer</span><span class="p">(</span><span class="mi">5000</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Her har vi først lagd en kopi av <code class="docutils literal notranslate"><span class="pre">oslo_s</span></code>-laget vårt, og brukt <code class="docutils literal notranslate"><span class="pre">.buffer()</span></code>-metoden til å lage en buffer Polygon på 5000 meters radius rundt Oslo S. Vi kan nå lage et enkelt plot for å se hvordan lagene overlapper hverandre:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">bydeler</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">facecolor</span><span class="o">=</span><span class="s2">&quot;blue&quot;</span><span class="p">)</span>
+<span class="n">oslo_s_buffer</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: &gt;
+</pre></div>
+</div>
+<img alt="../../_images/c30f264d506ae40f11509ad7f67b5c8ed192ff2764b8336f3a160d6a5e75139c.png" src="../../_images/c30f264d506ae40f11509ad7f67b5c8ed192ff2764b8336f3a160d6a5e75139c.png" />
+</div>
+</div>
+<section id="intersection">
+<h2>Intersection<a class="headerlink" href="#intersection" title="Link to this heading">#</a></h2>
+<p>Nå kan vi utføre en overlay-analyse mellom disse to lagene. Vi skal lage et nytt lag som <code class="docutils literal notranslate"><span class="pre">intersect</span></code>(“skjærer”) med bydelslaget. Vi bruker da metoden <code class="docutils literal notranslate"><span class="pre">.overlay()</span></code> i GeoPandas til å gjøre analysen mellom laget <code class="docutils literal notranslate"><span class="pre">bydeler</span></code> og <code class="docutils literal notranslate"><span class="pre">oslo_s_buffer</span></code>. Parameteren <code class="docutils literal notranslate"><span class="pre">how</span></code> i <code class="docutils literal notranslate"><span class="pre">overlay()</span></code>-metoden angir hvilken type overlay-analyse som utføres. De ulike metodene man kan velge mellom er <code class="docutils literal notranslate"><span class="pre">intersection</span></code>, <code class="docutils literal notranslate"><span class="pre">union</span></code>, <code class="docutils literal notranslate"><span class="pre">symmetric_difference</span></code>, <code class="docutils literal notranslate"><span class="pre">difference</span></code> og <code class="docutils literal notranslate"><span class="pre">identity</span></code>.</p>
+<p>Vi begynner med å bruke <code class="docutils literal notranslate"><span class="pre">intersection</span></code> som overlay-metode:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Intersection</span>
+<span class="n">intersection</span> <span class="o">=</span> <span class="n">bydeler</span><span class="o">.</span><span class="n">overlay</span><span class="p">(</span><span class="n">oslo_s_buffer</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s2">&quot;intersection&quot;</span><span class="p">)</span>
+<span class="n">intersection</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>fid</th>
+      <th>bydelsnr</th>
+      <th>bynavn</th>
+      <th>bydel</th>
+      <th>befolkning_2024</th>
+      <th>navn</th>
+      <th>geometry</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>030101</td>
+      <td>Oslo</td>
+      <td>Gamle Oslo</td>
+      <td>63721</td>
+      <td>Oslo S</td>
+      <td>POLYGON ((594299.813 6640496.194, 595053.786 6...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>030102</td>
+      <td>Oslo</td>
+      <td>Grünerløkka</td>
+      <td>65532</td>
+      <td>Oslo S</td>
+      <td>POLYGON ((598106.885 6643240.277, 598165.757 6...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>030103</td>
+      <td>Oslo</td>
+      <td>Sagene</td>
+      <td>47627</td>
+      <td>Oslo S</td>
+      <td>POLYGON ((599000.023 6645042.516, 598989.131 6...</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4</td>
+      <td>030104</td>
+      <td>Oslo</td>
+      <td>St.Hanshaugen</td>
+      <td>41571</td>
+      <td>Oslo S</td>
+      <td>POLYGON ((597929.403 6643709.551, 597936.146 6...</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5</td>
+      <td>030105</td>
+      <td>Oslo</td>
+      <td>Frogner</td>
+      <td>60727</td>
+      <td>Oslo S</td>
+      <td>POLYGON ((593123.834 6643198.372, 593664.254 6...</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>6</td>
+      <td>030106</td>
+      <td>Oslo</td>
+      <td>Ullern</td>
+      <td>35440</td>
+      <td>Oslo S</td>
+      <td>POLYGON ((592894.411 6643050.452, 592909.701 6...</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>7</td>
+      <td>030107</td>
+      <td>Oslo</td>
+      <td>Vestre Aker</td>
+      <td>52590</td>
+      <td>Oslo S</td>
+      <td>POLYGON ((595764.880 6647391.522, 595759.932 6...</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>8</td>
+      <td>030108</td>
+      <td>Oslo</td>
+      <td>Nordre Aker</td>
+      <td>55056</td>
+      <td>Oslo S</td>
+      <td>POLYGON ((599513.141 6646064.846, 599498.522 6...</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>9</td>
+      <td>030109</td>
+      <td>Oslo</td>
+      <td>Bjerke</td>
+      <td>36450</td>
+      <td>Oslo S</td>
+      <td>POLYGON ((601049.467 6644203.445, 601046.649 6...</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>12</td>
+      <td>030112</td>
+      <td>Oslo</td>
+      <td>Alna</td>
+      <td>50358</td>
+      <td>Oslo S</td>
+      <td>POLYGON ((601433.698 6642738.788, 601426.332 6...</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>13</td>
+      <td>030113</td>
+      <td>Oslo</td>
+      <td>Østensjø</td>
+      <td>51895</td>
+      <td>Oslo S</td>
+      <td>POLYGON ((601656.376 6639614.618, 601620.452 6...</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>14</td>
+      <td>030114</td>
+      <td>Oslo</td>
+      <td>Nordstrand</td>
+      <td>54027</td>
+      <td>Oslo S</td>
+      <td>POLYGON ((596941.033 6638803.261, 596901.883 6...</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>16</td>
+      <td>030116</td>
+      <td>Oslo</td>
+      <td>Sentrum</td>
+      <td>0</td>
+      <td>Oslo S</td>
+      <td>POLYGON ((597652.231 6642995.353, 597659.927 6...</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Vi kan nå se at vi har en GeoDataFrame med 13 rader for alle bydelene som intersecter med bufferlaget vårt. Vi kan også se at vi har med kolonner fra begge datasettene, og dermed at overaly-metoden fungerer litt likt <code class="docutils literal notranslate"><span class="pre">sjoin()</span></code> som vi brukte i en <a class="reference internal" href="05_romlig_kobling.html"><span class="doc std std-doc">tidligere forelesning</span></a>.</p>
+<p>For å lettere illustrere hvordan de ulike overlay metodene fungerer, lager vi nå en funksjon som plotter et kart før og etter overlay-analysen ved siden av hverandre:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+
+<span class="k">def</span> <span class="nf">plot_overlay</span><span class="p">(</span><span class="n">gdf1</span><span class="p">,</span> <span class="n">gdf2</span><span class="p">,</span> <span class="n">result</span><span class="p">,</span> <span class="n">title</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Creates two maps next to each other based on `gdf1`, `gdf2` and the</span>
+<span class="sd">    `result` GeoDataFrames.</span>
+
+<span class="sd">    Source: https://pythongis.org/part2/chapter-06/nb/08-overlay-analysis-with-vector-data.html#intersection</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">fig</span><span class="p">,</span> <span class="p">(</span><span class="n">ax1</span><span class="p">,</span> <span class="n">ax2</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+
+    <span class="n">ax1</span> <span class="o">=</span> <span class="n">gdf1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax1</span><span class="p">)</span>
+    <span class="n">ax1</span> <span class="o">=</span> <span class="n">gdf2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+
+    <span class="n">result</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax2</span><span class="p">)</span>
+
+    <span class="c1"># Fetch bounds and apply to axis 2</span>
+    <span class="n">xmin</span><span class="p">,</span> <span class="n">ymin</span><span class="p">,</span> <span class="n">xmax</span><span class="p">,</span> <span class="n">ymax</span> <span class="o">=</span> <span class="n">gdf1</span><span class="o">.</span><span class="n">total_bounds</span>
+
+    <span class="n">ax2</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="n">xmin</span><span class="p">,</span> <span class="n">xmax</span><span class="p">)</span>
+    <span class="n">ax2</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="n">ymin</span><span class="p">,</span> <span class="n">ymax</span><span class="p">)</span>
+
+    <span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="n">title</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+    <span class="c1"># Add an arrow between the plots</span>
+    <span class="n">fig</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.49</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="s2">&quot;⇨&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">)</span>
+    <span class="n">ax1</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s2">&quot;off&quot;</span><span class="p">)</span>
+    <span class="n">ax2</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s2">&quot;off&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">fig</span><span class="p">,</span> <span class="n">ax1</span><span class="p">,</span> <span class="n">ax2</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Med denne funksjonen kan vi nå bruke <code class="docutils literal notranslate"><span class="pre">intersection</span></code>-laget vi nettopp lagde og plotte før- og etter-resultatet:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax1</span><span class="p">,</span> <span class="n">ax2</span> <span class="o">=</span> <span class="n">plot_overlay</span><span class="p">(</span>
+    <span class="n">gdf1</span><span class="o">=</span><span class="n">bydeler</span><span class="p">,</span> <span class="n">gdf2</span><span class="o">=</span><span class="n">oslo_s_buffer</span><span class="p">,</span> <span class="n">result</span><span class="o">=</span><span class="n">intersection</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Intersection&quot;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/9dc90908340c3db51bc2f19b471866ce64e7591f61f7b4171062b49df04601db.png" src="../../_images/9dc90908340c3db51bc2f19b471866ce64e7591f61f7b4171062b49df04601db.png" />
+</div>
+</div>
+<p>Som vi kan se, beholder “intersection” operasjonen bydelene som krysser sirkelen og beholder alle disse geometriene i resultatet. En viktig ting å merke seg er at med <code class="docutils literal notranslate"><span class="pre">overlay()</span></code> vil den kryssende GeoDataFramen (<code class="docutils literal notranslate"><span class="pre">oslo_s_buffer</span></code>) også modifisere inputgeometriene ved å kutte dem i grenseområdene der de krysser. Dette er en av de viktigste forskjellene mellom <code class="docutils literal notranslate"><span class="pre">.overlay()</span></code> og <code class="docutils literal notranslate"><span class="pre">sjoin()</span></code> metodene, da <code class="docutils literal notranslate"><span class="pre">sjoin()</span></code> ikke vil modifisere inputgeometriene. Som nevnt tidligere, beholdes attributtdata fra begge GeoDataFramene for objektene som er en del av resultatet. I det følgende vil vi vise én etter én hvordan forskjellige overlay-operasjoner (dvs. union, difference, symmetric difference, identity) påvirker resultatene.</p>
+</section>
+<section id="union">
+<h2>Union<a class="headerlink" href="#union" title="Link to this heading">#</a></h2>
+<p>La oss bruke de samme inputdatasettene og utføre en <code class="docutils literal notranslate"><span class="pre">union</span></code>-overlay:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Union</span>
+<span class="n">union</span> <span class="o">=</span> <span class="n">bydeler</span><span class="o">.</span><span class="n">overlay</span><span class="p">(</span><span class="n">oslo_s_buffer</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s2">&quot;union&quot;</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax1</span><span class="p">,</span> <span class="n">ax2</span> <span class="o">=</span> <span class="n">plot_overlay</span><span class="p">(</span>
+    <span class="n">gdf1</span><span class="o">=</span><span class="n">bydeler</span><span class="p">,</span> <span class="n">gdf2</span><span class="o">=</span><span class="n">oslo_s_buffer</span><span class="p">,</span> <span class="n">result</span><span class="o">=</span><span class="n">union</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Union&quot;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/dd0632ad068b6d34091adf62b26798ff3e83c8123e6c81bc3ad5850f543d8b6e.png" src="../../_images/dd0632ad068b6d34091adf62b26798ff3e83c8123e6c81bc3ad5850f543d8b6e.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">union</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(27, 7)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Når man bruker <code class="docutils literal notranslate"><span class="pre">&quot;union&quot;</span></code> overlay-operasjonen, beholdes geometriene fra begge GeoDataFrames i resultatet. Som du kan se, har antall rader økt ganske betydelig fra 17 til 22 rader. Dette skjer fordi bydelene igjen blir modifisert av <code class="docutils literal notranslate"><span class="pre">oslo_s_buffer</span></code> i områdene der geometriene krysser hverandre: bydelene blir delt i to i områder der buffergeometrien krysser bydeler-geometriene. Dette vil derfor øke antall rader i det endelige resultatet.</p>
+</section>
+<section id="difference-og-symmetric-difference">
+<h2>Difference og symmetric difference<a class="headerlink" href="#difference-og-symmetric-difference" title="Link to this heading">#</a></h2>
+<p>Noen ganger kan det være nyttig å fokusere på å trekke ut geometrier som ligger utenfor et gitt lag. Dette kan oppnås ved å bruke .overlay() med “difference” operatoren:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Difference</span>
+<span class="n">difference</span> <span class="o">=</span> <span class="n">bydeler</span><span class="o">.</span><span class="n">overlay</span><span class="p">(</span><span class="n">oslo_s_buffer</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s2">&quot;difference&quot;</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax1</span><span class="p">,</span> <span class="n">ax2</span> <span class="o">=</span> <span class="n">plot_overlay</span><span class="p">(</span>
+    <span class="n">gdf1</span><span class="o">=</span><span class="n">bydeler</span><span class="p">,</span> <span class="n">gdf2</span><span class="o">=</span><span class="n">oslo_s_buffer</span><span class="p">,</span> <span class="n">result</span><span class="o">=</span><span class="n">difference</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Difference&quot;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/29800c63d4f386d96c429d4063d257548f1ed4d21577c2d1d231b0d852ab56aa.png" src="../../_images/29800c63d4f386d96c429d4063d257548f1ed4d21577c2d1d231b0d852ab56aa.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">difference</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(13, 6)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Symmetric differance-overlay-operasjonen er en interessant en. Den vil beholde geometriene og attributtene utenfor <code class="docutils literal notranslate"><span class="pre">oslo_s_buffer</span></code>-laget, samt opprette en geometri innenfor <code class="docutils literal notranslate"><span class="pre">oslo_s_buffer</span></code> som inkluderer områder som er innenfor <code class="docutils literal notranslate"><span class="pre">oslo_s_buffer</span></code>-ringen, men utenfor <code class="docutils literal notranslate"><span class="pre">bydeler</span></code>-GeoDataFramen. Det vil si, i vårt tilfelle inneholder den et lite stykke av Oslofjorden, som vist nedenfor:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Symmetric Difference</span>
+<span class="n">symmetric_difference</span> <span class="o">=</span> <span class="n">bydeler</span><span class="o">.</span><span class="n">overlay</span><span class="p">(</span><span class="n">oslo_s_buffer</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s2">&quot;symmetric_difference&quot;</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax1</span><span class="p">,</span> <span class="n">ax2</span> <span class="o">=</span> <span class="n">plot_overlay</span><span class="p">(</span>
+    <span class="n">gdf1</span><span class="o">=</span><span class="n">bydeler</span><span class="p">,</span>
+    <span class="n">gdf2</span><span class="o">=</span><span class="n">oslo_s_buffer</span><span class="p">,</span>
+    <span class="n">result</span><span class="o">=</span><span class="n">symmetric_difference</span><span class="p">,</span>
+    <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Symmetric Difference&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/7f5cc895aa655c9018a41abea820f32b3dfc3f6374b5522d0a417f529299733e.png" src="../../_images/7f5cc895aa655c9018a41abea820f32b3dfc3f6374b5522d0a417f529299733e.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">symmetric_difference</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(14, 7)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">symmetric_difference</span><span class="o">.</span><span class="n">tail</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>fid</th>
+      <th>bydelsnr</th>
+      <th>bynavn</th>
+      <th>bydel</th>
+      <th>befolkning_2024</th>
+      <th>navn</th>
+      <th>geometry</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>9</th>
+      <td>13.0</td>
+      <td>030113</td>
+      <td>Oslo</td>
+      <td>Østensjø</td>
+      <td>51895.0</td>
+      <td>NaN</td>
+      <td>POLYGON ((603544.866 6638682.313, 603551.763 6...</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>14.0</td>
+      <td>030114</td>
+      <td>Oslo</td>
+      <td>Nordstrand</td>
+      <td>54027.0</td>
+      <td>NaN</td>
+      <td>POLYGON ((600631.693 6635249.786, 600624.152 6...</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>15.0</td>
+      <td>030115</td>
+      <td>Oslo</td>
+      <td>Søndre Nordstrand</td>
+      <td>39124.0</td>
+      <td>NaN</td>
+      <td>MULTIPOLYGON (((603567.643 6634836.359, 603565...</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>17.0</td>
+      <td>030117</td>
+      <td>Oslo</td>
+      <td>Marka</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>MULTIPOLYGON (((603567.643 6634836.359, 603567...</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Oslo S</td>
+      <td>MULTIPOLYGON (((596434.202 6638086.898, 595972...</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Som vi kan se i tabellen, så inneholder tabellen attributter fra bydelene og en rad med data fra <code class="docutils literal notranslate"><span class="pre">oslo_s_buffer</span></code> i den siste raden.</p>
+</section>
+<section id="overlay-med-befolkningsdata">
+<h2>Overlay med befolkningsdata<a class="headerlink" href="#overlay-med-befolkningsdata" title="Link to this heading">#</a></h2>
+<p>I denne notebooken vil vi utføre en overlay-analyse for å velge de polygon-cellene i et grid-datasett som ligger innenfor Oslo. I denne
+øvelsen, bruker vi to input-datasett: et grid av statistiske polygoner med
+befolkningen i Oslo og et polygon-datasett av norske kommuner
+(<code class="docutils literal notranslate"><span class="pre">kommuner.geojson</span></code>), hvor vi skal velge bare Oslo kommune.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pathlib</span> 
+<span class="n">NOTEBOOK_PATH</span> <span class="o">=</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">()</span><span class="o">.</span><span class="n">resolve</span><span class="p">()</span>
+<span class="n">DATA_MAPPE</span> <span class="o">=</span> <span class="n">NOTEBOOK_PATH</span> <span class="o">/</span> <span class="s2">&quot;data&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">geopandas</span>
+
+<span class="n">rutenett</span> <span class="o">=</span> <span class="n">geopandas</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="n">DATA_MAPPE</span> <span class="o">/</span> <span class="s2">&quot;ssb_rutenett&quot;</span> <span class="o">/</span> <span class="s2">&quot;befolkning_250m_2023_akershus.shp&quot;</span><span class="p">)</span>
+
+<span class="n">kommuner</span> <span class="o">=</span> <span class="n">geopandas</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span>
+    <span class="n">DATA_MAPPE</span> <span class="o">/</span> <span class="s2">&quot;kommuner&quot;</span> <span class="o">/</span> <span class="s2">&quot;kommuner.geojson&quot;</span>
+<span class="p">)</span>
+
+<span class="n">display</span><span class="p">(</span><span class="n">kommuner</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>gml_id</th>
+      <th>lokalId</th>
+      <th>navnerom</th>
+      <th>versjonId</th>
+      <th>oppdateringsdato</th>
+      <th>gyldigFra</th>
+      <th>datauttaksdato</th>
+      <th>navn</th>
+      <th>språk</th>
+      <th>kommunenummer</th>
+      <th>kommunenavn</th>
+      <th>samiskForvaltningsområde</th>
+      <th>geometry</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>kommune.1</td>
+      <td>0466e7c3-6a23-4b70-97d4-cf81f949490b</td>
+      <td>https://data.geonorge.no/sosi/inndelinger/innd...</td>
+      <td>3</td>
+      <td>2023-11-28 17:47:39</td>
+      <td>2024-01-01</td>
+      <td>2024-03-04 12:27:57</td>
+      <td>Ibestad</td>
+      <td>nor</td>
+      <td>5514</td>
+      <td>Ibestad</td>
+      <td>False</td>
+      <td>MULTIPOLYGON (((589669.263 7630312.979, 589669...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>kommune.2</td>
+      <td>0f821a2d-a307-41ec-9b64-f01c80e39357</td>
+      <td>https://data.geonorge.no/sosi/inndelinger/innd...</td>
+      <td>4</td>
+      <td>2023-11-07 23:33:28</td>
+      <td>2023-11-07</td>
+      <td>2024-03-04 12:27:57</td>
+      <td>Rendalen</td>
+      <td>nor</td>
+      <td>3424</td>
+      <td>Rendalen</td>
+      <td>False</td>
+      <td>MULTIPOLYGON (((327391.890 6869419.570, 327363...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>kommune.3</td>
+      <td>251a3fdd-ac96-4ef2-badb-a9b75e6ab2e6</td>
+      <td>https://data.geonorge.no/sosi/inndelinger/innd...</td>
+      <td>3</td>
+      <td>2023-11-28 15:42:05</td>
+      <td>2024-01-01</td>
+      <td>2024-03-04 12:27:57</td>
+      <td>Rakkestad</td>
+      <td>nor</td>
+      <td>3120</td>
+      <td>Rakkestad</td>
+      <td>False</td>
+      <td>MULTIPOLYGON (((284560.990 6591094.550, 284575...</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>kommune.4</td>
+      <td>2758a7b8-edba-4d6a-936e-4754ce03ca8f</td>
+      <td>https://data.geonorge.no/sosi/inndelinger/innd...</td>
+      <td>3</td>
+      <td>2023-11-28 15:56:10</td>
+      <td>2024-01-01</td>
+      <td>2024-03-04 12:27:57</td>
+      <td>Nordre Follo</td>
+      <td>nor</td>
+      <td>3207</td>
+      <td>Nordre Follo</td>
+      <td>False</td>
+      <td>MULTIPOLYGON (((269615.270 6638265.470, 269615...</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>kommune.5</td>
+      <td>340fff7f-b153-4a87-814d-12ca4f2d1682</td>
+      <td>https://data.geonorge.no/sosi/inndelinger/innd...</td>
+      <td>4</td>
+      <td>2023-11-07 23:33:28</td>
+      <td>2023-11-07</td>
+      <td>2024-03-04 12:27:57</td>
+      <td>Overhalla</td>
+      <td>nor</td>
+      <td>5047</td>
+      <td>Overhalla</td>
+      <td>False</td>
+      <td>MULTIPOLYGON (((359415.100 7152572.930, 359412...</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Vi kan nå velge bare Ås kommune fra kommune-datasettet.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">aas</span> <span class="o">=</span> <span class="n">kommuner</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">kommuner</span><span class="p">[</span><span class="s2">&quot;navn&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;Ås&quot;</span><span class="p">]</span>
+<span class="n">aas</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>gml_id</th>
+      <th>lokalId</th>
+      <th>navnerom</th>
+      <th>versjonId</th>
+      <th>oppdateringsdato</th>
+      <th>gyldigFra</th>
+      <th>datauttaksdato</th>
+      <th>navn</th>
+      <th>språk</th>
+      <th>kommunenummer</th>
+      <th>kommunenavn</th>
+      <th>samiskForvaltningsområde</th>
+      <th>geometry</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>27</th>
+      <td>kommune.28</td>
+      <td>d285e9c4-8da0-4dfc-b927-31ba7ee17e6a</td>
+      <td>https://data.geonorge.no/sosi/inndelinger/innd...</td>
+      <td>3</td>
+      <td>2023-11-28 16:00:22</td>
+      <td>2024-01-01</td>
+      <td>2024-03-04 12:27:57</td>
+      <td>Ås</td>
+      <td>nor</td>
+      <td>3218</td>
+      <td>Ås</td>
+      <td>False</td>
+      <td>MULTIPOLYGON (((266871.580 6614231.500, 266871...</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Før vi fortsetter er det en god ide å sørge for at begge lagene har samme koordinatsystem:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Sjekke at lagene har samme crs</span>
+<span class="n">rutenett</span><span class="o">.</span><span class="n">crs</span> <span class="o">==</span> <span class="n">aas</span><span class="o">.</span><span class="n">crs</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+<p>La oss gjøre en rask overleggsvisualisering av de to lagene:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plott lagene</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">rutenett</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s2">&quot;gray&quot;</span><span class="p">)</span>
+<span class="n">aas</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s2">&quot;None&quot;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s2">&quot;blue&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: &gt;
+</pre></div>
+</div>
+<img alt="../../_images/f49f8d5832b30f88271ed8dda0f6bdacefbeabcee49fc7ed906899cae773d2d2.png" src="../../_images/f49f8d5832b30f88271ed8dda0f6bdacefbeabcee49fc7ed906899cae773d2d2.png" />
+</div>
+</div>
+<p>Her er alle de grå rutene gridceller med befolkningsdata for Akershus fylke. Datasettet inneholder 17376 ruter.
+Det blå omrisset representerer Ås kommune. Vårt mål er nå å utføre en overlay-analyse og velge de geometriene fra rutenettet som krysser polygonet for Ås kommune.</p>
+<p>Vi vil lage et nytt lag basert på rutenett-polygoner som <code class="docutils literal notranslate"><span class="pre">intersect</span></code>-er med Ås-laget vårt. Vi kan bruke metoden <code class="docutils literal notranslate"><span class="pre">overlay()</span></code> med en <code class="docutils literal notranslate"><span class="pre">GeoDataFrame</span></code> for å utføre overlay-analysen som tar som en input 1) andre GeoDataFrames, og 2)
+parameteren <code class="docutils literal notranslate"><span class="pre">how</span></code> som kan brukes til å kontrollere hvordan overlay-analysen blir
+utført (mulige verdier er <code class="docutils literal notranslate"><span class="pre">'intersection'</span></code>, <code class="docutils literal notranslate"><span class="pre">'union'</span></code>,<code class="docutils literal notranslate"><span class="pre">'symmetric_difference'</span></code>, <code class="docutils literal notranslate"><span class="pre">'difference'</span></code>, og <code class="docutils literal notranslate"><span class="pre">'identity'</span></code>):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">intersection</span> <span class="o">=</span> <span class="n">rutenett</span><span class="o">.</span><span class="n">overlay</span><span class="p">(</span><span class="n">aas</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s2">&quot;intersection&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>La oss plotte dataene våre og se hva vi har:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">intersection</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s2">&quot;b&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: &gt;
+</pre></div>
+</div>
+<img alt="../../_images/e796a5a38fbd380ccf64e85d83218cfbdee07a50e56a24e81dd5402fc5afdb41.png" src="../../_images/e796a5a38fbd380ccf64e85d83218cfbdee07a50e56a24e81dd5402fc5afdb41.png" />
+</div>
+</div>
+<p>Som et resultat har vi nå bare de rutenett cellene som krysser med grensene til Ås. Hvis du ser nøye etter, kan du også observere at <strong>rutenett cellene er
+klippet basert på grensen.</strong></p>
+<ul class="simple">
+<li><p>Hva med dataattributter? La oss se hva vi har:</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">intersection</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>ru250m</th>
+      <th>pop_tot</th>
+      <th>gml_id</th>
+      <th>lokalId</th>
+      <th>navnerom</th>
+      <th>versjonId</th>
+      <th>oppdateringsdato</th>
+      <th>gyldigFra</th>
+      <th>datauttaksdato</th>
+      <th>navn</th>
+      <th>språk</th>
+      <th>kommunenummer</th>
+      <th>kommunenavn</th>
+      <th>samiskForvaltningsområde</th>
+      <th>geometry</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>22605006625250</td>
+      <td>10</td>
+      <td>kommune.28</td>
+      <td>d285e9c4-8da0-4dfc-b927-31ba7ee17e6a</td>
+      <td>https://data.geonorge.no/sosi/inndelinger/innd...</td>
+      <td>3</td>
+      <td>2023-11-28 16:00:22</td>
+      <td>2024-01-01</td>
+      <td>2024-03-04 12:27:57</td>
+      <td>Ås</td>
+      <td>nor</td>
+      <td>3218</td>
+      <td>Ås</td>
+      <td>False</td>
+      <td>POLYGON ((260500.000 6625250.000, 260500.000 6...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>22617506625250</td>
+      <td>3</td>
+      <td>kommune.28</td>
+      <td>d285e9c4-8da0-4dfc-b927-31ba7ee17e6a</td>
+      <td>https://data.geonorge.no/sosi/inndelinger/innd...</td>
+      <td>3</td>
+      <td>2023-11-28 16:00:22</td>
+      <td>2024-01-01</td>
+      <td>2024-03-04 12:27:57</td>
+      <td>Ås</td>
+      <td>nor</td>
+      <td>3218</td>
+      <td>Ås</td>
+      <td>False</td>
+      <td>POLYGON ((261750.000 6625250.000, 261750.000 6...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>22620006625250</td>
+      <td>23</td>
+      <td>kommune.28</td>
+      <td>d285e9c4-8da0-4dfc-b927-31ba7ee17e6a</td>
+      <td>https://data.geonorge.no/sosi/inndelinger/innd...</td>
+      <td>3</td>
+      <td>2023-11-28 16:00:22</td>
+      <td>2024-01-01</td>
+      <td>2024-03-04 12:27:57</td>
+      <td>Ås</td>
+      <td>nor</td>
+      <td>3218</td>
+      <td>Ås</td>
+      <td>False</td>
+      <td>POLYGON ((262000.000 6625250.000, 262000.000 6...</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>22622506625250</td>
+      <td>10</td>
+      <td>kommune.28</td>
+      <td>d285e9c4-8da0-4dfc-b927-31ba7ee17e6a</td>
+      <td>https://data.geonorge.no/sosi/inndelinger/innd...</td>
+      <td>3</td>
+      <td>2023-11-28 16:00:22</td>
+      <td>2024-01-01</td>
+      <td>2024-03-04 12:27:57</td>
+      <td>Ås</td>
+      <td>nor</td>
+      <td>3218</td>
+      <td>Ås</td>
+      <td>False</td>
+      <td>POLYGON ((262250.000 6625250.000, 262250.000 6...</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>22625006625250</td>
+      <td>14</td>
+      <td>kommune.28</td>
+      <td>d285e9c4-8da0-4dfc-b927-31ba7ee17e6a</td>
+      <td>https://data.geonorge.no/sosi/inndelinger/innd...</td>
+      <td>3</td>
+      <td>2023-11-28 16:00:22</td>
+      <td>2024-01-01</td>
+      <td>2024-03-04 12:27:57</td>
+      <td>Ås</td>
+      <td>nor</td>
+      <td>3218</td>
+      <td>Ås</td>
+      <td>False</td>
+      <td>POLYGON ((262500.000 6625250.000, 262500.000 6...</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Som vi kan se, på grunn av overleggsanalysen, inneholder datasettet attributtene
+fra begge input lagene.</p>
+<p>La oss lagre resultatrutenettet vårt som en GeoPackage.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">intersection</span><span class="o">.</span><span class="n">to_file</span><span class="p">(</span><span class="n">DATA_MAPPE</span> <span class="o">/</span> <span class="s2">&quot;intersection.geojson&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Det er mange flere eksempler på forskjellige typer overleggsanalyse i
+<a class="reference external" href="http://geopandas.org/set_operations.html">Geopandas dokumentasjon</a> hvor du
+kan gå og lære mer.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./content/notebooks"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../pages/07_info.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">ℹ️ Info</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../pages/08_info.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">ℹ️ Info</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#intersection">Intersection</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#union">Union</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#difference-og-symmetric-difference">Difference og symmetric difference</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overlay-med-befolkningsdata">Overlay med befolkningsdata</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Håvard Wallin Aagesen
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  <p>This course is heavily based on the <a href="https://autogis-site.readthedocs.io/en/latest/" target="_blank">Automating GIS processes</a> course at the University of Helsinki.</p>
+
+</div>
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

@@ -1,0 +1,1491 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>💻 Geopandas: en introduksjon &#8212; GMGI221 - Automatisering av GIS-prosesser</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=7cf0485e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'content/notebooks/03_geopandas';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="📥 Øving 3" href="../pages/03_oving-3.html" />
+    <link rel="prev" title="💻 Vektor Data I/O" href="03_vektor.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo.png" class="logo__image only-light" alt="GMGI221 - Automatisering av GIS-prosesser - Home"/>
+    <script>document.write(`<img src="../../_static/logo.png" class="logo__image only-dark" alt="GMGI221 - Automatisering av GIS-prosesser - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../index.html">
+                    Velkommen til GMGI221
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Generell info</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../pages/00_generell.html">ℹ️ Generell info</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/00_laeringsmaal.html">📖 Læringsmål</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/00_ovingsoppgaver.html">📖 Øvingsoppgaver</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/00_karakterer.html">📖 Karakterer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/00_installere-python.html">📖 Installering av Python og Python pakker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/00_bruk_av_ai.html">📖 Bruk av KI-verktøy</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Uke 1</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../pages/01_info.html">ℹ️ Info</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/01_bakgrunn.html">📖 Bakgrunn for emnet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_smakebit.html">💻 En smakebit av Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/01_oving-1.html">📥 Øving 1</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Uke 2</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../pages/02_info.html">ℹ️ Info</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_geometriske_objekter.html">💻 Geometriske objekter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_intersect.html">💻 Intersect</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_assertions.html">💻 Bruke <code class="docutils literal notranslate"><span class="pre">assertion</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/02_oving-2.html">📥 Øving 2</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Uke 3</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../pages/03_info.html">ℹ️ Info</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/03_begreper.html">📖 Nøkkelbegreper</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_filstier.html">💻 Håndtering av filstier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_vektor.html">💻 Vektor Data I/O</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">💻 Geopandas: en introduksjon</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/03_oving-3.html">📥 Øving 3</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Uke 4</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../pages/04_info.html">ℹ️ Info</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/04_geokoding.html">📖 Geokoding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_projeksjoner.html">💻 Kartprojeksjoner</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="04_geometriske_operasjoner.html">💻 Vanlige geometriske operasjoner</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_geokoding_i_geopandas.html">💻 Geokoding i geopandas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/04_oving-4.html">📥 Øving 4</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Uke 5</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../pages/05_info.html">ℹ️ Info</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_romlig_utvelgelse.html">💻 Romlig utvelgelse</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_romlig_kobling.html">💻 Romlig kobling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/05_oving-5.html">📥 Øving 5</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Uke 6</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../pages/06_info.html">ℹ️ Info</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_reklassifisering.html">💻 Reklassifisering av data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_aggregering_av_data.html">💻 Aggregering av data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/06_oving-6.html">📥 Øving 6</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Uke 7</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../pages/07_info.html">ℹ️ Info</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_overlay.html">💻 Overlay</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Uke 8</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../pages/08_info.html">ℹ️ Info</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_statiske_kart.html">💻 Statiske kart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_interaktive_kart.html">💻 Interaktive kart</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Prosjektarbeid</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../pages/13_prosjektarbeid.html">📖 Prosjektarbeid</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/13_prosjektkarakter.html">📖 Karaktersetting for prosjektoppgaven</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/13_prosjekttips.html">📖 Tips til prosjektoppgaven</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/haavardaagesen/gmgi221" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/haavardaagesen/gmgi221/issues/new?title=Issue%20on%20page%20%2Fcontent/notebooks/03_geopandas.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/content/notebooks/03_geopandas.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>💻 Geopandas: en introduksjon</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#inputdata-arealdekke-over-as-kommune">Inputdata: Arealdekke over Ås kommune</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#les-og-utforsk-romlig-datasett">Les og utforsk romlig datasett</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#utforsk-datasettet-pa-et-kart">Utforsk datasettet på et kart:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#geometrier-i-geopandas">Geometrier i geopandas</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lagre-en-delmengde-av-data-til-en-fil">Lagre en delmengde av data til en fil</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gruppering-av-data">Gruppering av data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#skriv-grupperte-data-til-separate-filer">Skriv grupperte data til separate filer</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ekstra-lagre-sammendragsstatistikk-til-csv-regneark">Ekstra: lagre sammendragsstatistikk til CSV regneark</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="geopandas-en-introduksjon">
+<h1>💻 Geopandas: en introduksjon<a class="headerlink" href="#geopandas-en-introduksjon" title="Link to this heading">#</a></h1>
+<p>I denne seksjonen vil vi dekke det grunnleggende med <em>geopandas</em>, et Python-bibliotek for
+å samhandle med romlig vektordata.</p>
+<p><a class="reference external" href="https://geopandas.org/">Geopandas</a> gir et brukervennlig grensesnitt til vektordatasett. Det kombinerer mulighetene til <em>pandas</em>
+med geometrikapabilitetene til
+<a class="reference internal" href="02_geometriske_objekter.html"><span class="doc std std-doc">shapely</span></a>, <a class="reference internal" href="03_vektor.html"><span class="doc std std-doc">romlig-filformateringstøtte
+fra fiona</span></a> og kartprojeksjonsbibliotekene til
+pyproj(som vi ser på neste uke).</p>
+<p>Hoveddatastrukturene i geopandas er <code class="docutils literal notranslate"><span class="pre">GeoDataFrame</span></code>s og <code class="docutils literal notranslate"><span class="pre">GeoSeries</span></code>. De
+utvider funksjonaliteten til <code class="docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code>s og <code class="docutils literal notranslate"><span class="pre">pandas.Series</span></code>.</p>
+<p>Det er en nøkkelforskjell mellom pandas dataframes og geopandas
+<a class="reference external" href="https://geopandas.org/en/stable/docs/user_guide/data_structures.html#geodataframe"><code class="docutils literal notranslate"><span class="pre">GeoDataFrame</span></code>s</a>:
+en <code class="docutils literal notranslate"><span class="pre">GeoDataFrame</span></code> inneholder en ekstra kolonne for geometrier. Som standard er
+navnet på denne kolonnen <code class="docutils literal notranslate"><span class="pre">geometry</span></code>, og det er en
+<a class="reference external" href="https://geopandas.org/en/stable/docs/user_guide/data_structures.html#geoseries"><code class="docutils literal notranslate"><span class="pre">GeoSeries</span></code></a>
+som inneholder geometrier (punkter, linjer, polygoner, …) som
+<code class="docutils literal notranslate"><span class="pre">shapely.geometry</span></code> objekter.</p>
+<div class="cell tag_remove-input docutils container">
+<div class="cell_output docutils container">
+<div class="output text_html"><style type="text/css">
+#T_772ad_row0_col2, #T_772ad_row1_col2, #T_772ad_row2_col2, #T_772ad_row3_col2, #T_772ad_row4_col2 {
+  background: #f66161;
+}
+#T_772ad_level0_col2 {
+  background: #f66161;
+}
+</style>
+<table id="T_772ad">
+  <thead>
+    <tr>
+      <th class="blank level0" >&nbsp;</th>
+      <th id="T_772ad_level0_col0" class="col_heading level0 col0" >klasse</th>
+      <th id="T_772ad_level0_col1" class="col_heading level0 col1" >klasse_navn</th>
+      <th id="T_772ad_level0_col2" class="col_heading level0 col2" >geometry</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th id="T_772ad_level0_row0" class="row_heading level0 row0" >0</th>
+      <td id="T_772ad_row0_col0" class="data row0 col0" >100</td>
+      <td id="T_772ad_row0_col1" class="data row0 col1" >myr</td>
+      <td id="T_772ad_row0_col2" class="data row0 col2" >POLYGON ((265791.9 6614994.65, 265790.18 6614997.81, 265754.58 6614993.01, 265738.37 6614991.46, 265714.54 6614994.62, 265703.4 6614982.57, 265700.51 6614972.78, 265701.87 6614965.64, 265710.39 6614959.84, 265729.32 6614969.17, 265751.33 6614968.19, 265785.92 6614984.13, 265791.9 6614994.65))</td>
+    </tr>
+    <tr>
+      <th id="T_772ad_level0_row1" class="row_heading level0 row1" >1</th>
+      <td id="T_772ad_row1_col0" class="data row1 col0" >100</td>
+      <td id="T_772ad_row1_col1" class="data row1 col1" >myr</td>
+      <td id="T_772ad_row1_col2" class="data row1 col2" >POLYGON ((262206.27 6628558.13, 262202.64 6628562.47, 262192.59 6628562.38, 262186.79 6628553.87, 262184.71 6628541.99, 262186.07 6628534.84, 262203.19 6628524.25, 262221.22 6628523.61, 262226.47 6628526.15, 262228.92 6628530.96, 262206.27 6628558.13))</td>
+    </tr>
+    <tr>
+      <th id="T_772ad_level0_row2" class="row_heading level0 row2" >2</th>
+      <td id="T_772ad_row2_col0" class="data row2 col0" >100</td>
+      <td id="T_772ad_row2_col1" class="data row2 col1" >myr</td>
+      <td id="T_772ad_row2_col2" class="data row2 col2" >POLYGON ((265299.88 6621504.12, 265294.08 6621506.65, 265285.92 6621505.38, 265279.41 6621499.96, 265258.39 6621467.69, 265255.05 6621452.93, 265249.89 6621440.33, 265246.07 6621431.63, 265248.72 6621416.33, 265254.7 6621404.73, 265266.02 6621407.73, 265282.23 6621420.33, 265283.68 6621436.27, 265279.24 6621453.75, 265279.41 6621466.79, 265286.29 6621476.22, 265302.59 6621489.81, 265305.31 6621497.61, 265299.88 6621504.12))</td>
+    </tr>
+    <tr>
+      <th id="T_772ad_level0_row3" class="row_heading level0 row3" >3</th>
+      <td id="T_772ad_row3_col0" class="data row3 col0" >100</td>
+      <td id="T_772ad_row3_col1" class="data row3 col1" >myr</td>
+      <td id="T_772ad_row3_col2" class="data row3 col2" >POLYGON ((260561.58 6622897.2, 260562.11 6622914.23, 260560.03 6622913.41, 260555.41 6622906.79, 260551.79 6622889.04, 260553.52 6622874.82, 260562.58 6622841.85, 260572.46 6622817.84, 260581.88 6622810.96, 260603.45 6622805, 260613.4 6622804.08, 260626.36 6622813.96, 260637.86 6622830, 260651.81 6622839.79, 260662.32 6622844.86, 260672.83 6622849.93, 260691.12 6622852.29, 260710.15 6622851.57, 260715.5 6622855.1, 260718.3 6622863.9, 260720.38 6622875.76, 260713.04 6622883.47, 260712.95 6622882.47, 260702.9 6622871.32, 260697.74 6622869.79, 260683.87 6622872.05, 260673.73 6622882.01, 260663.04 6622885.97, 260655.06 6622886.72, 260650.9 6622885.08, 260645.64 6622882.54, 260641.93 6622874.84, 260641.66 6622872.98, 260639.31 6622856.99, 260631.88 6622852.64, 260608.05 6622855.81, 260597.37 6622859.79, 260574.8 6622876.91, 260563.12 6622892.03, 260561.58 6622897.2))</td>
+    </tr>
+    <tr>
+      <th id="T_772ad_level0_row4" class="row_heading level0 row4" >4</th>
+      <td id="T_772ad_row4_col0" class="data row4 col0" >100</td>
+      <td id="T_772ad_row4_col1" class="data row4 col1" >myr</td>
+      <td id="T_772ad_row4_col2" class="data row4 col2" >POLYGON ((265326.09 6621350.04, 265320.02 6621360.63, 265307.79 6621358.73, 265288.32 6621343.42, 265278.98 6621340.24, 265271.83 6621338.88, 265275.28 6621321.49, 265286.71 6621292.32, 265293.23 6621286.71, 265302.11 6621284.91, 265312.25 6621285.99, 265317.59 6621289.52, 265320.22 6621296.33, 265319.4 6621331.55, 265326.09 6621350.04))</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<hr class="docutils" />
+<section id="inputdata-arealdekke-over-as-kommune">
+<h2>Inputdata: Arealdekke over Ås kommune<a class="headerlink" href="#inputdata-arealdekke-over-as-kommune" title="Link to this heading">#</a></h2>
+<p>I denne notebooken skal vi jobbe med et modifisert datasett fra <a class="reference external" href="https://www.kartverket.no/api-og-data/kartgrunnlag-fastlands-norge">Kartverkets N50-serie</a>.</p>
+<p>Til denne notebooken har vi lastet ned Arealdekke-data og endret det noe for å passe til formålet for denne timen. Dataene er lastet ned fra <a class="reference external" href="https://kartkatalog.geonorge.no/metadata/n50-kartdata/ea192681-d039-42ec-b1bc-f3ce04c189ac">Geonorge</a>. Filen vi skal jobbe med ligger i <code class="docutils literal notranslate"><span class="pre">data/ArealdekkeN50.gpkg</span></code>.</p>
+</section>
+<hr class="docutils" />
+<section id="les-og-utforsk-romlig-datasett">
+<h2>Les og utforsk romlig datasett<a class="headerlink" href="#les-og-utforsk-romlig-datasett" title="Link to this heading">#</a></h2>
+<p>Før vi prøver å laste inn noen filer, la oss ikke glemme å definere en konstant
+som peker til vår datamappe:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pathlib</span> 
+<span class="n">NOTEBOOK_PATH</span> <span class="o">=</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">()</span><span class="o">.</span><span class="n">resolve</span><span class="p">()</span>
+<span class="n">DATA_MAPPE</span> <span class="o">=</span> <span class="n">NOTEBOOK_PATH</span> <span class="o">/</span> <span class="s2">&quot;data&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>I denne notebooken skal vi fokusere på arealdekke-klasser</p>
+<p><strong>Målet vårt i denne notebooken er å lagre alle arealdekke-klassene i separate filer</strong>.</p>
+<p><em>Arealdekke-klasser i den datasettet:</em></p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Klasse</p></th>
+<th class="head"><p>Navn på klasse</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>100</p></td>
+<td><p>myr</p></td>
+</tr>
+<tr class="row-odd"><td><p>110</p></td>
+<td><p>steinbrudd</p></td>
+</tr>
+<tr class="row-even"><td><p>120</p></td>
+<td><p>tettbebyggelse</p></td>
+</tr>
+<tr class="row-odd"><td><p>200</p></td>
+<td><p>innsjø</p></td>
+</tr>
+<tr class="row-even"><td><p>300</p></td>
+<td><p>indstriområde</p></td>
+</tr>
+<tr class="row-odd"><td><p>400</p></td>
+<td><p>havflate</p></td>
+</tr>
+<tr class="row-even"><td><p>500</p></td>
+<td><p>gravplass</p></td>
+</tr>
+<tr class="row-odd"><td><p>600</p></td>
+<td><p>dyrket mark</p></td>
+</tr>
+<tr class="row-even"><td><p>700</p></td>
+<td><p>åpent område</p></td>
+</tr>
+<tr class="row-odd"><td><p>800</p></td>
+<td><p>skog</p></td>
+</tr>
+<tr class="row-even"><td><p>900</p></td>
+<td><p>sportidrettplass</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">input_filename</span> <span class="o">=</span> <span class="n">DATA_MAPPE</span> <span class="o">/</span> <span class="s2">&quot;arealdekke&quot;</span> <span class="o">/</span> <span class="s2">&quot;ArealdekkeN50.gpkg&quot;</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">geopandas</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="n">input_filename</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Først, sjekk datatype av det leste datasettet:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>geopandas.geodataframe.GeoDataFrame
+</pre></div>
+</div>
+</div>
+</div>
+<p>Alt gikk bra, og vi har en <code class="docutils literal notranslate"><span class="pre">geopandas.GeoDataFrame</span></code>.
+La oss også utforske dataene: (1) skriv ut de første få radene, og
+(2) list opp kolonnene.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>gml_id</th>
+      <th>oppdateringsdato</th>
+      <th>klasse</th>
+      <th>klasse_navn</th>
+      <th>geometry</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>idd51cad71-d02b-4043-833b-8a6e50539af0</td>
+      <td>2016-12-02</td>
+      <td>100</td>
+      <td>myr</td>
+      <td>POLYGON ((265791.900 6614994.650, 265790.180 6...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>id41c8ac6e-b5ce-4657-958c-312c27dafd9a</td>
+      <td>2016-12-02</td>
+      <td>100</td>
+      <td>myr</td>
+      <td>POLYGON ((262206.270 6628558.130, 262202.640 6...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>ide574839d-8f33-4b1e-bc44-01a865a1beb9</td>
+      <td>2016-12-02</td>
+      <td>100</td>
+      <td>myr</td>
+      <td>POLYGON ((265299.880 6621504.120, 265294.080 6...</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>id2aa8beeb-8a23-4159-ae85-d218ead88c9f</td>
+      <td>2016-12-02</td>
+      <td>100</td>
+      <td>myr</td>
+      <td>POLYGON ((260561.580 6622897.200, 260562.110 6...</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>iddf0f9506-8358-49ae-bd65-b496cd4571be</td>
+      <td>2016-12-02</td>
+      <td>100</td>
+      <td>myr</td>
+      <td>POLYGON ((265326.090 6621350.040, 265320.020 6...</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="o">.</span><span class="n">columns</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Index([&#39;gml_id&#39;, &#39;oppdateringsdato&#39;, &#39;klasse&#39;, &#39;klasse_navn&#39;, &#39;geometry&#39;], dtype=&#39;object&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Dette datasettet har flere kolonner enn vi trenger, la oss gjøre et utvalg av de vi trenger. Vi beholder ‘klasse’ og ’klassenavn’, og selvfølgelig kolonnen <code class="docutils literal notranslate"><span class="pre">geometry</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="p">[[</span><span class="s2">&quot;klasse&quot;</span><span class="p">,</span> <span class="s2">&quot;klasse_navn&quot;</span><span class="p">,</span> <span class="s2">&quot;geometry&quot;</span><span class="p">]]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Hvordan ser datasettet ut nå?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>klasse</th>
+      <th>klasse_navn</th>
+      <th>geometry</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>100</td>
+      <td>myr</td>
+      <td>POLYGON ((265791.900 6614994.650, 265790.180 6...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>100</td>
+      <td>myr</td>
+      <td>POLYGON ((262206.270 6628558.130, 262202.640 6...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>100</td>
+      <td>myr</td>
+      <td>POLYGON ((265299.880 6621504.120, 265294.080 6...</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>100</td>
+      <td>myr</td>
+      <td>POLYGON ((260561.580 6622897.200, 260562.110 6...</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>100</td>
+      <td>myr</td>
+      <td>POLYGON ((265326.090 6621350.040, 265320.020 6...</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="hint admonition">
+<p class="admonition-title">Sjekk din forståelse:</p>
+<p>Bruk dine pandas ferdigheter på dette geopandas datasettet for å finne ut følgende
+informasjon:</p>
+<ul class="simple">
+<li><p>Hvor mange rader har datasettet?</p></li>
+<li><p>Hvor mange unike klasser?</p></li>
+</ul>
+</div>
+<hr class="docutils" />
+<section id="utforsk-datasettet-pa-et-kart">
+<h3>Utforsk datasettet på et kart:<a class="headerlink" href="#utforsk-datasettet-pa-et-kart" title="Link to this heading">#</a></h3>
+<p>Som geografer, elsker vi kart. Men utover det, er det alltid en god idé å
+utforske et nytt datasett også på et kart. For å lage et enkelt kart av en
+<code class="docutils literal notranslate"><span class="pre">geopandas.GeoDataFrame</span></code>, bruk ganske enkelt dens <code class="docutils literal notranslate"><span class="pre">plot()</span></code> metode. Den fungerer likt som
+i pandas, men <strong>tegner et kart basert på geometriene i datasettet</strong> i stedet for et diagram.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: &gt;
+</pre></div>
+</div>
+<img alt="../../_images/9c4ae940b7473fd189c110182acd1bd9b8a8fb0be933271ba937af36678d10e5.png" src="../../_images/9c4ae940b7473fd189c110182acd1bd9b8a8fb0be933271ba937af36678d10e5.png" />
+</div>
+</div>
+<p>Voilá! Det er faktisk så enkelt å lage et kart ut av et geografisk datasett.
+Geopandas posisjonerer automatisk kartet ditt på en måte som dekker hele
+utstrekningen av dataene dine.</p>
+</section>
+<section id="geometrier-i-geopandas">
+<h3>Geometrier i geopandas<a class="headerlink" href="#geometrier-i-geopandas" title="Link to this heading">#</a></h3>
+<p>Geopandas drar nytte av shapelys geometriobjekter. Geometrier lagres
+i en kolonne kalt <em>geometry</em>.</p>
+<p>La oss skrive ut de første 5 radene av kolonnen <code class="docutils literal notranslate"><span class="pre">geometry</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0    POLYGON ((265791.900 6614994.650, 265790.180 6...
+1    POLYGON ((262206.270 6628558.130, 262202.640 6...
+2    POLYGON ((265299.880 6621504.120, 265294.080 6...
+3    POLYGON ((260561.580 6622897.200, 260562.110 6...
+4    POLYGON ((265326.090 6621350.040, 265320.020 6...
+Name: geometry, dtype: geometry
+</pre></div>
+</div>
+</div>
+</div>
+<p>Kolonnen <code class="docutils literal notranslate"><span class="pre">geometry</span></code> inneholder kjente verdier:
+<em>Well-Known Text</em> (WKT) strenger. La deg ikke lure, de er faktisk,
+<code class="docutils literal notranslate"><span class="pre">shapely.geometry</span></code> objekter (du husker de kanskje fra <a class="reference internal" href="02_geometriske_objekter.html"><span class="doc std std-doc">forrige uke</span></a>) som når man bruke <code class="docutils literal notranslate"><span class="pre">print()</span></code> eller konverterer til
+en <code class="docutils literal notranslate"><span class="pre">str</span></code>, blir representert som en WKT-streng).</p>
+<p>Siden geometriene i en <code class="docutils literal notranslate"><span class="pre">GeoDataFrame</span></code> er lagret som shapely-objekter, kan vi
+bruke <strong>shapely metoder</strong> for å håndtere geometrier i geopandas.</p>
+<p>La oss ta en nærmere titt på (en av) polygon-geometriene i datasettet,
+og prøve å bruke noe av shapely-funksjonaliteten vi allerede er kjent med. For enkelhetens skyld, jobber vi først med geometrien til bare den aller første linjen:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Verdien av kolonnen `geometry` i rad 0:</span>
+<span class="n">data</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;geometry&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/0e2a9bf7acec261037d140e21f6c9d554f2b2001e900d4be6beb4e8fdb9677a0.svg" src="../../_images/0e2a9bf7acec261037d140e21f6c9d554f2b2001e900d4be6beb4e8fdb9677a0.svg" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Skriv ut informasjon om arealet </span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Område: </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;geometry&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">area</span><span class="p">)</span><span class="si">}</span><span class="s2"> m².&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Område: 1955 m².
+</pre></div>
+</div>
+</div>
+</div>
+<div class="note admonition">
+<p class="admonition-title">Områdemålenhet</p>
+<p>Her kjenner vi koordinatsystemet (CRS) til inputdatasettet. CRS definerer også måleenheten (i vårt tilfelle, meter). Derfor kan vi skrive ut det beregnede området, inkludert en områdemåleenhet (kvadratmeter).</p>
+</div>
+<p>La oss gjøre det samme for flere rader, og utforske ulike måter å gjøre det på.
+Først bruker vi  <code class="docutils literal notranslate"><span class="pre">iterrows()</span></code>-metoden:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Iterer over de første 5 radene i datasettet</span>
+<span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">data</span><span class="p">[:</span><span class="mi">5</span><span class="p">]</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+    <span class="n">polygon_area</span> <span class="o">=</span> <span class="n">row</span><span class="p">[</span><span class="s2">&quot;geometry&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">area</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Polygonet i rad </span><span class="si">{</span><span class="n">index</span><span class="si">}</span><span class="s2"> har et areal på </span><span class="si">{</span><span class="n">polygon_area</span><span class="si">:</span><span class="s2">0.1f</span><span class="si">}</span><span class="s2"> m².&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Polygonet i rad 0 har et areal på 1955.5 m².
+Polygonet i rad 1 har et areal på 1101.9 m².
+Polygonet i rad 2 har et areal på 2658.0 m².
+Polygonet i rad 3 har et areal på 6741.0 m².
+Polygonet i rad 4 har et areal på 2715.1 m².
+</pre></div>
+</div>
+</div>
+</div>
+<p>Som du ser er alle <strong>pandas</strong> funksjoner, som <code class="docutils literal notranslate"><span class="pre">iterrows()</span></code>-metoden, tilgjengelige i geopandas uten behov for å kalle pandas separat. Geopandas bygger på toppen av pandas, og arver mesteparten av funksjonaliteten.</p>
+<p>Selvfølgelig er ikke <code class="docutils literal notranslate"><span class="pre">iterrows()</span></code>-metoden den mest praktiske og effektive måten
+å beregne arealet til mange rader. Både <code class="docutils literal notranslate"><span class="pre">GeoSeries</span></code> (geometri-kolonner) og
+<code class="docutils literal notranslate"><span class="pre">GeoDataFrame</span></code>s har en <code class="docutils literal notranslate"><span class="pre">area</span></code>-egenskap:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># `area`-egenskapen til en `GeoDataFrame`</span>
+<span class="n">data</span><span class="o">.</span><span class="n">area</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0         1955.48975
+1         1101.93145
+2         2657.99245
+3         6740.99175
+4         2715.09810
+            ...     
+1281       332.87820
+1282       157.27005
+1283    229322.51250
+1284    278301.64510
+1285     36206.47765
+Length: 1286, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># `area`-egenskapen til en `GeoSeries`</span>
+<span class="n">data</span><span class="p">[</span><span class="s2">&quot;geometry&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">area</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0         1955.48975
+1         1101.93145
+2         2657.99245
+3         6740.99175
+4         2715.09810
+            ...     
+1281       332.87820
+1282       157.27005
+1283    229322.51250
+1284    278301.64510
+1285     36206.47765
+Length: 1286, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<p>Det er enkelt å lage en ny kolonne som holder arealet:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;areal&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">area</span>
+<span class="n">data</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>klasse</th>
+      <th>klasse_navn</th>
+      <th>geometry</th>
+      <th>areal</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>100</td>
+      <td>myr</td>
+      <td>POLYGON ((265791.900 6614994.650, 265790.180 6...</td>
+      <td>1955.48975</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>100</td>
+      <td>myr</td>
+      <td>POLYGON ((262206.270 6628558.130, 262202.640 6...</td>
+      <td>1101.93145</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>100</td>
+      <td>myr</td>
+      <td>POLYGON ((265299.880 6621504.120, 265294.080 6...</td>
+      <td>2657.99245</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>100</td>
+      <td>myr</td>
+      <td>POLYGON ((260561.580 6622897.200, 260562.110 6...</td>
+      <td>6740.99175</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>100</td>
+      <td>myr</td>
+      <td>POLYGON ((265326.090 6621350.040, 265320.020 6...</td>
+      <td>2715.09810</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>1281</th>
+      <td>120</td>
+      <td>tettbebyggelse</td>
+      <td>POLYGON ((264495.760 6627874.970, 264495.310 6...</td>
+      <td>332.87820</td>
+    </tr>
+    <tr>
+      <th>1282</th>
+      <td>120</td>
+      <td>tettbebyggelse</td>
+      <td>POLYGON ((264428.770 6627393.320, 264429.130 6...</td>
+      <td>157.27005</td>
+    </tr>
+    <tr>
+      <th>1283</th>
+      <td>120</td>
+      <td>tettbebyggelse</td>
+      <td>POLYGON ((264328.880 6627669.330, 264329.240 6...</td>
+      <td>229322.51250</td>
+    </tr>
+    <tr>
+      <th>1284</th>
+      <td>120</td>
+      <td>tettbebyggelse</td>
+      <td>POLYGON ((262436.510 6622047.280, 262438.610 6...</td>
+      <td>278301.64510</td>
+    </tr>
+    <tr>
+      <th>1285</th>
+      <td>120</td>
+      <td>tettbebyggelse</td>
+      <td>POLYGON ((264288.040 6627606.730, 264280.250 6...</td>
+      <td>36206.47765</td>
+    </tr>
+  </tbody>
+</table>
+<p>1286 rows × 4 columns</p>
+</div></div></div>
+</div>
+<div class="hint admonition">
+<p class="admonition-title">Beskrivende statistikk</p>
+<p>Vet du hvordan du beregner <em>minimum</em>, <em>maksimum</em>, <em>sum</em>, <em>gjennomsnitt</em>, og
+<em>standardavvik</em> av en pandas-kolonne? (<a class="reference external" href="https://pythongis.org/part1/chapter-03/nb/00-pandas-basics.html#descriptive-statistics">Les mer her, hvis du trenger å friske opp Pandas-kunnskapene dine</a>)
+Hva er disse verdiene for arealkolonnen i datasettet?</p>
+</div>
+</section>
+</section>
+<section id="lagre-en-delmengde-av-data-til-en-fil">
+<h2>Lagre en delmengde av data til en fil<a class="headerlink" href="#lagre-en-delmengde-av-data-til-en-fil" title="Link to this heading">#</a></h2>
+<p><a class="reference internal" href="03_vektor.html"><span class="doc std std-doc">Tidligere</span></a>, har vi lært
+hvordan vi skriver en hel <code class="docutils literal notranslate"><span class="pre">GeoDataFrame</span></code> til en fil. Vi kan også skrive en
+filtrert delmengde av et datasett til en ny fil, f.eks. for å hjelpe med behandlingen av komplekse datasett.</p>
+<p>Først, isoler innsjøene i inngangsdatasettet (klassenummer <code class="docutils literal notranslate"><span class="pre">200</span></code>, se tabell
+over):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">innsjoer</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">data</span><span class="o">.</span><span class="n">klasse</span> <span class="o">==</span> <span class="mi">200</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Deretter, tegn datadelmengden for å visuelt sjekke om den ser riktig ut:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">innsjoer</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: &gt;
+</pre></div>
+</div>
+<img alt="../../_images/f4cbc1aa17b5c6b018d3c9061cd8bd808e51b318cf8565bf0df0693955b68aeb.png" src="../../_images/f4cbc1aa17b5c6b018d3c9061cd8bd808e51b318cf8565bf0df0693955b68aeb.png" />
+</div>
+</div>
+<p>Og til slutt, skriv de filtrerte dataene til en Shapefile:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">innsjoer</span><span class="o">.</span><span class="n">to_file</span><span class="p">(</span><span class="n">DATA_MAPPE</span> <span class="o">/</span> <span class="s2">&quot;arealdekke&quot;</span> <span class="o">/</span> <span class="s2">&quot;innsjoer.gpkg&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Sjekk <a class="reference internal" href="03_vektor.html"><span class="doc std std-doc">Vector Data I/O</span></a> avsnittet for å se hvilke dataformater
+geopandas kan skrive til.</p>
+</section>
+<section id="gruppering-av-data">
+<h2>Gruppering av data<a class="headerlink" href="#gruppering-av-data" title="Link to this heading">#</a></h2>
+<p>En spesielt nyttig metode i (geo)pandas’ dataframes er deres grupperingsfunksjon: <a class="reference external" href="https://pandas.pydata.org/docs/user_guide/groupby.html"><code class="docutils literal notranslate"><span class="pre">groupby()</span></code></a>
+kan <strong>dele data inn i grupper</strong> basert på noen kriterier, <strong>bruke</strong> en funksjon
+individuelt til hver av gruppene, og <strong>kombinere</strong> resultater av en slik
+operasjon i en felles datastruktur.</p>
+<p>Vi kan bruke <em>gruppering</em> her for å dele inputdatasettet vårt i delmengder som relatere
+til hver av <code class="docutils literal notranslate"><span class="pre">klasse</span></code>ne i arealdekke, deretter lagre en separat fil for hver
+klasse.</p>
+<p>La oss starte dette ved igjen å ta en titt på hvordan datasettet faktisk ser ut:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>klasse</th>
+      <th>klasse_navn</th>
+      <th>geometry</th>
+      <th>areal</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>100</td>
+      <td>myr</td>
+      <td>POLYGON ((265791.900 6614994.650, 265790.180 6...</td>
+      <td>1955.48975</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>100</td>
+      <td>myr</td>
+      <td>POLYGON ((262206.270 6628558.130, 262202.640 6...</td>
+      <td>1101.93145</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>100</td>
+      <td>myr</td>
+      <td>POLYGON ((265299.880 6621504.120, 265294.080 6...</td>
+      <td>2657.99245</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>100</td>
+      <td>myr</td>
+      <td>POLYGON ((260561.580 6622897.200, 260562.110 6...</td>
+      <td>6740.99175</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>100</td>
+      <td>myr</td>
+      <td>POLYGON ((265326.090 6621350.040, 265320.020 6...</td>
+      <td>2715.09810</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Husk: kolonnen <code class="docutils literal notranslate"><span class="pre">klasse</span></code> inneholder informasjon om en polygons arealbrukstype. Bruk metoden <a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.Series.unique.html"><code class="docutils literal notranslate"><span class="pre">pandas.Series.unique()</span></code></a> for å liste alle verdier som forekommer:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;klasse&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([100, 200, 700, 600, 500, 400, 300, 800, 900, 110, 120])
+</pre></div>
+</div>
+</div>
+</div>
+<p>For å gruppere data, bruk data-rammens <code class="docutils literal notranslate"><span class="pre">groupby()</span></code> metode, oppgi et kolonnenavn som parameter:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gruppert_data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;klasse&quot;</span><span class="p">)</span>
+<span class="n">gruppert_data</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;pandas.core.groupby.generic.DataFrameGroupBy object at 0x74df9edf2780&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<p>Så, <code class="docutils literal notranslate"><span class="pre">gruppert_data</span></code> er et <code class="docutils literal notranslate"><span class="pre">DataFrameGroupBy</span></code> objekt. Inne i et <code class="docutils literal notranslate"><span class="pre">GroupBy</span></code> objekt,
+er egenskapen <code class="docutils literal notranslate"><span class="pre">groups</span></code> en ordbok som fungerer som en oppslagstabell: den registrerer
+hvilke rader som hører til hvilken gruppe. Nøklene i ordboken er de unike
+verdiene av gruppekolonnen:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gruppert_data</span><span class="o">.</span><span class="n">groups</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{100: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21], 110: [1255, 1256], 120: [1257, 1258, 1259, 1260, 1261, 1262, 1263, 1264, 1265, 1266, 1267, 1268, 1269, 1270, 1271, 1272, 1273, 1274, 1275, 1276, 1277, 1278, 1279, 1280, 1281, 1282, 1283, 1284, 1285], 200: [22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101], 300: [775, 776, 777, 778, 779, 780, 781, 782, 783], 400: [773, 774], 500: [770, 771, 772], 600: [623, 624, 625, 626, 627, 628, 629, 630, 631, 632, 633, 634, 635, 636, 637, 638, 639, 640, 641, 642, 643, 644, 645, 646, 647, 648, 649, 650, 651, 652, 653, 654, 655, 656, 657, 658, 659, 660, 661, 662, 663, 664, 665, 666, 667, 668, 669, 670, 671, 672, 673, 674, 675, 676, 677, 678, 679, 680, 681, 682, 683, 684, 685, 686, 687, 688, 689, 690, 691, 692, 693, 694, 695, 696, 697, 698, 699, 700, 701, 702, 703, 704, 705, 706, 707, 708, 709, 710, 711, 712, 713, 714, 715, 716, 717, 718, 719, 720, 721, 722, ...], 700: [102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127, 128, 129, 130, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143, 144, 145, 146, 147, 148, 149, 150, 151, 152, 153, 154, 155, 156, 157, 158, 159, 160, 161, 162, 163, 164, 165, 166, 167, 168, 169, 170, 171, 172, 173, 174, 175, 176, 177, 178, 179, 180, 181, 182, 183, 184, 185, 186, 187, 188, 189, 190, 191, 192, 193, 194, 195, 196, 197, 198, 199, 200, 201, ...], 800: [784, 785, 786, 787, 788, 789, 790, 791, 792, 793, 794, 795, 796, 797, 798, 799, 800, 801, 802, 803, 804, 805, 806, 807, 808, 809, 810, 811, 812, 813, 814, 815, 816, 817, 818, 819, 820, 821, 822, 823, 824, 825, 826, 827, 828, 829, 830, 831, 832, 833, 834, 835, 836, 837, 838, 839, 840, 841, 842, 843, 844, 845, 846, 847, 848, 849, 850, 851, 852, 853, 854, 855, 856, 857, 858, 859, 860, 861, 862, 863, 864, 865, 866, 867, 868, 869, 870, 871, 872, 873, 874, 875, 876, 877, 878, 879, 880, 881, 882, 883, ...], 900: [1242, 1243, 1244, 1245, 1246, 1247, 1248, 1249, 1250, 1251, 1252, 1253, 1254]}
+</pre></div>
+</div>
+</div>
+</div>
+<p>Imidlertid kan man også ganske enkelt iterere over hele <code class="docutils literal notranslate"><span class="pre">GroupBy</span></code> objektet. La oss
+telle hvor mange rader med data hver gruppe har:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">group</span> <span class="ow">in</span> <span class="n">gruppert_data</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Arealdekkeklasse </span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s2"> har </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">group</span><span class="p">)</span><span class="si">}</span><span class="s2"> rader.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Arealdekkeklasse 100 har 22 rader.
+Arealdekkeklasse 110 har 2 rader.
+Arealdekkeklasse 120 har 29 rader.
+Arealdekkeklasse 200 har 80 rader.
+Arealdekkeklasse 300 har 9 rader.
+Arealdekkeklasse 400 har 2 rader.
+Arealdekkeklasse 500 har 3 rader.
+Arealdekkeklasse 600 har 147 rader.
+Arealdekkeklasse 700 har 521 rader.
+Arealdekkeklasse 800 har 458 rader.
+Arealdekkeklasse 900 har 13 rader.
+</pre></div>
+</div>
+</div>
+</div>
+<p>Det er for eksempel 80 innsjøpolygoner (klasse <code class="docutils literal notranslate"><span class="pre">200</span></code>) i inngangsdatasettet.</p>
+<p>For å få alle rader som tilhører en bestemt gruppe, bruk <code class="docutils literal notranslate"><span class="pre">get_group()</span></code>
+metoden, som returnerer en helt ny <code class="docutils literal notranslate"><span class="pre">GeoDataFrame</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">innsjøer</span> <span class="o">=</span> <span class="n">gruppert_data</span><span class="o">.</span><span class="n">get_group</span><span class="p">(</span><span class="mi">200</span><span class="p">)</span>
+<span class="nb">type</span><span class="p">(</span><span class="n">innsjøer</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>geopandas.geodataframe.GeoDataFrame
+</pre></div>
+</div>
+</div>
+</div>
+<div class="highlight-{caution}OBS notranslate"><div class="highlight"><pre><span></span>Indeksen i den nye data-frammen forblir den samme som i det ugrupperte inputdatasettet.
+Dette kan være nyttig, for eksempel når du vil slå sammen de grupperte dataene
+tilbake til de originale inputdataene.
+</pre></div>
+</div>
+</section>
+<section id="skriv-grupperte-data-til-separate-filer">
+<h2>Skriv grupperte data til separate filer<a class="headerlink" href="#skriv-grupperte-data-til-separate-filer" title="Link to this heading">#</a></h2>
+<p>Nå har vi alle nødvendige verktøy for hånden for å dele inputdataene i
+separate datasett for hver arealdekkeklasse, og skrive de individuelle delmengdene til
+nye, separate, filer. Faktisk ser koden nesten for enkel ut, gjør den ikke?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Iterer over inngangsdataene, gruppert etter &quot;klasse&quot;</span>
+<span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">group</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;klasse&quot;</span><span class="p">):</span>
+    <span class="c1"># lagre gruppen til en ny shapefile</span>
+    <span class="n">group</span><span class="o">.</span><span class="n">to_file</span><span class="p">(</span><span class="n">DATA_MAPPE</span> <span class="o">/</span> <span class="s2">&quot;arealdekke&quot;</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;arealdekke_</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s2">.gpkg&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="attention admonition">
+<p class="admonition-title">Filnavn</p>
+<p>Vi brukte en <code class="docutils literal notranslate"><span class="pre">pathlib.Path</span></code> kombinert med en f-streng for å generere den nye output-filens sti og navn. Sjekk <a class="reference internal" href="03_filstier.html"><span class="doc std std-doc">Håndtering av filstier-notebooken</span></a>
+for å gå gjennom hvordan de fungerer.</p>
+</div>
+</section>
+<section id="ekstra-lagre-sammendragsstatistikk-til-csv-regneark">
+<h2>Ekstra: lagre sammendragsstatistikk til CSV regneark<a class="headerlink" href="#ekstra-lagre-sammendragsstatistikk-til-csv-regneark" title="Link to this heading">#</a></h2>
+<p>Når resultatene av en operasjon på en <code class="docutils literal notranslate"><span class="pre">GeoDataFrame</span></code> ikke inkluderer en
+geometri, vil data-rammen som kommer ut automatisk bli en ‘vanlig’
+<code class="docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code>, og kan lagres til standard tabellformater.</p>
+<p>En interessant anvendelse av dette er å lagre grunnleggende beskrivende statistikk av et geografisk datasett til en CSV-tabell. For eksempel ønsker vi kanskje å vite arealet hver arealdekkeklasse dekker.</p>
+<p>Igjen starter vi med å gruppere inputdataene etter arealdekke, og deretter beregne summen av hver klasses areal. Dette kan kondenseres til en linje med kode:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">areal_informasjon</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;klasse&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">areal</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="n">areal_informasjon</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>klasse
+100    3.330440e+05
+110    1.382096e+05
+120    4.700334e+06
+200    1.839231e+06
+300    9.028421e+05
+400    1.024443e+06
+500    3.651047e+04
+600    3.785512e+07
+700    8.280398e+06
+800    4.854529e+07
+900    1.094627e+05
+Name: areal, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<p>Vi kan deretter lagre den resulterende tabellen til en CSV-fil ved å bruke  standard pandas tilnærming.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">areal_informasjon</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">DATA_MAPPE</span> <span class="o">/</span> <span class="s2">&quot;arealdekke&quot;</span> <span class="o">/</span> <span class="s2">&quot;areal_per_arealdekkeklasse.csv&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./content/notebooks"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="03_vektor.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">💻 Vektor Data I/O</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../pages/03_oving-3.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">📥 Øving 3</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#inputdata-arealdekke-over-as-kommune">Inputdata: Arealdekke over Ås kommune</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#les-og-utforsk-romlig-datasett">Les og utforsk romlig datasett</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#utforsk-datasettet-pa-et-kart">Utforsk datasettet på et kart:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#geometrier-i-geopandas">Geometrier i geopandas</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lagre-en-delmengde-av-data-til-en-fil">Lagre en delmengde av data til en fil</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gruppering-av-data">Gruppering av data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#skriv-grupperte-data-til-separate-filer">Skriv grupperte data til separate filer</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ekstra-lagre-sammendragsstatistikk-til-csv-regneark">Ekstra: lagre sammendragsstatistikk til CSV regneark</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Håvard Wallin Aagesen
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  <p>This course is heavily based on the <a href="https://autogis-site.readthedocs.io/en/latest/" target="_blank">Automating GIS processes</a> course at the University of Helsinki.</p>
+
+</div>
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

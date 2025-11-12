@@ -1,0 +1,831 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>💻 En smakebit av Python &#8212; GMGI221 - Automatisering av GIS-prosesser</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=7cf0485e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'content/notebooks/01_smakebit';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="📥 Øving 1" href="../pages/01_oving-1.html" />
+    <link rel="prev" title="📖 Bakgrunn for emnet" href="../pages/01_bakgrunn.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo.png" class="logo__image only-light" alt="GMGI221 - Automatisering av GIS-prosesser - Home"/>
+    <script>document.write(`<img src="../../_static/logo.png" class="logo__image only-dark" alt="GMGI221 - Automatisering av GIS-prosesser - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../index.html">
+                    Velkommen til GMGI221
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Generell info</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../pages/00_generell.html">ℹ️ Generell info</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/00_laeringsmaal.html">📖 Læringsmål</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/00_ovingsoppgaver.html">📖 Øvingsoppgaver</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/00_karakterer.html">📖 Karakterer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/00_installere-python.html">📖 Installering av Python og Python pakker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/00_bruk_av_ai.html">📖 Bruk av KI-verktøy</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Uke 1</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../pages/01_info.html">ℹ️ Info</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/01_bakgrunn.html">📖 Bakgrunn for emnet</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">💻 En smakebit av Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/01_oving-1.html">📥 Øving 1</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Uke 2</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../pages/02_info.html">ℹ️ Info</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_geometriske_objekter.html">💻 Geometriske objekter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_intersect.html">💻 Intersect</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_assertions.html">💻 Bruke <code class="docutils literal notranslate"><span class="pre">assertion</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/02_oving-2.html">📥 Øving 2</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Uke 3</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../pages/03_info.html">ℹ️ Info</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/03_begreper.html">📖 Nøkkelbegreper</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_filstier.html">💻 Håndtering av filstier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_vektor.html">💻 Vektor Data I/O</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_geopandas.html">💻 Geopandas: en introduksjon</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/03_oving-3.html">📥 Øving 3</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Uke 4</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../pages/04_info.html">ℹ️ Info</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/04_geokoding.html">📖 Geokoding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_projeksjoner.html">💻 Kartprojeksjoner</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="04_geometriske_operasjoner.html">💻 Vanlige geometriske operasjoner</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_geokoding_i_geopandas.html">💻 Geokoding i geopandas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/04_oving-4.html">📥 Øving 4</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Uke 5</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../pages/05_info.html">ℹ️ Info</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_romlig_utvelgelse.html">💻 Romlig utvelgelse</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_romlig_kobling.html">💻 Romlig kobling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/05_oving-5.html">📥 Øving 5</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Uke 6</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../pages/06_info.html">ℹ️ Info</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_reklassifisering.html">💻 Reklassifisering av data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_aggregering_av_data.html">💻 Aggregering av data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/06_oving-6.html">📥 Øving 6</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Uke 7</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../pages/07_info.html">ℹ️ Info</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_overlay.html">💻 Overlay</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Uke 8</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../pages/08_info.html">ℹ️ Info</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_statiske_kart.html">💻 Statiske kart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_interaktive_kart.html">💻 Interaktive kart</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Prosjektarbeid</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../pages/13_prosjektarbeid.html">📖 Prosjektarbeid</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/13_prosjektkarakter.html">📖 Karaktersetting for prosjektoppgaven</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/13_prosjekttips.html">📖 Tips til prosjektoppgaven</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/haavardaagesen/gmgi221" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/haavardaagesen/gmgi221/issues/new?title=Issue%20on%20page%20%2Fcontent/notebooks/01_smakebit.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/content/notebooks/01_smakebit.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>💻 En smakebit av Python</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#oversikt">Oversikt</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variabler-i-python">Variabler i Python</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#navngivning">Navngivning</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#datatyper">Datatyper</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kommentarer">Kommentarer</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jobbe-med-variabler-og-datatyper">Jobbe med variabler og datatyper</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bruk-i-en-romlig-kontekst">Bruk i en romlig kontekst</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="en-smakebit-av-python">
+<h1>💻 En smakebit av Python<a class="headerlink" href="#en-smakebit-av-python" title="Link to this heading">#</a></h1>
+<section id="oversikt">
+<h2>Oversikt<a class="headerlink" href="#oversikt" title="Link to this heading">#</a></h2>
+<p>I denne forelesningen skal vi få en smakebit av Python og se på noen grunnleggende konsepter som variabler og datatyper. Å kunne forstå disse grunnleggende prisippene er helt essensielt for å jobbe med romlige data. Med variabler kan du lagre og manipulere informasjon, mens datatyper definere hvilke operasjoner du kan utføre på disse variablene.</p>
+<p>Denne forelesningen er inspirert av <a class="reference external" href="https://geog-312.gishub.org/book/python/02_variables.html">Introduction to GIS Programming</a> fra University of Tennessee.</p>
+<p>Du kan også åpne denne notebooken i Binder: <a class="reference external" href="https://mybinder.org/v2/gh/GMGI221/forelesninger/HEAD?urlpath=%2Fdoc%2Ftree%2F01_smakebit.ipynb"><img alt="Binder" src="https://mybinder.org/badge_logo.svg" /></a></p>
+</section>
+<section id="variabler-i-python">
+<h2>Variabler i Python<a class="headerlink" href="#variabler-i-python" title="Link to this heading">#</a></h2>
+<p>I Python er variabler et symbolsk navn som refererer eller peker til et objekt. Etter at et objekt har blitt tildelt til en variabel kan du referere til objektet ved å bruke variabelnavnet.</p>
+<p>Vi kan begynne med å opprette en enkel variabel som representerer et antall punkter i et datasett.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">antall_punkt</span> <span class="o">=</span> <span class="mi">120</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Variablen <code class="docutils literal notranslate"><span class="pre">antall_punkt</span></code> representerer nå heltallet 120 som vi nå kan bruke videre.</p>
+<p>For å se hva verdien av variablen er, kan vi bruke <code class="docutils literal notranslate"><span class="pre">print()</span></code>-funksjonen.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">antall_punkt</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>120
+</pre></div>
+</div>
+</div>
+</div>
+<p>I en Notebook som denne, kan vi også bare skrive variabelnavnet i en kodecelle og kjøre cellen for å vise variabelverdien.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">antall_punkt</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>120
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="navngivning">
+<h2>Navngivning<a class="headerlink" href="#navngivning" title="Link to this heading">#</a></h2>
+<p>Når du navngir variabler er det noen tommelfingerregler som er nyttige å følge:</p>
+<ul class="simple">
+<li><p>Variabelnavn må starte med en bokstav eller en understrek (<code class="docutils literal notranslate"><span class="pre">_</span></code>).</p></li>
+<li><p>Resten av variabelnavnet kan bestå av bokstaver, tall og understreker.</p></li>
+<li><p>Variabelnavn er følsomme for store og små bokstaver, så <code class="docutils literal notranslate"><span class="pre">antall_punkt</span></code> og <code class="docutils literal notranslate"><span class="pre">Antall_Punkt</span></code> er forskjellige variabler.</p></li>
+<li><p>Variabelnavn bør være beskrivende og meningsfulle, slik som <code class="docutils literal notranslate"><span class="pre">antall_punkt</span></code> i stedet for <code class="docutils literal notranslate"><span class="pre">n</span></code>.</p></li>
+<li><p>Unngå å bruke Python-nøkkelord og innebygde funksjoner som variabelnavn, sånn som <code class="docutils literal notranslate"><span class="pre">print</span></code>, <code class="docutils literal notranslate"><span class="pre">sum</span></code>, <code class="docutils literal notranslate"><span class="pre">list</span></code>, <code class="docutils literal notranslate"><span class="pre">dict</span></code>, <code class="docutils literal notranslate"><span class="pre">str</span></code>, <code class="docutils literal notranslate"><span class="pre">int</span></code>, <code class="docutils literal notranslate"><span class="pre">float</span></code>, <code class="docutils literal notranslate"><span class="pre">bool</span></code>, <code class="docutils literal notranslate"><span class="pre">set</span></code>, <code class="docutils literal notranslate"><span class="pre">tuple</span></code>, <code class="docutils literal notranslate"><span class="pre">range</span></code>, <code class="docutils literal notranslate"><span class="pre">type</span></code>, <code class="docutils literal notranslate"><span class="pre">object</span></code>, <code class="docutils literal notranslate"><span class="pre">None</span></code>, <code class="docutils literal notranslate"><span class="pre">True</span></code>, <code class="docutils literal notranslate"><span class="pre">False</span></code> og <a class="reference external" href="https://docs.python.org/3/library/functions.html">mange fler</a>.</p></li>
+</ul>
+</section>
+<section id="datatyper">
+<h2>Datatyper<a class="headerlink" href="#datatyper" title="Link to this heading">#</a></h2>
+<p>Python støtter et hav av datatyper og de aller fleste som vi bruker når vi jobber med romlige data. De vanligste datatypene inkluderer:</p>
+<p><strong>a) Heltall (int):</strong> Dette er heltall som for eksempel: 1, 120, -5</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">antall_datapunkt</span> <span class="o">=</span> <span class="mi">500</span>  <span class="c1"># Representerer antall datapunkt i et datasett</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>b) Flyttall (float):</strong> Dette er tall med desimaler så som: 3.14, -0.001, 100.0. Desimaler skrives med punktum som desimaltegn.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">breddegrad</span> <span class="o">=</span> <span class="mf">59.665</span>  <span class="c1"># Representerer verdien til breddegraden til et punkt på jordens overflate</span>
+<span class="n">lengdegrad</span> <span class="o">=</span> <span class="mf">10.776</span>  <span class="c1"># Representerer verdien til lengdegraden til et punkt på jordens overflate</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>c) Strenger (str):</strong> Strenger er tekst eller bokstavkombinasjoner så som: “Hello”, “Lat/Long”</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">koordinatsystem</span> <span class="o">=</span> <span class="s2">&quot;WGS 84&quot;</span>  <span class="c1"># Representerer et vanlig koordinatsystem</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Strenger kan omringes av ett anførselestegn (<code class="docutils literal notranslate"><span class="pre">'</span></code>) eller doble anførselestegn (<code class="docutils literal notranslate"><span class="pre">&quot;</span></code>). Du kan også bruke triple anførselestegn (<code class="docutils literal notranslate"><span class="pre">'''</span></code> or <code class="docutils literal notranslate"><span class="pre">&quot;&quot;&quot;</span></code>) for strenger som går over flere linjer.</p>
+<p><strong>d) Boolske variabler (bool):</strong> Boolske variabler representerer en av to verdier: sant eller falsk / True or False</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">er_georeferert</span> <span class="o">=</span> <span class="kc">True</span>  <span class="c1"># Representerer hvorvidt et dataset er georeferert eller ikke</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>e) Lister:</strong> Lister er en ordnet samling av objekter. Lister kan innehold ulike typer objekter.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">koordinater</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="mf">10.776</span><span class="p">,</span>
+    <span class="mf">59.665</span><span class="p">,</span>
+<span class="p">]</span>  <span class="c1"># En liste som representerer breddegrad og lengdegradene til et punkt</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>f) Ordbøker/Dictionaries (dict):</strong> Ordbøker er en samling av par bestående av nøkkel og verdi.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">attributter</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;navn&quot;</span><span class="p">:</span> <span class="s2">&quot;Ås&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;befolkning&quot;</span><span class="p">:</span> <span class="mi">10962</span><span class="p">,</span>
+    <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;tettsted&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;koordinater&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">10.776</span><span class="p">,</span> <span class="mf">59.665</span><span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="kommentarer">
+<h2>Kommentarer<a class="headerlink" href="#kommentarer" title="Link to this heading">#</a></h2>
+<p>Kommentarer brukes i koding til å forklare hva koden gjør og å gjøre koden mer lesbar. I Python starter kommentarer på en enkelt linje med <code class="docutils literal notranslate"><span class="pre">#</span></code>. Alt etter <code class="docutils literal notranslate"><span class="pre">#</span></code> på den linjen blir tolket som kommentar og blir ignorert av Python. For kommentarer som går over flere linjer, kan du bruke triple anførselestegn (<code class="docutils literal notranslate"><span class="pre">'''</span></code> or <code class="docutils literal notranslate"><span class="pre">&quot;&quot;&quot;</span></code>).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Dette er en kommentar</span>
+<span class="n">antall_punkt</span> <span class="o">=</span> <span class="mi">120</span>  <span class="c1"># Dette er en &quot;inline&quot;-kommentar</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="jobbe-med-variabler-og-datatyper">
+<h2>Jobbe med variabler og datatyper<a class="headerlink" href="#jobbe-med-variabler-og-datatyper" title="Link to this heading">#</a></h2>
+<p>Nå som vi kjenner til de grunnleggende datatypene og hvordan variabler fungerer, kan vi begynne å jobbe med de:</p>
+<p>Vi begynner med en enkel operasjon, å legge til en bestemt verdi til en allerede eksisterende variabel:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">antall_datapunkt</span> <span class="o">+=</span> <span class="mi">20</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Et oppdatert antall datapunkt:&quot;</span><span class="p">,</span> <span class="n">antall_datapunkt</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Et oppdatert antall datapunkt: 520
+</pre></div>
+</div>
+</div>
+</div>
+<p>Konvertere lengdegrader fra grader til radianer:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">math</span>
+
+<span class="n">lengdegrad</span> <span class="o">=</span> <span class="mf">10.776</span>
+<span class="n">lengdegrad_radianer</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">lengdegrad</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Lengdegrad i radianer:&quot;</span><span class="p">,</span> <span class="n">lengdegrad_radianer</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Lengdegrad i radianer: 0.18807668019490895
+</pre></div>
+</div>
+</div>
+</div>
+<p>Legge til koordinater til en liste:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">koordinater</span> <span class="o">=</span> <span class="p">[</span><span class="mf">10.776</span><span class="p">,</span> <span class="mf">59.665</span><span class="p">]</span>
+<span class="n">koordinater</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mf">24.952</span><span class="p">)</span>
+<span class="n">koordinater</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mf">60.169</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Oppdaterte koordinater:&quot;</span><span class="p">,</span> <span class="n">koordinater</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Oppdaterte koordinater: [10.776, 59.665, 24.952, 60.169]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Bruke innholdet i en ordbok:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">aas_navn</span> <span class="o">=</span> <span class="n">attributter</span><span class="p">[</span><span class="s2">&quot;navn&quot;</span><span class="p">]</span>
+<span class="n">aas_befolkning</span> <span class="o">=</span> <span class="n">attributter</span><span class="p">[</span><span class="s2">&quot;befolkning&quot;</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;I </span><span class="si">{</span><span class="n">aas_navn</span><span class="si">}</span><span class="s2"> bor det </span><span class="si">{</span><span class="n">aas_befolkning</span><span class="si">}</span><span class="s2"> mennesker.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>I Ås bor det 10962 mennesker.
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="bruk-i-en-romlig-kontekst">
+<h2>Bruk i en romlig kontekst<a class="headerlink" href="#bruk-i-en-romlig-kontekst" title="Link to this heading">#</a></h2>
+<p>Si at du har fått en liste med koordinatpar og har blitt bedt om å regne ut centroiden eller midtpunktet:</p>
+<p>Her er listen med koordinater (lengdegrad/breddegrad) som representerer fire byer:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">punkter</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">[</span><span class="mf">10.738</span><span class="p">,</span> <span class="mf">59.913</span><span class="p">],</span>  <span class="c1"># Oslo</span>
+    <span class="p">[</span><span class="mf">5.323333</span><span class="p">,</span> <span class="mf">60.3925</span><span class="p">],</span>  <span class="c1"># Bergen</span>
+    <span class="p">[</span><span class="mf">10.4</span><span class="p">,</span> <span class="mf">63.44</span><span class="p">],</span>  <span class="c1"># Trondheim</span>
+    <span class="p">[</span><span class="mf">18.96366</span><span class="p">,</span> <span class="mf">69.65455</span><span class="p">],</span>  <span class="c1"># Tromsø</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Regn ut centroiden:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">centroid_lengdegrad</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">([</span><span class="n">punkt</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">punkt</span> <span class="ow">in</span> <span class="n">punkter</span><span class="p">])</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">punkter</span><span class="p">)</span>
+<span class="n">centroid_breddegrad</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">([</span><span class="n">punkt</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">punkt</span> <span class="ow">in</span> <span class="n">punkter</span><span class="p">])</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">punkter</span><span class="p">)</span>
+<span class="n">centroid</span> <span class="o">=</span> <span class="p">[</span><span class="n">centroid_lengdegrad</span><span class="p">,</span> <span class="n">centroid_breddegrad</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Centroid for punktene er:&quot;</span><span class="p">,</span> <span class="n">centroid</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Centroid for punktene er: [11.35624825, 63.3500125]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./content/notebooks"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../pages/01_bakgrunn.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">📖 Bakgrunn for emnet</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../pages/01_oving-1.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">📥 Øving 1</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#oversikt">Oversikt</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variabler-i-python">Variabler i Python</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#navngivning">Navngivning</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#datatyper">Datatyper</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kommentarer">Kommentarer</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jobbe-med-variabler-og-datatyper">Jobbe med variabler og datatyper</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bruk-i-en-romlig-kontekst">Bruk i en romlig kontekst</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Håvard Wallin Aagesen
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  <p>This course is heavily based on the <a href="https://autogis-site.readthedocs.io/en/latest/" target="_blank">Automating GIS processes</a> course at the University of Helsinki.</p>
+
+</div>
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

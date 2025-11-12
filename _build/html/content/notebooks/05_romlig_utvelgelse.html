@@ -1,0 +1,1149 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>💻 Romlig utvelgelse &#8212; GMGI221 - Automatisering av GIS-prosesser</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=7cf0485e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'content/notebooks/05_romlig_utvelgelse';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="💻 Romlig kobling" href="05_romlig_kobling.html" />
+    <link rel="prev" title="ℹ️ Info" href="../pages/05_info.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo.png" class="logo__image only-light" alt="GMGI221 - Automatisering av GIS-prosesser - Home"/>
+    <script>document.write(`<img src="../../_static/logo.png" class="logo__image only-dark" alt="GMGI221 - Automatisering av GIS-prosesser - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../index.html">
+                    Velkommen til GMGI221
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Generell info</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../pages/00_generell.html">ℹ️ Generell info</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/00_laeringsmaal.html">📖 Læringsmål</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/00_ovingsoppgaver.html">📖 Øvingsoppgaver</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/00_karakterer.html">📖 Karakterer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/00_installere-python.html">📖 Installering av Python og Python pakker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/00_bruk_av_ai.html">📖 Bruk av KI-verktøy</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Uke 1</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../pages/01_info.html">ℹ️ Info</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/01_bakgrunn.html">📖 Bakgrunn for emnet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_smakebit.html">💻 En smakebit av Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/01_oving-1.html">📥 Øving 1</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Uke 2</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../pages/02_info.html">ℹ️ Info</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_geometriske_objekter.html">💻 Geometriske objekter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_intersect.html">💻 Intersect</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_assertions.html">💻 Bruke <code class="docutils literal notranslate"><span class="pre">assertion</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/02_oving-2.html">📥 Øving 2</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Uke 3</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../pages/03_info.html">ℹ️ Info</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/03_begreper.html">📖 Nøkkelbegreper</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_filstier.html">💻 Håndtering av filstier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_vektor.html">💻 Vektor Data I/O</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_geopandas.html">💻 Geopandas: en introduksjon</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/03_oving-3.html">📥 Øving 3</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Uke 4</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../pages/04_info.html">ℹ️ Info</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/04_geokoding.html">📖 Geokoding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_projeksjoner.html">💻 Kartprojeksjoner</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="04_geometriske_operasjoner.html">💻 Vanlige geometriske operasjoner</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_geokoding_i_geopandas.html">💻 Geokoding i geopandas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/04_oving-4.html">📥 Øving 4</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Uke 5</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../pages/05_info.html">ℹ️ Info</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">💻 Romlig utvelgelse</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_romlig_kobling.html">💻 Romlig kobling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/05_oving-5.html">📥 Øving 5</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Uke 6</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../pages/06_info.html">ℹ️ Info</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_reklassifisering.html">💻 Reklassifisering av data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_aggregering_av_data.html">💻 Aggregering av data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/06_oving-6.html">📥 Øving 6</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Uke 7</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../pages/07_info.html">ℹ️ Info</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_overlay.html">💻 Overlay</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Uke 8</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../pages/08_info.html">ℹ️ Info</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_statiske_kart.html">💻 Statiske kart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_interaktive_kart.html">💻 Interaktive kart</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Prosjektarbeid</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../pages/13_prosjektarbeid.html">📖 Prosjektarbeid</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/13_prosjektkarakter.html">📖 Karaktersetting for prosjektoppgaven</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/13_prosjekttips.html">📖 Tips til prosjektoppgaven</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/haavardaagesen/gmgi221" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/haavardaagesen/gmgi221/issues/new?title=Issue%20on%20page%20%2Fcontent/notebooks/05_romlig_utvelgelse.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/content/notebooks/05_romlig_utvelgelse.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>💻 Romlig utvelgelse</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#romlige-predikater">Romlige predikater</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#romlig-utvelgelse-i-python">Romlig utvelgelse i Python</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#punkt-i-polygon-analyse">Punkt i polygon-analyse</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hvordan-sjekke-om-et-punkt-er-inne-i-en-polygon">Hvordan sjekke om et punkt er inne i en polygon?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sporringer-om-punkt-i-polygon-pa-shapely-geometrier">Spørringer om punkt-i-polygon på <code class="docutils literal notranslate"><span class="pre">shapely</span></code> geometrier</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sporringer-om-punkt-i-polygon-pa-geopandas-geodataframes">Spørringer om punkt-i-polygon på <code class="docutils literal notranslate"><span class="pre">geopandas.GeoDataFrame</span></code>s</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="romlig-utvelgelse">
+<h1>💻 Romlig utvelgelse<a class="headerlink" href="#romlig-utvelgelse" title="Link to this heading">#</a></h1>
+<p>En vanlig oppgave når man jobber med romlige data er utføre ulike GIS-operasjoner basert på hvordan ulike data er plassert i forhold til hverandre. For eksempel er det svært vanlig å finne ut om et bestemt punkt er lokalisert innenfor et område, eller om en linje krysser en annen linje eller en polygon, for å velge data basert på romlig plassering. Alt dette går under det man kan kalle romlig utvelgelse. Romlige utvelgelser utføres basert på topologiske romlige relasjoner, som er grunnleggende konstruksjoner som beskriver hvordan to eller flere geometriske objekter forholder seg til hverandre med hensyn til deres posisjon og grenser.</p>
+<p>Du kan lese mer om de topologiske sammenhengene i <a class="reference external" href="https://pythongis.org/part2/chapter-06/nb/05-spatial-queries.html">kapittel 6.6 i Python for Geographic Data Analysis</a>, men for vårt formål her er figuren under en oversikt over de underliggende romlige dimensjonene til de ulike romlige objektene vi jobber med:</p>
+<p><img alt="Romlige dimensjoner" src="https://pythongis.org/_images/DE-9IM_topology_interior_boundary_exterior.png" /></p>
+<section id="romlige-predikater">
+<h2>Romlige predikater<a class="headerlink" href="#romlige-predikater" title="Link to this heading">#</a></h2>
+<p>Når vi i GIS-analyser tester hvordan ulike geometriske objekter forholder seg til hverandre, får man et resultat som kalles et romlig predikat. De vanligste romlige predikatene er vist i figuren under og mange av disse predikatene, som <code class="docutils literal notranslate"><span class="pre">intersects</span></code>, <code class="docutils literal notranslate"><span class="pre">within</span></code>, <code class="docutils literal notranslate"><span class="pre">contains</span></code>, <code class="docutils literal notranslate"><span class="pre">overlaps</span></code> og <code class="docutils literal notranslate"><span class="pre">touches</span></code>, brukes ofte når man velger data for et spesifikt interesseområde eller når man kobler data fra ett datasett til et annet basert på den romlige relasjonen mellom lagene.</p>
+<p><img alt="Romlige predikater" src="https://pythongis.org/_images/spatial-relations.png" /></p>
+<p>Den øverste raden i figuren viser romlige predikater der geometriene A og B er klart adskilt fra hverandre, inneholder eller er innenfor hverandre, eller er identiske med hverandre. Når geometriene har minst ett punkt til felles, sies det at geometriene <em>intersects</em> (skjærer) hverandre. Dermed er alle sammenligningene i denne figuren, bortsett fra den første (disjoint), sanne, dvs. geometriene skjærer hverandre.</p>
+<p>Den nederste raden viser eksempler på romlige forhold som på en eller annen måte er litt “spesialtilfeller”. Når to geometriske objekter berører hverandre, har de minst ett punkt til felles (ved yttergrensengrensen i dette tilfellet), men deres indre skjærer ikke hverandre. Når det indre av geometriene A og B delvis er oppå hverandre og delvis utenfor hverandre, overlapper geometriene hverandre. Det romlige predikatet for <em>covers</em> er når interiøret til geometri B nesten er helt innenfor A, men de deler minst én felles koordinat ved grensen. Tilsvarende, hvis geometri A nesten er helt inneholdt av geometri B (bortsett fra minst ett felles koordinat ved grensen), kalles det romlige predikatet <em>covered by</em>. Disse åtte eksemplene representerer noen av de vanlige romlige predikatene basert på to polygonformer.</p>
+</section>
+<section id="romlig-utvelgelse-i-python">
+<h2>Romlig utvelgelse i Python<a class="headerlink" href="#romlig-utvelgelse-i-python" title="Link to this heading">#</a></h2>
+<p>Når vi skal utføre romlige utvelgelser i Python er disse heldigvis allerede implementert i <code class="docutils literal notranslate"><span class="pre">shapely</span></code> og <code class="docutils literal notranslate"><span class="pre">geopandas</span></code>. Med disse bibliotekene kan vi enkelt og effektivt evaluere den topologiske relasjonen mellom geometriske objekter. I Python er alle de grunnleggende romlige predikatene tilgjengelige fra shapely-biblioteket, inkludert:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">.intersects()</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.within()</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.contains()</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.overlaps()</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.touches()</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.covers()</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.covered_by()</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.equals()</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.disjoint()</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.crosses()</span></code></p></li>
+</ul>
+<p>Vi har allerede <a class="reference internal" href="02_intersect.html"><span class="doc std std-doc">tidligere</span></a> sett på hvordan <code class="docutils literal notranslate"><span class="pre">.intersects()</span></code> fungerer, så la oss nå utføre en punkt i polygon-analyse.</p>
+</section>
+<section id="punkt-i-polygon-analyse">
+<h2>Punkt i polygon-analyse<a class="headerlink" href="#punkt-i-polygon-analyse" title="Link to this heading">#</a></h2>
+<p>Å finne ut om et bestemt punkt er plassert innenfor eller utenfor et område,
+eller å finne ut om en linje krysser en annen linje eller polygon er
+grunnleggende romlige spørringer som ofte brukes f.eks. for å velge
+data basert på plassering. Slike romlige spørringer er en av de typiske
+første trinnene i arbeidsflyten når du gjør romlig analyse. Å utføre en
+romlig kobling (vil bli introdusert senere) mellom to romlige datasett er
+en av de mest typiske bruksområdene der Punkt-i-Polygon (PIP)-analyser
+brukes.</p>
+<p>For videre lesing om PIP og andre geometriske operasjoner,
+se kapittel 4.2 i Smith, Goodchild &amp; Longley: <a class="reference external" href="https://www.spatialanalysisonline.com/HTML/index.html">Geospatial Analysis - 6th edition</a>.</p>
+</section>
+<section id="hvordan-sjekke-om-et-punkt-er-inne-i-en-polygon">
+<h2>Hvordan sjekke om et punkt er inne i en polygon?<a class="headerlink" href="#hvordan-sjekke-om-et-punkt-er-inne-i-en-polygon" title="Link to this heading">#</a></h2>
+<p>Beregningsteknisk er det mest vanlig å oppdage om et punkt er inne i en polygon ved å bruke en spesifikk formel kalt <a class="reference external" href="https://en.wikipedia.org/wiki/Point_in_polygon#Ray_casting_algorithm">Ray Casting-algoritmen</a>.
+Heldigvis trenger vi ikke å lage en slik funksjon selv for
+utføre Punkt-i-Polygon (PIP)-analyser. I stedet kan vi dra
+fordel av <a class="reference external" href="https://shapely.readthedocs.io/en/stable/manual.html#binary-predicates">Shapely’s binære predikater</a>
+som kan evaluere de topologiske forholdene mellom geografiske
+objekter, så som PIP, som vi er interessert i her.</p>
+</section>
+<section id="sporringer-om-punkt-i-polygon-pa-shapely-geometrier">
+<h2>Spørringer om punkt-i-polygon på <code class="docutils literal notranslate"><span class="pre">shapely</span></code> geometrier<a class="headerlink" href="#sporringer-om-punkt-i-polygon-pa-shapely-geometrier" title="Link to this heading">#</a></h2>
+<p>Det er stort sett to måter å utføre PIP på i Shapely:</p>
+<ol class="arabic simple">
+<li><p>ved hjelp av en funksjon kalt
+<a class="reference external" href="https://shapely.readthedocs.io/en/stable/manual.html#object.within">within()</a>
+som sjekker om et punkt er innenfor et polygon</p></li>
+<li><p>ved hjelp av en funksjon kalt
+<a class="reference external" href="https://shapely.readthedocs.io/en/stable/manual.html#object.contains">contains()</a>
+som sjekker om et polygon inneholder et punkt</p></li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Selv om vi snakker her om <strong>Point</strong> i Polygon
+operasjon, er det også mulig å sjekke om en LineString eller Polygon er
+inne i et annen Polygon.</p>
+</div>
+<p>La oss først lage et par punktgeometrier:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">shapely.geometry</span>
+<span class="n">punkt1</span> <span class="o">=</span> <span class="n">shapely</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">Point</span><span class="p">(</span><span class="mf">24.952242</span><span class="p">,</span> <span class="mf">60.1696017</span><span class="p">)</span>
+<span class="n">punkt2</span> <span class="o">=</span> <span class="n">shapely</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">Point</span><span class="p">(</span><span class="mf">24.976567</span><span class="p">,</span> <span class="mf">60.1612500</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>… og en polygon:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">polygon</span> <span class="o">=</span> <span class="n">shapely</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">Polygon</span><span class="p">(</span>
+    <span class="p">[</span>
+        <span class="p">(</span><span class="mf">24.950899</span><span class="p">,</span> <span class="mf">60.169158</span><span class="p">),</span>
+        <span class="p">(</span><span class="mf">24.953492</span><span class="p">,</span> <span class="mf">60.169158</span><span class="p">),</span>
+        <span class="p">(</span><span class="mf">24.953510</span><span class="p">,</span> <span class="mf">60.170104</span><span class="p">),</span>
+        <span class="p">(</span><span class="mf">24.950958</span><span class="p">,</span> <span class="mf">60.169990</span><span class="p">)</span>
+    <span class="p">]</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">punkt1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">punkt2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">polygon</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>POINT (24.952242 60.1696017)
+POINT (24.976567 60.16125)
+POLYGON ((24.950899 60.169158, 24.953492 60.169158, 24.95351 60.170104, 24.950958 60.16999, 24.950899 60.169158))
+</pre></div>
+</div>
+</div>
+</div>
+<p>La oss sjekke om punktene er <code class="docutils literal notranslate"><span class="pre">within()</span></code> polygonet:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">punkt1</span><span class="o">.</span><span class="n">within</span><span class="p">(</span><span class="n">polygon</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">punkt2</span><span class="o">.</span><span class="n">within</span><span class="p">(</span><span class="n">polygon</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>False
+</pre></div>
+</div>
+</div>
+</div>
+<p>Det ser ut til at det første punktet er inne i polygonet, men det andre er ikke det.</p>
+<p>Vi kan snu logikken til spørringen: I stedet for å sjekke om punktet er
+innenfor polygonet, kan vi også spørre om polygonet <code class="docutils literal notranslate"><span class="pre">contains()</span></code> punktet:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">polygon</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="n">punkt1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">polygon</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="n">punkt2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>False
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>De to måtene å sjekke det romlige forholdet er komplementære og gir
+ekvivalente resultater;
+<a class="reference external" href="https://shapely.readthedocs.io/en/stable/manual.html#object.contains"><code class="docutils literal notranslate"><span class="pre">contains()</span></code></a>
+er invers av
+<a class="reference external" href="https://shapely.readthedocs.io/en/stable/manual.html#object.within"><code class="docutils literal notranslate"><span class="pre">within()</span></code></a>,
+og omvendt.</p>
+<p>Så, hvilken skal du bruke? Vel, det avhenger av:</p>
+<ul class="simple">
+<li><p>hvis du har <strong>mange punkter og bare ett polygon</strong> og du prøver å finne ut
+hvilket av dem som er inne i polygonet: Da må du kanskje iterere over punktene
+og sjekke ett om gangen om det er <strong><code class="docutils literal notranslate"><span class="pre">within()</span></code></strong> polygonet.</p></li>
+<li><p>hvis du har <strong>mange polygoner og bare ett punkt</strong> og du vil finne ut
+hvilket polygon som inneholder punktet: Da må du kanskje iterere over polygonene
+til du finner et polygon som <strong><code class="docutils literal notranslate"><span class="pre">contains()</span></code></strong> det spesifiserte punktet</p></li>
+</ul>
+</div>
+</section>
+<section id="sporringer-om-punkt-i-polygon-pa-geopandas-geodataframes">
+<h2>Spørringer om punkt-i-polygon på <code class="docutils literal notranslate"><span class="pre">geopandas.GeoDataFrame</span></code>s<a class="headerlink" href="#sporringer-om-punkt-i-polygon-pa-geopandas-geodataframes" title="Link to this heading">#</a></h2>
+<p>I det følgende praktiske eksempelet finner vi ut hvilke av adressene vi fikk
+i <a class="reference internal" href="04_geokoding_i_geopandas.html"><span class="doc std std-doc">geokodingseksjonen</span></a> som ligger innenfor en bestemt
+bydel i Oslo.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pathlib</span>
+<span class="n">NOTEBOOK_PATH</span> <span class="o">=</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">()</span><span class="o">.</span><span class="n">resolve</span><span class="p">()</span>
+<span class="n">DATA_MAPPE</span> <span class="o">=</span> <span class="n">NOTEBOOK_PATH</span> <span class="o">/</span> <span class="s2">&quot;data&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">geopandas</span>
+
+<span class="n">bydeler</span> <span class="o">=</span> <span class="n">geopandas</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span>
+    <span class="n">DATA_MAPPE</span> <span class="o">/</span> <span class="s2">&quot;oslo_bydeler&quot;</span> <span class="o">/</span> <span class="s2">&quot;oslo_bydeler_befolkning_2024.geojson&quot;</span>
+<span class="p">)</span>
+<span class="n">bydeler</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>fid</th>
+      <th>bydelsnr</th>
+      <th>bynavn</th>
+      <th>bydel</th>
+      <th>befolkning_2024</th>
+      <th>geometry</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>030101</td>
+      <td>Oslo</td>
+      <td>Gamle Oslo</td>
+      <td>63721</td>
+      <td>MULTIPOLYGON (((10.66087 59.88365, 10.66472 59...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>030102</td>
+      <td>Oslo</td>
+      <td>Grünerløkka</td>
+      <td>65532</td>
+      <td>MULTIPOLYGON (((10.75378 59.91469, 10.75453 59...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>030103</td>
+      <td>Oslo</td>
+      <td>Sagene</td>
+      <td>47627</td>
+      <td>MULTIPOLYGON (((10.77156 59.93095, 10.77135 59...</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4</td>
+      <td>030104</td>
+      <td>Oslo</td>
+      <td>St.Hanshaugen</td>
+      <td>41571</td>
+      <td>MULTIPOLYGON (((10.75136 59.91923, 10.75158 59...</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5</td>
+      <td>030105</td>
+      <td>Oslo</td>
+      <td>Frogner</td>
+      <td>60727</td>
+      <td>MULTIPOLYGON (((10.65562 59.89038, 10.65381 59...</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bydeler</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: &gt;
+</pre></div>
+</div>
+<img alt="../../_images/b9f6a35039c31a0dcce01a2d500278671d21e92f4f44714453c7994058d0319e.png" src="../../_images/b9f6a35039c31a0dcce01a2d500278671d21e92f4f44714453c7994058d0319e.png" />
+</div>
+</div>
+<p>Spesielt ønsker vi å finne ut hvilke punkter som er innenfor bydelen “Gamle Oslo”. La oss begynne med å få et separat datasett for
+denne bydele, laste in adressene, og plotte et flerlagskart
+som viser alle bydelene, “Gamle Oslo” og alle punktene i
+ett kart:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gamle_oslo</span> <span class="o">=</span> <span class="n">bydeler</span><span class="p">[</span><span class="n">bydeler</span><span class="o">.</span><span class="n">bydel</span> <span class="o">==</span> <span class="s2">&quot;Gamle Oslo&quot;</span><span class="p">]</span>
+<span class="n">gamle_oslo</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>fid</th>
+      <th>bydelsnr</th>
+      <th>bynavn</th>
+      <th>bydel</th>
+      <th>befolkning_2024</th>
+      <th>geometry</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>030101</td>
+      <td>Oslo</td>
+      <td>Gamle Oslo</td>
+      <td>63721</td>
+      <td>MULTIPOLYGON (((10.66087 59.88365, 10.66472 59...</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adresser</span> <span class="o">=</span> <span class="n">geopandas</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="n">DATA_MAPPE</span> <span class="o">/</span> <span class="s2">&quot;oslo_adresser&quot;</span> <span class="o">/</span> <span class="s2">&quot;adresser.geojson&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="hint admonition">
+<p class="admonition-title">Plotting av flere kartlag</p>
+<p>For å plotte flere kartlag i én figur, bruk <code class="docutils literal notranslate"><span class="pre">ax</span></code> parameteren for å spesifisere i
+hvilke <em>akser</em> data skal plottes.</p>
+<p>Den enkleste måten å få en <em>akse</em> er å lagre den første <code class="docutils literal notranslate"><span class="pre">plot()</span></code>ens
+returverdi (se nedenfor). Et annet alternativ er å lage <a class="reference external" href="https://geo-python-site.readthedocs.io/en/latest/notebooks/L7/advanced-plotting.html#using-subplots"><code class="docutils literal notranslate"><span class="pre">subplots()</span></code></a>, muligens med bare en rad og en kolonne.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">akser</span> <span class="o">=</span> <span class="n">bydeler</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">facecolor</span><span class="o">=</span><span class="s2">&quot;grey&quot;</span><span class="p">)</span>
+<span class="n">gamle_oslo</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">akser</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">)</span>
+<span class="n">adresser</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">akser</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;blue&quot;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: &gt;
+</pre></div>
+</div>
+<img alt="../../_images/180a14fb8cb4d7026359847c7242321d678f8caa90ae070272e5ae2f12a23907.png" src="../../_images/180a14fb8cb4d7026359847c7242321d678f8caa90ae070272e5ae2f12a23907.png" />
+</div>
+</div>
+<p>Noen punkter er innenfor ‘Gamle Oslo’, men andre er det ikke. For å finne
+ut hvilke som er de inne i bydelen, kan vi bruke en <strong>punkt-i-polygon
+spørring</strong>, denne gangen på en hel <code class="docutils literal notranslate"><span class="pre">geopandas.GeoDataFrame</span></code>. Metoden
+<code class="docutils literal notranslate"><span class="pre">within()</span></code> returnerer boolske (<code class="docutils literal notranslate"><span class="pre">True</span></code>/<code class="docutils literal notranslate"><span class="pre">False</span></code>) verdier som indikerer om eller ikke
+en rads geometri er inni den angitte <em>andre</em> geometrien:</p>
+<div class="caution admonition">
+<p class="admonition-title">geometri vs. geometrikolonne</p>
+<p>I eksempelet nedenfor bruker vi <code class="docutils literal notranslate"><span class="pre">gamle_oslo.at[0,</span> <span class="pre">&quot;geometry&quot;]</span></code> for å få en enkelt
+verdi, et <code class="docutils literal notranslate"><span class="pre">shapely.geometry.Polygon</span></code>, i stedet for en hel kolonne (en
+<code class="docutils literal notranslate"><span class="pre">GeoSeries</span></code>). Dette er for å matche hver rad’s geometri av hele
+<code class="docutils literal notranslate"><span class="pre">adresser</span></code>-dataframen mot <em>det samme polygonet</em>. Hvis, i motsetning, vi ville
+kjøre <code class="docutils literal notranslate"><span class="pre">within()</span></code> mot en kolonne, ville operasjonen bli utført radvis,
+dvs. det første adressepunktet ville bli sjekket mot det første polygonet, det
+andre adressepunktet mot det andre polygonet, og så videre.</p>
+<p>Sjekk <a class="reference external" href="https://geopandas.org/en/stable/docs/reference/api/geopandas.GeoSeries.within.html">dokumentasjonen for
+<code class="docutils literal notranslate"><span class="pre">within()</span></code></a>
+for å lære mer!</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adresser</span><span class="o">.</span><span class="n">within</span><span class="p">(</span><span class="n">gamle_oslo</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;geometry&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0     False
+1     False
+2     False
+3     False
+4     False
+5     False
+6      True
+7     False
+8      True
+9     False
+10    False
+11     True
+12    False
+13    False
+14     True
+15     True
+16    False
+17    False
+18    False
+19    False
+20    False
+21    False
+22    False
+23    False
+24    False
+25    False
+26    False
+27     True
+28    False
+29    False
+dtype: bool
+</pre></div>
+</div>
+</div>
+</div>
+<p>Denne listen med boolske verdier, også kalt en <em>maske-array</em> kan brukes til å filtrere
+input dataframen:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adresser_i_gamle_oslo</span> <span class="o">=</span> <span class="n">adresser</span><span class="p">[</span>
+    <span class="n">adresser</span><span class="o">.</span><span class="n">within</span><span class="p">(</span><span class="n">gamle_oslo</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;geometry&quot;</span><span class="p">])</span>
+<span class="p">]</span>
+<span class="n">adresser_i_gamle_oslo</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>fid</th>
+      <th>address</th>
+      <th>id</th>
+      <th>adr</th>
+      <th>geometry</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>6</th>
+      <td>7</td>
+      <td>5, Etterstadsletta, Gamle Oslo, Oslo, 0660, Norge</td>
+      <td>106</td>
+      <td>Etterstadsletta 5, 0660 OSLO</td>
+      <td>POINT (10.79645 59.90968)</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>9</td>
+      <td>21, Fyrstikkalléen, Lilleberg, Gamle Oslo, Osl...</td>
+      <td>108</td>
+      <td>Fyrstikkalleen 21, 0661 OSLO</td>
+      <td>POINT (10.79433 59.91526)</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>12</td>
+      <td>20B, Herslebs gate, Grønland, Gamle Oslo, Oslo...</td>
+      <td>111</td>
+      <td>Herslebs gate 20B, 0561 OSLO</td>
+      <td>POINT (10.76403 59.91813)</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>15</td>
+      <td>30, Kongsveien, Grønlia, Gamle Oslo, Oslo, 019...</td>
+      <td>114</td>
+      <td>Kongsveien 30, 0193 OSLO</td>
+      <td>POINT (10.75825 59.89739)</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>16</td>
+      <td>Gladengveien 3B, Gladengveien, Ensjø, Gamle Os...</td>
+      <td>115</td>
+      <td>Gladengveien 3B, 0661 OSLO</td>
+      <td>POINT (10.79030 59.91467)</td>
+    </tr>
+    <tr>
+      <th>27</th>
+      <td>28</td>
+      <td>16G, Innspurten, Gullhaug, Gamle Oslo, Oslo, 0...</td>
+      <td>127</td>
+      <td>Innspurten 16, 0663 OSLO</td>
+      <td>POINT (10.80587 59.91724)</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Til slutt, la oss plotte denne listen med adresser en gang til for visuelt å verifisere
+at alle av dem, faktisk, er plassert i ‘Gamle Oslo’:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">akser</span> <span class="o">=</span> <span class="n">bydeler</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">facecolor</span><span class="o">=</span><span class="s2">&quot;grey&quot;</span><span class="p">)</span>
+<span class="n">gamle_oslo</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">akser</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">)</span>
+
+<span class="n">adresser_i_gamle_oslo</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+    <span class="n">ax</span><span class="o">=</span><span class="n">akser</span><span class="p">,</span>
+    <span class="n">color</span><span class="o">=</span><span class="s2">&quot;gold&quot;</span><span class="p">,</span>
+    <span class="n">markersize</span><span class="o">=</span><span class="mi">5</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: &gt;
+</pre></div>
+</div>
+<img alt="../../_images/0a2eb1b359481c296985e3191ead17c2b270f8e50bba4c2b709b8259e19e04c8.png" src="../../_images/0a2eb1b359481c296985e3191ead17c2b270f8e50bba4c2b709b8259e19e04c8.png" />
+</div>
+</div>
+<p>Perfekt! Nå sitter vi igjen med bare de (gyldne) punktene som faktisk er
+inne i det røde polygonet. Det er akkurat det vi ønsket!</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./content/notebooks"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../pages/05_info.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">ℹ️ Info</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="05_romlig_kobling.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">💻 Romlig kobling</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#romlige-predikater">Romlige predikater</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#romlig-utvelgelse-i-python">Romlig utvelgelse i Python</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#punkt-i-polygon-analyse">Punkt i polygon-analyse</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hvordan-sjekke-om-et-punkt-er-inne-i-en-polygon">Hvordan sjekke om et punkt er inne i en polygon?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sporringer-om-punkt-i-polygon-pa-shapely-geometrier">Spørringer om punkt-i-polygon på <code class="docutils literal notranslate"><span class="pre">shapely</span></code> geometrier</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sporringer-om-punkt-i-polygon-pa-geopandas-geodataframes">Spørringer om punkt-i-polygon på <code class="docutils literal notranslate"><span class="pre">geopandas.GeoDataFrame</span></code>s</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Håvard Wallin Aagesen
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  <p>This course is heavily based on the <a href="https://autogis-site.readthedocs.io/en/latest/" target="_blank">Automating GIS processes</a> course at the University of Helsinki.</p>
+
+</div>
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

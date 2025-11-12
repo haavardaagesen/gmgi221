@@ -1,0 +1,1077 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>💻 Kartprojeksjoner &#8212; GMGI221 - Automatisering av GIS-prosesser</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=7cf0485e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'content/notebooks/04_projeksjoner';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="💻 Vanlige geometriske operasjoner" href="04_geometriske_operasjoner.html" />
+    <link rel="prev" title="📖 Geokoding" href="../pages/04_geokoding.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo.png" class="logo__image only-light" alt="GMGI221 - Automatisering av GIS-prosesser - Home"/>
+    <script>document.write(`<img src="../../_static/logo.png" class="logo__image only-dark" alt="GMGI221 - Automatisering av GIS-prosesser - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../index.html">
+                    Velkommen til GMGI221
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Generell info</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../pages/00_generell.html">ℹ️ Generell info</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/00_laeringsmaal.html">📖 Læringsmål</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/00_ovingsoppgaver.html">📖 Øvingsoppgaver</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/00_karakterer.html">📖 Karakterer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/00_installere-python.html">📖 Installering av Python og Python pakker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/00_bruk_av_ai.html">📖 Bruk av KI-verktøy</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Uke 1</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../pages/01_info.html">ℹ️ Info</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/01_bakgrunn.html">📖 Bakgrunn for emnet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_smakebit.html">💻 En smakebit av Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/01_oving-1.html">📥 Øving 1</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Uke 2</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../pages/02_info.html">ℹ️ Info</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_geometriske_objekter.html">💻 Geometriske objekter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_intersect.html">💻 Intersect</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_assertions.html">💻 Bruke <code class="docutils literal notranslate"><span class="pre">assertion</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/02_oving-2.html">📥 Øving 2</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Uke 3</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../pages/03_info.html">ℹ️ Info</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/03_begreper.html">📖 Nøkkelbegreper</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_filstier.html">💻 Håndtering av filstier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_vektor.html">💻 Vektor Data I/O</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_geopandas.html">💻 Geopandas: en introduksjon</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/03_oving-3.html">📥 Øving 3</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Uke 4</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../pages/04_info.html">ℹ️ Info</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/04_geokoding.html">📖 Geokoding</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">💻 Kartprojeksjoner</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="04_geometriske_operasjoner.html">💻 Vanlige geometriske operasjoner</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_geokoding_i_geopandas.html">💻 Geokoding i geopandas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/04_oving-4.html">📥 Øving 4</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Uke 5</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../pages/05_info.html">ℹ️ Info</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_romlig_utvelgelse.html">💻 Romlig utvelgelse</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_romlig_kobling.html">💻 Romlig kobling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/05_oving-5.html">📥 Øving 5</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Uke 6</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../pages/06_info.html">ℹ️ Info</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_reklassifisering.html">💻 Reklassifisering av data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_aggregering_av_data.html">💻 Aggregering av data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/06_oving-6.html">📥 Øving 6</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Uke 7</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../pages/07_info.html">ℹ️ Info</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_overlay.html">💻 Overlay</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Uke 8</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../pages/08_info.html">ℹ️ Info</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_statiske_kart.html">💻 Statiske kart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_interaktive_kart.html">💻 Interaktive kart</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Prosjektarbeid</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../pages/13_prosjektarbeid.html">📖 Prosjektarbeid</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/13_prosjektkarakter.html">📖 Karaktersetting for prosjektoppgaven</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/13_prosjekttips.html">📖 Tips til prosjektoppgaven</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/haavardaagesen/gmgi221" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/haavardaagesen/gmgi221/issues/new?title=Issue%20on%20page%20%2Fcontent/notebooks/04_projeksjoner.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/content/notebooks/04_projeksjoner.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>💻 Kartprojeksjoner</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">💻 Kartprojeksjoner</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#handtering-av-koordinatreferansesystemer-i-geopandas">Håndtering av koordinatreferansesystemer i Geopandas</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vise-crs-av-et-datasett">Vise CRS av et datasett</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reprojisere-en-geodataframe">Reprojisere en <code class="docutils literal notranslate"><span class="pre">GeoDataFrame</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#handtering-av-forskjellige-crs-formater">Håndtering av forskjellige CRS-formater</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#oversikt">Oversikt</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bruk-pyproj-for-a-finne-detaljert-informasjon-om-et-crs">Bruk pyproj for å finne detaljert informasjon om et CRS</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#globale-kartprojeksjoner">Globale kartprojeksjoner</a></li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="kartprojeksjoner">
+<h1>💻 Kartprojeksjoner<a class="headerlink" href="#kartprojeksjoner" title="Link to this heading">#</a></h1>
+<p>Et <strong>koordinatsystem (CRS)</strong> er en avgjørende del av metadata for ethvert
+geografisk datasett. Uten et CRS, ville geometriene ganske enkelt være en samling
+av koordinater i et vilkårlig rom. Bare CRS tillater GIS-programvare,
+inkludert Python-pakkene vi bruker i dette kurset, å relatere disse
+koordinatene til et sted på jorden (eller andre omtrent sfæriske objekter eller
+planeter).</p>
+<p>Ofte sammenlignet med koordinatreferansesystemer, og definitivt nært
+relatert, er <strong>kartprojeksjoner</strong>. Kartprojeksjoner, også kalt <em>projiserte
+koordinatsystemer</em>, er matematiske modeller som lar oss overføre
+koordinater på overflaten av vår <strong>tredimensjonale jord</strong> til koordinater
+i en plan overflate, som et <strong>flatt, todimensjonalt kart</strong>. I motsetning til
+projiserte koordinatsystemer, bruker <em>geografiske koordinatsystemer</em> rett og slett direkte
+bredde- og lengdegrad, dvs. gradene langs de horisontale og vertikale store sirklene til en sfære som tilnærmer jorden, som x- og y-koordinater
+i et plant kart. Til slutt er det både projiserte og geografiske koordinatsystemer som bruker mer komplekse ellipsoider enn en enkel sfære for å bedre
+tilnærme ‘potetformen’ som planeten vår har. Den fulle CRS-informasjonen er
+nødvendig for å nøyaktig kunne relatere geografisk informasjon til et sted på jorden og inkluderer
+både (projiserte/geografiske) koordinatsystem og ellipsoider.</p>
+<p>CRS i forskjellige romlige datasett varierer ganske ofte, da forskjellige
+koordinatsystemer er optimalisert for bestemte regioner og formål. Ingen
+koordinatsystem kan være perfekt nøyaktig rundt hele kloden, og
+transformasjonen fra tre- til todimensjonale koordinater kan ikke være nøyaktig
+i vinkler, avstander og områder samtidig.</p>
+<p>Følgelig er det en vanlig GIS-oppgave å <strong>transformere</strong> (eller reprosjektere) et datasett
+fra ett referansesystem til et annet, for eksempel, for å gjøre to lag interoperable. Sammenligning av to datasett som har forskjellige CRS vil
+uunngåelig måtte produsere feil resultater; for eksempel, å finne punkter inneholdt i et
+polygon kan ikke fungere, hvis punktene har geografiske koordinater (i
+grader), og polygonet er i det nasjonale norske referansesystemet (i
+meter).</p>
+<p>Å velge en passende projeksjon for kartet ditt er ikke alltid enkelt.
+Det avhenger av hva du faktisk vil representere i kartet ditt, og hvilke
+romlige skala, oppløsning og utstrekning dataene dine har. Faktisk er det ikke en enkelt
+‘perfekt projeksjon’; hver har styrker og svakheter, og du bør velge
+en projeksjon som passer best for hvert kart. Faktisk kan projeksjonen du velger
+kanskje til og med fortelle noe om deg:</p>
+<figure class="align-default" id="id1">
+<img alt="https://imgs.xkcd.com/comics/map_projections.png" src="https://imgs.xkcd.com/comics/map_projections.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 1 </span><span class="caption-text"><em>Source: <a class="reference external" href="https://xkcd.com/977">xkcd.com</a></em></span><a class="headerlink" href="#id1" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For de av dere som foretrekker en mer analytisk tilnærming til å velge kart
+projeksjoner: du kan få en god oversikt fra
+<a class="reference external" href="http://www.georeference.org/doc/guide_to_selecting_map_projections.htm">georeference.org</a>,
+og dette blogginnlegget som diskuterer <a class="reference external" href="http://usersguidetotheuniverse.com/index.php/2011/03/03/whats-the-best-map-projection/">styrkene og svakhetene til noen vanlig
+brukte projeksjoner</a>.
+Nettsiden <em>Radical Cartography</em> har en utmerket <a class="reference external" href="https://radicalcartography.net/projectionref.html">oversikt over hvilke
+projeksjoner som passer hvilke utstrekninger av verden for hvilket
+emne</a>.</p>
+</div>
+<hr class="docutils" />
+<section id="handtering-av-koordinatreferansesystemer-i-geopandas">
+<h2>Håndtering av koordinatreferansesystemer i Geopandas<a class="headerlink" href="#handtering-av-koordinatreferansesystemer-i-geopandas" title="Link to this heading">#</a></h2>
+<p>Når du har funnet ut hvilken kartprojeksjon du skal bruke, er håndtering av koordinatreferansesystemer, heldigvis, ganske enkelt i Geopandas. Biblioteket
+<a class="reference external" href="https://pyproj4.github.io/pyproj/">pyproj</a> gir ytterligere informasjon
+om et CRS, og kan hjelpe med mer vanskelige oppgaver, som å gjette det
+ukjente CRS-et til et datasett.</p>
+<p>I denne delen vil vi lære <strong>hvordan hente ut informasjon om koordinatreferansesystemet
+fra et datasett, og hvordan du re-projiserer dataene til et annet CRS</strong>.</p>
+<div class="caution admonition">
+<p class="admonition-title">Vær forsiktig med Shapefiler</p>
+<p>Du har kanskje lagt merke til at geografiske datasett i <em>ESRI Shapefile</em> format
+består av flere filer med forskjellige filutvidelser. <code class="docutils literal notranslate"><span class="pre">.prj</span></code>-filen
+inneholder informasjon om koordinatreferansesystemet. Pass på at du ikke
+mister den!</p>
+</div>
+<section id="vise-crs-av-et-datasett">
+<h3>Vise CRS av et datasett<a class="headerlink" href="#vise-crs-av-et-datasett" title="Link to this heading">#</a></h3>
+<p>Vi starter med å laste inn et datasett med EU-land som er lastet ned
+fra <a class="reference external" href="https://ec.europa.eu/eurostat/web/gisco/geodata/reference-data/administrative-units-statistical-units/countries"><em>Geographic Information System of the Commission</em>
+(GISCO)</a>, en enhet innenfor Eurostat som håndterer geografiske data for den europeiske
+kommisjonen.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pathlib</span> 
+<span class="n">NOTEBOOK_PATH</span> <span class="o">=</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">()</span><span class="o">.</span><span class="n">resolve</span><span class="p">()</span>
+<span class="n">DATA_MAPPE</span> <span class="o">=</span> <span class="n">NOTEBOOK_PATH</span> <span class="o">/</span> <span class="s2">&quot;data&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">geopandas</span>
+
+<span class="n">eu_land</span> <span class="o">=</span> <span class="n">geopandas</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span>
+    <span class="n">DATA_MAPPE</span> <span class="o">/</span> <span class="s2">&quot;eu_countries&quot;</span> <span class="o">/</span> <span class="s2">&quot;eu_countries_2022.gpkg&quot;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>La oss sjekke datasettets CRS:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">eu_land</span><span class="o">.</span><span class="n">crs</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Geographic 2D CRS: EPSG:4326&gt;
+Name: WGS 84
+Axis Info [ellipsoidal]:
+- Lat[north]: Geodetic latitude (degree)
+- Lon[east]: Geodetic longitude (degree)
+Area of Use:
+- name: World.
+- bounds: (-180.0, -90.0, 180.0, 90.0)
+Datum: World Geodetic System 1984 ensemble
+- Ellipsoid: WGS 84
+- Prime Meridian: Greenwich
+</pre></div>
+</div>
+</div>
+</div>
+<p>Det vi ser her er faktisk et <code class="docutils literal notranslate"><span class="pre">pyproj.CRS</span></code> objekt.</p>
+<p>EPSG-koden (<em>European Petroleum Survey Group</em>) er global standard for
+identifisering av koordinatreferansesystemer. Tallet refererer til en oppføring i
+<a class="reference external" href="http://www.epsg.org/">EPSG Geodetic Parameter Dataset</a>, en samling av
+koordinatreferansesystemer koordinattransformasjoner som spenner fra globalt til
+nasjonalt, regionalt og lokalt omfang.</p>
+<p>Vårt <code class="docutils literal notranslate"><span class="pre">GeoDataFrame</span></code> EPSG-kode er <code class="docutils literal notranslate"><span class="pre">4326</span></code>. Dette er et tall å huske, da du
+vil komme over det mye i den geografiske verden: Det refererer til et geografisk
+koordinatsystem som bruker WGS-84-referanseellipsoiden. Dette er det mest
+vanlig brukte koordinatreferansesystemet i verden. Det er det vi refererer til
+når vi snakker om lengde- og breddegrad.</p>
+<p>Du kan finne informasjon om referansesystemer og lister over kjent
+CRS fra mange online ressurser, for eksempel:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="http://spatialreference.org/">spatialreference.org</a></p></li>
+<li><p><a class="reference external" href="https://proj4.org/operations/projections/">proj4.org</a></p></li>
+<li><p><a class="reference external" href="http://mapref.org/CollectionofCRSinEurope.html">mapref.org</a></p></li>
+</ul>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Hvis du vet hvilken rekkevidde koordinatverdiene skal være i, skader det ikke å ta en rask titt på dataene selv. I tilfellet <code class="docutils literal notranslate"><span class="pre">EPSG:4326</span></code>, bør koordinatene være mellom -180 og 180° lengdegrad og -90 og 90° breddegrad.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">eu_land</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0    MULTIPOLYGON (((13.68400 46.43750, 13.51100 46...
+1    MULTIPOLYGON (((6.31560 50.49700, 6.40500 50.3...
+2    MULTIPOLYGON (((28.49800 43.43410, 28.06020 43...
+3    MULTIPOLYGON (((16.94980 48.53580, 16.85110 48...
+4    MULTIPOLYGON (((32.94170 34.64180, 32.55900 34...
+Name: geometry, dtype: geometry
+</pre></div>
+</div>
+</div>
+</div>
+<p>Faktisk ser koordinatverdiene i datasettet vårt ut til å være i en passende verdiområde.</p>
+</section>
+<hr class="docutils" />
+<section id="reprojisere-en-geodataframe">
+<h3>Reprojisere en <code class="docutils literal notranslate"><span class="pre">GeoDataFrame</span></code><a class="headerlink" href="#reprojisere-en-geodataframe" title="Link to this heading">#</a></h3>
+<p>Et geografisk koordinatsystem, <code class="docutils literal notranslate"><span class="pre">EPSG:4326</span></code>, er ikke spesielt godt egnet
+for å vise landene i Den europeiske union. Forvrengningen er høy. Snarere kunne vi
+bruke en <em>Lambert Azimuthal Equal-Area</em> projeksjon, som
+<a class="reference external" href="https://spatialreference.org/ref/epsg/etrs89-etrs-laea/"><code class="docutils literal notranslate"><span class="pre">EPSG:3035</span></code></a>, kartprojeksjonen <a class="reference external" href="http://mapref.org/LinkedDocuments/MapProjectionsForEurope-EUR-20120.pdf">offisielt anbefalt av den europeiske
+kommisjonen</a>.</p>
+<p><a class="reference external" href="http://geopandas.org/projections.html#re-projecting">Transformasjon av data fra ett referansesystem til et annet er en veldig enkel oppgave
+i geopandas</a>. Faktisk,
+alt du må gjøre er å bruke <code class="docutils literal notranslate"><span class="pre">to_crs()</span></code> metoden til en <code class="docutils literal notranslate"><span class="pre">GeoDataFrame</span></code>, og levere
+et nytt CRS i et bredt spekter av mulige formater. Det enkleste er å bruke en EPSG
+kode:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">eu_land_EPSG3035</span> <span class="o">=</span> <span class="n">eu_land</span><span class="o">.</span><span class="n">to_crs</span><span class="p">(</span><span class="s2">&quot;EPSG:3035&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>La oss sjekke hvordan koordinatverdiene har endret seg:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">eu_land_EPSG3035</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0    MULTIPOLYGON (((4604288.477 2598607.470, 45914...
+1    MULTIPOLYGON (((4059689.242 3049361.180, 40650...
+2    MULTIPOLYGON (((5805367.757 2442801.252, 57739...
+3    MULTIPOLYGON (((4833567.363 2848881.974, 48272...
+4    MULTIPOLYGON (((6413299.362 1602181.345, 63782...
+Name: geometry, dtype: geometry
+</pre></div>
+</div>
+</div>
+</div>
+<p>Og vipps, koordinatverdiene i geometriene har endret seg!
+Gratulerer med å ha utført din aller første geopandas koordinat-transformasjon!</p>
+<p>For bedre å forstå nøyaktig hva vi nettopp har gjort, er det en god idé å utforske
+dataene våre visuelt. La oss tegne datasettet vårt både før og etter
+koordinattransformasjon. Vi vil bruke <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code> sin <code class="docutils literal notranslate"><span class="pre">subplots</span></code>-funksjon.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span>
+
+<span class="c1"># Forbered subplots som er ved siden av hverandre</span>
+<span class="n">figure</span><span class="p">,</span> <span class="p">(</span><span class="n">axis1</span><span class="p">,</span> <span class="n">axis2</span><span class="p">)</span> <span class="o">=</span> <span class="n">matplotlib</span><span class="o">.</span><span class="n">pyplot</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="c1"># Plott det originale (WGS84, EPSG:4326) datasettet</span>
+<span class="n">eu_land</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">axis1</span><span class="p">)</span>
+<span class="n">axis1</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;WGS84&quot;</span><span class="p">)</span>
+<span class="n">axis1</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Plott det reprojiserte (EPSG:3035) datasettet</span>
+<span class="n">eu_land_EPSG3035</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">axis2</span><span class="p">)</span>
+<span class="n">axis2</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;ETRS-LAEA&quot;</span><span class="p">)</span>
+<span class="n">axis2</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">matplotlib</span><span class="o">.</span><span class="n">pyplot</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/a41158b43b804376272a16e86bae4edcbe818a07c705739b09e642f457995939.png" src="../../_images/a41158b43b804376272a16e86bae4edcbe818a07c705739b09e642f457995939.png" />
+</div>
+</div>
+<p>Faktisk ser kartene ganske forskjellige ut, og det reprojiserte datasettet forvrenger
+de europeiske landene mindre, spesielt i den nordlige delen av kontinentet.</p>
+<p>La oss fortsatt lagre det reprojiserte datasettet i en fil slik at vi kan bruke det senere.
+Merk at, selv om moderne filformater lagrer CRS pålitelig, er det en god
+idé å bruke et beskrivende filnavn som inkluderer referansesystem
+informasjon.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">eu_land_EPSG3035</span><span class="o">.</span><span class="n">to_file</span><span class="p">(</span>
+    <span class="n">DATA_MAPPE</span> <span class="o">/</span> <span class="s2">&quot;eu_countries&quot;</span> <span class="o">/</span> <span class="s2">&quot;eu_land_EPSG3035.gpkg&quot;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="handtering-av-forskjellige-crs-formater">
+<h2>Håndtering av forskjellige CRS-formater<a class="headerlink" href="#handtering-av-forskjellige-crs-formater" title="Link to this heading">#</a></h2>
+<p>Det er forskjellige måter å lagre og representere CRS-informasjon på. De mer brukte formatene inkluderer <a class="reference external" href="https://proj.org/usage/quickstart.html">PROJ
+strenger</a>, EPSG-koder, <em>Well-Known-Text</em>
+(WKT) og JSON. Du vil sannsynligvis støte på noen eller alle disse når du jobber
+med romlige data hentet fra forskjellige kilder. Å kunne konvertere CRS-informasjon fra ett format til et annet er nødvendig nå og da, derfor er det
+nyttig å vite noen triks for hvordan man gjør dette.</p>
+<p>Vi har allerede kort nevnt at geopandas bruker
+<a class="reference external" href="https://pyproj4.github.io/pyproj/">pyproj</a>-biblioteket for å håndtere referansesystemer. Vi kan bruke den samme modulen for å analysere og konvertere CRS-informasjon i forskjellige formater.</p>
+<section id="oversikt">
+<h3>Oversikt<a class="headerlink" href="#oversikt" title="Link to this heading">#</a></h3>
+<p>Nedenfor printer vi forskjellige representasjoner av CRS for datasettet med EU
+land vi brukte før:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pyproj</span>
+
+<span class="n">crs</span> <span class="o">=</span> <span class="n">pyproj</span><span class="o">.</span><span class="n">CRS</span><span class="p">(</span><span class="n">eu_land</span><span class="o">.</span><span class="n">crs</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;CRS som en proj4-streng: </span><span class="si">{</span><span class="n">crs</span><span class="o">.</span><span class="n">to_proj4</span><span class="p">()</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;CRS i WKT-format: </span><span class="si">{</span><span class="n">crs</span><span class="o">.</span><span class="n">to_wkt</span><span class="p">()</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;EPSG-kode for CRS: </span><span class="si">{</span><span class="n">crs</span><span class="o">.</span><span class="n">to_epsg</span><span class="p">()</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CRS som en proj4-streng: +proj=longlat +datum=WGS84 +no_defs +type=crs
+
+CRS i WKT-format: GEOGCRS[&quot;WGS 84&quot;,ENSEMBLE[&quot;World Geodetic System 1984 ensemble&quot;,MEMBER[&quot;World Geodetic System 1984 (Transit)&quot;],MEMBER[&quot;World Geodetic System 1984 (G730)&quot;],MEMBER[&quot;World Geodetic System 1984 (G873)&quot;],MEMBER[&quot;World Geodetic System 1984 (G1150)&quot;],MEMBER[&quot;World Geodetic System 1984 (G1674)&quot;],MEMBER[&quot;World Geodetic System 1984 (G1762)&quot;],MEMBER[&quot;World Geodetic System 1984 (G2139)&quot;],MEMBER[&quot;World Geodetic System 1984 (G2296)&quot;],ELLIPSOID[&quot;WGS 84&quot;,6378137,298.257223563,LENGTHUNIT[&quot;metre&quot;,1]],ENSEMBLEACCURACY[2.0]],PRIMEM[&quot;Greenwich&quot;,0,ANGLEUNIT[&quot;degree&quot;,0.0174532925199433]],CS[ellipsoidal,2],AXIS[&quot;geodetic latitude (Lat)&quot;,north,ORDER[1],ANGLEUNIT[&quot;degree&quot;,0.0174532925199433]],AXIS[&quot;geodetic longitude (Lon)&quot;,east,ORDER[2],ANGLEUNIT[&quot;degree&quot;,0.0174532925199433]],USAGE[SCOPE[&quot;Horizontal component of 3D system.&quot;],AREA[&quot;World.&quot;],BBOX[-90,-180,90,180]],ID[&quot;EPSG&quot;,4326]]
+
+EPSG-kode for CRS: 4326
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/aagesenh/miniconda3/envs/book/lib/python3.12/site-packages/pyproj/crs/crs.py:1293: UserWarning: You will likely lose important projection information when converting to a PROJ string from another format. See: https://proj.org/faq.html#what-is-the-best-format-for-describing-coordinate-reference-systems
+  proj = self._crs.to_proj4(version=version)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Ikke hvert mulig koordinatreferansesystem har en tilordnet EPSG-kode.
+Derfor prøver <em>pyproj</em>, som standard, å finne den best matchende EPSG
+definisjonen. Hvis den ikke finner noen, returnerer <code class="docutils literal notranslate"><span class="pre">to_epsg()</span></code> <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
+</div>
+</section>
+<section id="bruk-pyproj-for-a-finne-detaljert-informasjon-om-et-crs">
+<h3>Bruk pyproj for å finne detaljert informasjon om et CRS<a class="headerlink" href="#bruk-pyproj-for-a-finne-detaljert-informasjon-om-et-crs" title="Link to this heading">#</a></h3>
+<p>Et <code class="docutils literal notranslate"><span class="pre">pyproj.CRS</span></code> objekt kan også initialiseres manuelt, for eksempel ved bruk av en
+EPSG-kode eller en Proj4-streng. Den kan da gi detaljert informasjon om
+parametrene for referansesystemet, samt foreslåtte bruksområder. Vi kan,
+for eksempel, lage et <code class="docutils literal notranslate"><span class="pre">CRS</span></code> objekt for <code class="docutils literal notranslate"><span class="pre">EPSG:3035</span></code> kartprojeksjonen vi brukte
+over:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">crs</span> <span class="o">=</span> <span class="n">pyproj</span><span class="o">.</span><span class="n">CRS</span><span class="p">(</span><span class="s2">&quot;EPSG:4326&quot;</span><span class="p">)</span>
+<span class="n">crs</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Geographic 2D CRS: EPSG:4326&gt;
+Name: WGS 84
+Axis Info [ellipsoidal]:
+- Lat[north]: Geodetic latitude (degree)
+- Lon[east]: Geodetic longitude (degree)
+Area of Use:
+- name: World.
+- bounds: (-180.0, -90.0, 180.0, 90.0)
+Datum: World Geodetic System 1984 ensemble
+- Ellipsoid: WGS 84
+- Prime Meridian: Greenwich
+</pre></div>
+</div>
+</div>
+</div>
+<p>Umiddelbart ser vi at et <code class="docutils literal notranslate"><span class="pre">pyproj.CRS</span></code> objekt inneholder rik informasjon om
+referansesystemet: et <em>navn</em>, et <em>bruksområde</em> (inkludert <em>grenser</em>), et
+<em>datum</em> og en <em>ellipsoide</em>.</p>
+<p>Denne informasjonen kan også trekkes ut individuelt:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">crs</span><span class="o">.</span><span class="n">name</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;WGS 84&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">crs</span><span class="o">.</span><span class="n">area_of_use</span><span class="o">.</span><span class="n">bounds</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(-180.0, -90.0, 180.0, 90.0)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+<hr class="docutils" />
+<section class="tex2jax_ignore mathjax_ignore" id="globale-kartprojeksjoner">
+<h1>Globale kartprojeksjoner<a class="headerlink" href="#globale-kartprojeksjoner" title="Link to this heading">#</a></h1>
+<p>Nå er det på tide å leke med noen kartprojeksjoner. For å gjøre dette finner du et globalt datasett med landpolygoner i datamappen. Det ble
+lastet ned fra <a class="reference external" href="https://naturalearthdata.com/">naturalearthdata.com</a>, en
+fantastisk ressurs for kartografi-geodata.</p>
+<div class="attention admonition">
+<p class="admonition-title">Sjekk din forståelse</p>
+<p>Les inn datasettet fra <code class="docutils literal notranslate"><span class="pre">DATA_MAPPE</span> <span class="pre">/</span> <span class="pre">&quot;world_countries&quot;</span> <span class="pre">/</span> <span class="pre">&quot;ne_110m_admin_0_countries.zip&quot;</span></code> og plott tre kart med forskjellige kart
+projeksjoner. Du kan bruke tips og definisjoner fra følgende ressurser
+(og hvor som helst ellers):</p>
+<ul class="simple">
+<li><p><a class="reference external" href="http://geopandas.org/projections.html">geopandas.org/projections.html</a></p></li>
+<li><p><a class="reference external" href="https://pyproj4.github.io/pyproj/dev/api/crs.html">pyproj4.github.io</a></p></li>
+<li><p><a class="reference external" href="https://spatialreference.org/">spatialreference.org</a></p></li>
+</ul>
+<p>Under plotting av kartene og valg av kartprojeksjoner, tenk på
+fordeler og ulemper med forskjellige kartprojeksjoner.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">verden</span> <span class="o">=</span> <span class="n">geopandas</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span>
+    <span class="n">DATA_MAPPE</span> <span class="o">/</span> <span class="s2">&quot;world_countries&quot;</span> <span class="o">/</span> <span class="s2">&quot;ne_110m_admin_0_countries.zip&quot;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">verden</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<span class="n">matplotlib</span><span class="o">.</span><span class="n">pyplot</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">verden</span><span class="o">.</span><span class="n">crs</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;WGS 84&#39;)
+</pre></div>
+</div>
+<img alt="../../_images/35893ef942460f2ed2d8f3e04329d2b51d31aa86a828cc52e130ad5f5968c5cd.png" src="../../_images/35893ef942460f2ed2d8f3e04329d2b51d31aa86a828cc52e130ad5f5968c5cd.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># web mercator</span>
+<span class="n">verden_EPSG3857</span> <span class="o">=</span> <span class="n">verden</span><span class="o">.</span><span class="n">to_crs</span><span class="p">(</span><span class="s2">&quot;EPSG:3857&quot;</span><span class="p">)</span>
+
+<span class="n">verden_EPSG3857</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<span class="n">matplotlib</span><span class="o">.</span><span class="n">pyplot</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">verden_EPSG3857</span><span class="o">.</span><span class="n">crs</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+
+<span class="c1"># fjern akse dekorasjoner</span>
+<span class="n">matplotlib</span><span class="o">.</span><span class="n">pyplot</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s2">&quot;off&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(-22041259.17706817,
+ 22041259.177068174,
+ -255577115.13568556,
+ 31488437.087057084)
+</pre></div>
+</div>
+<img alt="../../_images/3875f944db93307003210350c1e29732a31e858f1bd4bc9baf30289c985c4043.png" src="../../_images/3875f944db93307003210350c1e29732a31e858f1bd4bc9baf30289c985c4043.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Eckert-IV (https://spatialreference.org/ref/esri/54012/)</span>
+<span class="n">ECKERT_IV</span> <span class="o">=</span> <span class="s2">&quot;+proj=eck4 +lon_0=0 +x_0=0 +y_0=0 +ellps=WGS84 +datum=WGS84 +units=m +no_defs&quot;</span>
+
+<span class="n">verden_eckert_iv</span> <span class="o">=</span> <span class="n">verden</span><span class="o">.</span><span class="n">to_crs</span><span class="p">(</span><span class="n">ECKERT_IV</span><span class="p">)</span>
+<span class="n">verden_eckert_iv</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<span class="n">matplotlib</span><span class="o">.</span><span class="n">pyplot</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Eckert Ⅳ&quot;</span><span class="p">)</span>
+<span class="n">matplotlib</span><span class="o">.</span><span class="n">pyplot</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s2">&quot;off&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(-18321736.696081996,
+ 18321736.696081996,
+ -9302420.503183275,
+ 9217598.414473996)
+</pre></div>
+</div>
+<img alt="../../_images/f46aaed51e297600d243a2e2eccc0bbb9622604a391e20a42c14263222a827bd.png" src="../../_images/f46aaed51e297600d243a2e2eccc0bbb9622604a391e20a42c14263222a827bd.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># En ortografisk projeksjon, sentrert i Finland!</span>
+<span class="c1"># (http://www.statsmapsnpix.com/2019/09/globe-projections-and-insets-in-qgis.html)</span>
+<span class="n">verden_ortho</span> <span class="o">=</span> <span class="n">verden</span><span class="o">.</span><span class="n">to_crs</span><span class="p">(</span>
+    <span class="s2">&quot;+proj=ortho +lat_0=60.00 +lon_0=23.0000 +x_0=0 +y_0=0 &quot;</span>
+    <span class="s2">&quot;+a=6370997 +b=6370997 +units=m +no_defs&quot;</span>
+<span class="p">)</span>
+<span class="n">verden_ortho</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<span class="n">matplotlib</span><span class="o">.</span><span class="n">pyplot</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s2">&quot;off&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(-7006995.416935118, 7005877.340582642, -6968264.187936907, 6378854.706416504)
+</pre></div>
+</div>
+<img alt="../../_images/f256b827c660045d85a62a0ce033ee804ffacc9c5f23dbe300e4f455ae484c4d.png" src="../../_images/f256b827c660045d85a62a0ce033ee804ffacc9c5f23dbe300e4f455ae484c4d.png" />
+</div>
+</div>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./content/notebooks"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../pages/04_geokoding.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">📖 Geokoding</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="04_geometriske_operasjoner.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">💻 Vanlige geometriske operasjoner</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">💻 Kartprojeksjoner</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#handtering-av-koordinatreferansesystemer-i-geopandas">Håndtering av koordinatreferansesystemer i Geopandas</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vise-crs-av-et-datasett">Vise CRS av et datasett</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reprojisere-en-geodataframe">Reprojisere en <code class="docutils literal notranslate"><span class="pre">GeoDataFrame</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#handtering-av-forskjellige-crs-formater">Håndtering av forskjellige CRS-formater</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#oversikt">Oversikt</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bruk-pyproj-for-a-finne-detaljert-informasjon-om-et-crs">Bruk pyproj for å finne detaljert informasjon om et CRS</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#globale-kartprojeksjoner">Globale kartprojeksjoner</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Håvard Wallin Aagesen
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  <p>This course is heavily based on the <a href="https://autogis-site.readthedocs.io/en/latest/" target="_blank">Automating GIS processes</a> course at the University of Helsinki.</p>
+
+</div>
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

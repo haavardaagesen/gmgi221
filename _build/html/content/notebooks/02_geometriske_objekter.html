@@ -1,0 +1,1123 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>💻 Geometriske objekter &#8212; GMGI221 - Automatisering av GIS-prosesser</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=7cf0485e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'content/notebooks/02_geometriske_objekter';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="💻 Intersect" href="02_intersect.html" />
+    <link rel="prev" title="ℹ️ Info" href="../pages/02_info.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo.png" class="logo__image only-light" alt="GMGI221 - Automatisering av GIS-prosesser - Home"/>
+    <script>document.write(`<img src="../../_static/logo.png" class="logo__image only-dark" alt="GMGI221 - Automatisering av GIS-prosesser - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../index.html">
+                    Velkommen til GMGI221
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Generell info</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../pages/00_generell.html">ℹ️ Generell info</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/00_laeringsmaal.html">📖 Læringsmål</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/00_ovingsoppgaver.html">📖 Øvingsoppgaver</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/00_karakterer.html">📖 Karakterer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/00_installere-python.html">📖 Installering av Python og Python pakker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/00_bruk_av_ai.html">📖 Bruk av KI-verktøy</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Uke 1</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../pages/01_info.html">ℹ️ Info</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/01_bakgrunn.html">📖 Bakgrunn for emnet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_smakebit.html">💻 En smakebit av Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/01_oving-1.html">📥 Øving 1</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Uke 2</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../pages/02_info.html">ℹ️ Info</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">💻 Geometriske objekter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_intersect.html">💻 Intersect</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_assertions.html">💻 Bruke <code class="docutils literal notranslate"><span class="pre">assertion</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/02_oving-2.html">📥 Øving 2</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Uke 3</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../pages/03_info.html">ℹ️ Info</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/03_begreper.html">📖 Nøkkelbegreper</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_filstier.html">💻 Håndtering av filstier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_vektor.html">💻 Vektor Data I/O</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_geopandas.html">💻 Geopandas: en introduksjon</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/03_oving-3.html">📥 Øving 3</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Uke 4</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../pages/04_info.html">ℹ️ Info</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/04_geokoding.html">📖 Geokoding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_projeksjoner.html">💻 Kartprojeksjoner</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="04_geometriske_operasjoner.html">💻 Vanlige geometriske operasjoner</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_geokoding_i_geopandas.html">💻 Geokoding i geopandas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/04_oving-4.html">📥 Øving 4</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Uke 5</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../pages/05_info.html">ℹ️ Info</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_romlig_utvelgelse.html">💻 Romlig utvelgelse</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_romlig_kobling.html">💻 Romlig kobling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/05_oving-5.html">📥 Øving 5</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Uke 6</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../pages/06_info.html">ℹ️ Info</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_reklassifisering.html">💻 Reklassifisering av data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_aggregering_av_data.html">💻 Aggregering av data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/06_oving-6.html">📥 Øving 6</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Uke 7</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../pages/07_info.html">ℹ️ Info</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_overlay.html">💻 Overlay</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Uke 8</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../pages/08_info.html">ℹ️ Info</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_statiske_kart.html">💻 Statiske kart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_interaktive_kart.html">💻 Interaktive kart</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Prosjektarbeid</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../pages/13_prosjektarbeid.html">📖 Prosjektarbeid</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/13_prosjektkarakter.html">📖 Karaktersetting for prosjektoppgaven</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/13_prosjekttips.html">📖 Tips til prosjektoppgaven</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/haavardaagesen/gmgi221" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/haavardaagesen/gmgi221/issues/new?title=Issue%20on%20page%20%2Fcontent/notebooks/02_geometriske_objekter.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/content/notebooks/02_geometriske_objekter.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>💻 Geometriske objekter</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#datamodellen">Datamodellen</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#punkt">Punkt</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#punkt-attributter-og-funksjoner">Punkt-attributter og -funksjoner</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#linestring">LineString</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#linestring-attributter-og-funksjoner">LineString-attributter og funksjoner</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#polygon">Polygon</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#polygon-attributter-og-funksjoner">Polygon attributter og funksjoner</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="geometriske-objekter">
+<h1>💻 Geometriske objekter<a class="headerlink" href="#geometriske-objekter" title="Link to this heading">#</a></h1>
+<p>Du kan også åpne denne notebooken i Binder: <a class="reference external" href="https://mybinder.org/v2/gh/GMGI221/forelesninger/HEAD?urlpath=%2Fdoc%2Ftree%2F02_geometriske_objekter.ipynb"><img alt="Binder" src="https://mybinder.org/badge_logo.svg" /></a></p>
+<p>All romlig vektordata kan beskrives ved å kombinere et sett med grunnleggende geometriske objekter: punkter, linjer og polygoner er de grunnleggende ingrediensene for å arbeide med romlige data.</p>
+<p>Som regel når vi jobber med geometriske objekter i Python gjør vi det med biblioteket <a class="reference external" href="https://shapely.readthedocs.io/en/stable/manual.html">Shapely</a>.</p>
+<p>I Python har biblioteket <a class="reference external" href="https://shapely.readthedocs.io/en/stable/manual.html">shapely</a> blitt standardverktøyet for å arbeide med romlige objekter og for å utføre en rekke geometriske operasjoner. En grunnleggende forståelse av hvordan shapely fungerer er avgjørende for å bruke høyere nivå verktøy, som for eksempel geopandas (som vi kommer til senere) som håndterer hele datasett med geografisk informasjon (også kjent som ‘lag’).</p>
+<p>Shapely, som det store flertallet av romlige programvarer, følger datamodellen satt frem i <a class="reference external" href="https://www.ogc.org/standards/sfa">Open Geospatial Consortium’s Simple Feature Access standard</a>. Her bruker vi terminologien brukt av shapely, men de generelle konseptene kan anvendes også bredere.</p>
+<section id="datamodellen">
+<h2>Datamodellen<a class="headerlink" href="#datamodellen" title="Link to this heading">#</a></h2>
+<p><img alt="Spatial data model" src="https://autogis-site.readthedocs.io/en/latest/_images/simple-features_595x500px.svg" /></p>
+<p><code class="docutils literal notranslate"><span class="pre">Punkt(Points)</span></code>, <code class="docutils literal notranslate"><span class="pre">Linjer(Lines)</span></code> og <code class="docutils literal notranslate"><span class="pre">Polygoner(Polygons)</span></code> er fundamentale geometriske objekter når vi jobber med romlig data i vektor formatet. I Python er <a class="reference external" href="https://shapely.readthedocs.io/en/stable/manual.html">Shapely</a> biblioteket som brukes for å utføre diverse geometriske operasjoner.</p>
+<p><strong>Geometriske objekter består av koordinattuppler:</strong></p>
+<p>Koordinattuppler er det som brukes til å definere de geometriske grunnleggende elementene punkt, linje og polygon. Koordinattuppler er vanligvis enten todimensjonale (x, y) eller tredimensjonale (x, y, z).</p>
+<div class="alert alert-info">
+<p><strong>Tuppler</strong></p>
+<p>En <a class="reference external" href="https://docs.python.org/3/tutorial/datastructures.html#tuples-and-sequences">Tuppel</a> er en datastruktur i Python som består av et antall verdier separert av komma. Koordinatpar er ofte representert som tuppler. For eksempel:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="mf">59.66539</span><span class="p">,</span> <span class="mf">10.77604</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Tuppler tilhører sekvens-datatypene i Python. Andre sekvens-datatyper er lister og intervaller(<em>range</em>). Tuppler har mange likheter med lister og intervaller, men de brukes ofte til forskjellige formål.</p>
+<p>Den viktigste forskjellen mellom tuppler og lister er at tuppler er uforanderlige(<em>immutable</em>), noe som betyr at innholdet i en tuppel ikke kan endres (mens lister er foranderlige; du kan for eksempel legge til og fjerne verdier fra lister).</p>
+</div>
+<p><strong>De vanligste geometriske objektene i python:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Point</span></code> -objektet representerer et enkelt punkt i et rom. Punkt kan være enten todimensjonale (x, y) eller tredimensjonale (x, y, z).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">LineString</span></code> -objektet representerer en sekvens av punkt som er koblet sammen og former en linje. En linje består dermed av en liste med minst to koordinattuppler.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Polygon</span></code> -objektet representerer et fyllt område som består av en liste med misnt tre koordinattuppler som utgjør den ytre ringen (og potensielt en liste med “hull-polygoner”.</p></li>
+</ul>
+<p><strong>Det er også mulig å ha en samling med geometriske objekter (f.eks. et polygon med flere bestanddeler):</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">MultiPoint</span></code> -objektet representerer en samling med punkt og består av en liste med koordinattuppler.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">MultiLineString</span></code> -objektet representerer en samling med linjer og består av en liste med liste med linjelignende sekvenser.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">MultiPolygon</span></code> -objektet representerer en samling med polygoner som består av en lsite med polygonlignende sekvenser.</p></li>
+</ul>
+<p><strong>Nyttige attributter og metoder i Shapely:</strong></p>
+<ul class="simple">
+<li><p>Lage linjer og polygoner fra en samling med punktobjekter.</p></li>
+<li><p>Regne ut areal/lengde/grenser osv. av geometrier.</p></li>
+<li><p>Utføre geometriske operasjoner fra input-geometrier så som; <code class="docutils literal notranslate"><span class="pre">union</span></code>, <code class="docutils literal notranslate"><span class="pre">difference</span></code>, <code class="docutils literal notranslate"><span class="pre">distance</span></code> osv.</p></li>
+<li><p>Utføre romlige spørringer mellom geometrier så som; <code class="docutils literal notranslate"><span class="pre">intersects</span></code>, <code class="docutils literal notranslate"><span class="pre">touches</span></code>, <code class="docutils literal notranslate"><span class="pre">crosses</span></code>, <code class="docutils literal notranslate"><span class="pre">within</span></code> osv.</p></li>
+</ul>
+</section>
+<section id="punkt">
+<h2>Punkt<a class="headerlink" href="#punkt" title="Link to this heading">#</a></h2>
+<p>Punkt lages ganske enkelt ved å gi <code class="docutils literal notranslate"><span class="pre">Point()</span></code>-objektet x- og y-koordinater:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Importer nødvendige geometriske objekter fra Shapely</span>
+<span class="kn">from</span> <span class="nn">shapely.geometry</span> <span class="kn">import</span> <span class="n">Point</span><span class="p">,</span> <span class="n">LineString</span><span class="p">,</span> <span class="n">Polygon</span>
+
+<span class="c1"># Bruk koordinater til å lage geometriske objekter av typen Point</span>
+<span class="n">punkt1</span> <span class="o">=</span> <span class="n">Point</span><span class="p">(</span><span class="mf">2.2</span><span class="p">,</span> <span class="mf">4.2</span><span class="p">)</span>
+<span class="n">punkt2</span> <span class="o">=</span> <span class="n">Point</span><span class="p">(</span><span class="mf">7.2</span><span class="p">,</span> <span class="o">-</span><span class="mf">25.1</span><span class="p">)</span>
+<span class="n">punkt3</span> <span class="o">=</span> <span class="n">Point</span><span class="p">(</span><span class="mf">9.26</span><span class="p">,</span> <span class="o">-</span><span class="mf">2.456</span><span class="p">)</span>
+<span class="n">punkt3D</span> <span class="o">=</span> <span class="n">Point</span><span class="p">(</span><span class="mf">9.26</span><span class="p">,</span> <span class="o">-</span><span class="mf">2.456</span><span class="p">,</span> <span class="mf">0.57</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">punkt1</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/e32cd8f99dad3181abe54558bec3343c07326535ae3840b0547bebefe82994d5.svg" src="../../_images/e32cd8f99dad3181abe54558bec3343c07326535ae3840b0547bebefe82994d5.svg" />
+</div>
+</div>
+<p>Jupyter viser objektet direkte visuelt, men vi kan også få mer informasjon om definisjonen av disse objektene ved å bruke <code class="docutils literal notranslate"><span class="pre">print()</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">punkt1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">punkt3D</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>POINT (2.2 4.2)
+POINT Z (9.26 -2.456 0.57)
+</pre></div>
+</div>
+</div>
+</div>
+<p>3D-punkt kan kjennes igjen ved hjelp av Z-bokstaven foran koordinatene.</p>
+<p>Vi kan også finne ut datatypen for objektet:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">punkt1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>shapely.geometry.point.Point
+</pre></div>
+</div>
+</div>
+</div>
+<p>Her ser vi at objektet er et Shapely Point. Point-objektet er representert i et spesifikt format basert på <a class="reference external" href="https://trac.osgeo.org/geos">GEOS</a> C++ biblioteket som er et av standardbibliotekene som brukes av ulike GIS-programmer. Det brukes blant annet som standard i <a class="reference external" href="http://www.qgis.org/en/site/">QGIS</a>.</p>
+<section id="punkt-attributter-og-funksjoner">
+<h3>Punkt-attributter og -funksjoner<a class="headerlink" href="#punkt-attributter-og-funksjoner" title="Link to this heading">#</a></h3>
+<p>Punkt og andre shapely-objekter har innebygde <a class="reference external" href="https://shapely.readthedocs.io/en/stable/manual.html#general-attributes-and-methods">attributter og funkjoner</a>. Med de tilgjengelige attributtene kan vi blant annet hente ut koordinatverdiene og regne ut avstanden mellom ulike punkt.</p>
+<p><code class="docutils literal notranslate"><span class="pre">geom_type</span></code> attributten inneholder informasjon om geometritypen til et Shapely objekt:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">punkt1</span><span class="o">.</span><span class="n">geom_type</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Point&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>Man kan trekke ut koordinatene fra et <code class="docutils literal notranslate"><span class="pre">Point</span></code> på flere måter:</p>
+<p><code class="docutils literal notranslate"><span class="pre">coords</span></code> attributtet inneholder blant annet informasjon om <code class="docutils literal notranslate"><span class="pre">CoordinateSequence</span></code>, en annen Shapely datatype:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># List ut xy-koordinattuppel</span>
+<span class="nb">list</span><span class="p">(</span><span class="n">punkt1</span><span class="o">.</span><span class="n">coords</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(2.2, 4.2)]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Les in x- og y-koordinater separat</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">punkt1</span><span class="o">.</span><span class="n">x</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">punkt1</span><span class="o">.</span><span class="n">y</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2.2 4.2
+</pre></div>
+</div>
+</div>
+</div>
+<p>Man kan også regne ut avstanden mellom to objekter med <a class="reference external" href="https://shapely.readthedocs.io/en/stable/manual.html#object.distance">distance</a> metoden. I dette eksemplet er avstanden målt i et kartesisk koordinatsystem. Når man jobber med ekte GIS-data er avstanden basert på koordinatsystemet som brukes. Man bør alltid sjekke hva som er måleenheten (meter, grader, osv.) i koordinatsystemet som brukes.</p>
+<p>La oss sjekke avstanden mellom <code class="docutils literal notranslate"><span class="pre">punkt1</span></code> og <code class="docutils literal notranslate"><span class="pre">punkt2</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Sjekk inputdata</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">punkt1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">punkt2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>POINT (2.2 4.2)
+POINT (7.2 -25.1)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Regn ut avstanden mellom punkt1 og punkt 2</span>
+<span class="n">avstand</span> <span class="o">=</span> <span class="n">punkt1</span><span class="o">.</span><span class="n">distance</span><span class="p">(</span><span class="n">punkt2</span><span class="p">)</span>
+
+<span class="c1"># Print ut en info-beskjed</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Avstanden mellom punktene er </span><span class="si">{</span><span class="n">avstand</span><span class="si">}</span><span class="s2"> enheter.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Avstanden mellom punktene er 29.723559679150142 enheter.
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="linestring">
+<h2>LineString<a class="headerlink" href="#linestring" title="Link to this heading">#</a></h2>
+<p>Fremgangsmåten for å lage LineString-objekter er ganske lik som med Shapely punkter.</p>
+<p>I stedet for et enkelt koordinattuppel bruker vi her en liste med Shapely punkter eller en liste med koordinattuppler:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Lag en LineString fra Point-objektene våre</span>
+<span class="n">linje</span> <span class="o">=</span> <span class="n">LineString</span><span class="p">([</span><span class="n">punkt1</span><span class="p">,</span> <span class="n">punkt2</span><span class="p">,</span> <span class="n">punkt3</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Det er også mulig å produsere sammme resultat ved å bruke koordinattupler</span>
+<span class="n">linje2</span> <span class="o">=</span> <span class="n">LineString</span><span class="p">([(</span><span class="mf">2.2</span><span class="p">,</span> <span class="mf">4.2</span><span class="p">),</span> <span class="p">(</span><span class="mf">7.2</span><span class="p">,</span> <span class="o">-</span><span class="mf">25.1</span><span class="p">),</span> <span class="p">(</span><span class="mf">9.26</span><span class="p">,</span> <span class="o">-</span><span class="mf">2.456</span><span class="p">)])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Sjekk om linjene er identiske</span>
+<span class="n">linje</span> <span class="o">==</span> <span class="n">linje2</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+<p>La oss se hvordan linjen vår ser ut:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">linje</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/0dd31ba3b4a057207acbb77864aa8a612f4e0618c9d38c1859f6940fa0b4ba45.svg" src="../../_images/0dd31ba3b4a057207acbb77864aa8a612f4e0618c9d38c1859f6940fa0b4ba45.svg" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">linje</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LINESTRING (2.2 4.2, 7.2 -25.1, 9.26 -2.456)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Som vi kan se så består <code class="docutils literal notranslate"><span class="pre">linje</span></code>-variablen vår av flere koordinatpar.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Sjekk datatypen til linjeobjektet</span>
+<span class="nb">type</span><span class="p">(</span><span class="n">linje</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>shapely.geometry.linestring.LineString
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Sjekk geometritypen til linjeobjektet</span>
+<span class="n">linje</span><span class="o">.</span><span class="n">geom_type</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;LineString&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<section id="linestring-attributter-og-funksjoner">
+<h3>LineString-attributter og funksjoner<a class="headerlink" href="#linestring-attributter-og-funksjoner" title="Link to this heading">#</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">LineString</span></code> -objekter har mange nyttige innebygde attributter og funksjoner. Vi kan for eksempel trekke ut koordinatene eller lenden på en linje, finne midtpunktet, lage punkter langs linjen med gitte mellomrom, eller regne ut den minste avstanden fra linjen til et punkt. Alle funksjonene er videre definert i <a class="reference external" href="https://shapely.readthedocs.io/en/stable/manual.html">Shapely dokumentasjonen</a>.</p>
+<p>Vi kan trekke ut koordinatene fra en LineString på samme måte som med et <code class="docutils literal notranslate"><span class="pre">Point</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># List ut xy-koordinattuppler</span>
+<span class="nb">list</span><span class="p">(</span><span class="n">linje</span><span class="o">.</span><span class="n">coords</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(2.2, 4.2), (7.2, -25.1), (9.26, -2.456)]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Her har vi igjen en liste med koordinattuppler.</p>
+<p>Hvis vi vil bruke de individuelle x- eller y-koordinatene i linjen, kan vi bruke <code class="docutils literal notranslate"><span class="pre">xy</span></code>-attributten:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Les in x- og y-koordinater separat</span>
+<span class="n">xkoordinater</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">linje</span><span class="o">.</span><span class="n">xy</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">ykoordinater</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">linje</span><span class="o">.</span><span class="n">xy</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">xkoordinater</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">ykoordinater</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[2.2, 7.2, 9.26]
+[4.2, -25.1, -2.456]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Vi kan også hente ut spesifikke attributter, så som lengden av linjen og midtpunktet:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Les inn lengden av linjen</span>
+<span class="n">linje_lengden</span> <span class="o">=</span> <span class="n">linje</span><span class="o">.</span><span class="n">length</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Lengden på linjen vår er: </span><span class="si">{</span><span class="n">linje_lengden</span><span class="si">}</span><span class="s2"> enheter&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Lengden på linjen vår er: 52.46106912939557 enheter
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Les inn centroiden av linjen</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">linje</span><span class="o">.</span><span class="n">centroid</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>POINT (6.229961354035622 -11.892411157572392)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Som vi kan se, så er midtpunktet også et Shapely Point-objekt.</p>
+</section>
+</section>
+<section id="polygon">
+<h2>Polygon<a class="headerlink" href="#polygon" title="Link to this heading">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">Polygon</span></code> -objektet følger samme logikk som <code class="docutils literal notranslate"><span class="pre">Point</span></code> og <code class="docutils literal notranslate"><span class="pre">LineString</span></code>, bare at Polygon-objektet tar en sekvens eller liste av koordinater som input.</p>
+<p>Polygoner trenger <strong>minst tre koordinattuppler</strong>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Lag et polygon fra koordinater</span>
+<span class="n">poly</span> <span class="o">=</span> <span class="n">Polygon</span><span class="p">([(</span><span class="mf">2.2</span><span class="p">,</span> <span class="mf">4.2</span><span class="p">),</span> <span class="p">(</span><span class="mf">7.2</span><span class="p">,</span> <span class="o">-</span><span class="mf">25.1</span><span class="p">),</span> <span class="p">(</span><span class="mf">9.26</span><span class="p">,</span> <span class="o">-</span><span class="mf">2.456</span><span class="p">)])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>La oss se hvordan polygonet vårt ser ut:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">poly</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/da6cc4b41d5635608d8abef45299f288edcded636e47bdb44f966e42a049139d.svg" src="../../_images/da6cc4b41d5635608d8abef45299f288edcded636e47bdb44f966e42a049139d.svg" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">poly</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>POLYGON ((2.2 4.2, 7.2 -25.1, 9.26 -2.456, 2.2 4.2))
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Datatype</span>
+<span class="nb">type</span><span class="p">(</span><span class="n">poly</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>shapely.geometry.polygon.Polygon
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Geometritype</span>
+<span class="n">poly</span><span class="o">.</span><span class="n">geom_type</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Polygon&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>Vi kan også lage polygoner med hull:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Definer den ytre grensen</span>
+<span class="n">border</span> <span class="o">=</span> <span class="p">[(</span><span class="o">-</span><span class="mi">180</span><span class="p">,</span> <span class="mi">90</span><span class="p">),</span> <span class="p">(</span><span class="o">-</span><span class="mi">180</span><span class="p">,</span> <span class="o">-</span><span class="mi">90</span><span class="p">),</span> <span class="p">(</span><span class="mi">180</span><span class="p">,</span> <span class="o">-</span><span class="mi">90</span><span class="p">),</span> <span class="p">(</span><span class="mi">180</span><span class="p">,</span> <span class="mi">90</span><span class="p">)]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ytre polygon</span>
+<span class="n">world</span> <span class="o">=</span> <span class="n">Polygon</span><span class="p">(</span><span class="n">shell</span><span class="o">=</span><span class="n">border</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">world</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>POLYGON ((-180 90, -180 -90, 180 -90, 180 90, -180 90))
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">world</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/0c8eee59459dc7e63cbad9080b1bbd42471bf15baf616f167bc1dc1e657169ef.svg" src="../../_images/0c8eee59459dc7e63cbad9080b1bbd42471bf15baf616f167bc1dc1e657169ef.svg" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># La oss lage et stort hull 10 enheter fra kanten</span>
+<span class="c1"># NB: du kan ha flere hull, so vi må gi en liste med hull-koordinater</span>
+<span class="n">hole</span> <span class="o">=</span> <span class="p">[[(</span><span class="o">-</span><span class="mi">170</span><span class="p">,</span> <span class="mi">80</span><span class="p">),</span> <span class="p">(</span><span class="o">-</span><span class="mi">170</span><span class="p">,</span> <span class="o">-</span><span class="mi">80</span><span class="p">),</span> <span class="p">(</span><span class="mi">170</span><span class="p">,</span> <span class="o">-</span><span class="mi">80</span><span class="p">),</span> <span class="p">(</span><span class="mi">170</span><span class="p">,</span> <span class="mi">80</span><span class="p">)]]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Nå kan vi lage polygonet med hullet inni</span>
+<span class="n">frame</span> <span class="o">=</span> <span class="n">Polygon</span><span class="p">(</span><span class="n">shell</span><span class="o">=</span><span class="n">border</span><span class="p">,</span> <span class="n">holes</span><span class="o">=</span><span class="n">hole</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">frame</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>POLYGON ((-180 90, -180 -90, 180 -90, 180 90, -180 90), (-170 80, -170 -80, 170 -80, 170 80, -170 80))
+</pre></div>
+</div>
+</div>
+</div>
+<p>La oss se hva vi har:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">frame</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/6f6100c83c6e9e25a08a33f0c4e527c1191df18d9e6d73b7081a96ba6cd3a8d5.svg" src="../../_images/6f6100c83c6e9e25a08a33f0c4e527c1191df18d9e6d73b7081a96ba6cd3a8d5.svg" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">frame</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>POLYGON ((-180 90, -180 -90, 180 -90, 180 90, -180 90), (-170 80, -170 -80, 170 -80, 170 80, -170 80))
+</pre></div>
+</div>
+</div>
+</div>
+<p>Som vi kan se, så har polygonet nå to sett med koordinattuppler. Det første representerer det ytterste polygonet, og det andre representererer hullet inni polygonet.</p>
+<section id="polygon-attributter-og-funksjoner">
+<h3>Polygon attributter og funksjoner<a class="headerlink" href="#polygon-attributter-og-funksjoner" title="Link to this heading">#</a></h3>
+<p>Vi kan også med polygoner bruke attributtene direkte fra <code class="docutils literal notranslate"><span class="pre">Polygon</span></code>-objektet, noe som kan være nyttig for ulike typer analyser. For eksempel: <code class="docutils literal notranslate"><span class="pre">area</span></code>, <code class="docutils literal notranslate"><span class="pre">centroid</span></code>, <code class="docutils literal notranslate"><span class="pre">bounding</span> <span class="pre">box</span></code>, <code class="docutils literal notranslate"><span class="pre">exterior</span></code>, og <code class="docutils literal notranslate"><span class="pre">exterior-length</span></code>. Den fulle listen av metoder finner du i <a class="reference external" href="https://shapely.readthedocs.io/en/stable/manual.html#the-shapely-user-manual">Shapely User Manual</a>.</p>
+<p>La oss se på noen av attributtene her:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Print resultatene</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Polygon centroid: </span><span class="si">{</span><span class="n">world</span><span class="o">.</span><span class="n">centroid</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Polygon Area: </span><span class="si">{</span><span class="n">world</span><span class="o">.</span><span class="n">area</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Polygon Bounding Box: </span><span class="si">{</span><span class="n">world</span><span class="o">.</span><span class="n">bounds</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Polygon Exterior: </span><span class="si">{</span><span class="n">world</span><span class="o">.</span><span class="n">exterior</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Polygon Exterior Length: </span><span class="si">{</span><span class="n">world</span><span class="o">.</span><span class="n">exterior</span><span class="o">.</span><span class="n">length</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Polygon centroid: POINT (0 0)
+Polygon Area: 64800.0
+Polygon Bounding Box: (-180.0, -90.0, 180.0, 90.0)
+Polygon Exterior: LINEARRING (-180 90, -180 -90, 180 -90, 180 90, -180 90)
+Polygon Exterior Length: 1080.0
+</pre></div>
+</div>
+</div>
+</div>
+<p>Som vi kan se, er det forholdsvis enkelt å hente ut de ulike attributtene fra <code class="docutils literal notranslate"><span class="pre">Polygon</span></code>-objektet. Merk at avstandsmålene vil gi mer mening når man jobber med data i et projisert koordinatsystem.</p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./content/notebooks"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../pages/02_info.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">ℹ️ Info</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="02_intersect.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">💻 Intersect</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#datamodellen">Datamodellen</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#punkt">Punkt</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#punkt-attributter-og-funksjoner">Punkt-attributter og -funksjoner</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#linestring">LineString</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#linestring-attributter-og-funksjoner">LineString-attributter og funksjoner</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#polygon">Polygon</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#polygon-attributter-og-funksjoner">Polygon attributter og funksjoner</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Håvard Wallin Aagesen
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  <p>This course is heavily based on the <a href="https://autogis-site.readthedocs.io/en/latest/" target="_blank">Automating GIS processes</a> course at the University of Helsinki.</p>
+
+</div>
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

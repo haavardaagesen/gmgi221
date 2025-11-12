@@ -1,0 +1,2437 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>💻 Nettverksanalyse i Python &#8212; GMGI221 - Automatisering av GIS-prosesser</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=7cf0485e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'content/notebooks/09_nettverksanalyse';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo.png" class="logo__image only-light" alt="GMGI221 - Automatisering av GIS-prosesser - Home"/>
+    <script>document.write(`<img src="../../_static/logo.png" class="logo__image only-dark" alt="GMGI221 - Automatisering av GIS-prosesser - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../index.html">
+                    Velkommen til GMGI221
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Generell info</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../pages/00_generell.html">ℹ️ Generell info</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/00_laeringsmaal.html">📖 Læringsmål</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/00_ovingsoppgaver.html">📖 Øvingsoppgaver</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/00_karakterer.html">📖 Karakterer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/00_installere-python.html">📖 Installering av Python og Python pakker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/00_bruk_av_ai.html">📖 Bruk av KI-verktøy</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Uke 1</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../pages/01_info.html">ℹ️ Info</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/01_bakgrunn.html">📖 Bakgrunn for emnet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_smakebit.html">💻 En smakebit av Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/01_oving-1.html">📥 Øving 1</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Uke 2</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../pages/02_info.html">ℹ️ Info</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_geometriske_objekter.html">💻 Geometriske objekter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_intersect.html">💻 Intersect</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_assertions.html">💻 Bruke <code class="docutils literal notranslate"><span class="pre">assertion</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/02_oving-2.html">📥 Øving 2</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Uke 3</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../pages/03_info.html">ℹ️ Info</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/03_begreper.html">📖 Nøkkelbegreper</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_filstier.html">💻 Håndtering av filstier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_vektor.html">💻 Vektor Data I/O</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_geopandas.html">💻 Geopandas: en introduksjon</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/03_oving-3.html">📥 Øving 3</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Uke 4</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../pages/04_info.html">ℹ️ Info</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/04_geokoding.html">📖 Geokoding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_projeksjoner.html">💻 Kartprojeksjoner</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="04_geometriske_operasjoner.html">💻 Vanlige geometriske operasjoner</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_geokoding_i_geopandas.html">💻 Geokoding i geopandas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/04_oving-4.html">📥 Øving 4</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Uke 5</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../pages/05_info.html">ℹ️ Info</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_romlig_utvelgelse.html">💻 Romlig utvelgelse</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_romlig_kobling.html">💻 Romlig kobling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/05_oving-5.html">📥 Øving 5</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Uke 6</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../pages/06_info.html">ℹ️ Info</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_reklassifisering.html">💻 Reklassifisering av data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_aggregering_av_data.html">💻 Aggregering av data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/06_oving-6.html">📥 Øving 6</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Uke 7</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../pages/07_info.html">ℹ️ Info</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_overlay.html">💻 Overlay</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Uke 8</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../pages/08_info.html">ℹ️ Info</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_statiske_kart.html">💻 Statiske kart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_interaktive_kart.html">💻 Interaktive kart</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Prosjektarbeid</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../pages/13_prosjektarbeid.html">📖 Prosjektarbeid</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/13_prosjektkarakter.html">📖 Karaktersetting for prosjektoppgaven</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/13_prosjekttips.html">📖 Tips til prosjektoppgaven</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/haavardaagesen/gmgi221" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/haavardaagesen/gmgi221/issues/new?title=Issue%20on%20page%20%2Fcontent/notebooks/09_nettverksanalyse.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/content/notebooks/09_nettverksanalyse.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>💻 Nettverksanalyse i Python</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fa-et-rutbart-nettverk">Få et rutbart nettverk</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dataoversikt">Dataoversikt</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#transformere-til-projisert-referansesystem">Transformere til projisert referansesystem</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analysering-av-nettverksegenskaper">Analysering av nettverksegenskaper</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#korteste-vei-analyse">Korteste vei-analyse</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#opprinnelses-og-destinasjonspunkter">Opprinnelses- og destinasjonspunkter</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#naermeste-node">Nærmeste node</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ruting">Ruting</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lagre-korteste-veier-til-disk">Lagre korteste veier til disk</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#forbered-data-for-lagring-til-fil">Forbered data for lagring til fil</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lagre-dataene">Lagre dataene:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#videre-lesing">Videre lesing</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="nettverksanalyse-i-python">
+<h1>💻 Nettverksanalyse i Python<a class="headerlink" href="#nettverksanalyse-i-python" title="Link to this heading">#</a></h1>
+<p>Å finne en korteste vei ved hjelp av et bestemt gate-nettverk er et vanlig GIS-problem
+som har mange praktiske applikasjoner. For eksempel, navigasjon, en av de
+‘hverdagslige’ applikasjonene der <em>rute</em>-algoritmer brukes til å finne den
+optimale ruten mellom to eller flere punkter.</p>
+<p>Selvfølgelig har Python-økosystemet produsert pakker som kan brukes til
+å gjennomføre nettverksanalyser, som for eksempel ruting.
+<a class="reference external" href="https://networkx.github.io/documentation/">NetworkX</a>-pakken gir forskjellige
+verktøy for å analysere nettverk, og implementerer flere forskjellige rutealgoritmer,
+som for eksempel
+<a class="reference external" href="https://networkx.org/documentation/stable/reference/algorithms/generated/networkx.algorithms.shortest_paths.generic.shortest_path.html">Dijkstra’s</a>
+eller
+<a class="reference external" href="https://networkx.org/documentation/stable/reference/algorithms/shortest_paths.html#module-networkx.algorithms.shortest_paths.astar">A*</a>-algoritmene. Begge er vanligvis brukt til å finne korteste veier langs transportnettverk.</p>
+<p>For å kunne utføre nettverksanalyse, er det selvfølgelig nødvendig å ha et
+nettverk som brukes til analysene.
+<a class="reference external" href="https://osmnx.readthedocs.io/">OSMnx</a>-pakken lar oss hente rutbare
+nettverk fra OpenStreetMap for forskjellige transportformer (gange, sykling og
+kjøring). OSMnx-pakken pakker også noen av NetworkX-funksjonene på en praktisk måte
+for bruk på OpenStreetMap-data.</p>
+<p>I følgende avsnitt vil vi bruke OSMnx til å finne den korteste veien mellom
+to punkter basert på sykkelbare veier. Med bare de minste modifikasjonene, kan vi
+deretter gjenta analysen for det gangbare gatenettverket.</p>
+<section id="fa-et-rutbart-nettverk">
+<h2>Få et rutbart nettverk<a class="headerlink" href="#fa-et-rutbart-nettverk" title="Link to this heading">#</a></h2>
+<p>For å laste ned OpenStreetMap-data som representerer gatenettverket, kan vi bruke
+dens
+<a class="reference external" href="https://osmnx.readthedocs.io/en/stable/osmnx.html#osmnx.graph.graph_from_place"><code class="docutils literal notranslate"><span class="pre">graph_from_place()</span></code></a>-funksjon. Som parametere forventer den et stedsnavn og, valgfritt, en nettverkstype.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">osmnx</span>
+
+<span class="n">PLACE_NAME</span> <span class="o">=</span> <span class="s2">&quot;Grunerløkka, Oslo, Norway&quot;</span>
+<span class="n">graph</span> <span class="o">=</span> <span class="n">osmnx</span><span class="o">.</span><span class="n">graph_from_place</span><span class="p">(</span>
+    <span class="n">PLACE_NAME</span><span class="p">,</span>
+    <span class="n">network_type</span><span class="o">=</span><span class="s2">&quot;bike&quot;</span>
+<span class="p">)</span>
+<span class="n">figure</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">osmnx</span><span class="o">.</span><span class="n">plot_graph</span><span class="p">(</span><span class="n">graph</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/9ca7427cf90f24b2828e5c58df3380980f428bf142460d82ef7bde8c64f1b70c.png" src="../../_images/9ca7427cf90f24b2828e5c58df3380980f428bf142460d82ef7bde8c64f1b70c.png" />
+</div>
+</div>
+<div class="hint admonition">
+<p class="admonition-title">Proft tips!</p>
+<p>Noen ganger kan den korteste veien gå litt utenfor det definerte interesseområdet. For å ta hensyn til dette, kan vi hente nettverket for et litt større område
+enn Grünerløkka bydel, i tilfelle den korteste veien ikke er helt innenfor
+bydelsgrensene.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Få området av interesse polygon</span>
+<span class="n">place_polygon</span> <span class="o">=</span> <span class="n">osmnx</span><span class="o">.</span><span class="n">geocode_to_gdf</span><span class="p">(</span><span class="n">PLACE_NAME</span><span class="p">)</span>
+
+<span class="c1"># Re-projiser polygonet til en lokal projisert CRS (slik at CRS-enheten er meter)</span>
+<span class="n">place_polygon</span> <span class="o">=</span> <span class="n">place_polygon</span><span class="o">.</span><span class="n">to_crs</span><span class="p">(</span><span class="s2">&quot;EPSG:25833&quot;</span><span class="p">)</span>
+
+<span class="c1"># Buffer med 200 meter</span>
+<span class="n">place_polygon</span><span class="p">[</span><span class="s2">&quot;geometry&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">place_polygon</span><span class="o">.</span><span class="n">buffer</span><span class="p">(</span><span class="mi">200</span><span class="p">)</span>
+
+<span class="c1"># Re-projiser polygonet tilbake til WGS84 (kreves av OSMnx)</span>
+<span class="n">place_polygon</span> <span class="o">=</span> <span class="n">place_polygon</span><span class="o">.</span><span class="n">to_crs</span><span class="p">(</span><span class="s2">&quot;EPSG:4326&quot;</span><span class="p">)</span>
+
+<span class="c1"># Hent nettverksgraf</span>
+<span class="n">graph</span> <span class="o">=</span> <span class="n">osmnx</span><span class="o">.</span><span class="n">graph_from_polygon</span><span class="p">(</span>
+    <span class="n">place_polygon</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;geometry&quot;</span><span class="p">],</span>
+    <span class="n">network_type</span><span class="o">=</span><span class="s2">&quot;bike&quot;</span>
+<span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">osmnx</span><span class="o">.</span><span class="n">plot_graph</span><span class="p">(</span><span class="n">graph</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/92e8b842d182ea54d40484a1f5f2d3375761909c1e638d29cb8ff25b88192b10.png" src="../../_images/92e8b842d182ea54d40484a1f5f2d3375761909c1e638d29cb8ff25b88192b10.png" />
+</div>
+</div>
+<section id="dataoversikt">
+<h3>Dataoversikt<a class="headerlink" href="#dataoversikt" title="Link to this heading">#</a></h3>
+<p>Nå som vi har fått et komplett nettverksdiagram for den reisemåten vi spesifiserte
+(sykling), kan vi ta en nærmere titt på hvilke attributter som er tildelt
+noder og kanter i nettverket. Det er sannsynligvis lettest å først konvertere
+nettverket til en geodata-frame der vi deretter kan bruke verktøyene vi lærte i
+tidligere leksjoner.</p>
+<p>For å konvertere et diagram til en geodata-frame, kan vi bruke <code class="docutils literal notranslate"><span class="pre">osmnx.graph_to_gdfs()</span></code>. Her kan vi gjøre bruk av funksjonens parametere <code class="docutils literal notranslate"><span class="pre">nodes</span></code> og <code class="docutils literal notranslate"><span class="pre">edges</span></code> for å velge om vi vil ha
+bare noder, bare kanter, eller begge (standard):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Hent bare kanter fra grafen</span>
+<span class="n">edges</span> <span class="o">=</span> <span class="n">osmnx</span><span class="o">.</span><span class="n">graph_to_gdfs</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">nodes</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">edges</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">edges</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th></th>
+      <th></th>
+      <th>osmid</th>
+      <th>oneway</th>
+      <th>name</th>
+      <th>highway</th>
+      <th>maxspeed</th>
+      <th>reversed</th>
+      <th>length</th>
+      <th>geometry</th>
+      <th>lanes</th>
+      <th>ref</th>
+      <th>width</th>
+      <th>tunnel</th>
+      <th>junction</th>
+      <th>bridge</th>
+      <th>service</th>
+      <th>access</th>
+    </tr>
+    <tr>
+      <th>u</th>
+      <th>v</th>
+      <th>key</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th rowspan="4" valign="top">79316</th>
+      <th>25335244</th>
+      <th>0</th>
+      <td>3236576</td>
+      <td>True</td>
+      <td>Møllergata</td>
+      <td>unclassified</td>
+      <td>30</td>
+      <td>False</td>
+      <td>108.500</td>
+      <td>LINESTRING (10.75135 59.91923, 10.75131 59.919...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>6945985051</th>
+      <th>0</th>
+      <td>39825586</td>
+      <td>False</td>
+      <td>Rosteds gate</td>
+      <td>residential</td>
+      <td>30</td>
+      <td>True</td>
+      <td>81.266</td>
+      <td>LINESTRING (10.75135 59.91923, 10.75113 59.919...</td>
+      <td>2</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1424670590</th>
+      <th>0</th>
+      <td>311012187</td>
+      <td>False</td>
+      <td>Hausmanns gate</td>
+      <td>secondary</td>
+      <td>30</td>
+      <td>True</td>
+      <td>31.268</td>
+      <td>LINESTRING (10.75135 59.91923, 10.75153 59.919...</td>
+      <td>2</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>8714388689</th>
+      <th>0</th>
+      <td>1044541319</td>
+      <td>True</td>
+      <td>NaN</td>
+      <td>cycleway</td>
+      <td>NaN</td>
+      <td>False</td>
+      <td>20.933</td>
+      <td>LINESTRING (10.75135 59.91923, 10.75152 59.919...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>79317</th>
+      <th>25389708</th>
+      <th>0</th>
+      <td>4854886</td>
+      <td>False</td>
+      <td>Wilses gate</td>
+      <td>living_street</td>
+      <td>8</td>
+      <td>True</td>
+      <td>73.470</td>
+      <td>LINESTRING (10.75036 59.91792, 10.75029 59.917...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Den resulterende geodata-framen består av en lang liste med kolonner. De fleste av dem
+relaterer til <a class="reference external" href="https://wiki.openstreetmap.org/wiki/Tags">OpenStreetMap-tags</a>, og
+navnene deres er ganske selvforklarende. Kolonnene <code class="docutils literal notranslate"><span class="pre">u</span></code> og <code class="docutils literal notranslate"><span class="pre">v</span></code> beskriver
+topologisk forhold innen nettverket: de betegner start- og slutt-noden
+for hver kant.</p>
+<div class="pst-scrollable-table-container"><table class="table" id="columns-in-edges">
+<caption><span class="caption-text">Kolonner i <code class="docutils literal notranslate"><span class="pre">edges</span></code></span><a class="headerlink" href="#columns-in-edges" title="Link to this table">#</a></caption>
+<thead>
+<tr class="row-odd"><th class="head"><p>Kolonne</p></th>
+<th class="head"><p>Beskrivelse</p></th>
+<th class="head"><p>Datatype</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference external" href="http://wiki.openstreetmap.org/wiki/Key:bridge">bridge</a></p></td>
+<td><p>Broelement</p></td>
+<td><p>boolean</p></td>
+</tr>
+<tr class="row-odd"><td><p>geometry</p></td>
+<td><p>Geometri av elementet</p></td>
+<td><p>Shapely.geometry</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="http://wiki.openstreetmap.org/wiki/Key:highway">highway</a></p></td>
+<td><p>Tag for veier (veitype)</p></td>
+<td><p>str / list</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="http://wiki.openstreetmap.org/wiki/Key:lanes">lanes</a></p></td>
+<td><p>Antall kjørefelt</p></td>
+<td><p>int (or nan)</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="http://wiki.openstreetmap.org/wiki/Key:length">length</a></p></td>
+<td><p>Lengden på elementet (meter)</p></td>
+<td><p>float</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="http://wiki.openstreetmap.org/wiki/Key:maxspeed">maxspeed</a></p></td>
+<td><p>Maksimal lovlige hastighetsbegrensning</p></td>
+<td><p>int /list</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="http://wiki.openstreetmap.org/wiki/Key:name">name</a></p></td>
+<td><p>Navn på (gata) elementet</p></td>
+<td><p>str (or nan)</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="http://wiki.openstreetmap.org/wiki/Key:oneway">oneway</a></p></td>
+<td><p>Enveisvei</p></td>
+<td><p>boolean</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="http://wiki.openstreetmap.org/wiki/Node">osmid</a></p></td>
+<td><p>Unike id-er for elementet</p></td>
+<td><p>list</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="http://ow.ly/bV8n30h7Ufm">u</a></p></td>
+<td><p>Startnoden for kanten</p></td>
+<td><p>int</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="http://ow.ly/bV8n30h7Ufm">v</a></p></td>
+<td><p>Sluttnoden for kanten</p></td>
+<td><p>int</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Hvilke typer gater består nettverket vårt av?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">edges</span><span class="p">[</span><span class="s2">&quot;highway&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>highway
+service                                 1659
+residential                             1323
+cycleway                                 780
+secondary                                347
+path                                     302
+tertiary                                 287
+unclassified                             229
+primary                                  166
+living_street                             65
+pedestrian                                49
+trunk                                     37
+[service, path]                           32
+trunk_link                                27
+[residential, cycleway]                   26
+[residential, service]                    20
+[service, cycleway]                        6
+[residential, path]                        4
+[unclassified, service]                    4
+[living_street, cycleway]                  4
+[residential, service, pedestrian]         2
+[unclassified, residential]                2
+[service, path, cycleway]                  2
+[service, living_street, pedestrian]       2
+[service, pedestrian]                      2
+[unclassified, cycleway]                   2
+[trunk, trunk_link]                        1
+[cycleway, pedestrian]                     1
+[pedestrian, cycleway]                     1
+Name: count, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="transformere-til-projisert-referansesystem">
+<h3>Transformere til projisert referansesystem<a class="headerlink" href="#transformere-til-projisert-referansesystem" title="Link to this heading">#</a></h3>
+<p>Nettverksdataens kartografiske referansesystem (CRS) er WGS84 (EPSG:4326), et
+geografisk referansesystem. Det betyr at avstander er registrert og uttrykt
+i grader. Dette er ikke praktisk for nettverksanalyser, som for eksempel å finne en korteste vei.</p>
+<p>Igjen, OSMnx’s <em>graf</em>-objekter tilbyr ikke en metode for å transformere deres
+geodata, men OSMnx kommer med en separat funksjon:
+<a class="reference external" href="https://osmnx.readthedocs.io/en/stable/osmnx.html#osmnx.projection.project_graph"><code class="docutils literal notranslate"><span class="pre">osmnx.project_graph()</span></code></a>
+tar en inngangsgraf og en CRS som parametere, og returnerer en ny, transformert,
+graf. Hvis <code class="docutils literal notranslate"><span class="pre">crs</span></code> utelates, er transformasjonen standard til den mest
+egnede UTM-sonen lokalt.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Transformere grafen til UTM</span>
+<span class="n">graph</span> <span class="o">=</span> <span class="n">osmnx</span><span class="o">.</span><span class="n">project_graph</span><span class="p">(</span><span class="n">graph</span><span class="p">)</span> 
+
+<span class="c1"># Hent re-projiserte noder og kanter</span>
+<span class="n">nodes</span><span class="p">,</span> <span class="n">edges</span> <span class="o">=</span> <span class="n">osmnx</span><span class="o">.</span><span class="n">graph_to_gdfs</span><span class="p">(</span><span class="n">graph</span><span class="p">)</span>
+
+<span class="n">nodes</span><span class="o">.</span><span class="n">crs</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Projected CRS: EPSG:32632&gt;
+Name: WGS 84 / UTM zone 32N
+Axis Info [cartesian]:
+- E[east]: Easting (metre)
+- N[north]: Northing (metre)
+Area of Use:
+- name: Between 6°E and 12°E, northern hemisphere between equator and 84°N, onshore and offshore. Algeria. Austria. Cameroon. Denmark. Equatorial Guinea. France. Gabon. Germany. Italy. Libya. Liechtenstein. Monaco. Netherlands. Niger. Nigeria. Norway. Sao Tome and Principe. Svalbard. Sweden. Switzerland. Tunisia. Vatican City State.
+- bounds: (6.0, 0.0, 12.0, 84.0)
+Coordinate Operation:
+- name: UTM zone 32N
+- method: Transverse Mercator
+Datum: World Geodetic System 1984 ensemble
+- Ellipsoid: WGS 84
+- Prime Meridian: Greenwich
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="analysering-av-nettverksegenskaper">
+<h2>Analysering av nettverksegenskaper<a class="headerlink" href="#analysering-av-nettverksegenskaper" title="Link to this heading">#</a></h2>
+<p>Nå som vi har forberedt et rutbart nettverksdiagram, kan vi gå over til de mer
+analytiske funksjonene til OSMnx, og hente informasjon om nettverket.
+For å beregne grunnleggende nettverksegenskaper, bruk
+<a class="reference external" href="https://osmnx.readthedocs.io/en/stable/osmnx.html#osmnx.stats.basic_stats"><code class="docutils literal notranslate"><span class="pre">osmnx.basic_stats()</span></code></a>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Beregn nettverksstatistikk</span>
+<span class="n">osmnx</span><span class="o">.</span><span class="n">basic_stats</span><span class="p">(</span><span class="n">graph</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;n&#39;: 2408,
+ &#39;m&#39;: 5382,
+ &#39;k_avg&#39;: 4.470099667774086,
+ &#39;edge_length_total&#39;: 307275.326,
+ &#39;edge_length_avg&#39;: 57.093148643626904,
+ &#39;streets_per_node_avg&#39;: 2.5693521594684388,
+ &#39;streets_per_node_counts&#39;: {0: 0, 1: 651, 2: 22, 3: 1458, 4: 268, 5: 8, 6: 1},
+ &#39;streets_per_node_proportions&#39;: {0: 0.0,
+  1: 0.2703488372093023,
+  2: 0.009136212624584718,
+  3: 0.6054817275747508,
+  4: 0.11129568106312292,
+  5: 0.0033222591362126247,
+  6: 0.0004152823920265781},
+ &#39;intersection_count&#39;: 1757,
+ &#39;street_length_total&#39;: 172785.444,
+ &#39;street_segment_count&#39;: 3025,
+ &#39;street_length_avg&#39;: 57.11915504132231,
+ &#39;circuity_avg&#39;: 1.0665293597026189,
+ &#39;self_loop_proportion&#39;: 0.002644628099173554}
+</pre></div>
+</div>
+</div>
+</div>
+<p>Dette gir oss ennå ikke alle interessante egenskaper ved nettverket vårt, som
+OSMnx ikke automatisk tar hensyn til området som er dekket av nettverket.
+Vi kan gjøre det manuelt, ved, først, å avgrense nettverkets <a class="reference external" href="https://en.wikipedia.org/wiki/Convex_hull">convex hull</a> (fra en ‘unary’
+union av alle funksjonene), og deretter, andre, beregne området av dette skallet.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">convex_hull</span> <span class="o">=</span> <span class="n">edges</span><span class="o">.</span><span class="n">unary_union</span><span class="o">.</span><span class="n">convex_hull</span>
+<span class="n">convex_hull</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/d9cc5b91b289c129710a41f26592a075da6cd6052fed724dcd3c3cbed1a6a265.svg" src="../../_images/d9cc5b91b289c129710a41f26592a075da6cd6052fed724dcd3c3cbed1a6a265.svg" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">stats</span> <span class="o">=</span> <span class="n">osmnx</span><span class="o">.</span><span class="n">basic_stats</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">area</span><span class="o">=</span><span class="n">convex_hull</span><span class="o">.</span><span class="n">area</span><span class="p">)</span>
+<span class="n">stats</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;n&#39;: 2408,
+ &#39;m&#39;: 5382,
+ &#39;k_avg&#39;: 4.470099667774086,
+ &#39;edge_length_total&#39;: 307275.326,
+ &#39;edge_length_avg&#39;: 57.093148643626904,
+ &#39;streets_per_node_avg&#39;: 2.5693521594684388,
+ &#39;streets_per_node_counts&#39;: {0: 0, 1: 651, 2: 22, 3: 1458, 4: 268, 5: 8, 6: 1},
+ &#39;streets_per_node_proportions&#39;: {0: 0.0,
+  1: 0.2703488372093023,
+  2: 0.009136212624584718,
+  3: 0.6054817275747508,
+  4: 0.11129568106312292,
+  5: 0.0033222591362126247,
+  6: 0.0004152823920265781},
+ &#39;intersection_count&#39;: 1757,
+ &#39;street_length_total&#39;: 172785.444,
+ &#39;street_segment_count&#39;: 3025,
+ &#39;street_length_avg&#39;: 57.11915504132231,
+ &#39;circuity_avg&#39;: 1.0665293597026189,
+ &#39;self_loop_proportion&#39;: 0.002644628099173554,
+ &#39;node_density_km&#39;: 320.1069230694339,
+ &#39;intersection_density_km&#39;: 233.56638863496485,
+ &#39;edge_density_km&#39;: 40847.57439411015,
+ &#39;street_density_km&#39;: 22969.193035725075}
+</pre></div>
+</div>
+</div>
+</div>
+<p>Som vi kan se, har vi nå mye informasjon om gatenettverket vårt som
+kan brukes til å forstå strukturen. Vi kan for eksempel se at gjennomsnittlig
+nodetetthet i nettverket vårt er <span class="output text_plain">320.1</span> noder/km og at
+den totale kantlengden på nettverket vårt er mer enn
+<span class="output text_plain">307</span> kilometer.</p>
+</section>
+<hr class="docutils" />
+<section id="korteste-vei-analyse">
+<h2>Korteste vei-analyse<a class="headerlink" href="#korteste-vei-analyse" title="Link to this heading">#</a></h2>
+<p>La oss nå beregne den korteste veien mellom to punkter ved hjelp av
+<a class="reference external" href="https://osmnx.readthedocs.io/en/stable/osmnx.html?highlight=get_nearest_node#osmnx.distance.shortest_path"><code class="docutils literal notranslate"><span class="pre">osmnx.shortest_path()</span></code></a>.</p>
+<section id="opprinnelses-og-destinasjonspunkter">
+<h3>Opprinnelses- og destinasjonspunkter<a class="headerlink" href="#opprinnelses-og-destinasjonspunkter" title="Link to this heading">#</a></h3>
+<p>Først må vi spesifisere opprinnelses- og destinasjonspunkter for ruten vår. Hvis du
+er kjent med Grünerløkka-området, kan du spesifisere et egendefinert stedsnavn som en
+kildeposisjon. Eller, du kan følge med og velge disse punktene som opprinnelse
+og destinasjon i analysen:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://nominatim.openstreetmap.org/ui/search.html?q=Trondheimsveien+110+C"><code class="docutils literal notranslate"><span class="pre">Trondheimsveien</span> <span class="pre">110</span> <span class="pre">C,</span> <span class="pre">Oslo,</span> <span class="pre">Norway</span></code></a>:
+Carl Berner-krysset.</p></li>
+<li><p><a class="reference external" href="https://nominatim.openstreetmap.org/ui/search.html?q=Gr%C3%BCnerhagen"><code class="docutils literal notranslate"><span class="pre">Grünerhagen</span></code></a>,
+en park nederst på Løkka.</p></li>
+</ul>
+<p>Vi kunne finne ut koordinatene for disse stedene manuelt, og lage
+<code class="docutils literal notranslate"><span class="pre">shapely.geometry.Point</span></code>s basert på koordinatene. Men hvis vi ville ha
+mer enn bare to punkter, ville det raskt bli et ork. I stedet kan vi
+bruke OSMnx til å geokode lokasjonene.</p>
+<p>Husk å transformere opprinnelses- og destinasjonspunktene til samme referanse
+system som nettverksdataene.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">origin</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">osmnx</span><span class="o">.</span><span class="n">geocode_to_gdf</span><span class="p">(</span><span class="s2">&quot;Trondheimsveien 110 C, Oslo, Norway&quot;</span><span class="p">,</span> <span class="n">which_result</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># hent geolokasjon</span>
+    <span class="o">.</span><span class="n">to_crs</span><span class="p">(</span><span class="n">edges</span><span class="o">.</span><span class="n">crs</span><span class="p">)</span>  <span class="c1"># transformer til UTM</span>
+    <span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;geometry&quot;</span><span class="p">]</span>  <span class="c1"># velg geometri av første rad</span>
+<span class="p">)</span>
+
+<span class="n">destination</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">osmnx</span><span class="o">.</span><span class="n">geocode_to_gdf</span><span class="p">(</span><span class="s2">&quot;Grünerhagen&quot;</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">to_crs</span><span class="p">(</span><span class="n">edges</span><span class="o">.</span><span class="n">crs</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;geometry&quot;</span><span class="p">]</span>
+    <span class="o">.</span><span class="n">centroid</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Vi har nå <code class="docutils literal notranslate"><span class="pre">shapely.geometry.Point</span></code>s som representerer opprinnelses- og destinasjon
+plasseringene for nettverksanalysen vår. I en neste trinn, må vi finne disse punktene på
+det rutbare nettverket før den endelige rutingen.</p>
+</section>
+<section id="naermeste-node">
+<h3>Nærmeste node<a class="headerlink" href="#naermeste-node" title="Link to this heading">#</a></h3>
+<p>For å rute på nettverket, må vi først finne et startpunkt og sluttpunkt
+som er en del av nettverket. Bruk
+<a class="reference external" href="https://osmnx.readthedocs.io/en/stable/osmnx.html#osmnx.distance.nearest_nodes"><code class="docutils literal notranslate"><span class="pre">osmnx.distance.nearest_nodes()</span></code></a>
+for å returnere den nærmeste nodens ID:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">origin_node_id</span> <span class="o">=</span> <span class="n">osmnx</span><span class="o">.</span><span class="n">nearest_nodes</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">origin</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">origin</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
+<span class="n">origin_node_id</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>832779407
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">destination_node_id</span> <span class="o">=</span> <span class="n">osmnx</span><span class="o">.</span><span class="n">nearest_nodes</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">destination</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">destination</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
+<span class="n">destination_node_id</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>16193897
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="ruting">
+<h3>Ruting<a class="headerlink" href="#ruting" title="Link to this heading">#</a></h3>
+<p>Nå er vi klare for ruting og for å finne den korteste veien mellom
+opprinnelses- og målplasseringene. Vi vil bruke
+<a class="reference external" href="https://osmnx.readthedocs.io/en/stable/osmnx.html?highlight=get_nearest_node#osmnx.distance.shortest_path"><code class="docutils literal notranslate"><span class="pre">osmnx.shortest_path()</span></code></a>.</p>
+<p>Funksjonen tar tre obligatoriske parametere: en graf, en opprinnelsesnod-id, og
+en destinasjonsnod-id, og to valgfrie parametere: <code class="docutils literal notranslate"><span class="pre">weight</span></code> kan settes til
+å vurdere en annen <em>kostnadsimpedans</em> enn lengden på ruten, og <code class="docutils literal notranslate"><span class="pre">cpus</span></code>
+kontrollerer parallell beregning av mange ruter.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Finn den korteste veien mellom opprinnelse og destinasjon</span>
+<span class="n">route</span> <span class="o">=</span> <span class="n">osmnx</span><span class="o">.</span><span class="n">shortest_path</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">origin_node_id</span><span class="p">,</span> <span class="n">destination_node_id</span><span class="p">)</span>
+<span class="n">route</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[832779407,
+ 2481252143,
+ 841832182,
+ 12534265,
+ 79607,
+ 330463916,
+ 79605,
+ 106138,
+ 5580791789,
+ 10973871838,
+ 4618464230,
+ 12534258,
+ 4618464227,
+ 1387802061,
+ 1426810245,
+ 106168,
+ 106141,
+ 106169,
+ 106171,
+ 837970612,
+ 10178369286,
+ 16193897]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Som et resultat får vi en liste over alle nodene som er langs den korteste veien.</p>
+<p>Vi kunne hente plasseringene til disse nodene fra <code class="docutils literal notranslate"><span class="pre">nodes</span></code>
+GeoDataFramen og lage en LineString-presentasjon av punktene, men heldigvis,
+OSMnx kan gjøre det for oss og vi kan plotte korteste vei ved hjelp av
+<code class="docutils literal notranslate"><span class="pre">plot_graph_route()</span></code>-funksjonen:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot den korteste veien</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">osmnx</span><span class="o">.</span><span class="n">plot_graph_route</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">route</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/aca26b019057b1b1dc86c4831948e8a3034d38198fa6b4c45e728e61b434dcdf.png" src="../../_images/aca26b019057b1b1dc86c4831948e8a3034d38198fa6b4c45e728e61b434dcdf.png" />
+</div>
+</div>
+<p>Flott! Nå har vi den korteste veien mellom opprinnelses- og målplasseringene våre.
+Å kunne analysere korteste veier mellom steder kan være verdifull
+informasjon for mange applikasjoner. Her analyserte vi bare de korteste veiene
+basert på avstand, men ganske ofte er det mer nyttig å finne de optimale rutene
+mellom steder basert på reisetiden. Her, for eksempel kunne vi
+beregne tiden det tar å krysse hvert veisegment ved å dele
+lengden på veisegmentet med fartsgrensen og beregne de optimale
+rutene ved å ta hensyn til fartsgrensene også som kan endre
+resultatet spesielt på lengre turer enn her.</p>
+</section>
+</section>
+<section id="lagre-korteste-veier-til-disk">
+<h2>Lagre korteste veier til disk<a class="headerlink" href="#lagre-korteste-veier-til-disk" title="Link to this heading">#</a></h2>
+<p>Ganske ofte må du lagre ruten til en fil for videre analyse og
+visualiseringsformål, eller i det minste ha den som et GeoDataFrame-objekt i Python.
+La oss derfor fortsette litt til og se hvordan vi kan lage ruten til en
+linjestreng og lagre den korteste veigeometrien og relaterte attributter i en
+geopackage-fil.</p>
+<p>Først må vi få nodene som tilhører den korteste veien:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Få nodene langs den korteste veien</span>
+<span class="n">route_nodes</span> <span class="o">=</span> <span class="n">nodes</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">route</span><span class="p">]</span>
+<span class="n">route_nodes</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>y</th>
+      <th>x</th>
+      <th>highway</th>
+      <th>street_count</th>
+      <th>lon</th>
+      <th>lat</th>
+      <th>ref</th>
+      <th>geometry</th>
+    </tr>
+    <tr>
+      <th>osmid</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>832779407</th>
+      <td>6.644504e+06</td>
+      <td>599257.916763</td>
+      <td>NaN</td>
+      <td>3</td>
+      <td>10.775706</td>
+      <td>59.926021</td>
+      <td>NaN</td>
+      <td>POINT (599257.917 6644503.528)</td>
+    </tr>
+    <tr>
+      <th>2481252143</th>
+      <td>6.644431e+06</td>
+      <td>599258.760391</td>
+      <td>NaN</td>
+      <td>4</td>
+      <td>10.775686</td>
+      <td>59.925368</td>
+      <td>NaN</td>
+      <td>POINT (599258.760 6644430.804)</td>
+    </tr>
+    <tr>
+      <th>841832182</th>
+      <td>6.644408e+06</td>
+      <td>599241.069524</td>
+      <td>NaN</td>
+      <td>3</td>
+      <td>10.775359</td>
+      <td>59.925170</td>
+      <td>NaN</td>
+      <td>POINT (599241.070 6644408.291)</td>
+    </tr>
+    <tr>
+      <th>12534265</th>
+      <td>6.644354e+06</td>
+      <td>599198.726208</td>
+      <td>NaN</td>
+      <td>3</td>
+      <td>10.774576</td>
+      <td>59.924697</td>
+      <td>NaN</td>
+      <td>POINT (599198.726 6644354.409)</td>
+    </tr>
+    <tr>
+      <th>79607</th>
+      <td>6.644248e+06</td>
+      <td>599114.681136</td>
+      <td>NaN</td>
+      <td>3</td>
+      <td>10.773023</td>
+      <td>59.923766</td>
+      <td>NaN</td>
+      <td>POINT (599114.681 6644248.447)</td>
+    </tr>
+    <tr>
+      <th>330463916</th>
+      <td>6.644186e+06</td>
+      <td>599065.091608</td>
+      <td>NaN</td>
+      <td>3</td>
+      <td>10.772106</td>
+      <td>59.923213</td>
+      <td>NaN</td>
+      <td>POINT (599065.092 6644185.549)</td>
+    </tr>
+    <tr>
+      <th>79605</th>
+      <td>6.644070e+06</td>
+      <td>598990.718616</td>
+      <td>traffic_signals</td>
+      <td>4</td>
+      <td>10.770721</td>
+      <td>59.922193</td>
+      <td>NaN</td>
+      <td>POINT (598990.719 6644069.855)</td>
+    </tr>
+    <tr>
+      <th>106138</th>
+      <td>6.643971e+06</td>
+      <td>598936.431294</td>
+      <td>NaN</td>
+      <td>4</td>
+      <td>10.769704</td>
+      <td>59.921318</td>
+      <td>NaN</td>
+      <td>POINT (598936.431 6643970.977)</td>
+    </tr>
+    <tr>
+      <th>5580791789</th>
+      <td>6.643978e+06</td>
+      <td>598905.840513</td>
+      <td>NaN</td>
+      <td>3</td>
+      <td>10.769160</td>
+      <td>59.921385</td>
+      <td>NaN</td>
+      <td>POINT (598905.841 6643977.636)</td>
+    </tr>
+    <tr>
+      <th>10973871838</th>
+      <td>6.643998e+06</td>
+      <td>598808.771092</td>
+      <td>NaN</td>
+      <td>3</td>
+      <td>10.767434</td>
+      <td>59.921596</td>
+      <td>NaN</td>
+      <td>POINT (598808.771 6643998.474)</td>
+    </tr>
+    <tr>
+      <th>4618464230</th>
+      <td>6.644015e+06</td>
+      <td>598727.331337</td>
+      <td>NaN</td>
+      <td>3</td>
+      <td>10.765987</td>
+      <td>59.921766</td>
+      <td>NaN</td>
+      <td>POINT (598727.331 6644015.331)</td>
+    </tr>
+    <tr>
+      <th>12534258</th>
+      <td>6.644040e+06</td>
+      <td>598608.730564</td>
+      <td>NaN</td>
+      <td>3</td>
+      <td>10.763878</td>
+      <td>59.922015</td>
+      <td>NaN</td>
+      <td>POINT (598608.731 6644039.890)</td>
+    </tr>
+    <tr>
+      <th>4618464227</th>
+      <td>6.644047e+06</td>
+      <td>598574.797489</td>
+      <td>NaN</td>
+      <td>3</td>
+      <td>10.763275</td>
+      <td>59.922086</td>
+      <td>NaN</td>
+      <td>POINT (598574.797 6644046.918)</td>
+    </tr>
+    <tr>
+      <th>1387802061</th>
+      <td>6.644070e+06</td>
+      <td>598458.146066</td>
+      <td>traffic_signals</td>
+      <td>4</td>
+      <td>10.761200</td>
+      <td>59.922323</td>
+      <td>NaN</td>
+      <td>POINT (598458.146 6644070.197)</td>
+    </tr>
+    <tr>
+      <th>1426810245</th>
+      <td>6.643977e+06</td>
+      <td>598459.143340</td>
+      <td>NaN</td>
+      <td>3</td>
+      <td>10.761173</td>
+      <td>59.921483</td>
+      <td>NaN</td>
+      <td>POINT (598459.143 6643976.587)</td>
+    </tr>
+    <tr>
+      <th>106168</th>
+      <td>6.643929e+06</td>
+      <td>598460.276750</td>
+      <td>traffic_signals</td>
+      <td>3</td>
+      <td>10.761171</td>
+      <td>59.921059</td>
+      <td>NaN</td>
+      <td>POINT (598460.277 6643929.364)</td>
+    </tr>
+    <tr>
+      <th>106141</th>
+      <td>6.643928e+06</td>
+      <td>598355.537177</td>
+      <td>NaN</td>
+      <td>4</td>
+      <td>10.759298</td>
+      <td>59.921072</td>
+      <td>NaN</td>
+      <td>POINT (598355.537 6643928.016)</td>
+    </tr>
+    <tr>
+      <th>106169</th>
+      <td>6.643927e+06</td>
+      <td>598248.032702</td>
+      <td>NaN</td>
+      <td>4</td>
+      <td>10.757376</td>
+      <td>59.921090</td>
+      <td>NaN</td>
+      <td>POINT (598248.033 6643927.155)</td>
+    </tr>
+    <tr>
+      <th>106171</th>
+      <td>6.643926e+06</td>
+      <td>598156.956908</td>
+      <td>NaN</td>
+      <td>3</td>
+      <td>10.755747</td>
+      <td>59.921100</td>
+      <td>NaN</td>
+      <td>POINT (598156.957 6643925.874)</td>
+    </tr>
+    <tr>
+      <th>837970612</th>
+      <td>6.643926e+06</td>
+      <td>598115.499469</td>
+      <td>NaN</td>
+      <td>3</td>
+      <td>10.755006</td>
+      <td>59.921111</td>
+      <td>NaN</td>
+      <td>POINT (598115.499 6643925.978)</td>
+    </tr>
+    <tr>
+      <th>10178369286</th>
+      <td>6.643944e+06</td>
+      <td>598123.855354</td>
+      <td>NaN</td>
+      <td>4</td>
+      <td>10.755164</td>
+      <td>59.921270</td>
+      <td>NaN</td>
+      <td>POINT (598123.855 6643943.949)</td>
+    </tr>
+    <tr>
+      <th>16193897</th>
+      <td>6.643977e+06</td>
+      <td>598146.833170</td>
+      <td>NaN</td>
+      <td>3</td>
+      <td>10.755590</td>
+      <td>59.921562</td>
+      <td>NaN</td>
+      <td>POINT (598146.833 6643977.092)</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Som vi kan se, har vi nå alle nodene som var en del av den korteste veien som en GeoDataFrame.</p>
+<p>Nå kan vi lage en LineString ut av punktgeometriene til nodene:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">shapely.geometry</span>
+
+<span class="c1"># Lag en geometri for den korteste veien</span>
+<span class="n">route_line</span> <span class="o">=</span> <span class="n">shapely</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">LineString</span><span class="p">(</span>
+    <span class="nb">list</span><span class="p">(</span><span class="n">route_nodes</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="n">route_line</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/74fe9fda2daa6e03bdb8017a69d9ff037a74c4d90991df8bfdc0a5749efc47ec.svg" src="../../_images/74fe9fda2daa6e03bdb8017a69d9ff037a74c4d90991df8bfdc0a5749efc47ec.svg" />
+</div>
+</div>
+<p>Nå har vi ruten som en LineString-geometri.</p>
+<p>La oss lage en GeoDataFrame ut av den med litt nyttig informasjon om ruten vår,
+for eksempel en liste over osm-idene som er en del av ruten og lengden
+på ruten.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">geopandas</span>
+
+<span class="n">route_geom</span> <span class="o">=</span> <span class="n">geopandas</span><span class="o">.</span><span class="n">GeoDataFrame</span><span class="p">(</span>
+    <span class="p">{</span>
+        <span class="s2">&quot;geometry&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">route_line</span><span class="p">],</span>
+        <span class="s2">&quot;osm_nodes&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">route</span><span class="p">],</span>
+    <span class="p">},</span>
+    <span class="n">crs</span><span class="o">=</span><span class="n">edges</span><span class="o">.</span><span class="n">crs</span>
+<span class="p">)</span>
+
+<span class="c1"># Beregn rute-lengden</span>
+<span class="n">route_geom</span><span class="p">[</span><span class="s2">&quot;length_m&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">route_geom</span><span class="o">.</span><span class="n">length</span>
+
+<span class="n">route_geom</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>geometry</th>
+      <th>osm_nodes</th>
+      <th>length_m</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>LINESTRING (599257.917 6644503.528, 599258.760...</td>
+      <td>[832779407, 2481252143, 841832182, 12534265, 7...</td>
+      <td>1669.84232</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Nå har vi en GeoDataFrame som vi kan lagre til disk. La oss fortsatt bekrefte at
+alt er ok ved å plotte ruten vår på toppen av gatenettverket og noen
+bygninger, og plot også opprinnelses- og målpunktene på toppen av kartet vårt.</p>
+<p>Last ned bygninger:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bygninger</span> <span class="o">=</span> <span class="n">osmnx</span><span class="o">.</span><span class="n">features_from_place</span><span class="p">(</span>
+    <span class="n">PLACE_NAME</span><span class="p">,</span>
+    <span class="p">{</span>
+        <span class="s2">&quot;building&quot;</span> <span class="p">:</span> <span class="kc">True</span>
+    <span class="p">}</span>
+<span class="p">)</span><span class="o">.</span><span class="n">to_crs</span><span class="p">(</span><span class="n">edges</span><span class="o">.</span><span class="n">crs</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>La oss nå plotte ruten og gatenettverkselementene for å bekrefte at
+alt er som det skal:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">contextily</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">matplotlib</span><span class="o">.</span><span class="n">pyplot</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
+
+<span class="c1"># Plot kanter og noder</span>
+<span class="n">edges</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.75</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+<span class="n">nodes</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+
+<span class="c1"># Legg til bygninger</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">bygninger</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;lightgray&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
+
+<span class="c1"># Legg til ruten</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">route_geom</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
+
+<span class="c1"># Legg til bakgrunnskart</span>
+<span class="n">contextily</span><span class="o">.</span><span class="n">add_basemap</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">crs</span><span class="o">=</span><span class="n">bygninger</span><span class="o">.</span><span class="n">crs</span><span class="p">,</span> <span class="n">source</span><span class="o">=</span><span class="n">contextily</span><span class="o">.</span><span class="n">providers</span><span class="o">.</span><span class="n">CartoDB</span><span class="o">.</span><span class="n">Positron</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/877d882b93a0978a415beebea294f12bd372faae14eef911aedc8fcf3dc24ef0.png" src="../../_images/877d882b93a0978a415beebea294f12bd372faae14eef911aedc8fcf3dc24ef0.png" />
+</div>
+</div>
+<p>Flott, alt ser ut til å være i orden! Som du kan se, har vi nå full
+kontroll over alle elementene i kartet vårt, og vi kan bruke alle estetiske
+egenskaper som matplotlib gir for å endre hvordan kartet vårt vil se ut. Nå
+er vi nesten klare til å lagre dataene våre på disk.</p>
+</section>
+<section id="forbered-data-for-lagring-til-fil">
+<h2>Forbered data for lagring til fil<a class="headerlink" href="#forbered-data-for-lagring-til-fil" title="Link to this heading">#</a></h2>
+<p>Dataene inneholder visse datatyper (som <code class="docutils literal notranslate"><span class="pre">list</span></code>) som bør konverteres
+til tegnstrenger før du lagrer dataene til fil (et alternativ ville være
+å droppe ugyldige kolonner).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">edges</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th></th>
+      <th></th>
+      <th>osmid</th>
+      <th>oneway</th>
+      <th>name</th>
+      <th>highway</th>
+      <th>maxspeed</th>
+      <th>reversed</th>
+      <th>length</th>
+      <th>geometry</th>
+      <th>lanes</th>
+      <th>tunnel</th>
+      <th>junction</th>
+      <th>ref</th>
+      <th>width</th>
+      <th>bridge</th>
+      <th>service</th>
+      <th>access</th>
+    </tr>
+    <tr>
+      <th>u</th>
+      <th>v</th>
+      <th>key</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th rowspan="4" valign="top">79316</th>
+      <th>25335244</th>
+      <th>0</th>
+      <td>3236576</td>
+      <td>True</td>
+      <td>Møllergata</td>
+      <td>unclassified</td>
+      <td>30</td>
+      <td>False</td>
+      <td>108.500</td>
+      <td>LINESTRING (597916.667 6643710.788, 597914.829...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>6945985051</th>
+      <th>0</th>
+      <td>39825586</td>
+      <td>False</td>
+      <td>Rosteds gate</td>
+      <td>residential</td>
+      <td>30</td>
+      <td>True</td>
+      <td>81.266</td>
+      <td>LINESTRING (597916.667 6643710.788, 597904.519...</td>
+      <td>2</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1424670590</th>
+      <th>0</th>
+      <td>311012187</td>
+      <td>False</td>
+      <td>Hausmanns gate</td>
+      <td>secondary</td>
+      <td>30</td>
+      <td>True</td>
+      <td>31.268</td>
+      <td>LINESTRING (597916.667 6643710.788, 597926.961...</td>
+      <td>2</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>8714388689</th>
+      <th>0</th>
+      <td>1044541319</td>
+      <td>True</td>
+      <td>NaN</td>
+      <td>cycleway</td>
+      <td>NaN</td>
+      <td>False</td>
+      <td>20.933</td>
+      <td>LINESTRING (597916.667 6643710.788, 597926.099...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>25335244</th>
+      <th>79317</th>
+      <th>0</th>
+      <td>3236576</td>
+      <td>True</td>
+      <td>Møllergata</td>
+      <td>unclassified</td>
+      <td>30</td>
+      <td>False</td>
+      <td>47.137</td>
+      <td>LINESTRING (597882.414 6643608.012, 597877.956...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Kolonner med ugyldige verdier</span>
+<span class="n">problematiske_kolonner</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;osmid&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;lanes&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;name&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;highway&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;width&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;maxspeed&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;reversed&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;junction&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;bridge&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;tunnel&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;access&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;service&quot;</span><span class="p">,</span>
+<span class="p">]</span>
+
+<span class="c1">#  konverter valgte kolonner til strengformat</span>
+<span class="n">edges</span><span class="p">[</span><span class="n">problematiske_kolonner</span><span class="p">]</span> <span class="o">=</span> <span class="n">edges</span><span class="p">[</span><span class="n">problematiske_kolonner</span><span class="p">]</span><span class="o">.</span><span class="n">to_string</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">route_geom</span><span class="p">[</span><span class="s2">&quot;osm_nodes&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">route_geom</span><span class="p">[</span><span class="s2">&quot;osm_nodes&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">edges</span><span class="o">.</span><span class="n">dtypes</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>osmid         object
+oneway          bool
+name          object
+highway       object
+maxspeed      object
+reversed      object
+length       float64
+geometry    geometry
+lanes         object
+tunnel        object
+junction      object
+ref           object
+width         object
+bridge        object
+service       object
+access        object
+dtype: object
+</pre></div>
+</div>
+</div>
+</div>
+<p>Nå kan vi se at de fleste attributtene er av typen <code class="docutils literal notranslate"><span class="pre">object</span></code> som ganske ofte (som vår her) refererer til en datatypetype.</p>
+</section>
+<section id="lagre-dataene">
+<h2>Lagre dataene:<a class="headerlink" href="#lagre-dataene" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pathlib</span>
+<span class="n">NOTEBOOK_PATH</span> <span class="o">=</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">()</span><span class="o">.</span><span class="n">resolve</span><span class="p">()</span>
+<span class="n">DATA_MAPPE</span> <span class="o">=</span> <span class="n">NOTEBOOK_PATH</span> <span class="o">/</span> <span class="s2">&quot;data&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Avhengig av hvor stort interesseområde vi har definert, så kan denne filen bli veldig stor, derfor lagrer vi bare ruten i denne omgang:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Lagre ett lag etter et annet</span>
+<span class="n">output_gpkg</span> <span class="o">=</span> <span class="n">DATA_MAPPE</span> <span class="o">/</span> <span class="s2">&quot;osm_data&quot;</span><span class="o">/</span> <span class="s2">&quot;OSM_Grunerlokka.gpkg&quot;</span>
+<span class="c1">#edges = edges[[&quot;osmid&quot;,&quot;name&quot;,&quot;highway&quot;,&quot;maxspeed&quot;,&quot;length&quot;,&quot;geometry&quot;,&quot;width&quot;]]</span>
+<span class="c1">#edges.to_file(output_gpkg, layer=&quot;streets&quot;)</span>
+<span class="n">route_geom</span><span class="o">.</span><span class="n">to_file</span><span class="p">(</span><span class="n">output_gpkg</span><span class="p">,</span> <span class="n">layer</span><span class="o">=</span><span class="s2">&quot;route&quot;</span><span class="p">)</span>
+<span class="c1">#nodes.to_file(output_gpkg, layer=&quot;nodes&quot;)</span>
+<span class="c1">#bygninger[[&#39;geometry&#39;, &#39;name&#39;, &#39;addr:street&#39;]].to_file(output_gpkg, layer=&quot;buildings&quot;)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">bygninger</span><span class="o">.</span><span class="n">describe</span><span class="p">())</span>
+<span class="n">display</span><span class="p">(</span><span class="n">bygninger</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>amenity</th>
+      <th>capacity</th>
+      <th>fee</th>
+      <th>name</th>
+      <th>operator</th>
+      <th>parking</th>
+      <th>wheelchair</th>
+      <th>geometry</th>
+      <th>bicycle</th>
+      <th>foot</th>
+      <th>...</th>
+      <th>advertising</th>
+      <th>mapillary</th>
+      <th>name:signed</th>
+      <th>substation</th>
+      <th>bar</th>
+      <th>man_made</th>
+      <th>craft</th>
+      <th>ways</th>
+      <th>type</th>
+      <th>location</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>30</td>
+      <td>5</td>
+      <td>6</td>
+      <td>79</td>
+      <td>14</td>
+      <td>1</td>
+      <td>14</td>
+      <td>3694</td>
+      <td>1</td>
+      <td>1</td>
+      <td>...</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>4</td>
+      <td>1</td>
+      <td>16</td>
+      <td>16</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>unique</th>
+      <td>14</td>
+      <td>4</td>
+      <td>2</td>
+      <td>78</td>
+      <td>8</td>
+      <td>1</td>
+      <td>3</td>
+      <td>3694</td>
+      <td>1</td>
+      <td>1</td>
+      <td>...</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>2</td>
+      <td>1</td>
+      <td>16</td>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>top</th>
+      <td>place_of_worship</td>
+      <td>500</td>
+      <td>yes</td>
+      <td>Chokoladefabrikken</td>
+      <td>Kirkelig fellesråd i Oslo</td>
+      <td>multi-storey</td>
+      <td>limited</td>
+      <td>POLYGON ((598305.2582248762 6644194.675931348,...</td>
+      <td>yes</td>
+      <td>yes</td>
+      <td>...</td>
+      <td>board</td>
+      <td>293938462404822</td>
+      <td>no</td>
+      <td>minor_distribution</td>
+      <td>yes</td>
+      <td>silo</td>
+      <td>yes</td>
+      <td>[133363272, 112236630]</td>
+      <td>multipolygon</td>
+      <td>indoor</td>
+    </tr>
+    <tr>
+      <th>freq</th>
+      <td>10</td>
+      <td>2</td>
+      <td>3</td>
+      <td>2</td>
+      <td>5</td>
+      <td>1</td>
+      <td>6</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>...</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>3</td>
+      <td>1</td>
+      <td>1</td>
+      <td>16</td>
+      <td>3</td>
+    </tr>
+  </tbody>
+</table>
+<p>4 rows × 101 columns</p>
+</div></div><div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th></th>
+      <th>amenity</th>
+      <th>capacity</th>
+      <th>fee</th>
+      <th>name</th>
+      <th>operator</th>
+      <th>parking</th>
+      <th>wheelchair</th>
+      <th>geometry</th>
+      <th>bicycle</th>
+      <th>foot</th>
+      <th>...</th>
+      <th>advertising</th>
+      <th>mapillary</th>
+      <th>name:signed</th>
+      <th>substation</th>
+      <th>bar</th>
+      <th>man_made</th>
+      <th>craft</th>
+      <th>ways</th>
+      <th>type</th>
+      <th>location</th>
+    </tr>
+    <tr>
+      <th>element_type</th>
+      <th>osmid</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th rowspan="5" valign="top">way</th>
+      <th>9334580</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>POLYGON ((599664.327 6645572.202, 599700.091 6...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>27011865</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>yes</td>
+      <td>Zoologisk museum</td>
+      <td>UiO</td>
+      <td>NaN</td>
+      <td>limited</td>
+      <td>POLYGON ((599021.107 6643847.082, 599007.188 6...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>27011866</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>yes</td>
+      <td>Geologisk museum</td>
+      <td>UiO</td>
+      <td>NaN</td>
+      <td>limited</td>
+      <td>POLYGON ((599096.358 6643849.709, 599075.963 6...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>27011867</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Lids hus</td>
+      <td>UiO</td>
+      <td>NaN</td>
+      <td>limited</td>
+      <td>POLYGON ((599103.169 6643631.899, 599088.901 6...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>27011868</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>POLYGON ((599012.323 6643681.946, 599011.947 6...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th rowspan="5" valign="top">relation</th>
+      <th>13803840</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>POLYGON ((597928.252 6644296.877, 597927.103 6...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>[1031362635, 112898983]</td>
+      <td>multipolygon</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>13803841</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>POLYGON ((598151.179 6643166.871, 598163.554 6...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>[112236619, 1031362641]</td>
+      <td>multipolygon</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>15885246</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>POLYGON ((600151.857 6643897.110, 600142.549 6...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>[486231544, 1174948320, 1174948319]</td>
+      <td>multipolygon</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>15896730</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>POLYGON ((600162.955 6645115.376, 600163.099 6...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>[1024970009, 1175254280]</td>
+      <td>multipolygon</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>15896731</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>POLYGON ((600118.937 6645122.072, 600155.178 6...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>[1175254283, 64605831, 1175254281]</td>
+      <td>multipolygon</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+<p>3694 rows × 101 columns</p>
+</div></div></div>
+</div>
+<p>Flott, nå har vi lagret alle dataene som ble brukt til å produsere kartene i en geopakke.</p>
+</section>
+<section id="videre-lesing">
+<h2>Videre lesing<a class="headerlink" href="#videre-lesing" title="Link to this heading">#</a></h2>
+<p>Her lærte vi hvordan man løser en enkel ruteoppgave mellom opprinnelses- og målpunkt. Hva om vi har hundrevis eller tusenvis av opprinnelser? Dette er tilfelle hvis du vil utforske reiseavstandene til en spesifikk plassering over hele byen, for eksempel når du analyserer tilgjengeligheten av jobber og tjenester (som i reisetidsmatrisedataene som ble brukt i tidligere seksjoner).</p>
+<p>Sjekk ut pyrosm-dokumentasjonen om <a class="reference external" href="https://pyrosm.readthedocs.io/en/latest/graphs.html#working-with-graphs">arbeid med grafer</a> for mer avanserte eksempler på nettverksanalyse i python. For eksempel er <a class="reference external" href="https://udst.github.io/pandana/">pandana</a> et raskt og effektivt python-bibliotek for å lage aggregerte nettverksanalyser på kort tid over store nettverk, og pyrosm kan brukes til å forberede inngangsdataene for en slik analyse.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./content/notebooks"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fa-et-rutbart-nettverk">Få et rutbart nettverk</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dataoversikt">Dataoversikt</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#transformere-til-projisert-referansesystem">Transformere til projisert referansesystem</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analysering-av-nettverksegenskaper">Analysering av nettverksegenskaper</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#korteste-vei-analyse">Korteste vei-analyse</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#opprinnelses-og-destinasjonspunkter">Opprinnelses- og destinasjonspunkter</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#naermeste-node">Nærmeste node</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ruting">Ruting</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lagre-korteste-veier-til-disk">Lagre korteste veier til disk</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#forbered-data-for-lagring-til-fil">Forbered data for lagring til fil</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lagre-dataene">Lagre dataene:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#videre-lesing">Videre lesing</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Håvard Wallin Aagesen
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  <p>This course is heavily based on the <a href="https://autogis-site.readthedocs.io/en/latest/" target="_blank">Automating GIS processes</a> course at the University of Helsinki.</p>
+
+</div>
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

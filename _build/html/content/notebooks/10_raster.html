@@ -1,0 +1,1727 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>💻 Raster &#8212; GMGI221 - Automatisering av GIS-prosesser</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=7cf0485e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'content/notebooks/10_raster';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo.png" class="logo__image only-light" alt="GMGI221 - Automatisering av GIS-prosesser - Home"/>
+    <script>document.write(`<img src="../../_static/logo.png" class="logo__image only-dark" alt="GMGI221 - Automatisering av GIS-prosesser - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../index.html">
+                    Velkommen til GMGI221
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Generell info</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../pages/00_generell.html">ℹ️ Generell info</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/00_laeringsmaal.html">📖 Læringsmål</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/00_ovingsoppgaver.html">📖 Øvingsoppgaver</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/00_karakterer.html">📖 Karakterer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/00_installere-python.html">📖 Installering av Python og Python pakker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/00_bruk_av_ai.html">📖 Bruk av KI-verktøy</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Uke 1</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../pages/01_info.html">ℹ️ Info</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/01_bakgrunn.html">📖 Bakgrunn for emnet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_smakebit.html">💻 En smakebit av Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/01_oving-1.html">📥 Øving 1</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Uke 2</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../pages/02_info.html">ℹ️ Info</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_geometriske_objekter.html">💻 Geometriske objekter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_intersect.html">💻 Intersect</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_assertions.html">💻 Bruke <code class="docutils literal notranslate"><span class="pre">assertion</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/02_oving-2.html">📥 Øving 2</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Uke 3</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../pages/03_info.html">ℹ️ Info</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/03_begreper.html">📖 Nøkkelbegreper</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_filstier.html">💻 Håndtering av filstier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_vektor.html">💻 Vektor Data I/O</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_geopandas.html">💻 Geopandas: en introduksjon</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/03_oving-3.html">📥 Øving 3</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Uke 4</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../pages/04_info.html">ℹ️ Info</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/04_geokoding.html">📖 Geokoding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_projeksjoner.html">💻 Kartprojeksjoner</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="04_geometriske_operasjoner.html">💻 Vanlige geometriske operasjoner</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_geokoding_i_geopandas.html">💻 Geokoding i geopandas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/04_oving-4.html">📥 Øving 4</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Uke 5</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../pages/05_info.html">ℹ️ Info</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_romlig_utvelgelse.html">💻 Romlig utvelgelse</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_romlig_kobling.html">💻 Romlig kobling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/05_oving-5.html">📥 Øving 5</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Uke 6</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../pages/06_info.html">ℹ️ Info</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_reklassifisering.html">💻 Reklassifisering av data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_aggregering_av_data.html">💻 Aggregering av data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/06_oving-6.html">📥 Øving 6</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Uke 7</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../pages/07_info.html">ℹ️ Info</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_overlay.html">💻 Overlay</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Uke 8</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../pages/08_info.html">ℹ️ Info</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_statiske_kart.html">💻 Statiske kart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_interaktive_kart.html">💻 Interaktive kart</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Prosjektarbeid</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../pages/13_prosjektarbeid.html">📖 Prosjektarbeid</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/13_prosjektkarakter.html">📖 Karaktersetting for prosjektoppgaven</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/13_prosjekttips.html">📖 Tips til prosjektoppgaven</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/haavardaagesen/gmgi221" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/haavardaagesen/gmgi221/issues/new?title=Issue%20on%20page%20%2Fcontent/notebooks/10_raster.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/content/notebooks/10_raster.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>💻 Raster</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">💻 Raster</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#arbeide-med-rasterdata-i-python">Arbeide med rasterdata i Python</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lage-et-enkelt-rasterlag-ved-a-bruke-numpy">Lage et enkelt rasterlag ved å bruke <code class="docutils literal notranslate"><span class="pre">numpy</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#introduksjon-til-datastrukturer-i-xarray">Introduksjon til datastrukturer i xarray</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lese-inn-en-fil">Lese inn en fil</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ndvi">NDVI</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#videre-lesning">Videre lesning</a></li>
+</ul>
+</li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="raster">
+<h1>💻 Raster<a class="headerlink" href="#raster" title="Link to this heading">#</a></h1>
+<div class="alert alert-info">
+<p><strong>Ekstra biblioteker</strong></p>
+<p>Senere i denne notebooken skal vi bruke bibliotekene <code class="docutils literal notranslate"><span class="pre">xarray</span></code> og <code class="docutils literal notranslate"><span class="pre">rioxarray</span></code>, det kan være en god ide å installere de allerede nå, så det er klart til bruk senere:</p>
+<p><code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">install</span> <span class="pre">-c</span> <span class="pre">conda-forge</span> <span class="pre">xarray</span> <span class="pre">rioxarray</span></code></p>
+</div>
+<p>Rasterdata er mye brukt til å representere og lagre data om kontinuerlige overflater, der hver piksel inneholder spesifikk informasjon (karakteristikk, utstråling, spektralsignaturer) om et spesifikt område av jorden, for eksempel et 10x10 meter område. Denne notebooken gir en introduksjon til behandling av rasterdata i Python, og er basert på <a class="reference external" href="https://pythongis.org/part2/chapter-07/index.html">kapittel 7 i Python for Geographic Data Analysis</a></p>
+<p>Det er forskjellige grunner til at du kanskje vil lagre dataene dine i rasterformat:</p>
+<ul class="simple">
+<li><p>Det er en enkel datastruktur: En matrise av celler med verdier som representerer informasjon om den observerte overflaten/fenomenene</p></li>
+<li><p>Det er en effektiv måte å lagre data fra store sammenhengende flater</p></li>
+<li><p>Det er et kraftig format som kan brukes til ulike romlige og statistiske analyser</p></li>
+<li><p>Du kan utføre raske overlay med flere lag</p></li>
+</ul>
+<section id="arbeide-med-rasterdata-i-python">
+<h2>Arbeide med rasterdata i Python<a class="headerlink" href="#arbeide-med-rasterdata-i-python" title="Link to this heading">#</a></h2>
+<p>Det er en rekke biblioteker som er mye brukt når du arbeider med rasterdata i Python:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">xarray</span></code> gir en brukervennlig og intuitiv måte å jobbe med flerdimensjonale rasterdata med koordinater og attributter (noe lik <code class="docutils literal notranslate"><span class="pre">geopandas</span></code> som brukes til vektordatabehandling),</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">rioxarray</span></code> gir metoder for å utføre GIS-relaterte operasjoner med rasterdata (f.eks. lesing/skriving, reprojisering, klipping, resampling),</p></li>
+<li><p>“xarray-spatial” gir metoder for å analysere rasterdata (f.eks. fokale/sonale operasjoner, overflateanalyse, banefinning),</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">rasterio</span></code> kjernebibliotek for arbeid med GIS-rasterdata. <code class="docutils literal notranslate"><span class="pre">rioxarray</span></code> er en utvidelse av dette biblioteket som bringer de samme funksjonalitetene på toppen av <code class="docutils literal notranslate"><span class="pre">xarray</span></code>-biblioteket,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">numpy</span></code> er et kjerne-bibliotek i Python for numerisk databehandling som brukes til å representere og arbeide med flerdimensjonale arrays. <code class="docutils literal notranslate"><span class="pre">numpy</span></code> har stor innflytelse på hvordan de andre rasterbibliotekene fungerer og kan brukes til å generere flerdimensjonale arrays fra bunnen av.</p></li>
+<li></li>
+</ul>
+</section>
+<section id="lage-et-enkelt-rasterlag-ved-a-bruke-numpy">
+<h2>Lage et enkelt rasterlag ved å bruke <code class="docutils literal notranslate"><span class="pre">numpy</span></code><a class="headerlink" href="#lage-et-enkelt-rasterlag-ved-a-bruke-numpy" title="Link to this heading">#</a></h2>
+<p>For å få en bedre følelse av hvordan rasterdataene ser ut, kan vi starte med å lage en enkel todimensjonal array i Python ved å bruke <code class="docutils literal notranslate"><span class="pre">numpy</span></code>. I det følgende vil vi modifisere rasterlaget til å representere et enkelt terreng som har en høyde midt i rutenettet. Vi gjør dette ved å sette høyere verdier i midten mens de andre verdiene er representert med verdi 0. La oss starte med å importere <code class="docutils literal notranslate"><span class="pre">numpy</span></code> og <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code>-biblioteket som vi bruker for å visualisere dataene våre:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Å lage et enkelt 2D-rasterlag (en 2D-matrise) med 10x10-matrise kan enkelt gjøres ved å bruke en <code class="docutils literal notranslate"><span class="pre">numpy</span></code>-metode <code class="docutils literal notranslate"><span class="pre">.zeros()</span></code> med fyller cellene (piksler) med nuller. Hver null representerer en standard pikselverdi (f.eks. 0 høyde). Du kan tenke på dette som et tomt rasternett:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">raster_lag</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="n">raster_lag</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[0., 0., 0., 0., 0., 0., 0., 0., 0., 0.],
+       [0., 0., 0., 0., 0., 0., 0., 0., 0., 0.],
+       [0., 0., 0., 0., 0., 0., 0., 0., 0., 0.],
+       [0., 0., 0., 0., 0., 0., 0., 0., 0., 0.],
+       [0., 0., 0., 0., 0., 0., 0., 0., 0., 0.],
+       [0., 0., 0., 0., 0., 0., 0., 0., 0., 0.],
+       [0., 0., 0., 0., 0., 0., 0., 0., 0., 0.],
+       [0., 0., 0., 0., 0., 0., 0., 0., 0., 0.],
+       [0., 0., 0., 0., 0., 0., 0., 0., 0., 0.],
+       [0., 0., 0., 0., 0., 0., 0., 0., 0., 0.]])
+</pre></div>
+</div>
+</div>
+</div>
+<p>Nå har vi en enkel 2D-matrise fylt med nuller. Deretter modifiserer vi rasterlaget for å representere et enkelt terreng og legger til større tall i midten av rutenettet ved å sette høyere verdier i midten. Vi kan gjøre dette ved å <em><span class="xref std std-term">slice</span></em> numpy-matrisen ved å bruke indeksene til matrisen og oppdatere tallene på disse stedene til å være høyere. Å skjære “numpy”-matriser skjer på lignende måte som når du arbeider med Python-lister og får tilgang til elementene i en liste (se kapittel 2.2). Men i dette tilfellet gjør vi dette i to dimensjoner ved å få tilgang til verdiene som er lagret i spesifikke rader og kolonner ved å følge syntaksen: <code class="docutils literal notranslate"><span class="pre">[start-rad-idx:</span> <span class="pre">end-row-idx,</span> <span class="pre">start-col-idx:</span> <span class="pre">end-col-</span> <span class="pre">idx]</span></code>. Dermed kan vi oppdatere verdiene i vår 2D-matrise som følger:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">raster_lag</span><span class="p">[</span><span class="mi">4</span><span class="p">:</span><span class="mi">7</span><span class="p">,</span> <span class="mi">4</span><span class="p">:</span><span class="mi">7</span><span class="p">]</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">raster_lag</span><span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">raster_lag</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.],
+       [ 0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.],
+       [ 0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.],
+       [ 0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.],
+       [ 0.,  0.,  0.,  0.,  5.,  5.,  5.,  0.,  0.,  0.],
+       [ 0.,  0.,  0.,  0.,  5., 10.,  5.,  0.,  0.,  0.],
+       [ 0.,  0.,  0.,  0.,  5.,  5.,  5.,  0.,  0.,  0.],
+       [ 0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.],
+       [ 0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.],
+       [ 0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.]])
+</pre></div>
+</div>
+</div>
+</div>
+<p>Her oppdaterte vi først cellene mellom den fjerde og syvende raden og kolonnen (<code class="docutils literal notranslate"><span class="pre">[4:7,</span> <span class="pre">4:7]</span></code>) til å ha en verdi <code class="docutils literal notranslate"><span class="pre">5</span></code>, og deretter oppdaterte vi midten av matrisen til å representere toppen av bakken med verdien <code class="docutils literal notranslate"><span class="pre">10</span></code>. Som en Resultatet har vi et enkelt rasterlag som simulerer et enkelt terreng. Vi kan også plotte dette rasterlaget ved å bruke <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code>-biblioteket og dets <code class="docutils literal notranslate"><span class="pre">.imshow()</span></code>-funksjon som kan brukes til å visualisere arrays:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">raster_lag</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;terrain&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Høyde&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Enkelt rasterlag som representerer en ås&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/28a9cf719d40a71b0183289d973c8cf39acb07554079aee58785ebd9ef0943ad.png" src="../../_images/28a9cf719d40a71b0183289d973c8cf39acb07554079aee58785ebd9ef0943ad.png" />
+</div>
+</div>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="introduksjon-til-datastrukturer-i-xarray">
+<h1>Introduksjon til datastrukturer i xarray<a class="headerlink" href="#introduksjon-til-datastrukturer-i-xarray" title="Link to this heading">#</a></h1>
+<p>Nå som du har lært litt grunnleggende om rasterdata og hvordan du lager en enkel 2-dimensjonal raster-array ved å bruke “numpy”, fortsetter vi å utforske på en mer omfattende måte hvordan du arbeider med virkelige rasterdata ved å bruke “xarray” og <code class="docutils literal notranslate"><span class="pre">rioxarray</span></code>-biblioteker (+ andre relevante biblioteker knyttet til dem). <code class="docutils literal notranslate"><span class="pre">xarray</span></code>-biblioteket er et svært nyttig verktøy for å lagre, representere og manipulere rasterdata, mens <code class="docutils literal notranslate"><span class="pre">rioxarray</span></code> gir forskjellige rasterbehandlingsfunksjoner (GIS) på toppen av <code class="docutils literal notranslate"><span class="pre">xarray</span></code>-datastrukturene, for eksempel lesing og skriving av flere forskjellige rasterformater og utføre ulike geoberegningsoppgaver. Under panseret bruker <code class="docutils literal notranslate"><span class="pre">rioxarray</span></code> et annet Python-bibliotek kalt <code class="docutils literal notranslate"><span class="pre">rasterio</span></code> (som fungerer med N-dimensjonale <code class="docutils literal notranslate"><span class="pre">numpy</span></code>-matriser), men fordelen med <code class="docutils literal notranslate"><span class="pre">xarray</span></code> og <code class="docutils literal notranslate"><span class="pre">rioxarray</span></code> er at de gir en enklere og mer intuitiv måte å jobbe med rasterdatalag, på en litt lignende måte som å jobbe med vektordata ved å bruke <code class="docutils literal notranslate"><span class="pre">geopandas</span></code>.</p>
+<p>Når du arbeider med rasterdata har du vanligvis ulike lag som representerer ulike geografiske trekk ved verden (f.eks. høyde, temperatur, nedbør osv.), og disse dataene blir muligens fanget opp på ulike tider av året/dagen/timen, noe som betyr at du har longitudinelle observasjoner fra samme område, som utgjør tidsseriedata. Oftere enn ikke må du kombinere informasjon fra disse lagene for å kunne gjennomføre meningsfulle analyser basert på dataene, for eksempel å lage en værmelding. En av de største fordelene med “xarray” er at du enkelt kan lagre, kombinere og analysere alle disse forskjellige lagene via et enkelt objekt, det vil si et “Dataset”, som vist i figur 7.2.</p>
+<p>De to grunnleggende datastrukturene som tilbys av ‘xarray’-biblioteket er ‘DataArray’ og ‘Dataset’ (Figur 7.2). Begge bygger på og utvider styrkene til bibliotekene “numpy” og “pandas”. ‘DataArray’ er en merket N-dimensjonal array som ligner på ‘pandas.Series’ men fungerer med rasterdata (lagret som ‘numpy’ arrays). “Datasettet” er igjen en flerdimensjonal array-database i minnet som inneholder flere “DataArray”-objekter. I tillegg til variablene som inneholder observasjonene av et gitt fenomen, har du også <code class="docutils literal notranslate"><span class="pre">x</span></code>- og <code class="docutils literal notranslate"><span class="pre">y</span></code>-koordinatene til observasjonene lagret i separate lag, samt metadata som gir relevant informasjon om dataene dine, for eksempel Koordinatreferansesystem og /eller tid. Dermed er et “datasett” som inneholder rasterdata veldig likt “geopandas.GeoDataFrame”, og faktisk kan forskjellige “xarray”-operasjoner føles veldig kjent hvis du har lært det grunnleggende om “pandas” og “geopandas” dekket i kapittel 3 og 6.</p>
+<p><img alt="Figure 7.2. Key  data structures. Image source: Xarray Community (2024), lisensiert under Apache 2.0." src="https://docs.xarray.dev/en/stable/_images/dataset-diagram.png" /></p>
+<p><em><strong>Figur 7.2</strong> Nøkkel “xarray” datastrukturer. Bildekilde: <a class="reference external" href="https://tutorial.xarray.dev/fundamentals/01_data_structures.html">Xarray Community</a> (2024), lisensiert under Apache 2.0.</em></p>
+<p>Noen av fordelene med “xarray” inkluderer:</p>
+<ul class="simple">
+<li><p>Et mer intuitivt og brukervennlig grensesnitt for å jobbe med flerdimensjonale arrays (sammenlignet f.eks. med “numpy”)</p></li>
+<li><p>Muligheten til å velge og kombinere data langs en dimensjon på tvers av alle arrays i et “Datasett” samtidig</p></li>
+<li><p>Kompatibilitet med et stort økosystem av Python-biblioteker som fungerer med arrays/rasterdata</p></li>
+<li><p>Tett integrering av funksjonaliteter fra velkjente Python-dataanalysebiblioteker, som “pandas”, “numpy”, “matplotlib” og “dask”.</p></li>
+</ul>
+<section id="lese-inn-en-fil">
+<h2>Lese inn en fil<a class="headerlink" href="#lese-inn-en-fil" title="Link to this heading">#</a></h2>
+<p>Vi skal nå bruke <code class="docutils literal notranslate"><span class="pre">xarray</span></code> og <code class="docutils literal notranslate"><span class="pre">rioaxarray</span></code> til å lese inn rasterfilen vår. <code class="docutils literal notranslate"><span class="pre">xarray</span></code> og <code class="docutils literal notranslate"><span class="pre">rioaxarray</span></code> er ikke en del av oppsettet vi satte opp i <code class="docutils literal notranslate"><span class="pre">conda</span></code>-miljøet i starten av kurset. Hvis du ikke har installert det på egenhånd, kan det derfor være nødvendig å kjøre <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">install</span> <span class="pre">-c</span> <span class="pre">conda-forge</span> <span class="pre">xarray</span> <span class="pre">rioxarray</span></code> for å sørge for at den neste delen av notebooken fungerer.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">xarray</span> <span class="k">as</span> <span class="nn">xr</span>
+<span class="kn">import</span> <span class="nn">rasterio</span>
+<span class="kn">from</span> <span class="nn">osgeo</span> <span class="kn">import</span> <span class="n">gdal</span>
+<span class="kn">import</span> <span class="nn">pathlib</span>
+<span class="n">NOTEBOOK_PATH</span> <span class="o">=</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">()</span><span class="o">.</span><span class="n">resolve</span><span class="p">()</span>
+<span class="n">DATA_MAPPE</span> <span class="o">=</span> <span class="n">NOTEBOOK_PATH</span> <span class="o">/</span> <span class="s2">&quot;data&quot;</span>
+
+<span class="kn">import</span> <span class="nn">rioxarray</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="n">DATA_MAPPE</span><span class="o">/</span><span class="s2">&quot;Aas_20240625.tif&quot;</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">engine</span><span class="o">=</span><span class="s1">&#39;rasterio&#39;</span><span class="p">)</span>
+<span class="n">data</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div><svg style="position: absolute; width: 0; height: 0; overflow: hidden">
+<defs>
+<symbol id="icon-database" viewBox="0 0 32 32">
+<path d="M16 0c-8.837 0-16 2.239-16 5v4c0 2.761 7.163 5 16 5s16-2.239 16-5v-4c0-2.761-7.163-5-16-5z"></path>
+<path d="M16 17c-8.837 0-16-2.239-16-5v6c0 2.761 7.163 5 16 5s16-2.239 16-5v-6c0 2.761-7.163 5-16 5z"></path>
+<path d="M16 26c-8.837 0-16-2.239-16-5v6c0 2.761 7.163 5 16 5s16-2.239 16-5v-6c0 2.761-7.163 5-16 5z"></path>
+</symbol>
+<symbol id="icon-file-text2" viewBox="0 0 32 32">
+<path d="M28.681 7.159c-0.694-0.947-1.662-2.053-2.724-3.116s-2.169-2.030-3.116-2.724c-1.612-1.182-2.393-1.319-2.841-1.319h-15.5c-1.378 0-2.5 1.121-2.5 2.5v27c0 1.378 1.122 2.5 2.5 2.5h23c1.378 0 2.5-1.122 2.5-2.5v-19.5c0-0.448-0.137-1.23-1.319-2.841zM24.543 5.457c0.959 0.959 1.712 1.825 2.268 2.543h-4.811v-4.811c0.718 0.556 1.584 1.309 2.543 2.268zM28 29.5c0 0.271-0.229 0.5-0.5 0.5h-23c-0.271 0-0.5-0.229-0.5-0.5v-27c0-0.271 0.229-0.5 0.5-0.5 0 0 15.499-0 15.5 0v7c0 0.552 0.448 1 1 1h7v19.5z"></path>
+<path d="M23 26h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+<path d="M23 22h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+<path d="M23 18h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+</symbol>
+</defs>
+</svg>
+<style>/* CSS stylesheet for displaying xarray objects in jupyterlab.
+ *
+ */
+
+:root {
+  --xr-font-color0: var(--jp-content-font-color0, rgba(0, 0, 0, 1));
+  --xr-font-color2: var(--jp-content-font-color2, rgba(0, 0, 0, 0.54));
+  --xr-font-color3: var(--jp-content-font-color3, rgba(0, 0, 0, 0.38));
+  --xr-border-color: var(--jp-border-color2, #e0e0e0);
+  --xr-disabled-color: var(--jp-layout-color3, #bdbdbd);
+  --xr-background-color: var(--jp-layout-color0, white);
+  --xr-background-color-row-even: var(--jp-layout-color1, white);
+  --xr-background-color-row-odd: var(--jp-layout-color2, #eeeeee);
+}
+
+html[theme=dark],
+html[data-theme=dark],
+body[data-theme=dark],
+body.vscode-dark {
+  --xr-font-color0: rgba(255, 255, 255, 1);
+  --xr-font-color2: rgba(255, 255, 255, 0.54);
+  --xr-font-color3: rgba(255, 255, 255, 0.38);
+  --xr-border-color: #1F1F1F;
+  --xr-disabled-color: #515151;
+  --xr-background-color: #111111;
+  --xr-background-color-row-even: #111111;
+  --xr-background-color-row-odd: #313131;
+}
+
+.xr-wrap {
+  display: block !important;
+  min-width: 300px;
+  max-width: 700px;
+}
+
+.xr-text-repr-fallback {
+  /* fallback to plain text repr when CSS is not injected (untrusted notebook) */
+  display: none;
+}
+
+.xr-header {
+  padding-top: 6px;
+  padding-bottom: 6px;
+  margin-bottom: 4px;
+  border-bottom: solid 1px var(--xr-border-color);
+}
+
+.xr-header > div,
+.xr-header > ul {
+  display: inline;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.xr-obj-type,
+.xr-array-name {
+  margin-left: 2px;
+  margin-right: 10px;
+}
+
+.xr-obj-type {
+  color: var(--xr-font-color2);
+}
+
+.xr-sections {
+  padding-left: 0 !important;
+  display: grid;
+  grid-template-columns: 150px auto auto 1fr 0 20px 0 20px;
+}
+
+.xr-section-item {
+  display: contents;
+}
+
+.xr-section-item input {
+  display: inline-block;
+  opacity: 0;
+}
+
+.xr-section-item input + label {
+  color: var(--xr-disabled-color);
+}
+
+.xr-section-item input:enabled + label {
+  cursor: pointer;
+  color: var(--xr-font-color2);
+}
+
+.xr-section-item input:focus + label {
+  border: 2px solid var(--xr-font-color0);
+}
+
+.xr-section-item input:enabled + label:hover {
+  color: var(--xr-font-color0);
+}
+
+.xr-section-summary {
+  grid-column: 1;
+  color: var(--xr-font-color2);
+  font-weight: 500;
+}
+
+.xr-section-summary > span {
+  display: inline-block;
+  padding-left: 0.5em;
+}
+
+.xr-section-summary-in:disabled + label {
+  color: var(--xr-font-color2);
+}
+
+.xr-section-summary-in + label:before {
+  display: inline-block;
+  content: '►';
+  font-size: 11px;
+  width: 15px;
+  text-align: center;
+}
+
+.xr-section-summary-in:disabled + label:before {
+  color: var(--xr-disabled-color);
+}
+
+.xr-section-summary-in:checked + label:before {
+  content: '▼';
+}
+
+.xr-section-summary-in:checked + label > span {
+  display: none;
+}
+
+.xr-section-summary,
+.xr-section-inline-details {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+.xr-section-inline-details {
+  grid-column: 2 / -1;
+}
+
+.xr-section-details {
+  display: none;
+  grid-column: 1 / -1;
+  margin-bottom: 5px;
+}
+
+.xr-section-summary-in:checked ~ .xr-section-details {
+  display: contents;
+}
+
+.xr-array-wrap {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 20px auto;
+}
+
+.xr-array-wrap > label {
+  grid-column: 1;
+  vertical-align: top;
+}
+
+.xr-preview {
+  color: var(--xr-font-color3);
+}
+
+.xr-array-preview,
+.xr-array-data {
+  padding: 0 5px !important;
+  grid-column: 2;
+}
+
+.xr-array-data,
+.xr-array-in:checked ~ .xr-array-preview {
+  display: none;
+}
+
+.xr-array-in:checked ~ .xr-array-data,
+.xr-array-preview {
+  display: inline-block;
+}
+
+.xr-dim-list {
+  display: inline-block !important;
+  list-style: none;
+  padding: 0 !important;
+  margin: 0;
+}
+
+.xr-dim-list li {
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+}
+
+.xr-dim-list:before {
+  content: '(';
+}
+
+.xr-dim-list:after {
+  content: ')';
+}
+
+.xr-dim-list li:not(:last-child):after {
+  content: ',';
+  padding-right: 5px;
+}
+
+.xr-has-index {
+  font-weight: bold;
+}
+
+.xr-var-list,
+.xr-var-item {
+  display: contents;
+}
+
+.xr-var-item > div,
+.xr-var-item label,
+.xr-var-item > .xr-var-name span {
+  background-color: var(--xr-background-color-row-even);
+  margin-bottom: 0;
+}
+
+.xr-var-item > .xr-var-name:hover span {
+  padding-right: 5px;
+}
+
+.xr-var-list > li:nth-child(odd) > div,
+.xr-var-list > li:nth-child(odd) > label,
+.xr-var-list > li:nth-child(odd) > .xr-var-name span {
+  background-color: var(--xr-background-color-row-odd);
+}
+
+.xr-var-name {
+  grid-column: 1;
+}
+
+.xr-var-dims {
+  grid-column: 2;
+}
+
+.xr-var-dtype {
+  grid-column: 3;
+  text-align: right;
+  color: var(--xr-font-color2);
+}
+
+.xr-var-preview {
+  grid-column: 4;
+}
+
+.xr-index-preview {
+  grid-column: 2 / 5;
+  color: var(--xr-font-color2);
+}
+
+.xr-var-name,
+.xr-var-dims,
+.xr-var-dtype,
+.xr-preview,
+.xr-attrs dt {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-right: 10px;
+}
+
+.xr-var-name:hover,
+.xr-var-dims:hover,
+.xr-var-dtype:hover,
+.xr-attrs dt:hover {
+  overflow: visible;
+  width: auto;
+  z-index: 1;
+}
+
+.xr-var-attrs,
+.xr-var-data,
+.xr-index-data {
+  display: none;
+  background-color: var(--xr-background-color) !important;
+  padding-bottom: 5px !important;
+}
+
+.xr-var-attrs-in:checked ~ .xr-var-attrs,
+.xr-var-data-in:checked ~ .xr-var-data,
+.xr-index-data-in:checked ~ .xr-index-data {
+  display: block;
+}
+
+.xr-var-data > table {
+  float: right;
+}
+
+.xr-var-name span,
+.xr-var-data,
+.xr-index-name div,
+.xr-index-data,
+.xr-attrs {
+  padding-left: 25px !important;
+}
+
+.xr-attrs,
+.xr-var-attrs,
+.xr-var-data,
+.xr-index-data {
+  grid-column: 1 / -1;
+}
+
+dl.xr-attrs {
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: 125px auto;
+}
+
+.xr-attrs dt,
+.xr-attrs dd {
+  padding: 0;
+  margin: 0;
+  float: left;
+  padding-right: 10px;
+  width: auto;
+}
+
+.xr-attrs dt {
+  font-weight: normal;
+  grid-column: 1;
+}
+
+.xr-attrs dt:hover span {
+  display: inline-block;
+  background: var(--xr-background-color);
+  padding-right: 10px;
+}
+
+.xr-attrs dd {
+  grid-column: 2;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+.xr-icon-database,
+.xr-icon-file-text2,
+.xr-no-icon {
+  display: inline-block;
+  vertical-align: middle;
+  width: 1em;
+  height: 1.5em !important;
+  stroke-width: 0;
+  stroke: currentColor;
+  fill: currentColor;
+}
+</style><pre class='xr-text-repr-fallback'>&lt;xarray.Dataset&gt; Size: 54MB
+Dimensions:      (band: 4, x: 2439, y: 1378)
+Coordinates:
+  * band         (band) int64 32B 1 2 3 4
+  * x            (x) float64 20kB 5.911e+05 5.911e+05 ... 6.155e+05 6.155e+05
+  * y            (y) float64 11kB 6.63e+06 6.63e+06 ... 6.616e+06 6.616e+06
+    spatial_ref  int64 8B ...
+Data variables:
+    band_data    (band, y, x) float32 54MB ...</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.Dataset</div></div><ul class='xr-sections'><li class='xr-section-item'><input id='section-c4eba6aa-cd7a-435f-9161-031086f08ca9' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-c4eba6aa-cd7a-435f-9161-031086f08ca9' class='xr-section-summary'  title='Expand/collapse section'>Dimensions:</label><div class='xr-section-inline-details'><ul class='xr-dim-list'><li><span class='xr-has-index'>band</span>: 4</li><li><span class='xr-has-index'>x</span>: 2439</li><li><span class='xr-has-index'>y</span>: 1378</li></ul></div><div class='xr-section-details'></div></li><li class='xr-section-item'><input id='section-e62d7398-4711-4d2d-9803-1cb529191c1b' class='xr-section-summary-in' type='checkbox'  checked><label for='section-e62d7398-4711-4d2d-9803-1cb529191c1b' class='xr-section-summary' >Coordinates: <span>(4)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>band</span></div><div class='xr-var-dims'>(band)</div><div class='xr-var-dtype'>int64</div><div class='xr-var-preview xr-preview'>1 2 3 4</div><input id='attrs-4ee77aa8-8abc-457f-94aa-c05372034492' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-4ee77aa8-8abc-457f-94aa-c05372034492' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-1ad1cdd4-eba7-4a88-a3f8-e95b9120503c' class='xr-var-data-in' type='checkbox'><label for='data-1ad1cdd4-eba7-4a88-a3f8-e95b9120503c' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([1, 2, 3, 4])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>x</span></div><div class='xr-var-dims'>(x)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>5.911e+05 5.911e+05 ... 6.155e+05</div><input id='attrs-1eedea53-d4bf-4839-bb65-67c960f015d4' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-1eedea53-d4bf-4839-bb65-67c960f015d4' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-2ffb0e47-3d5e-4a24-969d-58e85ed9ef9d' class='xr-var-data-in' type='checkbox'><label for='data-2ffb0e47-3d5e-4a24-969d-58e85ed9ef9d' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([591106.414369, 591116.413908, 591126.413447, ..., 615465.290753,
+       615475.290292, 615485.289831])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>y</span></div><div class='xr-var-dims'>(y)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>6.63e+06 6.63e+06 ... 6.616e+06</div><input id='attrs-4e0cd16b-6458-4729-851e-289354e0b099' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-4e0cd16b-6458-4729-851e-289354e0b099' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-cf90f4e3-8355-4a0d-838e-67af54c7db66' class='xr-var-data-in' type='checkbox'><label for='data-cf90f4e3-8355-4a0d-838e-67af54c7db66' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([6630014.779816, 6630004.777248, 6629994.774681, ..., 6616261.249119,
+       6616251.246552, 6616241.243984])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>spatial_ref</span></div><div class='xr-var-dims'>()</div><div class='xr-var-dtype'>int64</div><div class='xr-var-preview xr-preview'>...</div><input id='attrs-2be66908-a32e-4274-b8d3-a9f4591fa611' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-2be66908-a32e-4274-b8d3-a9f4591fa611' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-ba77e743-0ee1-4d7c-8e56-23f840b7ee4a' class='xr-var-data-in' type='checkbox'><label for='data-ba77e743-0ee1-4d7c-8e56-23f840b7ee4a' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>crs_wkt :</span></dt><dd>PROJCS[&quot;WGS 84 / UTM zone 32N&quot;,GEOGCS[&quot;WGS 84&quot;,DATUM[&quot;WGS_1984&quot;,SPHEROID[&quot;WGS 84&quot;,6378137,298.257223563,AUTHORITY[&quot;EPSG&quot;,&quot;7030&quot;]],AUTHORITY[&quot;EPSG&quot;,&quot;6326&quot;]],PRIMEM[&quot;Greenwich&quot;,0,AUTHORITY[&quot;EPSG&quot;,&quot;8901&quot;]],UNIT[&quot;degree&quot;,0.0174532925199433,AUTHORITY[&quot;EPSG&quot;,&quot;9122&quot;]],AUTHORITY[&quot;EPSG&quot;,&quot;4326&quot;]],PROJECTION[&quot;Transverse_Mercator&quot;],PARAMETER[&quot;latitude_of_origin&quot;,0],PARAMETER[&quot;central_meridian&quot;,9],PARAMETER[&quot;scale_factor&quot;,0.9996],PARAMETER[&quot;false_easting&quot;,500000],PARAMETER[&quot;false_northing&quot;,0],UNIT[&quot;metre&quot;,1,AUTHORITY[&quot;EPSG&quot;,&quot;9001&quot;]],AXIS[&quot;Easting&quot;,EAST],AXIS[&quot;Northing&quot;,NORTH],AUTHORITY[&quot;EPSG&quot;,&quot;32632&quot;]]</dd><dt><span>semi_major_axis :</span></dt><dd>6378137.0</dd><dt><span>semi_minor_axis :</span></dt><dd>6356752.314245179</dd><dt><span>inverse_flattening :</span></dt><dd>298.257223563</dd><dt><span>reference_ellipsoid_name :</span></dt><dd>WGS 84</dd><dt><span>longitude_of_prime_meridian :</span></dt><dd>0.0</dd><dt><span>prime_meridian_name :</span></dt><dd>Greenwich</dd><dt><span>geographic_crs_name :</span></dt><dd>WGS 84</dd><dt><span>horizontal_datum_name :</span></dt><dd>World Geodetic System 1984</dd><dt><span>projected_crs_name :</span></dt><dd>WGS 84 / UTM zone 32N</dd><dt><span>grid_mapping_name :</span></dt><dd>transverse_mercator</dd><dt><span>latitude_of_projection_origin :</span></dt><dd>0.0</dd><dt><span>longitude_of_central_meridian :</span></dt><dd>9.0</dd><dt><span>false_easting :</span></dt><dd>500000.0</dd><dt><span>false_northing :</span></dt><dd>0.0</dd><dt><span>scale_factor_at_central_meridian :</span></dt><dd>0.9996</dd><dt><span>spatial_ref :</span></dt><dd>PROJCS[&quot;WGS 84 / UTM zone 32N&quot;,GEOGCS[&quot;WGS 84&quot;,DATUM[&quot;WGS_1984&quot;,SPHEROID[&quot;WGS 84&quot;,6378137,298.257223563,AUTHORITY[&quot;EPSG&quot;,&quot;7030&quot;]],AUTHORITY[&quot;EPSG&quot;,&quot;6326&quot;]],PRIMEM[&quot;Greenwich&quot;,0,AUTHORITY[&quot;EPSG&quot;,&quot;8901&quot;]],UNIT[&quot;degree&quot;,0.0174532925199433,AUTHORITY[&quot;EPSG&quot;,&quot;9122&quot;]],AUTHORITY[&quot;EPSG&quot;,&quot;4326&quot;]],PROJECTION[&quot;Transverse_Mercator&quot;],PARAMETER[&quot;latitude_of_origin&quot;,0],PARAMETER[&quot;central_meridian&quot;,9],PARAMETER[&quot;scale_factor&quot;,0.9996],PARAMETER[&quot;false_easting&quot;,500000],PARAMETER[&quot;false_northing&quot;,0],UNIT[&quot;metre&quot;,1,AUTHORITY[&quot;EPSG&quot;,&quot;9001&quot;]],AXIS[&quot;Easting&quot;,EAST],AXIS[&quot;Northing&quot;,NORTH],AUTHORITY[&quot;EPSG&quot;,&quot;32632&quot;]]</dd><dt><span>GeoTransform :</span></dt><dd>591101.4146 9.999538745387454 0.0 6630019.7811 0.0 -10.002567779390393</dd></dl></div><div class='xr-var-data'><pre>[1 values with dtype=int64]</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-60f97b15-de5d-4c8d-be69-63148f4dbf41' class='xr-section-summary-in' type='checkbox'  checked><label for='section-60f97b15-de5d-4c8d-be69-63148f4dbf41' class='xr-section-summary' >Data variables: <span>(1)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span>band_data</span></div><div class='xr-var-dims'>(band, y, x)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>...</div><input id='attrs-a4c049f4-91ba-4a56-9c79-403da65d13e8' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-a4c049f4-91ba-4a56-9c79-403da65d13e8' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-32109568-c025-4823-bb37-0f22b828b891' class='xr-var-data-in' type='checkbox'><label for='data-32109568-c025-4823-bb37-0f22b828b891' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>AREA_OR_POINT :</span></dt><dd>Area</dd></dl></div><div class='xr-var-data'><pre>[13443768 values with dtype=float32]</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-b42588a5-ad03-4d99-9c18-376d02dba80b' class='xr-section-summary-in' type='checkbox'  ><label for='section-b42588a5-ad03-4d99-9c18-376d02dba80b' class='xr-section-summary' >Indexes: <span>(3)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-index-name'><div>band</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-9d13bca9-8878-4cec-80fe-be84f169a042' class='xr-index-data-in' type='checkbox'/><label for='index-9d13bca9-8878-4cec-80fe-be84f169a042' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([1, 2, 3, 4], dtype=&#x27;int64&#x27;, name=&#x27;band&#x27;))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>x</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-6fb4a9cb-3d58-4dc4-8724-75096afe9be9' class='xr-index-data-in' type='checkbox'/><label for='index-6fb4a9cb-3d58-4dc4-8724-75096afe9be9' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([591106.4143693728, 591116.4139081181, 591126.4134468635,
+       591136.4129856089, 591146.4125243543, 591156.4120630997,
+       591166.4116018451, 591176.4111405904, 591186.4106793358,
+       591196.4102180812,
+       ...
+        615395.293981919, 615405.2935206643, 615415.2930594097,
+       615425.2925981551, 615435.2921369005, 615445.2916756459,
+       615455.2912143912, 615465.2907531366,  615475.290291882,
+       615485.2898306274],
+      dtype=&#x27;float64&#x27;, name=&#x27;x&#x27;, length=2439))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>y</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-e7ca6dd4-420d-4865-981b-54044ff37b11' class='xr-index-data-in' type='checkbox'/><label for='index-e7ca6dd4-420d-4865-981b-54044ff37b11' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([ 6630014.779816111,  6630004.777248331,  6629994.774680552,
+        6629984.772112773,  6629974.769544993,  6629964.766977213,
+        6629954.764409434,  6629944.761841655, 6629934.7592738755,
+        6629924.756706096,
+       ...
+        6616331.267093904,  6616321.264526125,  6616311.261958346,
+       6616301.2593905665,  6616291.256822787,  6616281.254255008,
+        6616271.251687229, 6616261.2491194485,  6616251.246551669,
+         6616241.24398389],
+      dtype=&#x27;float64&#x27;, name=&#x27;y&#x27;, length=1378))</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-73da9d47-c3f0-4f2c-b3b7-09b7dee40754' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-73da9d47-c3f0-4f2c-b3b7-09b7dee40754' class='xr-section-summary'  title='Expand/collapse section'>Attributes: <span>(0)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'></dl></div></li></ul></div></div></div></div>
+</div>
+<p>Nå har vi lest GeoTIFF-filen inn i en <code class="docutils literal notranslate"><span class="pre">xarray.Dataset</span></code> datastruktur som vi lagret i en variabel <code class="docutils literal notranslate"><span class="pre">data</span></code>. “Datasettet” inneholder de faktiske dataverdiene for rastercellene, samt annen relevant attributtinformasjon relatert til dataene</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>xarray.core.dataset.Dataset
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Koordinatene i datasettet</span>
+<span class="n">data</span><span class="o">.</span><span class="n">coords</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Coordinates:
+  * band         (band) int64 32B 1 2 3 4
+  * x            (x) float64 20kB 5.911e+05 5.911e+05 ... 6.155e+05 6.155e+05
+  * y            (y) float64 11kB 6.63e+06 6.63e+06 ... 6.616e+06 6.616e+06
+    spatial_ref  int64 8B ...
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Projeksjonen til datasettet</span>
+<span class="n">data</span><span class="o">.</span><span class="n">rio</span><span class="o">.</span><span class="n">crs</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CRS.from_epsg(32632)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Variabler i datasettet</span>
+<span class="n">data</span><span class="o">.</span><span class="n">variables</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Frozen({&#39;band&#39;: &lt;xarray.IndexVariable &#39;band&#39; (band: 4)&gt; Size: 32B
+array([1, 2, 3, 4]), &#39;x&#39;: &lt;xarray.IndexVariable &#39;x&#39; (x: 2439)&gt; Size: 20kB
+array([591106.414369, 591116.413908, 591126.413447, ..., 615465.290753,
+       615475.290292, 615485.289831]), &#39;y&#39;: &lt;xarray.IndexVariable &#39;y&#39; (y: 1378)&gt; Size: 11kB
+array([6630014.779816, 6630004.777248, 6629994.774681, ..., 6616261.249119,
+       6616251.246552, 6616241.243984]), &#39;spatial_ref&#39;: &lt;xarray.Variable ()&gt; Size: 8B
+[1 values with dtype=int64]
+Attributes: (12/18)
+    crs_wkt:                           PROJCS[&quot;WGS 84 / UTM zone 32N&quot;,GEOGCS[...
+    semi_major_axis:                   6378137.0
+    semi_minor_axis:                   6356752.314245179
+    inverse_flattening:                298.257223563
+    reference_ellipsoid_name:          WGS 84
+    longitude_of_prime_meridian:       0.0
+    ...                                ...
+    longitude_of_central_meridian:     9.0
+    false_easting:                     500000.0
+    false_northing:                    0.0
+    scale_factor_at_central_meridian:  0.9996
+    spatial_ref:                       PROJCS[&quot;WGS 84 / UTM zone 32N&quot;,GEOGCS[...
+    GeoTransform:                      591101.4146 9.999538745387454 0.0 6630..., &#39;band_data&#39;: &lt;xarray.Variable (band: 4, y: 1378, x: 2439)&gt; Size: 54MB
+[13443768 values with dtype=float32]
+Attributes:
+    AREA_OR_POINT:  Area})
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Hvor mange og hvilke bånd</span>
+<span class="n">data</span><span class="o">.</span><span class="n">band</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">band</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>((4,),
+ &lt;xarray.DataArray &#39;band&#39; (band: 4)&gt; Size: 32B
+ array([1, 2, 3, 4])
+ Coordinates:
+   * band         (band) int64 32B 1 2 3 4
+     spatial_ref  int64 8B ...)
+</pre></div>
+</div>
+</div>
+</div>
+<section id="ndvi">
+<h3>NDVI<a class="headerlink" href="#ndvi" title="Link to this heading">#</a></h3>
+<p>En vanlig operasjon er å beregne <code class="docutils literal notranslate"><span class="pre">NDVI</span></code> (Normalized difference vegetation index), noe som ganske enkelt lar seg gjøre:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">NiR</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;band_data&#39;</span><span class="p">][</span><span class="mi">3</span><span class="p">,:,:]</span><span class="c1">#Band 4 as counting starts from 0</span>
+<span class="n">Red</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;band_data&#39;</span><span class="p">][</span><span class="mi">2</span><span class="p">,:,:]</span><span class="c1">#Band 3 as counting starts from 0</span>
+<span class="n">NDVI</span><span class="o">=</span><span class="p">(</span><span class="n">NiR</span><span class="o">-</span><span class="n">Red</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">NiR</span><span class="o">+</span><span class="n">Red</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">NDVI</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div><svg style="position: absolute; width: 0; height: 0; overflow: hidden">
+<defs>
+<symbol id="icon-database" viewBox="0 0 32 32">
+<path d="M16 0c-8.837 0-16 2.239-16 5v4c0 2.761 7.163 5 16 5s16-2.239 16-5v-4c0-2.761-7.163-5-16-5z"></path>
+<path d="M16 17c-8.837 0-16-2.239-16-5v6c0 2.761 7.163 5 16 5s16-2.239 16-5v-6c0 2.761-7.163 5-16 5z"></path>
+<path d="M16 26c-8.837 0-16-2.239-16-5v6c0 2.761 7.163 5 16 5s16-2.239 16-5v-6c0 2.761-7.163 5-16 5z"></path>
+</symbol>
+<symbol id="icon-file-text2" viewBox="0 0 32 32">
+<path d="M28.681 7.159c-0.694-0.947-1.662-2.053-2.724-3.116s-2.169-2.030-3.116-2.724c-1.612-1.182-2.393-1.319-2.841-1.319h-15.5c-1.378 0-2.5 1.121-2.5 2.5v27c0 1.378 1.122 2.5 2.5 2.5h23c1.378 0 2.5-1.122 2.5-2.5v-19.5c0-0.448-0.137-1.23-1.319-2.841zM24.543 5.457c0.959 0.959 1.712 1.825 2.268 2.543h-4.811v-4.811c0.718 0.556 1.584 1.309 2.543 2.268zM28 29.5c0 0.271-0.229 0.5-0.5 0.5h-23c-0.271 0-0.5-0.229-0.5-0.5v-27c0-0.271 0.229-0.5 0.5-0.5 0 0 15.499-0 15.5 0v7c0 0.552 0.448 1 1 1h7v19.5z"></path>
+<path d="M23 26h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+<path d="M23 22h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+<path d="M23 18h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+</symbol>
+</defs>
+</svg>
+<style>/* CSS stylesheet for displaying xarray objects in jupyterlab.
+ *
+ */
+
+:root {
+  --xr-font-color0: var(--jp-content-font-color0, rgba(0, 0, 0, 1));
+  --xr-font-color2: var(--jp-content-font-color2, rgba(0, 0, 0, 0.54));
+  --xr-font-color3: var(--jp-content-font-color3, rgba(0, 0, 0, 0.38));
+  --xr-border-color: var(--jp-border-color2, #e0e0e0);
+  --xr-disabled-color: var(--jp-layout-color3, #bdbdbd);
+  --xr-background-color: var(--jp-layout-color0, white);
+  --xr-background-color-row-even: var(--jp-layout-color1, white);
+  --xr-background-color-row-odd: var(--jp-layout-color2, #eeeeee);
+}
+
+html[theme=dark],
+html[data-theme=dark],
+body[data-theme=dark],
+body.vscode-dark {
+  --xr-font-color0: rgba(255, 255, 255, 1);
+  --xr-font-color2: rgba(255, 255, 255, 0.54);
+  --xr-font-color3: rgba(255, 255, 255, 0.38);
+  --xr-border-color: #1F1F1F;
+  --xr-disabled-color: #515151;
+  --xr-background-color: #111111;
+  --xr-background-color-row-even: #111111;
+  --xr-background-color-row-odd: #313131;
+}
+
+.xr-wrap {
+  display: block !important;
+  min-width: 300px;
+  max-width: 700px;
+}
+
+.xr-text-repr-fallback {
+  /* fallback to plain text repr when CSS is not injected (untrusted notebook) */
+  display: none;
+}
+
+.xr-header {
+  padding-top: 6px;
+  padding-bottom: 6px;
+  margin-bottom: 4px;
+  border-bottom: solid 1px var(--xr-border-color);
+}
+
+.xr-header > div,
+.xr-header > ul {
+  display: inline;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.xr-obj-type,
+.xr-array-name {
+  margin-left: 2px;
+  margin-right: 10px;
+}
+
+.xr-obj-type {
+  color: var(--xr-font-color2);
+}
+
+.xr-sections {
+  padding-left: 0 !important;
+  display: grid;
+  grid-template-columns: 150px auto auto 1fr 0 20px 0 20px;
+}
+
+.xr-section-item {
+  display: contents;
+}
+
+.xr-section-item input {
+  display: inline-block;
+  opacity: 0;
+}
+
+.xr-section-item input + label {
+  color: var(--xr-disabled-color);
+}
+
+.xr-section-item input:enabled + label {
+  cursor: pointer;
+  color: var(--xr-font-color2);
+}
+
+.xr-section-item input:focus + label {
+  border: 2px solid var(--xr-font-color0);
+}
+
+.xr-section-item input:enabled + label:hover {
+  color: var(--xr-font-color0);
+}
+
+.xr-section-summary {
+  grid-column: 1;
+  color: var(--xr-font-color2);
+  font-weight: 500;
+}
+
+.xr-section-summary > span {
+  display: inline-block;
+  padding-left: 0.5em;
+}
+
+.xr-section-summary-in:disabled + label {
+  color: var(--xr-font-color2);
+}
+
+.xr-section-summary-in + label:before {
+  display: inline-block;
+  content: '►';
+  font-size: 11px;
+  width: 15px;
+  text-align: center;
+}
+
+.xr-section-summary-in:disabled + label:before {
+  color: var(--xr-disabled-color);
+}
+
+.xr-section-summary-in:checked + label:before {
+  content: '▼';
+}
+
+.xr-section-summary-in:checked + label > span {
+  display: none;
+}
+
+.xr-section-summary,
+.xr-section-inline-details {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+.xr-section-inline-details {
+  grid-column: 2 / -1;
+}
+
+.xr-section-details {
+  display: none;
+  grid-column: 1 / -1;
+  margin-bottom: 5px;
+}
+
+.xr-section-summary-in:checked ~ .xr-section-details {
+  display: contents;
+}
+
+.xr-array-wrap {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 20px auto;
+}
+
+.xr-array-wrap > label {
+  grid-column: 1;
+  vertical-align: top;
+}
+
+.xr-preview {
+  color: var(--xr-font-color3);
+}
+
+.xr-array-preview,
+.xr-array-data {
+  padding: 0 5px !important;
+  grid-column: 2;
+}
+
+.xr-array-data,
+.xr-array-in:checked ~ .xr-array-preview {
+  display: none;
+}
+
+.xr-array-in:checked ~ .xr-array-data,
+.xr-array-preview {
+  display: inline-block;
+}
+
+.xr-dim-list {
+  display: inline-block !important;
+  list-style: none;
+  padding: 0 !important;
+  margin: 0;
+}
+
+.xr-dim-list li {
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+}
+
+.xr-dim-list:before {
+  content: '(';
+}
+
+.xr-dim-list:after {
+  content: ')';
+}
+
+.xr-dim-list li:not(:last-child):after {
+  content: ',';
+  padding-right: 5px;
+}
+
+.xr-has-index {
+  font-weight: bold;
+}
+
+.xr-var-list,
+.xr-var-item {
+  display: contents;
+}
+
+.xr-var-item > div,
+.xr-var-item label,
+.xr-var-item > .xr-var-name span {
+  background-color: var(--xr-background-color-row-even);
+  margin-bottom: 0;
+}
+
+.xr-var-item > .xr-var-name:hover span {
+  padding-right: 5px;
+}
+
+.xr-var-list > li:nth-child(odd) > div,
+.xr-var-list > li:nth-child(odd) > label,
+.xr-var-list > li:nth-child(odd) > .xr-var-name span {
+  background-color: var(--xr-background-color-row-odd);
+}
+
+.xr-var-name {
+  grid-column: 1;
+}
+
+.xr-var-dims {
+  grid-column: 2;
+}
+
+.xr-var-dtype {
+  grid-column: 3;
+  text-align: right;
+  color: var(--xr-font-color2);
+}
+
+.xr-var-preview {
+  grid-column: 4;
+}
+
+.xr-index-preview {
+  grid-column: 2 / 5;
+  color: var(--xr-font-color2);
+}
+
+.xr-var-name,
+.xr-var-dims,
+.xr-var-dtype,
+.xr-preview,
+.xr-attrs dt {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-right: 10px;
+}
+
+.xr-var-name:hover,
+.xr-var-dims:hover,
+.xr-var-dtype:hover,
+.xr-attrs dt:hover {
+  overflow: visible;
+  width: auto;
+  z-index: 1;
+}
+
+.xr-var-attrs,
+.xr-var-data,
+.xr-index-data {
+  display: none;
+  background-color: var(--xr-background-color) !important;
+  padding-bottom: 5px !important;
+}
+
+.xr-var-attrs-in:checked ~ .xr-var-attrs,
+.xr-var-data-in:checked ~ .xr-var-data,
+.xr-index-data-in:checked ~ .xr-index-data {
+  display: block;
+}
+
+.xr-var-data > table {
+  float: right;
+}
+
+.xr-var-name span,
+.xr-var-data,
+.xr-index-name div,
+.xr-index-data,
+.xr-attrs {
+  padding-left: 25px !important;
+}
+
+.xr-attrs,
+.xr-var-attrs,
+.xr-var-data,
+.xr-index-data {
+  grid-column: 1 / -1;
+}
+
+dl.xr-attrs {
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: 125px auto;
+}
+
+.xr-attrs dt,
+.xr-attrs dd {
+  padding: 0;
+  margin: 0;
+  float: left;
+  padding-right: 10px;
+  width: auto;
+}
+
+.xr-attrs dt {
+  font-weight: normal;
+  grid-column: 1;
+}
+
+.xr-attrs dt:hover span {
+  display: inline-block;
+  background: var(--xr-background-color);
+  padding-right: 10px;
+}
+
+.xr-attrs dd {
+  grid-column: 2;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+.xr-icon-database,
+.xr-icon-file-text2,
+.xr-no-icon {
+  display: inline-block;
+  vertical-align: middle;
+  width: 1em;
+  height: 1.5em !important;
+  stroke-width: 0;
+  stroke: currentColor;
+  fill: currentColor;
+}
+</style><pre class='xr-text-repr-fallback'>&lt;xarray.DataArray &#x27;band_data&#x27; (y: 1378, x: 2439)&gt; Size: 13MB
+array([[ 0.22876385,  0.22518766,  0.2872807 , ...,  0.19426751,
+         0.13308458,  0.10995542],
+       [ 0.20654206,  0.15864167,  0.21527778, ...,  0.22999737,
+         0.16201475,  0.09984276],
+       [ 0.22785808,  0.10348361,  0.1479719 , ...,  0.19976532,
+         0.07152034,  0.0209607 ],
+       ...,
+       [-0.01456311, -0.02172164, -0.0016129 , ...,  0.542042  ,
+         0.44917086,  0.5226367 ],
+       [-0.01139138, -0.01818182, -0.001222  , ...,  0.5350183 ,
+         0.47758776,  0.4849965 ],
+       [-0.0070922 , -0.01260675, -0.01442308, ...,  0.5019272 ,
+         0.49319124,  0.44478807]], dtype=float32)
+Coordinates:
+  * x            (x) float64 20kB 5.911e+05 5.911e+05 ... 6.155e+05 6.155e+05
+  * y            (y) float64 11kB 6.63e+06 6.63e+06 ... 6.616e+06 6.616e+06
+    spatial_ref  int64 8B 0</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.DataArray</div><div class='xr-array-name'>'band_data'</div><ul class='xr-dim-list'><li><span class='xr-has-index'>y</span>: 1378</li><li><span class='xr-has-index'>x</span>: 2439</li></ul></div><ul class='xr-sections'><li class='xr-section-item'><div class='xr-array-wrap'><input id='section-1c3edd8b-1c24-42ed-adec-b7c245236fff' class='xr-array-in' type='checkbox' checked><label for='section-1c3edd8b-1c24-42ed-adec-b7c245236fff' title='Show/hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-array-preview xr-preview'><span>0.2288 0.2252 0.2873 0.3133 0.273 ... 0.4649 0.5019 0.4932 0.4448</span></div><div class='xr-array-data'><pre>array([[ 0.22876385,  0.22518766,  0.2872807 , ...,  0.19426751,
+         0.13308458,  0.10995542],
+       [ 0.20654206,  0.15864167,  0.21527778, ...,  0.22999737,
+         0.16201475,  0.09984276],
+       [ 0.22785808,  0.10348361,  0.1479719 , ...,  0.19976532,
+         0.07152034,  0.0209607 ],
+       ...,
+       [-0.01456311, -0.02172164, -0.0016129 , ...,  0.542042  ,
+         0.44917086,  0.5226367 ],
+       [-0.01139138, -0.01818182, -0.001222  , ...,  0.5350183 ,
+         0.47758776,  0.4849965 ],
+       [-0.0070922 , -0.01260675, -0.01442308, ...,  0.5019272 ,
+         0.49319124,  0.44478807]], dtype=float32)</pre></div></div></li><li class='xr-section-item'><input id='section-01247a9a-d72b-4ba3-80ed-9a68d4e0eaae' class='xr-section-summary-in' type='checkbox'  checked><label for='section-01247a9a-d72b-4ba3-80ed-9a68d4e0eaae' class='xr-section-summary' >Coordinates: <span>(3)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>x</span></div><div class='xr-var-dims'>(x)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>5.911e+05 5.911e+05 ... 6.155e+05</div><input id='attrs-92f50ba5-44a5-4109-9f09-df1036d45d70' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-92f50ba5-44a5-4109-9f09-df1036d45d70' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-0b5ea482-87b2-4c3f-90f5-1540442eb6bc' class='xr-var-data-in' type='checkbox'><label for='data-0b5ea482-87b2-4c3f-90f5-1540442eb6bc' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([591106.414369, 591116.413908, 591126.413447, ..., 615465.290753,
+       615475.290292, 615485.289831])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>y</span></div><div class='xr-var-dims'>(y)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>6.63e+06 6.63e+06 ... 6.616e+06</div><input id='attrs-d6ded40c-b87f-45f7-9ec3-c350200e0355' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-d6ded40c-b87f-45f7-9ec3-c350200e0355' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-d0dfbbde-ab91-462e-8018-4c3102517eb6' class='xr-var-data-in' type='checkbox'><label for='data-d0dfbbde-ab91-462e-8018-4c3102517eb6' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([6630014.779816, 6630004.777248, 6629994.774681, ..., 6616261.249119,
+       6616251.246552, 6616241.243984])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>spatial_ref</span></div><div class='xr-var-dims'>()</div><div class='xr-var-dtype'>int64</div><div class='xr-var-preview xr-preview'>0</div><input id='attrs-6f4cc91a-5bee-4d84-96b2-c81d53f28b41' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-6f4cc91a-5bee-4d84-96b2-c81d53f28b41' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-825aa452-3797-4ff1-8735-63b706fbea3d' class='xr-var-data-in' type='checkbox'><label for='data-825aa452-3797-4ff1-8735-63b706fbea3d' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>crs_wkt :</span></dt><dd>PROJCS[&quot;WGS 84 / UTM zone 32N&quot;,GEOGCS[&quot;WGS 84&quot;,DATUM[&quot;WGS_1984&quot;,SPHEROID[&quot;WGS 84&quot;,6378137,298.257223563,AUTHORITY[&quot;EPSG&quot;,&quot;7030&quot;]],AUTHORITY[&quot;EPSG&quot;,&quot;6326&quot;]],PRIMEM[&quot;Greenwich&quot;,0,AUTHORITY[&quot;EPSG&quot;,&quot;8901&quot;]],UNIT[&quot;degree&quot;,0.0174532925199433,AUTHORITY[&quot;EPSG&quot;,&quot;9122&quot;]],AUTHORITY[&quot;EPSG&quot;,&quot;4326&quot;]],PROJECTION[&quot;Transverse_Mercator&quot;],PARAMETER[&quot;latitude_of_origin&quot;,0],PARAMETER[&quot;central_meridian&quot;,9],PARAMETER[&quot;scale_factor&quot;,0.9996],PARAMETER[&quot;false_easting&quot;,500000],PARAMETER[&quot;false_northing&quot;,0],UNIT[&quot;metre&quot;,1,AUTHORITY[&quot;EPSG&quot;,&quot;9001&quot;]],AXIS[&quot;Easting&quot;,EAST],AXIS[&quot;Northing&quot;,NORTH],AUTHORITY[&quot;EPSG&quot;,&quot;32632&quot;]]</dd><dt><span>semi_major_axis :</span></dt><dd>6378137.0</dd><dt><span>semi_minor_axis :</span></dt><dd>6356752.314245179</dd><dt><span>inverse_flattening :</span></dt><dd>298.257223563</dd><dt><span>reference_ellipsoid_name :</span></dt><dd>WGS 84</dd><dt><span>longitude_of_prime_meridian :</span></dt><dd>0.0</dd><dt><span>prime_meridian_name :</span></dt><dd>Greenwich</dd><dt><span>geographic_crs_name :</span></dt><dd>WGS 84</dd><dt><span>horizontal_datum_name :</span></dt><dd>World Geodetic System 1984</dd><dt><span>projected_crs_name :</span></dt><dd>WGS 84 / UTM zone 32N</dd><dt><span>grid_mapping_name :</span></dt><dd>transverse_mercator</dd><dt><span>latitude_of_projection_origin :</span></dt><dd>0.0</dd><dt><span>longitude_of_central_meridian :</span></dt><dd>9.0</dd><dt><span>false_easting :</span></dt><dd>500000.0</dd><dt><span>false_northing :</span></dt><dd>0.0</dd><dt><span>scale_factor_at_central_meridian :</span></dt><dd>0.9996</dd><dt><span>spatial_ref :</span></dt><dd>PROJCS[&quot;WGS 84 / UTM zone 32N&quot;,GEOGCS[&quot;WGS 84&quot;,DATUM[&quot;WGS_1984&quot;,SPHEROID[&quot;WGS 84&quot;,6378137,298.257223563,AUTHORITY[&quot;EPSG&quot;,&quot;7030&quot;]],AUTHORITY[&quot;EPSG&quot;,&quot;6326&quot;]],PRIMEM[&quot;Greenwich&quot;,0,AUTHORITY[&quot;EPSG&quot;,&quot;8901&quot;]],UNIT[&quot;degree&quot;,0.0174532925199433,AUTHORITY[&quot;EPSG&quot;,&quot;9122&quot;]],AUTHORITY[&quot;EPSG&quot;,&quot;4326&quot;]],PROJECTION[&quot;Transverse_Mercator&quot;],PARAMETER[&quot;latitude_of_origin&quot;,0],PARAMETER[&quot;central_meridian&quot;,9],PARAMETER[&quot;scale_factor&quot;,0.9996],PARAMETER[&quot;false_easting&quot;,500000],PARAMETER[&quot;false_northing&quot;,0],UNIT[&quot;metre&quot;,1,AUTHORITY[&quot;EPSG&quot;,&quot;9001&quot;]],AXIS[&quot;Easting&quot;,EAST],AXIS[&quot;Northing&quot;,NORTH],AUTHORITY[&quot;EPSG&quot;,&quot;32632&quot;]]</dd><dt><span>GeoTransform :</span></dt><dd>591101.4146 9.999538745387454 0.0 6630019.7811 0.0 -10.002567779390393</dd></dl></div><div class='xr-var-data'><pre>array(0)</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-1bf3b47d-80a6-44c5-b8ab-e8864c077379' class='xr-section-summary-in' type='checkbox'  ><label for='section-1bf3b47d-80a6-44c5-b8ab-e8864c077379' class='xr-section-summary' >Indexes: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-index-name'><div>x</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-5eab0a91-b148-4040-9331-87b00d9c5d40' class='xr-index-data-in' type='checkbox'/><label for='index-5eab0a91-b148-4040-9331-87b00d9c5d40' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([591106.4143693728, 591116.4139081181, 591126.4134468635,
+       591136.4129856089, 591146.4125243543, 591156.4120630997,
+       591166.4116018451, 591176.4111405904, 591186.4106793358,
+       591196.4102180812,
+       ...
+        615395.293981919, 615405.2935206643, 615415.2930594097,
+       615425.2925981551, 615435.2921369005, 615445.2916756459,
+       615455.2912143912, 615465.2907531366,  615475.290291882,
+       615485.2898306274],
+      dtype=&#x27;float64&#x27;, name=&#x27;x&#x27;, length=2439))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>y</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-f24cd589-7205-4532-a69c-dd2518542a4d' class='xr-index-data-in' type='checkbox'/><label for='index-f24cd589-7205-4532-a69c-dd2518542a4d' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([ 6630014.779816111,  6630004.777248331,  6629994.774680552,
+        6629984.772112773,  6629974.769544993,  6629964.766977213,
+        6629954.764409434,  6629944.761841655, 6629934.7592738755,
+        6629924.756706096,
+       ...
+        6616331.267093904,  6616321.264526125,  6616311.261958346,
+       6616301.2593905665,  6616291.256822787,  6616281.254255008,
+        6616271.251687229, 6616261.2491194485,  6616251.246551669,
+         6616241.24398389],
+      dtype=&#x27;float64&#x27;, name=&#x27;y&#x27;, length=1378))</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-0d0f1765-7116-42ab-9d53-22c543e0c1de' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-0d0f1765-7116-42ab-9d53-22c543e0c1de' class='xr-section-summary'  title='Expand/collapse section'>Attributes: <span>(0)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'></dl></div></li></ul></div></div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The variable type of the data:&#39;</span><span class="p">,</span><span class="nb">type</span><span class="p">(</span><span class="n">NDVI</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The size of the data (first band):&#39;</span><span class="p">,</span> <span class="n">NDVI</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Minimum:&#39;</span><span class="p">,</span> <span class="n">NDVI</span><span class="o">.</span><span class="n">min</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Maximum:&#39;</span><span class="p">,</span> <span class="n">NDVI</span><span class="o">.</span><span class="n">max</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Mean:&#39;</span><span class="p">,</span> <span class="n">NDVI</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;STD:&#39;</span><span class="p">,</span> <span class="n">NDVI</span><span class="o">.</span><span class="n">std</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Data type of the array:&#39;</span><span class="p">,</span><span class="n">NDVI</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The variable type of the data: &lt;class &#39;xarray.core.dataarray.DataArray&#39;&gt;
+The size of the data (first band): (1378, 2439)
+Minimum: &lt;xarray.DataArray &#39;band_data&#39; ()&gt; Size: 4B
+array(-0.43764818, dtype=float32)
+Coordinates:
+    spatial_ref  int64 8B 0
+Maximum: &lt;xarray.DataArray &#39;band_data&#39; ()&gt; Size: 4B
+array(0.7736798, dtype=float32)
+Coordinates:
+    spatial_ref  int64 8B 0
+Mean: &lt;xarray.DataArray &#39;band_data&#39; ()&gt; Size: 4B
+array(0.46235642, dtype=float32)
+Coordinates:
+    spatial_ref  int64 8B 0
+STD: &lt;xarray.DataArray &#39;band_data&#39; ()&gt; Size: 4B
+array(0.15261656, dtype=float32)
+Coordinates:
+    spatial_ref  int64 8B 0
+Data type of the array: float32
+</pre></div>
+</div>
+</div>
+</div>
+<p>Vi kan også plotte NDVI-utregningen med <code class="docutils literal notranslate"><span class="pre">plt.imshow()</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">NDVI</span><span class="p">,</span><span class="n">vmin</span><span class="o">=-</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;RdBu&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7a314d7563c0&gt;
+</pre></div>
+</div>
+<img alt="../../_images/bd85b01e119dc4eeca4b727caa6acbb66e6002d2cff2078a42a80c23f51ebaa3.png" src="../../_images/bd85b01e119dc4eeca4b727caa6acbb66e6002d2cff2078a42a80c23f51ebaa3.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="videre-lesning">
+<h2>Videre lesning<a class="headerlink" href="#videre-lesning" title="Link to this heading">#</a></h2>
+<p>Hvis du ønsker å lese mer om å jobbe med rasterdata i Python anbefaler jeg å ta en titt på:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://pythongis.org/part2/chapter-07/nb/02-common-raster-operations.html">Raster operasjoner i <code class="docutils literal notranslate"><span class="pre">Python</span> <span class="pre">for</span> <span class="pre">Geographic</span> <span class="pre">Data</span> <span class="pre">Analysis</span></code></a></p></li>
+<li><p><a class="reference external" href="https://geog-312.gishub.org/book/geospatial/rasterio.html">Kapittel 11, 12 og 13 i <code class="docutils literal notranslate"><span class="pre">Introduction</span> <span class="pre">to</span> <span class="pre">GIS</span> <span class="pre">Programming</span></code></a></p></li>
+</ul>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./content/notebooks"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">💻 Raster</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#arbeide-med-rasterdata-i-python">Arbeide med rasterdata i Python</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lage-et-enkelt-rasterlag-ved-a-bruke-numpy">Lage et enkelt rasterlag ved å bruke <code class="docutils literal notranslate"><span class="pre">numpy</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#introduksjon-til-datastrukturer-i-xarray">Introduksjon til datastrukturer i xarray</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lese-inn-en-fil">Lese inn en fil</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ndvi">NDVI</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#videre-lesning">Videre lesning</a></li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Håvard Wallin Aagesen
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  <p>This course is heavily based on the <a href="https://autogis-site.readthedocs.io/en/latest/" target="_blank">Automating GIS processes</a> course at the University of Helsinki.</p>
+
+</div>
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

@@ -1,0 +1,840 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>💻 Bruke assertion &#8212; GMGI221 - Automatisering av GIS-prosesser</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=7cf0485e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'content/notebooks/02_assertions';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="📥 Øving 2" href="../pages/02_oving-2.html" />
+    <link rel="prev" title="💻 Intersect" href="02_intersect.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo.png" class="logo__image only-light" alt="GMGI221 - Automatisering av GIS-prosesser - Home"/>
+    <script>document.write(`<img src="../../_static/logo.png" class="logo__image only-dark" alt="GMGI221 - Automatisering av GIS-prosesser - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../index.html">
+                    Velkommen til GMGI221
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Generell info</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../pages/00_generell.html">ℹ️ Generell info</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/00_laeringsmaal.html">📖 Læringsmål</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/00_ovingsoppgaver.html">📖 Øvingsoppgaver</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/00_karakterer.html">📖 Karakterer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/00_installere-python.html">📖 Installering av Python og Python pakker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/00_bruk_av_ai.html">📖 Bruk av KI-verktøy</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Uke 1</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../pages/01_info.html">ℹ️ Info</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/01_bakgrunn.html">📖 Bakgrunn for emnet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_smakebit.html">💻 En smakebit av Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/01_oving-1.html">📥 Øving 1</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Uke 2</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../pages/02_info.html">ℹ️ Info</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_geometriske_objekter.html">💻 Geometriske objekter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_intersect.html">💻 Intersect</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">💻 Bruke <code class="docutils literal notranslate"><span class="pre">assertion</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/02_oving-2.html">📥 Øving 2</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Uke 3</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../pages/03_info.html">ℹ️ Info</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/03_begreper.html">📖 Nøkkelbegreper</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_filstier.html">💻 Håndtering av filstier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_vektor.html">💻 Vektor Data I/O</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_geopandas.html">💻 Geopandas: en introduksjon</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/03_oving-3.html">📥 Øving 3</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Uke 4</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../pages/04_info.html">ℹ️ Info</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/04_geokoding.html">📖 Geokoding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_projeksjoner.html">💻 Kartprojeksjoner</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="04_geometriske_operasjoner.html">💻 Vanlige geometriske operasjoner</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_geokoding_i_geopandas.html">💻 Geokoding i geopandas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/04_oving-4.html">📥 Øving 4</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Uke 5</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../pages/05_info.html">ℹ️ Info</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_romlig_utvelgelse.html">💻 Romlig utvelgelse</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_romlig_kobling.html">💻 Romlig kobling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/05_oving-5.html">📥 Øving 5</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Uke 6</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../pages/06_info.html">ℹ️ Info</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_reklassifisering.html">💻 Reklassifisering av data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_aggregering_av_data.html">💻 Aggregering av data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/06_oving-6.html">📥 Øving 6</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Uke 7</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../pages/07_info.html">ℹ️ Info</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_overlay.html">💻 Overlay</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Uke 8</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../pages/08_info.html">ℹ️ Info</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_statiske_kart.html">💻 Statiske kart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_interaktive_kart.html">💻 Interaktive kart</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Prosjektarbeid</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../pages/13_prosjektarbeid.html">📖 Prosjektarbeid</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/13_prosjektkarakter.html">📖 Karaktersetting for prosjektoppgaven</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/13_prosjekttips.html">📖 Tips til prosjektoppgaven</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/haavardaagesen/gmgi221" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/haavardaagesen/gmgi221/issues/new?title=Issue%20on%20page%20%2Fcontent/notebooks/02_assertions.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/content/notebooks/02_assertions.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>💻 Bruke assertion</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#assertions-pastander">Assertions/Påstander</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#flere-pastander">Flere påstander</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#et-darlig-eksempel">Et dårlig eksempel</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#et-bedre-eksempel">Et bedre eksempel</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mer-informasjon-om-pastander">Mer informasjon om påstander</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="bruke-assertion">
+<h1>💻 Bruke <code class="docutils literal notranslate"><span class="pre">assertion</span></code><a class="headerlink" href="#bruke-assertion" title="Link to this heading">#</a></h1>
+<p>Du kan også åpne denne notebooken i Binder: <a class="reference external" href="https://mybinder.org/v2/gh/GMGI221/forelesninger/HEAD?urlpath=%2Fdoc%2Ftree%2F02_assertions.ipynb"><img alt="Binder" src="https://mybinder.org/badge_logo.svg" /></a></p>
+<p>Målet med <a class="reference external" href="https://en.wikipedia.org/wiki/Defensive_programming">defensive programming</a> er å prøve å maksimere påliteligheten og den generelle kvaliteten til et stykke programvare. For oss betyr dette at vi bør ta skritt for å håndtere uventede inputverdier i koden vår, og å gi nyttige feilmeldinger som gir meningsfull veiledning til brukeren når et program flagger et unntak. Vi kan ta skritt mot å skrive mer pålitelig programvare ved å bruke en nyttig funksjon i Python: “Assertions”.</p>
+<section id="assertions-pastander">
+<h2>Assertions/Påstander<a class="headerlink" href="#assertions-pastander" title="Link to this heading">#</a></h2>
+<p><em>Assertions</em>/Påstander er en måte å hevde, eller sikre, at verdiene som brukes i skriptene dine kommer til å passe til det koden gjør. La oss starte med å vurdere funksjonen <code class="docutils literal notranslate"><span class="pre">convert_kph_ms</span></code> som konverterer vindhastigheter fra kilometer i timen til meter per sekund. Vi kan definere og bruke funksjonen vår i cellen under.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">convert_kmt_ms</span><span class="p">(</span><span class="n">speed</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Konverterer hastighet fra km/t til m/s&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">speed</span> <span class="o">*</span> <span class="mi">1000</span> <span class="o">/</span> <span class="mi">3600</span>
+
+
+<span class="n">wind_speed_km</span> <span class="o">=</span> <span class="mi">9</span>
+<span class="n">wind_speed_ms</span> <span class="o">=</span> <span class="n">convert_kmt_ms</span><span class="p">(</span><span class="n">wind_speed_km</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;En vindhastighet på </span><span class="si">{</span><span class="n">wind_speed_km</span><span class="si">}</span><span class="s2"> km/t er </span><span class="si">{</span><span class="n">wind_speed_ms</span><span class="si">}</span><span class="s2"> m/s.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>En vindhastighet på 9 km/t er 2.5 m/s.
+</pre></div>
+</div>
+</div>
+</div>
+<p>Alt dette virker greit, men du vil kanskje sørge for at verdiene for vindhastigheten ikke er negative tall, siden hastigheten ganske enkelt er størrelsen på vindhastigheten, som alltid skal være positiv eller null. Vi kan håndheve denne betingelsen ved å legge til en påstand til funksjonen vår.</p>
+<div class="cell tag_raises-exception docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">convert_kmt_ms</span><span class="p">(</span><span class="n">speed</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Konverterer hastighet fra km/t til m/s&quot;&quot;&quot;</span>
+    <span class="k">assert</span> <span class="n">speed</span> <span class="o">&gt;=</span> <span class="mf">0.0</span>
+    <span class="k">return</span> <span class="n">speed</span> <span class="o">*</span> <span class="mi">1000</span> <span class="o">/</span> <span class="mi">3600</span>
+
+
+<span class="n">wind_speed_km</span> <span class="o">=</span> <span class="mi">9</span>
+<span class="n">wind_speed_ms</span> <span class="o">=</span> <span class="n">convert_kmt_ms</span><span class="p">(</span><span class="n">wind_speed_km</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;En vindhastighet på </span><span class="si">{</span><span class="n">wind_speed_km</span><span class="si">}</span><span class="s2"> km/t er </span><span class="si">{</span><span class="n">wind_speed_ms</span><span class="si">}</span><span class="s2"> m/s.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>En vindhastighet på 9 km/t er 2.5 m/s.
+</pre></div>
+</div>
+</div>
+</div>
+<p>OK, så alt fungerer fortsatt ved bruk av en positiv verdi, men hva skjer hvis vi nå gir en negativ verdi for vindhastigheten? La oss sjekke!</p>
+<div class="cell tag_raises-exception docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">wind_speed_km</span> <span class="o">=</span> <span class="o">-</span><span class="mi">27</span>
+<span class="n">wind_speed_ms</span> <span class="o">=</span> <span class="n">convert_kmt_ms</span><span class="p">(</span><span class="n">wind_speed_km</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;En vindhastighet på </span><span class="si">{</span><span class="n">wind_speed_km</span><span class="si">}</span><span class="s2"> km/t er </span><span class="si">{</span><span class="n">wind_speed_ms</span><span class="si">}</span><span class="s2"> m/s.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">AssertionError</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">wind_speed_km</span> <span class="o">=</span> <span class="o">-</span><span class="mi">27</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">wind_speed_ms</span> <span class="o">=</span> <span class="n">convert_kmt_ms</span><span class="p">(</span><span class="n">wind_speed_km</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;En vindhastighet på </span><span class="si">{</span><span class="n">wind_speed_km</span><span class="si">}</span><span class="s2"> km/t er </span><span class="si">{</span><span class="n">wind_speed_ms</span><span class="si">}</span><span class="s2"> m/s.&quot;</span><span class="p">)</span>
+
+<span class="nn">Cell In[2], line 3,</span> in <span class="ni">convert_kmt_ms</span><span class="nt">(speed)</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="k">def</span> <span class="nf">convert_kmt_ms</span><span class="p">(</span><span class="n">speed</span><span class="p">):</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span><span class="w">     </span><span class="sd">&quot;&quot;&quot;Konverterer hastighet fra km/t til m/s&quot;&quot;&quot;</span>
+<span class="ne">----&gt; </span><span class="mi">3</span>     <span class="k">assert</span> <span class="n">speed</span> <span class="o">&gt;=</span> <span class="mf">0.0</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span>     <span class="k">return</span> <span class="n">speed</span> <span class="o">*</span> <span class="mi">1000</span> <span class="o">/</span> <span class="mi">3600</span>
+
+<span class="ne">AssertionError</span>: 
+</pre></div>
+</div>
+</div>
+</div>
+<p>OK, så nå får vi en <code class="docutils literal notranslate"><span class="pre">AssertionError</span></code> når en negativ verdi er gitt. Denne <code class="docutils literal notranslate"><span class="pre">AssertionError</span></code> er produsert på grunn av <code class="docutils literal notranslate"><span class="pre">assert</span></code>-setningen vi skrev inn i funksjonsdefinisjonen. Hvis betingelsen som er oppført etter <code class="docutils literal notranslate"><span class="pre">assert</span></code> er usann, oppstår en <code class="docutils literal notranslate"><span class="pre">AssertionError</span></code>.</p>
+<p>Dette er en klar forbedring, men det ville være mye bedre å gi brukeren litt informasjon om hvorfor denne påstanden eksisterer. Heldigvis kan vi gjøre dette ganske enkelt ved å legge til litt tekst etter påstandsbetingelsen.</p>
+<div class="cell tag_raises-exception docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">convert_kmt_ms</span><span class="p">(</span><span class="n">speed</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Konverterer hastighet fra km/t til m/s&quot;&quot;&quot;</span>
+    <span class="k">assert</span> <span class="n">speed</span> <span class="o">&gt;=</span> <span class="mf">0.0</span><span class="p">,</span> <span class="s2">&quot;Vindhastighetsverdier må være positive eller null&quot;</span>
+    <span class="k">return</span> <span class="n">speed</span> <span class="o">*</span> <span class="mi">1000</span> <span class="o">/</span> <span class="mi">3600</span>
+
+
+<span class="n">wind_speed_km</span> <span class="o">=</span> <span class="o">-</span><span class="mi">27</span>
+<span class="n">wind_speed_ms</span> <span class="o">=</span> <span class="n">convert_kmt_ms</span><span class="p">(</span><span class="n">wind_speed_km</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;En vindhastighet på </span><span class="si">{</span><span class="n">wind_speed_km</span><span class="si">}</span><span class="s2"> km/t er </span><span class="si">{</span><span class="n">wind_speed_ms</span><span class="si">}</span><span class="s2"> m/s.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">AssertionError</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="n">line</span> <span class="mi">8</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span>     <span class="k">return</span> <span class="n">speed</span> <span class="o">*</span> <span class="mi">1000</span> <span class="o">/</span> <span class="mi">3600</span>
+<span class="g g-Whitespace">      </span><span class="mi">7</span> <span class="n">wind_speed_km</span> <span class="o">=</span> <span class="o">-</span><span class="mi">27</span>
+<span class="ne">----&gt; </span><span class="mi">8</span> <span class="n">wind_speed_ms</span> <span class="o">=</span> <span class="n">convert_kmt_ms</span><span class="p">(</span><span class="n">wind_speed_km</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">10</span> <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;En vindhastighet på </span><span class="si">{</span><span class="n">wind_speed_km</span><span class="si">}</span><span class="s2"> km/t er </span><span class="si">{</span><span class="n">wind_speed_ms</span><span class="si">}</span><span class="s2"> m/s.&quot;</span><span class="p">)</span>
+
+<span class="nn">Cell In[4], line 3,</span> in <span class="ni">convert_kmt_ms</span><span class="nt">(speed)</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="k">def</span> <span class="nf">convert_kmt_ms</span><span class="p">(</span><span class="n">speed</span><span class="p">):</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span><span class="w">     </span><span class="sd">&quot;&quot;&quot;Konverterer hastighet fra km/t til m/s&quot;&quot;&quot;</span>
+<span class="ne">----&gt; </span><span class="mi">3</span>     <span class="k">assert</span> <span class="n">speed</span> <span class="o">&gt;=</span> <span class="mf">0.0</span><span class="p">,</span> <span class="s2">&quot;Vindhastighetsverdier må være positive eller null&quot;</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span>     <span class="k">return</span> <span class="n">speed</span> <span class="o">*</span> <span class="mi">1000</span> <span class="o">/</span> <span class="mi">3600</span>
+
+<span class="ne">AssertionError</span>: Vindhastighetsverdier må være positive eller null
+</pre></div>
+</div>
+</div>
+</div>
+<p>Fint! Nå ser vi at når <code class="docutils literal notranslate"><span class="pre">AssertionError</span></code> blir flagget, informerer meldingen oss om hvorfor det skjedde uten å måtte tolke koden. Meldingen gjør det også enkelt å fikse verdien for <code class="docutils literal notranslate"><span class="pre">wind_speed_km</span></code> for å fungere med funksjonen <code class="docutils literal notranslate"><span class="pre">convert_kmt_ms</span></code>.</p>
+<p>Mer generelt har påstander følgende form:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">assert</span> <span class="o">&lt;</span><span class="n">some</span> <span class="n">condition</span><span class="o">&gt;</span><span class="p">,</span> <span class="s2">&quot;Error message to display&quot;</span>
+</pre></div>
+</div>
+<p>Så vi starter med “assert”-setningen, og gir deretter en logisk test for en tilstand. Hvis testen er sann, skjer ingenting og koden fortsetter. Hvis ikke, stopper koden og en <code class="docutils literal notranslate"><span class="pre">AssertionError</span></code> vises med teksten skrevet etter kommaet på linjen som inneholder <code class="docutils literal notranslate"><span class="pre">assert</span></code>-setningen.</p>
+<section id="flere-pastander">
+<h3>Flere påstander<a class="headerlink" href="#flere-pastander" title="Link to this heading">#</a></h3>
+<section id="et-darlig-eksempel">
+<h4>Et dårlig eksempel<a class="headerlink" href="#et-darlig-eksempel" title="Link to this heading">#</a></h4>
+<p>Selvfølgelig kan det være lurt å ha flere påstander i en funksjon for å sikre at den fungerer som forventet og gir meningsfulle verdier. I vårt tilfelle vil vi kanskje først sjekke at verdien som er oppgitt som skal konverteres, er et tall. Hvis ikke, ville vi ikke kunne konvertere enhetene. La oss legge til en ny påstand for å sikre at funksjonen vår er “trygg”.</p>
+<div class="cell tag_raises-exception docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">convert_kmt_ms</span><span class="p">(</span><span class="n">speed</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Konverterer hastighet fra km/t til m/s&quot;&quot;&quot;</span>
+    <span class="k">assert</span> <span class="p">(</span>
+        <span class="nb">type</span><span class="p">(</span><span class="n">speed</span><span class="p">)</span> <span class="o">==</span> <span class="nb">int</span> <span class="ow">or</span> <span class="nb">type</span><span class="p">(</span><span class="n">speed</span><span class="p">)</span> <span class="o">==</span> <span class="nb">float</span>
+    <span class="p">),</span> <span class="s2">&quot;Vindhastighetsverdier må være tall&quot;</span>
+    <span class="k">assert</span> <span class="n">speed</span> <span class="o">&gt;=</span> <span class="mf">0.0</span><span class="p">,</span> <span class="s2">&quot;Vindhastighetsverdier må være positive eller null&quot;</span>
+    <span class="k">return</span> <span class="n">speed</span> <span class="o">*</span> <span class="mi">1000</span> <span class="o">/</span> <span class="mi">3600</span>
+
+
+<span class="n">wind_speed_km</span> <span class="o">=</span> <span class="s2">&quot;hund&quot;</span>
+<span class="n">wind_speed_ms</span> <span class="o">=</span> <span class="n">convert_kmt_ms</span><span class="p">(</span><span class="n">wind_speed_km</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;En vindhastighet på </span><span class="si">{</span><span class="n">wind_speed_km</span><span class="si">}</span><span class="s2"> km/t er </span><span class="si">{</span><span class="n">wind_speed_ms</span><span class="si">}</span><span class="s2"> m/s.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">AssertionError</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">5</span><span class="p">],</span> <span class="n">line</span> <span class="mi">11</span>
+<span class="g g-Whitespace">      </span><span class="mi">7</span>     <span class="k">return</span> <span class="n">speed</span> <span class="o">*</span> <span class="mi">1000</span> <span class="o">/</span> <span class="mi">3600</span>
+<span class="g g-Whitespace">     </span><span class="mi">10</span> <span class="n">wind_speed_km</span> <span class="o">=</span> <span class="s2">&quot;hund&quot;</span>
+<span class="ne">---&gt; </span><span class="mi">11</span> <span class="n">wind_speed_ms</span> <span class="o">=</span> <span class="n">convert_kmt_ms</span><span class="p">(</span><span class="n">wind_speed_km</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">13</span> <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;En vindhastighet på </span><span class="si">{</span><span class="n">wind_speed_km</span><span class="si">}</span><span class="s2"> km/t er </span><span class="si">{</span><span class="n">wind_speed_ms</span><span class="si">}</span><span class="s2"> m/s.&quot;</span><span class="p">)</span>
+
+<span class="nn">Cell In[5], line 4,</span> in <span class="ni">convert_kmt_ms</span><span class="nt">(speed)</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="k">def</span> <span class="nf">convert_kmt_ms</span><span class="p">(</span><span class="n">speed</span><span class="p">):</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span><span class="w">     </span><span class="sd">&quot;&quot;&quot;Konverterer hastighet fra km/t til m/s&quot;&quot;&quot;</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span>     <span class="k">assert</span> <span class="p">(</span>
+<span class="ne">----&gt; </span><span class="mi">4</span>         <span class="nb">type</span><span class="p">(</span><span class="n">speed</span><span class="p">)</span> <span class="o">==</span> <span class="nb">int</span> <span class="ow">or</span> <span class="nb">type</span><span class="p">(</span><span class="n">speed</span><span class="p">)</span> <span class="o">==</span> <span class="nb">float</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span>     <span class="p">),</span> <span class="s2">&quot;Vindhastighetsverdier må være tall&quot;</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span>     <span class="k">assert</span> <span class="n">speed</span> <span class="o">&gt;=</span> <span class="mf">0.0</span><span class="p">,</span> <span class="s2">&quot;Vindhastighetsverdier må være positive eller null&quot;</span>
+<span class="g g-Whitespace">      </span><span class="mi">7</span>     <span class="k">return</span> <span class="n">speed</span> <span class="o">*</span> <span class="mi">1000</span> <span class="o">/</span> <span class="mi">3600</span>
+
+<span class="ne">AssertionError</span>: Vindhastighetsverdier må være tall
+</pre></div>
+</div>
+</div>
+</div>
+<p>OK, så det fungerer. Nå, hvis brukeren prøver å gi en datatype som ikke er ‘int’ eller ‘float’, vil funksjonen flagge en ‘AssertionError’ som indikerer at et tall forventes for at funksjonen skal fungere. Dette er greit, men som nevnt nedenfor er det grunner til at du kanskje ikke vil inkludere påstander av denne typen i en funksjon.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Man kan forestille seg at det ville være nyttig å bruke en påstand for å sjekke typen til <code class="docutils literal notranslate"><span class="pre">speed</span></code> i vår funksjon for å sikre at man ikke får en <code class="docutils literal notranslate"><span class="pre">TypeError</span></code> som oppstod i forrige seksjon. Det viser seg at dette egentlig ikke er en god idé. Grunnen er at den filosofiske ideen bak en <code class="docutils literal notranslate"><span class="pre">TypeError</span></code> er å indikere at du har inkompatible datatyper. Med det i tankene, hvorfor skulle du da utløse en <code class="docutils literal notranslate"><span class="pre">AssertionError</span></code> for å gjøre det samme?</p>
+</div>
+</section>
+<section id="et-bedre-eksempel">
+<h4>Et bedre eksempel<a class="headerlink" href="#et-bedre-eksempel" title="Link to this heading">#</a></h4>
+<p>Så vi ønsker ikke å sjekke datatypekompatibiliteten vår ved å bruke påstander, men vi kan inkludere en påstand for å sikre at maksimum av vindhastigheten er et rimelig tall. I dette tilfellet kan vi anta at vindhastigheten som konverteres ble målt på jorden, og derfor bør være lavere enn <a class="reference external" href="https://en.wikipedia.org/wiki/Wind_speed#Highest_speed">den raskeste vindhastigheten somnoensinne har blitt målt</a>, 408 km/t. La oss legge til den betingelsen.</p>
+<div class="cell tag_raises-exception docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">convert_kmt_ms</span><span class="p">(</span><span class="n">speed</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Konverterer hastighet fra km/t til m/s&quot;&quot;&quot;</span>
+    <span class="k">assert</span> <span class="n">speed</span> <span class="o">&gt;=</span> <span class="mf">0.0</span><span class="p">,</span> <span class="s2">&quot;Vindhastighetsverdier må være positive eller null&quot;</span>
+    <span class="k">assert</span> <span class="n">speed</span> <span class="o">&lt;=</span> <span class="mf">408.0</span><span class="p">,</span> <span class="s2">&quot;Vindhastigheten er raskere enn noensinne målt tidligere&quot;</span>
+    <span class="k">return</span> <span class="n">speed</span> <span class="o">*</span> <span class="mi">1000</span> <span class="o">/</span> <span class="mi">3600</span>
+
+
+<span class="n">wind_speed_km</span> <span class="o">=</span> <span class="s2">&quot;409&quot;</span>
+<span class="n">wind_speed_ms</span> <span class="o">=</span> <span class="n">convert_kmt_ms</span><span class="p">(</span><span class="n">wind_speed_km</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;En vindhastighet på </span><span class="si">{</span><span class="n">wind_speed_km</span><span class="si">}</span><span class="s2"> km/t er </span><span class="si">{</span><span class="n">wind_speed_ms</span><span class="si">}</span><span class="s2"> m/s.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">6</span><span class="p">],</span> <span class="n">line</span> <span class="mi">9</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span>     <span class="k">return</span> <span class="n">speed</span> <span class="o">*</span> <span class="mi">1000</span> <span class="o">/</span> <span class="mi">3600</span>
+<span class="g g-Whitespace">      </span><span class="mi">8</span> <span class="n">wind_speed_km</span> <span class="o">=</span> <span class="s2">&quot;409&quot;</span>
+<span class="ne">----&gt; </span><span class="mi">9</span> <span class="n">wind_speed_ms</span> <span class="o">=</span> <span class="n">convert_kmt_ms</span><span class="p">(</span><span class="n">wind_speed_km</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">11</span> <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;En vindhastighet på </span><span class="si">{</span><span class="n">wind_speed_km</span><span class="si">}</span><span class="s2"> km/t er </span><span class="si">{</span><span class="n">wind_speed_ms</span><span class="si">}</span><span class="s2"> m/s.&quot;</span><span class="p">)</span>
+
+<span class="nn">Cell In[6], line 3,</span> in <span class="ni">convert_kmt_ms</span><span class="nt">(speed)</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="k">def</span> <span class="nf">convert_kmt_ms</span><span class="p">(</span><span class="n">speed</span><span class="p">):</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span><span class="w">     </span><span class="sd">&quot;&quot;&quot;Konverterer hastighet fra km/t til m/s&quot;&quot;&quot;</span>
+<span class="ne">----&gt; </span><span class="mi">3</span>     <span class="k">assert</span> <span class="n">speed</span> <span class="o">&gt;=</span> <span class="mf">0.0</span><span class="p">,</span> <span class="s2">&quot;Vindhastighetsverdier må være positive eller null&quot;</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span>     <span class="k">assert</span> <span class="n">speed</span> <span class="o">&lt;=</span> <span class="mf">408.0</span><span class="p">,</span> <span class="s2">&quot;Vindhastigheten er raskere enn noensinne målt tidligere&quot;</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span>     <span class="k">return</span> <span class="n">speed</span> <span class="o">*</span> <span class="mi">1000</span> <span class="o">/</span> <span class="mi">3600</span>
+
+<span class="ne">TypeError</span>: &#39;&gt;=&#39; not supported between instances of &#39;str&#39; and &#39;float&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>Dette er et bedre eksempel av to grunner:</p>
+<ol class="arabic simple">
+<li><p>Vi tillater nå en <code class="docutils literal notranslate"><span class="pre">TypeError</span></code> når inkompatible datatyper brukes i funksjonen vår, som er en klar og kjent feilmelding.</p></li>
+<li><p>Vi bruker påstander/assertion for å sjekke at verdiene som brukes i funksjonen gir mening for dens tiltenkte bruk. Hvis vi ønsker å hjelpe brukere med å konvertere vindhastigheter på jorden, gir vi grenser som sikrer at de bruker rimelige inputverdier. Dermed hjelper vi dem å bruke funksjonen vår på riktig måte.</p></li>
+</ol>
+<p>Kombinert sikrer disse påstandene at funksjonen vår håndterer vanlige feil og gir brukeren nyttig tilbakemelding for å kunne bruke funksjonen riktig.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>En ting som er viktig å merke seg om påstander er at selv om vi bruker dem her for å sjekke at våre inputverdier er rimelige, er dette generelt sett ikke den anbefalte bruken.
+I stedet anbefaler mer avanserte programmerere å bruke påstander kun for å teste at koden din fungerer riktig internt.
+For eksempel ville du bruke påstander for å sjekke ting som ikke skal skje, slik som funksjoner som dupliserer verdier i lister når de ikke skal.
+Grunnen til at det ikke anbefales å bruke påstander for å teste brukerinputverdier eller eksistensen av filer, er at påstander kan deaktiveres ved bruk av flagg når man kjører et Python-program.
+Dermed er det mulig at de kan bli ignorert helt.
+Dette er greit når man feilsøker kode, men åpenbart ikke ønskelig når brukere kjører programmene dine.
+Hvis du er interessert i flere detaljer, kan du gjerne sjekke ut <a class="reference external" href="https://wiki.python.org/moin/UsingAssertionsEffectively">artikkelen om bruk av påstander i Python-wikien</a>.</p>
+</div>
+</section>
+</section>
+<section id="mer-informasjon-om-pastander">
+<h3>Mer informasjon om påstander<a class="headerlink" href="#mer-informasjon-om-pastander" title="Link to this heading">#</a></h3>
+<p>Mer informasjon om påstander finner du på <a class="reference external" href="https://swcarpentry.github.io/python-novice-inflammation/10-defensive/index.html">Software Carpentry sin nettside</a>.</p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./content/notebooks"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="02_intersect.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">💻 Intersect</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../pages/02_oving-2.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">📥 Øving 2</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#assertions-pastander">Assertions/Påstander</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#flere-pastander">Flere påstander</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#et-darlig-eksempel">Et dårlig eksempel</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#et-bedre-eksempel">Et bedre eksempel</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mer-informasjon-om-pastander">Mer informasjon om påstander</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Håvard Wallin Aagesen
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  <p>This course is heavily based on the <a href="https://autogis-site.readthedocs.io/en/latest/" target="_blank">Automating GIS processes</a> course at the University of Helsinki.</p>
+
+</div>
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

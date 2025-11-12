@@ -1,0 +1,1507 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>💻 Vanlige geometriske operasjoner &#8212; GMGI221 - Automatisering av GIS-prosesser</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=7cf0485e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'content/notebooks/04_geometriske_operasjoner';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="💻 Geokoding i geopandas" href="04_geokoding_i_geopandas.html" />
+    <link rel="prev" title="💻 Kartprojeksjoner" href="04_projeksjoner.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo.png" class="logo__image only-light" alt="GMGI221 - Automatisering av GIS-prosesser - Home"/>
+    <script>document.write(`<img src="../../_static/logo.png" class="logo__image only-dark" alt="GMGI221 - Automatisering av GIS-prosesser - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../index.html">
+                    Velkommen til GMGI221
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Generell info</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../pages/00_generell.html">ℹ️ Generell info</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/00_laeringsmaal.html">📖 Læringsmål</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/00_ovingsoppgaver.html">📖 Øvingsoppgaver</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/00_karakterer.html">📖 Karakterer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/00_installere-python.html">📖 Installering av Python og Python pakker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/00_bruk_av_ai.html">📖 Bruk av KI-verktøy</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Uke 1</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../pages/01_info.html">ℹ️ Info</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/01_bakgrunn.html">📖 Bakgrunn for emnet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_smakebit.html">💻 En smakebit av Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/01_oving-1.html">📥 Øving 1</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Uke 2</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../pages/02_info.html">ℹ️ Info</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_geometriske_objekter.html">💻 Geometriske objekter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_intersect.html">💻 Intersect</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_assertions.html">💻 Bruke <code class="docutils literal notranslate"><span class="pre">assertion</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/02_oving-2.html">📥 Øving 2</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Uke 3</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../pages/03_info.html">ℹ️ Info</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/03_begreper.html">📖 Nøkkelbegreper</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_filstier.html">💻 Håndtering av filstier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_vektor.html">💻 Vektor Data I/O</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_geopandas.html">💻 Geopandas: en introduksjon</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/03_oving-3.html">📥 Øving 3</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Uke 4</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../pages/04_info.html">ℹ️ Info</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/04_geokoding.html">📖 Geokoding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_projeksjoner.html">💻 Kartprojeksjoner</a></li>
+
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">💻 Vanlige geometriske operasjoner</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_geokoding_i_geopandas.html">💻 Geokoding i geopandas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/04_oving-4.html">📥 Øving 4</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Uke 5</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../pages/05_info.html">ℹ️ Info</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_romlig_utvelgelse.html">💻 Romlig utvelgelse</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_romlig_kobling.html">💻 Romlig kobling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/05_oving-5.html">📥 Øving 5</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Uke 6</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../pages/06_info.html">ℹ️ Info</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_reklassifisering.html">💻 Reklassifisering av data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_aggregering_av_data.html">💻 Aggregering av data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/06_oving-6.html">📥 Øving 6</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Uke 7</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../pages/07_info.html">ℹ️ Info</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_overlay.html">💻 Overlay</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Uke 8</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../pages/08_info.html">ℹ️ Info</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_statiske_kart.html">💻 Statiske kart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_interaktive_kart.html">💻 Interaktive kart</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Prosjektarbeid</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../pages/13_prosjektarbeid.html">📖 Prosjektarbeid</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/13_prosjektkarakter.html">📖 Karaktersetting for prosjektoppgaven</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/13_prosjekttips.html">📖 Tips til prosjektoppgaven</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/haavardaagesen/gmgi221" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/haavardaagesen/gmgi221/issues/new?title=Issue%20on%20page%20%2Fcontent/notebooks/04_geometriske_operasjoner.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/content/notebooks/04_geometriske_operasjoner.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>💻 Vanlige geometriske operasjoner</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#centroid">Centroid</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#unaer-forening-unary-union">Unær forening (Unary union)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#avgrensende-polygon-bounding-box">Avgrensende polygon (Bounding box)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#konvekst-skrog-convex-hull">Konvekst skrog (Convex hull)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#forenkling-av-geometrier">Forenkling av geometrier</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#buffer">Buffer</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#opplosning-og-sammenslaing-av-geometrier">Oppløsning og sammenslåing av geometrier</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#endre-den-aktive-geometrien-i-en-geodataframe">Endre den aktive geometrien i en GeoDataFrame</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="vanlige-geometriske-operasjoner">
+<h1>💻 Vanlige geometriske operasjoner<a class="headerlink" href="#vanlige-geometriske-operasjoner" title="Link to this heading">#</a></h1>
+<p>Geometriske operasjoner refererer til et sett med metoder som kan brukes til å behandle og analysere geometriske objekter, som punkter, linjer og polygoner. Disse operasjonene lar oss for eksempel stille spørsmål om hvordan to eller flere geografiske objekter forholder seg til hverandre: Krysser de, berører eller overlapper de hverandre? Ligger de ved siden av hverandre? Hvor langt fra hverandre er de? Med verktøyene samlet i geopandas er det enkelt å utføre denne typen operasjoner. Når vi fordyper oss i de geometriske operasjonene, vil du oppdage at de danner grunnlaget for mange romlige analyser, og muliggjør innsikt som er ofte vanskelig å skille fra ikke-romlige data alene.</p>
+<p>I denne notebooken (inspirert av <a class="reference external" href="https://pythongis.org/part2/chapter-06/nb/02-geometric-operations.html">Python for Geographic Data Analysis</a>) demonstrerer vi noen av de vanligste geometriske manipulasjonsfunksjonene som er tilgjengelige i geopandas.</p>
+<p>Geometriske manipulasjoner er ofte nyttige f.eks. når vi arbeider med data relatert til administrative grenser, da vi ofte må transformere eller manipulere de geografiske dataene på en eller annen måte for videre analyse og visualiseringsformål. Deretter vil vi lære hvordan du genererer sentroider, forskjellige konturer og buffersoner for polygonene.</p>
+<p>La oss starte med å lese befolkningsdata fra Oslo kommune inn i en <code class="docutils literal notranslate"><span class="pre">GeoDataFrame</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
+<span class="kn">import</span> <span class="nn">pathlib</span> 
+
+<span class="n">NOTEBOOK_PATH</span> <span class="o">=</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">()</span><span class="o">.</span><span class="n">resolve</span><span class="p">()</span>
+<span class="n">DATA_MAPPE</span> <span class="o">=</span> <span class="n">NOTEBOOK_PATH</span> <span class="o">/</span> <span class="s2">&quot;data&quot;</span>
+
+<span class="c1"># Les inn dataene og sjekk innholdet</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="n">DATA_MAPPE</span> <span class="o">/</span> <span class="s2">&quot;oslo_bydeler&quot;</span> <span class="o">/</span> <span class="s2">&quot;oslo_bydeler_befolkning_2024.geojson&quot;</span><span class="p">)</span>
+<span class="n">data</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>fid</th>
+      <th>bydelsnr</th>
+      <th>bynavn</th>
+      <th>bydel</th>
+      <th>befolkning_2024</th>
+      <th>geometry</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>030101</td>
+      <td>Oslo</td>
+      <td>Gamle Oslo</td>
+      <td>63721</td>
+      <td>MULTIPOLYGON (((10.66087 59.88365, 10.66472 59...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>030102</td>
+      <td>Oslo</td>
+      <td>Grünerløkka</td>
+      <td>65532</td>
+      <td>MULTIPOLYGON (((10.75378 59.91469, 10.75453 59...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>030103</td>
+      <td>Oslo</td>
+      <td>Sagene</td>
+      <td>47627</td>
+      <td>MULTIPOLYGON (((10.77156 59.93095, 10.77135 59...</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4</td>
+      <td>030104</td>
+      <td>Oslo</td>
+      <td>St.Hanshaugen</td>
+      <td>41571</td>
+      <td>MULTIPOLYGON (((10.75136 59.91923, 10.75158 59...</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5</td>
+      <td>030105</td>
+      <td>Oslo</td>
+      <td>Frogner</td>
+      <td>60727</td>
+      <td>MULTIPOLYGON (((10.65562 59.89038, 10.65381 59...</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>For geometriske manipulasjoner er det hovedsakelig geometrikolonnen som inneholder polygongeometriene vi er interesserte i. La oss inspisere hva som er lagret i geometrikolonnen vår:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;geometry&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0    MULTIPOLYGON (((10.66087 59.88365, 10.66472 59...
+1    MULTIPOLYGON (((10.75378 59.91469, 10.75453 59...
+2    MULTIPOLYGON (((10.77156 59.93095, 10.77135 59...
+3    MULTIPOLYGON (((10.75136 59.91923, 10.75158 59...
+4    MULTIPOLYGON (((10.65562 59.89038, 10.65381 59...
+Name: geometry, dtype: geometry
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Sjekk datatypen til geometrikolonnen</span>
+<span class="nb">type</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;geometry&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>geopandas.geoseries.GeoSeries
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Sjekk datatypen til en verdi i geometrikolonnen</span>
+<span class="nb">type</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;geometry&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>shapely.geometry.multipolygon.MultiPolygon
+</pre></div>
+</div>
+</div>
+</div>
+<p>La oss plotte geometriene ved å bruke den innebygde <code class="docutils literal notranslate"><span class="pre">.plot()</span></code>-funksjonen i geopandas, og <code class="docutils literal notranslate"><span class="pre">matplotlib.pyplot</span></code> for å fjerne av akselinjer og etiketter:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="n">data</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">facecolor</span><span class="o">=</span><span class="s2">&quot;none&quot;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s2">&quot;off&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/0ed264397c2ca4c69718c69cdb676081f631c787d0335da61598f94ec4045c6b.png" src="../../_images/0ed264397c2ca4c69718c69cdb676081f631c787d0335da61598f94ec4045c6b.png" />
+</div>
+</div>
+<section id="centroid">
+<h2>Centroid<a class="headerlink" href="#centroid" title="Link to this heading">#</a></h2>
+<p>Sentroiden til en geometri er det geometriske sentrum av en gitt geometri (linje, polygon eller en geometrisamling). Å trekke ut tyngdepunktet til geometriske funksjoner er nyttig i mange tilfeller. Geometriske sentroider kan for eksempel brukes til å plassere tekst i visualiseringer.</p>
+<p>Vi kan trekke ut senterpunktet til hvert polygon via <code class="docutils literal notranslate"><span class="pre">centroid</span></code>-attributtet til <code class="docutils literal notranslate"><span class="pre">geometri</span></code>-kolonnen. Dataene bør ligge i et projisert koordinatreferansesystem ved beregning av tyngdepunktene. Hvis du prøver å beregne centroider basert på informasjon om breddegrad og lengdegrad, vil ‘geopandas’ advare oss om at resultatene sannsynligvis er (litt) feil. Vår <code class="docutils literal notranslate"><span class="pre">GeoDataFrame</span></code> er i WGS 84 (EPSG:4326) koordinatreferansesystem (CRS), så vi må transformere datasettet før vi kan fortsette med å beregne senterpunktene:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="o">.</span><span class="n">crs</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Geographic 2D CRS: EPSG:4326&gt;
+Name: WGS 84
+Axis Info [ellipsoidal]:
+- Lat[north]: Geodetic latitude (degree)
+- Lon[east]: Geodetic longitude (degree)
+Area of Use:
+- name: World.
+- bounds: (-180.0, -90.0, 180.0, 90.0)
+Datum: World Geodetic System 1984 ensemble
+- Ellipsoid: WGS 84
+- Prime Meridian: Greenwich
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">to_crs</span><span class="p">(</span><span class="n">epsg</span><span class="o">=</span><span class="s2">&quot;25832&quot;</span><span class="p">)</span>
+<span class="n">data</span><span class="o">.</span><span class="n">crs</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Projected CRS: EPSG:25832&gt;
+Name: ETRS89 / UTM zone 32N
+Axis Info [cartesian]:
+- E[east]: Easting (metre)
+- N[north]: Northing (metre)
+Area of Use:
+- name: Europe between 6°E and 12°E: Austria; Belgium; Denmark - onshore and offshore; Germany - onshore and offshore; Norway including - onshore and offshore; Spain - offshore.
+- bounds: (6.0, 38.76, 12.01, 84.33)
+Coordinate Operation:
+- name: UTM zone 32N
+- method: Transverse Mercator
+Datum: European Terrestrial Reference System 1989 ensemble
+- Ellipsoid: GRS 1980
+- Prime Meridian: Greenwich
+</pre></div>
+</div>
+</div>
+</div>
+<p>Nå kan vi finne senterpunktet for alle bydelene:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;geometry&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">centroid</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0    POINT (597377.326 6641206.893)
+1    POINT (599366.765 6644407.533)
+2    POINT (598598.518 6645843.574)
+3    POINT (597215.910 6644759.766)
+4    POINT (594561.285 6642429.531)
+dtype: geometry
+</pre></div>
+</div>
+</div>
+</div>
+<p>Vi kan også bruke metoden direkte på <code class="docutils literal notranslate"><span class="pre">GeoDataFrame</span></code> for å oppnå samme resultat ved å bruke syntaksen <code class="docutils literal notranslate"><span class="pre">data.centroid</span></code>. Samtidig kan vi også plotte sentroidene for en visuell sjekk:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="o">.</span><span class="n">centroid</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">markersize</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s2">&quot;off&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/78b7d2283ac5bfe4a22c7043d123515f3dadcaf60b84435942a51611ef45ceb5.png" src="../../_images/78b7d2283ac5bfe4a22c7043d123515f3dadcaf60b84435942a51611ef45ceb5.png" />
+</div>
+</div>
+</section>
+<section id="unaer-forening-unary-union">
+<h2>Unær forening (Unary union)<a class="headerlink" href="#unaer-forening-unary-union" title="Link to this heading">#</a></h2>
+<p>En unær foreningsoperasjon (unarry uion) kombinerer flere geometriske objekter til en enkelt, enhetlig geometrisk form. Vi kan generere en felles skisse for forvaltningsområdene gjennom å skape en geometrisk forening mellom alle geometrier. Dette kan være nyttig for eksempel for å visualisere konturene av et studieområde. <code class="docutils literal notranslate"><span class="pre">unary_union</span></code> (eller <code class="docutils literal notranslate"><span class="pre">union_all()</span></code> i senere versjoner av GeoPandas) returnerer et enkelt geometriobjekt, som automatisk visualiseres når koden kjøres i en Jupyter Notebook:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="o">.</span><span class="n">unary_union</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/f817e9e2f5a7e3d02f6aeab280e15e9b0f14b3ab9753207cd89461a3f3cedea9.svg" src="../../_images/f817e9e2f5a7e3d02f6aeab280e15e9b0f14b3ab9753207cd89461a3f3cedea9.svg" />
+</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">.unary_union</span></code> returnerer et <code class="docutils literal notranslate"><span class="pre">shapely</span></code> polygonobjekt ut av resultatene. Det er også mulig å slå sammen geometrier ved å bruke en metode kalt <code class="docutils literal notranslate"><span class="pre">.dissolve()</span></code> som returnerer en <code class="docutils literal notranslate"><span class="pre">GeoDataFrame</span></code> som output (med aggregert attributtinformasjon).</p>
+<p>Vi kan teste hvordan vi kan oppløse skillene mellom ulike polygoner med <code class="docutils literal notranslate"><span class="pre">dissolve()</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Slå sammen geometrier ved hjelp av dekningsalgoritme</span>
+<span class="n">dissolved</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">dissolve</span><span class="p">()</span>
+<span class="n">dissolved</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>geometry</th>
+      <th>fid</th>
+      <th>bydelsnr</th>
+      <th>bynavn</th>
+      <th>bydel</th>
+      <th>befolkning_2024</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>POLYGON ((596180.487 6638937.796, 594552.141 6...</td>
+      <td>1</td>
+      <td>030101</td>
+      <td>Oslo</td>
+      <td>Gamle Oslo</td>
+      <td>63721</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Få shapely geometrien</span>
+<span class="n">dissolved</span><span class="o">.</span><span class="n">geometry</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/f817e9e2f5a7e3d02f6aeab280e15e9b0f14b3ab9753207cd89461a3f3cedea9.svg" src="../../_images/f817e9e2f5a7e3d02f6aeab280e15e9b0f14b3ab9753207cd89461a3f3cedea9.svg" />
+</div>
+</div>
+<p>Som et resultat inneholder “dissolved”-variabelen nå den sammenslåtte geometrien så vel som attributtinformasjonen knyttet til den. Når vi ser på den returnerte geometrien, kan vi se at den er identisk med den som returneres av <code class="docutils literal notranslate"><span class="pre">.unary_union</span></code>-metoden. Legg merke til at som standard lagrer <code class="docutils literal notranslate"><span class="pre">.dissolve()</span></code> ganske enkelt den første raden med data som en attributtinformasjon. Det er imidlertid mulig å kontrollere hvordan attributtinformasjonen skal aggregeres/oppsummeres, f.eks. ved å summere verdiene.</p>
+</section>
+<section id="avgrensende-polygon-bounding-box">
+<h2>Avgrensende polygon (Bounding box)<a class="headerlink" href="#avgrensende-polygon-bounding-box" title="Link to this heading">#</a></h2>
+<p>Et avgrensende polygon (bounding box), eller konvolutt, er det minste rektangulære polygonet som omslutter en gitt geometri eller et sett med geometrier. Det som å tegne et tettest mulig rektangel rundt en form, og fange alle punktene innenfor dette rektangelet. Det avgrensende polygonet brukes ofte i romlige operasjoner for midlertidig filtrering fordi det gir en beregningsmessig enkel måte å teste for mulige skjæringspunkter eller nærheter mellom geometrier som kan brukes til å velge data. Det er forskjellige måter å trekke ut et avgrensende polygon for en gitt geometri/geometrier, for eksempel aksejustert <em>envelope</em>, <em>minimum rotated rectangle</em> og <em>minimum bounding circle</em> som alle kan trekkes ut med <code class="docutils literal notranslate"><span class="pre">geopandas</span></code>.</p>
+<p>I en “GeoDataFrame” kan vi enkelt returnere det minimale aksejusterte begrensningsrektangelet for geometrier ved å bruke .envelope-attributtet som returnerer det avgrensende rektangelet for hver geometri:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="o">.</span><span class="n">envelope</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0    POLYGON ((592958.353 6638799.230, 601608.059 6...
+1    POLYGON ((597727.614 6643080.669, 601054.083 6...
+2    POLYGON ((597670.167 6644702.469, 599605.593 6...
+3    POLYGON ((595869.706 6642989.209, 598242.081 6...
+4    POLYGON ((592067.262 6639619.027, 597020.734 6...
+dtype: geometry
+</pre></div>
+</div>
+</div>
+</div>
+<p>For å få det avgrensende rektangelet for hele laget, lager vi først en forening av alle geometrier ved å bruke <code class="docutils literal notranslate"><span class="pre">.unary_union</span></code>, og trekker deretter ut det avgrensende rektangelet for det polygonet ved å bruke <code class="docutils literal notranslate"><span class="pre">.envelope</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="o">.</span><span class="n">unary_union</span><span class="o">.</span><span class="n">envelope</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/caaf87cafb51fdc51f14085f3d95baa558f9e93ed557c23173fd26e789fc4b57.svg" src="../../_images/caaf87cafb51fdc51f14085f3d95baa558f9e93ed557c23173fd26e789fc4b57.svg" />
+</div>
+</div>
+<p>Hjørnekoordinater til avgrensningsboksen for en “GeoDataFrame” kan hentes via attributtet “total_bounds”:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="o">.</span><span class="n">total_bounds</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 583014.23573992, 6631633.09927682,  609000.16402367,
+       6667559.668596  ])
+</pre></div>
+</div>
+</div>
+</div>
+<p>“bounds”-attributtet returnerer de avgrensende koordinatene for hver rad:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="o">.</span><span class="n">bounds</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>minx</th>
+      <th>miny</th>
+      <th>maxx</th>
+      <th>maxy</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>592958.353481</td>
+      <td>6.638799e+06</td>
+      <td>601608.058818</td>
+      <td>6.644175e+06</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>597727.614206</td>
+      <td>6.643081e+06</td>
+      <td>601054.083213</td>
+      <td>6.645802e+06</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>597670.166569</td>
+      <td>6.644702e+06</td>
+      <td>599605.593389</td>
+      <td>6.646966e+06</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>595869.705791</td>
+      <td>6.642989e+06</td>
+      <td>598242.081439</td>
+      <td>6.646343e+06</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>592067.262020</td>
+      <td>6.639619e+06</td>
+      <td>597020.733515</td>
+      <td>6.645462e+06</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>På samme måte er det mulig å få <em>minimum rotated rectangle</em> og <em>minimum bounding circle</em> med <code class="docutils literal notranslate"><span class="pre">geopandas</span></code> ved å bruke henholdsvis <code class="docutils literal notranslate"><span class="pre">.minimum_rotated_rectangle()</span></code> og <code class="docutils literal notranslate"><span class="pre">.minimum_bounding_circle()</span></code> metodene. Her slår vi først sammen alle geometriene ved å bruke <code class="docutils literal notranslate"><span class="pre">.dissolve()</span></code>-metoden som vist tidligere, og bruker deretter den sammenslåtte geometrien for å få minimumsgrensende polygon:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="o">.</span><span class="n">dissolve</span><span class="p">()</span><span class="o">.</span><span class="n">minimum_rotated_rectangle</span><span class="p">()</span><span class="o">.</span><span class="n">geometry</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/d17a8b6168a456506c45789acfd9dccdc35f099c3caba78a8f5216005dad2caf.svg" src="../../_images/d17a8b6168a456506c45789acfd9dccdc35f099c3caba78a8f5216005dad2caf.svg" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="o">.</span><span class="n">dissolve</span><span class="p">()</span><span class="o">.</span><span class="n">minimum_bounding_circle</span><span class="p">()</span><span class="o">.</span><span class="n">geometry</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/658d78b5709ae2185ac24e07278e7e3f85c2b6e9275028b5b2a6196324a5fea3.svg" src="../../_images/658d78b5709ae2185ac24e07278e7e3f85c2b6e9275028b5b2a6196324a5fea3.svg" />
+</div>
+</div>
+<p>Som man kan se fra geometriene ovenfor, kan <em>minimum rotated rectangle</em> rotere rundt inputgeometriene og har som mål å omslutte dem så tett som mulig. <em>Minimumssirkelen</em> skaper igjen en sirkel rundt geometriene på en måte som gjør at hver geometri er omsluttet av sirkelen. Avhengig av brukstilfellet kan alle disse metodene være nyttige når du arbeider med geografiske data.</p>
+<section id="konvekst-skrog-convex-hull">
+<h3>Konvekst skrog (Convex hull)<a class="headerlink" href="#konvekst-skrog-convex-hull" title="Link to this heading">#</a></h3>
+<p>En litt mer detaljert avgrensning av datautstrekningen kan trekkes ut ved å bruke et konvekst skrog (Convex hull) som representerer det minste mulige polygonet som inneholder alle punktene i et objekt. For å illustrere dette, se for deg å strekke en gummistrikk rundt et sett med punkter. Når den er sluppet, vil gummibåndet smekke inn i formen til det konvekse skroget, som vikler seg rundt de ytterste punktene. Dermed utelukker den punkter som er “innrykk” i formen. I geoberegning brukes det konvekse skroget til ulike oppgaver da det enkelt kan gi en forenklet representasjon av et sett med punkter eller en mer kompleks geometri.</p>
+<p>I geopandas kan vi bruke et attributt <code class="docutils literal notranslate"><span class="pre">.convex_hull</span></code> for å returnere det konvekse skroget av geometrier. På samme måte som med unær forening, hvis vi bruker den konvekse skrogmetoden på hele <code class="docutils literal notranslate"><span class="pre">GeoDataFrame</span></code>, vil vi få en GeoSeries som inneholder et konveks skrog for hver polygon separat:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="o">.</span><span class="n">convex_hull</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0    POLYGON ((594552.141 6638799.230, 592958.353 6...
+1    POLYGON ((598312.869 6643080.669, 598275.790 6...
+2    POLYGON ((597806.842 6644702.469, 597799.792 6...
+3    POLYGON ((597632.438 6642989.209, 597425.735 6...
+4    POLYGON ((592958.353 6639619.027, 592800.232 6...
+dtype: geometry
+</pre></div>
+</div>
+</div>
+</div>
+<p>For å lage et konvekst skrog for hele utstrekningen, må vi først lage en forening av alle polygoner.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="o">.</span><span class="n">unary_union</span><span class="o">.</span><span class="n">convex_hull</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/cbb288b3bcb7add5f6dfb2c1e5c8142de8175d7987be93d90ad884999bfaa9cd.svg" src="../../_images/cbb288b3bcb7add5f6dfb2c1e5c8142de8175d7987be93d90ad884999bfaa9cd.svg" />
+</div>
+</div>
+</section>
+</section>
+<section id="forenkling-av-geometrier">
+<h2>Forenkling av geometrier<a class="headerlink" href="#forenkling-av-geometrier" title="Link to this heading">#</a></h2>
+<p>Geometrisk forenkling er en nyttig prosess, spesielt når du visualiserer data som inneholder svært detaljerte geometrier. Geopandas har en funksjon kalt <code class="docutils literal notranslate"><span class="pre">.simplify()</span></code> som er en annen måte å forenkle geometrier på. <code class="docutils literal notranslate"><span class="pre">tolerance</span></code>-parameteren kan brukes til å kontrollere nivået av forenkling. Enhetene for denne parameteren følger inputkoordinatene. Dette betyr at f.eks. med <code class="docutils literal notranslate"><span class="pre">tolerance=1000</span></code> står toleransen for 1000 meter fordi våre inndata er i et projisert (metrisk) koordinatsystem. Imidlertid, i tilfelle inputdataene ville ha lat/lon-koordinater, bør toleransen angis som desimalgrader.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="o">.</span><span class="n">simplify</span><span class="p">(</span><span class="n">tolerance</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0    POLYGON ((592958.353 6639619.027, 597699.868 6...
+1    POLYGON ((598065.701 6643209.117, 598489.114 6...
+2    POLYGON ((599296.598 6646831.268, 597799.792 6...
+3    POLYGON ((597251.624 6646340.338, 597632.438 6...
+4    POLYGON ((592645.812 6640361.375, 592067.262 6...
+dtype: geometry
+</pre></div>
+</div>
+</div>
+</div>
+<p>På lignende måte som før, kan vi enkelt bruke <code class="docutils literal notranslate"><span class="pre">.simplify()</span></code> på omfanget av alle geometrier ved først å få den unære unionen av inngangsgeometriene:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="o">.</span><span class="n">unary_union</span><span class="o">.</span><span class="n">simplify</span><span class="p">(</span><span class="n">tolerance</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/2d5cee333564dcee6e77742aafefa39cd0632a4dbf2e0f0e449bbde49f57ac7c.svg" src="../../_images/2d5cee333564dcee6e77742aafefa39cd0632a4dbf2e0f0e449bbde49f57ac7c.svg" />
+</div>
+</div>
+</section>
+<section id="buffer">
+<h2>Buffer<a class="headerlink" href="#buffer" title="Link to this heading">#</a></h2>
+<p>En buffer refererer til en geometrisk operasjon som skaper en sone rundt en gitt geometri (eller geometrier), som vanligvis representerer en viss avstand fra formen. Denne sonen/bufferen kan visualiseres som et utvidet område rundt den opprinnelige formen, eller omvendt, et sammentrukket område inne i formen hvis bufferavstanden er negativ. Bufring er en vanlig romlig operasjon som har et mangfold av brukstilfeller i romlige analyser. For eksempel i transportnettanalyser er det greit å hente transportnettet også fra utenfor undersøkelsesområdet for å fange opp ruter som går utover undersøkelsesområdegrensen.</p>
+<p>I geopandas kan vi enkelt lage buffere ved å bruke metoden <code class="docutils literal notranslate"><span class="pre">.buffer()</span></code> som kan brukes på alle geometrier samtidig på samme måte som våre tidligere eksempler. Parameteren <code class="docutils literal notranslate"><span class="pre">distance</span></code> i funksjonen <code class="docutils literal notranslate"><span class="pre">.buffer()</span></code> definerer radiusen til bufferen (i henhold til koordinatsystemet til dataene). I det følgende vil vi bruke en 1000 meter buffer på hele ‘GeoDataFrame’-en som vil produsere separate buffere for hver bydel:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 1000 m buffer for hver polygon</span>
+<span class="n">data</span><span class="o">.</span><span class="n">buffer</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">edgecolor</span><span class="o">=</span><span class="s2">&quot;white&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s2">&quot;off&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/53dfa2f72cc17d56b471c6bc2b4d899a6bc3e00d80cc24aab82bb3fc18b3cd42.png" src="../../_images/53dfa2f72cc17d56b471c6bc2b4d899a6bc3e00d80cc24aab82bb3fc18b3cd42.png" />
+</div>
+</div>
+<p>Hvis vi bare vil ha én buffer for hele området, må vi først kombinere geometriene til ett objekt før bufferanalysen:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 1000 m buffer for hver polygon</span>
+<span class="n">data</span><span class="o">.</span><span class="n">unary_union</span><span class="o">.</span><span class="n">buffer</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/4237ae7474c85149b14a87628939f2549afb3a283e0a49c9689db928939cb11a.svg" src="../../_images/4237ae7474c85149b14a87628939f2549afb3a283e0a49c9689db928939cb11a.svg" />
+</div>
+</div>
+<p>Buffer kan brukes med forskjellige geometrityper, også med <code class="docutils literal notranslate"><span class="pre">Point</span></code> og <code class="docutils literal notranslate"><span class="pre">LineString</span></code> objekter. Det er nyttig å legge merke til at hvis du bruker en buffer for punkter eller polygoner, vil den resulterende geometrien alltid være en “polygon”.</p>
+</section>
+<section id="opplosning-og-sammenslaing-av-geometrier">
+<h2>Oppløsning og sammenslåing av geometrier<a class="headerlink" href="#opplosning-og-sammenslaing-av-geometrier" title="Link to this heading">#</a></h2>
+<p>Aggregering av romlige data refererer til å kombinere geometrier til grovere romlige enheter basert på noen attributter. Prosessen kan også omfatte beregning av sammendragsstatistikk. I <code class="docutils literal notranslate"><span class="pre">geopandas</span></code> er det en metode kalt <code class="docutils literal notranslate"><span class="pre">.dissolve()</span></code> som grupperer dataene basert på en spesifikk attributtkolonne og deretter produserer en forening av geometriene for hver gruppe i det attributtet. Samtidig kan vi også få oppsummerende statistikk over attributtene.</p>
+<p>For å demonstrere hvordan dissolve fungerer med dataene våre, la oss lage en ny kolonne i ‘GeoDataFrame’-en for å indikere bydeler med befolkningstetthet over gjennomsnittet.
+La oss først regne ut arealet for hver bydel, og deretter befolkningstettheten.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Legge til en ny kolonne hvor vi regner ut arealet</span>
+<span class="n">data</span><span class="p">[</span><span class="s1">&#39;areal_km2&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">area</span> <span class="o">/</span> <span class="mi">1000000</span>
+
+<span class="c1"># Regne ut befolkningstetthet i ny kolonne</span>
+<span class="n">data</span><span class="p">[</span><span class="s2">&quot;befolkningstetthet&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;befolkning_2024&quot;</span><span class="p">]</span> <span class="o">/</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;areal_km2&quot;</span><span class="p">]</span>
+
+<span class="c1"># La oss også proppe radene med 0 i &quot;befolkning_2024&quot;</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;befolkning_2024&quot;</span><span class="p">]</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Vi kan nå legge til en ny tom kolonne “tetthet” og legge til verdier som indikerer over og under gjennomsnittlig befolkningstetthet per bydel:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Opprett en ny kolonne og legg til en konstant verdi</span>
+<span class="n">data</span><span class="p">[</span><span class="s2">&quot;tetthet&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="c1"># Filtrer rader med befolkningstetthet over gjennomsnittet og oppdater kolonnen &quot;tetthet&quot;</span>
+<span class="n">data</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;befolkningstetthet&quot;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;befolkningstetthet&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="s2">&quot;tetthet&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Etter dette steget skal vi ha flere rader med tallene <code class="docutils literal notranslate"><span class="pre">0</span></code> og <code class="docutils literal notranslate"><span class="pre">1</span></code>, der tallet én indikerer et tett befolket område. Vi kan enkelt sjekke hvor mange tettbefolkede bydeler vi fikk ved å bruke <code class="docutils literal notranslate"><span class="pre">.value_counts()</span></code>-metoden fra pandas:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="o">.</span><span class="n">tetthet</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tetthet
+0    12
+1     3
+Name: count, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<p>Nå kan vi bruke denne <code class="docutils literal notranslate"><span class="pre">tetthet</span></code>-kolonnen til å løse opp dataene i to grupper ved å bruke <code class="docutils literal notranslate"><span class="pre">.dissolve()</span></code>-funksjonen. Samtidig kan vi summere verdiene i <code class="docutils literal notranslate"><span class="pre">befolkningstetthet</span></code> og <code class="docutils literal notranslate"><span class="pre">areal_km2</span></code>-kolonnene ved å bruke <code class="docutils literal notranslate"><span class="pre">aggfunc</span></code>-parameteren. Aggregeringen krever at vi velger de numeriske kolonnene som vi ønsker å inkludere i utdataene (som er indikert med listen over kolonnenavn nedenfor):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Gjennomfør aggregeringen</span>
+<span class="n">dissolved</span> <span class="o">=</span> <span class="n">data</span><span class="p">[[</span><span class="s2">&quot;befolkningstetthet&quot;</span><span class="p">,</span> <span class="s2">&quot;areal_km2&quot;</span><span class="p">,</span> <span class="s2">&quot;tetthet&quot;</span><span class="p">,</span> <span class="s2">&quot;geometry&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">dissolve</span><span class="p">(</span>
+    <span class="n">by</span><span class="o">=</span><span class="s2">&quot;tetthet&quot;</span><span class="p">,</span> <span class="n">aggfunc</span><span class="o">=</span><span class="s2">&quot;sum&quot;</span>
+<span class="p">)</span>
+<span class="n">dissolved</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>geometry</th>
+      <th>befolkningstetthet</th>
+      <th>areal_km2</th>
+    </tr>
+    <tr>
+      <th>tetthet</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>POLYGON ((597476.464 6636124.511, 597418.256 6...</td>
+      <td>44039.585468</td>
+      <td>165.315120</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>POLYGON ((599611.114 6645693.453, 599631.948 6...</td>
+      <td>40729.377738</td>
+      <td>11.438882</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>De oppløste dataene skal ha like mange rader med data som det var unike verdier i kolonnen - én rad for hver unike verdi. Dataene våre har blitt komprimert til to geometriske objekter, og kolonnen som brukes for å løse opp dataene kan nå finnes i indeksen. Attributtkolonnene representerer summen av verdiene per gruppe. Vi kan tilbakestille indeksen og sette inn den kategoriske informasjonen i en ny kolonne, hvoretter vi kan gjøre en rask visualisering av resultatet:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dissolved</span> <span class="o">=</span> <span class="n">dissolved</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dissolved</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">column</span><span class="o">=</span><span class="s2">&quot;tetthet&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s2">&quot;off&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/b4f3970f346031136b0458fbd2e2a1a3edbef81a6abc55bc7ea39b0af5f33b72.png" src="../../_images/b4f3970f346031136b0458fbd2e2a1a3edbef81a6abc55bc7ea39b0af5f33b72.png" />
+</div>
+</div>
+</section>
+<section id="endre-den-aktive-geometrien-i-en-geodataframe">
+<h2>Endre den aktive geometrien i en GeoDataFrame<a class="headerlink" href="#endre-den-aktive-geometrien-i-en-geodataframe" title="Link to this heading">#</a></h2>
+<p>I de forrige eksemplene lagret vi egentlig ikke de manipulerte geometriene noe sted, vi har stort sett skrevet ut eller plottet resultatene av de geometriske operasjonene direkte.</p>
+<p>I noen tilfeller, som når vi beregnet sentroidene i de forrige eksemplene, vil vi faktisk lagre sentroidene i en GeoDataFrame. Det kan være nyttig fordi man da kan fortsette å behandle eller analysere dataene basert på disse geometriene. Å lagre og oppdatere geometriene i en GeoDataFrame kan gjøres enkelt med geopandas, og faktisk kan du ha flere kolonner som inneholder geometriske objekter. Det finnes flere tilnærminger for å oppdatere geometriene i en GeoDataFrame:</p>
+<ol class="arabic simple">
+<li><p>Overskriv de eksisterende geometriene i geometrikolonnen ved å lagre de nye (manipulerte) geometriene i den.</p></li>
+<li><p>Opprett en ny kolonne (f.eks. centroid) og lagre de nye geometriene i denne. Deretter aktiverer/setter du denne kolonnen som den “aktive geometrien” for din GeoDataFrame. På denne måten kan du ha flere kolonner samtidig som inneholder geometriske objekter i en GeoDataFrame, noe som kan være veldig praktisk!</p></li>
+</ol>
+<p>Noen viktige bemerkninger om disse tilnærmingene: Alternativ 1 er veldig enkelt å gjøre, men ulempen med det er at du ikke lenger har tilgang til de opprinnelige geometriene (f.eks. polygoner). Alternativ 2 krever et par trinn, men fordelen med det er at du enkelt kan bytte mellom de opprinnelige geometriene og sentroidene i dataene dine. Imidlertid, når du lagrer de geografiske dataene på disk, kan du i de fleste tilfeller bare inkludere én kolonne med geometriske objekter. Derfor må du senest på dette stadiet bestemme hvilken kolonne som skal brukes til å representere de geometriske objektene i dataene dine.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Lag en kopi av de originale dataene</span>
+<span class="n">alternativ_1</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">alternativ_1</span><span class="p">[</span><span class="s2">&quot;geometry&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0    MULTIPOLYGON (((592958.353 6639619.027, 593170...
+1    MULTIPOLYGON (((598065.701 6643209.117, 598106...
+Name: geometry, dtype: geometry
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Oppdater geometrikolonnen men senterpunktene</span>
+<span class="n">alternativ_1</span><span class="p">[</span><span class="s2">&quot;geometry&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">alternativ_1</span><span class="o">.</span><span class="n">centroid</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">alternativ_1</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   fid bydelsnr bynavn        bydel  befolkning_2024  \
+0    1   030101   Oslo   Gamle Oslo            63721   
+1    2   030102   Oslo  Grünerløkka            65532   
+
+                         geometry  areal_km2  befolkningstetthet  tetthet  
+0  POINT (597377.326 6641206.893)  15.273315         4172.047829        0  
+1  POINT (599366.765 6644407.533)   4.754232        13783.928465        1  
+</pre></div>
+</div>
+</div>
+</div>
+<p>Her ble polygonene i geometrikolonnen erstattet og fylt med punktobjekter som representerer sentroidene til polygonene. Med denne tilnærmingen har vi nå slettet de opprinnelige polygongeometriene.</p>
+<p>Det andre alternativet er å opprette en ny kolonne for å lagre sentroidene og deretter bruke denne kolonnen som kilden for å representere geometriene til den gitte GeoDataFrame:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Lag en kopi av de originale dataene og lat en kolonne med sentroidene</span>
+<span class="n">alternativ_2</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">alternativ_2</span><span class="p">[</span><span class="s2">&quot;centroid&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">centroid</span>
+<span class="n">alternativ_2</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>fid</th>
+      <th>bydelsnr</th>
+      <th>bynavn</th>
+      <th>bydel</th>
+      <th>befolkning_2024</th>
+      <th>geometry</th>
+      <th>areal_km2</th>
+      <th>befolkningstetthet</th>
+      <th>tetthet</th>
+      <th>centroid</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>030101</td>
+      <td>Oslo</td>
+      <td>Gamle Oslo</td>
+      <td>63721</td>
+      <td>MULTIPOLYGON (((592958.353 6639619.027, 593170...</td>
+      <td>15.273315</td>
+      <td>4172.047829</td>
+      <td>0</td>
+      <td>POINT (597377.326 6641206.893)</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>030102</td>
+      <td>Oslo</td>
+      <td>Grünerløkka</td>
+      <td>65532</td>
+      <td>MULTIPOLYGON (((598065.701 6643209.117, 598106...</td>
+      <td>4.754232</td>
+      <td>13783.928465</td>
+      <td>1</td>
+      <td>POINT (599366.765 6644407.533)</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Nå har vi en GeoDataframe med både en kolonne som heter <code class="docutils literal notranslate"><span class="pre">geometry</span></code> og en som heter <code class="docutils literal notranslate"><span class="pre">centroid</span></code>. Begge inneholder geometriobjekter, men som standard bruker GeoPandas alltid <code class="docutils literal notranslate"><span class="pre">geometry</span></code>-kolonnen som den aktive geometrikolonnen.</p>
+<p>Men vi kan enkelt velge hviken kolonne som skal være den aktive geometrikolonnen ved å bruke metoden <code class="docutils literal notranslate"><span class="pre">.set_geometry()</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Velg sentroide-kolonnen som den aktive geometrikolonnen</span>
+<span class="n">alternativ_2</span> <span class="o">=</span> <span class="n">alternativ_2</span><span class="o">.</span><span class="n">set_geometry</span><span class="p">(</span><span class="s2">&quot;centroid&quot;</span><span class="p">)</span>
+<span class="n">alternativ_2</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>fid</th>
+      <th>bydelsnr</th>
+      <th>bynavn</th>
+      <th>bydel</th>
+      <th>befolkning_2024</th>
+      <th>geometry</th>
+      <th>areal_km2</th>
+      <th>befolkningstetthet</th>
+      <th>tetthet</th>
+      <th>centroid</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>030101</td>
+      <td>Oslo</td>
+      <td>Gamle Oslo</td>
+      <td>63721</td>
+      <td>MULTIPOLYGON (((592958.353 6639619.027, 593170...</td>
+      <td>15.273315</td>
+      <td>4172.047829</td>
+      <td>0</td>
+      <td>POINT (597377.326 6641206.893)</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>030102</td>
+      <td>Oslo</td>
+      <td>Grünerløkka</td>
+      <td>65532</td>
+      <td>MULTIPOLYGON (((598065.701 6643209.117, 598106...</td>
+      <td>4.754232</td>
+      <td>13783.928465</td>
+      <td>1</td>
+      <td>POINT (599366.765 6644407.533)</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Dataene ser nå helt like ut, men vi kan se nærmere på <code class="docutils literal notranslate"><span class="pre">.geometry.name</span></code>-attributtet til GeoDataFramen for å se hvilken kolonnne som faktisk blir brukt som den aktive geometrikolonnen:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">alternativ_2</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">name</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;centroid&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>Og vi kan også plotte GeoDataFramen for å inspisere det visuelt:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">alternativ_2</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: &gt;
+</pre></div>
+</div>
+<img alt="../../_images/df1bea5dd4fd91b3dd856d507ef39ee30a10757bbe7f2dad479d7ad14a250386.png" src="../../_images/df1bea5dd4fd91b3dd856d507ef39ee30a10757bbe7f2dad479d7ad14a250386.png" />
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./content/notebooks"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="04_projeksjoner.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">💻 Kartprojeksjoner</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="04_geokoding_i_geopandas.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">💻 Geokoding i geopandas</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#centroid">Centroid</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#unaer-forening-unary-union">Unær forening (Unary union)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#avgrensende-polygon-bounding-box">Avgrensende polygon (Bounding box)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#konvekst-skrog-convex-hull">Konvekst skrog (Convex hull)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#forenkling-av-geometrier">Forenkling av geometrier</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#buffer">Buffer</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#opplosning-og-sammenslaing-av-geometrier">Oppløsning og sammenslåing av geometrier</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#endre-den-aktive-geometrien-i-en-geodataframe">Endre den aktive geometrien i en GeoDataFrame</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Håvard Wallin Aagesen
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  <p>This course is heavily based on the <a href="https://autogis-site.readthedocs.io/en/latest/" target="_blank">Automating GIS processes</a> course at the University of Helsinki.</p>
+
+</div>
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

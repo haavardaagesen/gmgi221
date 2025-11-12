@@ -1,0 +1,1125 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>💻 Vektor Data I/O &#8212; GMGI221 - Automatisering av GIS-prosesser</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=7cf0485e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'content/notebooks/03_vektor';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="💻 Geopandas: en introduksjon" href="03_geopandas.html" />
+    <link rel="prev" title="💻 Håndtering av filstier" href="03_filstier.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo.png" class="logo__image only-light" alt="GMGI221 - Automatisering av GIS-prosesser - Home"/>
+    <script>document.write(`<img src="../../_static/logo.png" class="logo__image only-dark" alt="GMGI221 - Automatisering av GIS-prosesser - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../index.html">
+                    Velkommen til GMGI221
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Generell info</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../pages/00_generell.html">ℹ️ Generell info</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/00_laeringsmaal.html">📖 Læringsmål</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/00_ovingsoppgaver.html">📖 Øvingsoppgaver</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/00_karakterer.html">📖 Karakterer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/00_installere-python.html">📖 Installering av Python og Python pakker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/00_bruk_av_ai.html">📖 Bruk av KI-verktøy</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Uke 1</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../pages/01_info.html">ℹ️ Info</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/01_bakgrunn.html">📖 Bakgrunn for emnet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_smakebit.html">💻 En smakebit av Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/01_oving-1.html">📥 Øving 1</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Uke 2</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../pages/02_info.html">ℹ️ Info</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_geometriske_objekter.html">💻 Geometriske objekter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_intersect.html">💻 Intersect</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_assertions.html">💻 Bruke <code class="docutils literal notranslate"><span class="pre">assertion</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/02_oving-2.html">📥 Øving 2</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Uke 3</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../pages/03_info.html">ℹ️ Info</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/03_begreper.html">📖 Nøkkelbegreper</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_filstier.html">💻 Håndtering av filstier</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">💻 Vektor Data I/O</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_geopandas.html">💻 Geopandas: en introduksjon</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/03_oving-3.html">📥 Øving 3</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Uke 4</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../pages/04_info.html">ℹ️ Info</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/04_geokoding.html">📖 Geokoding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_projeksjoner.html">💻 Kartprojeksjoner</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="04_geometriske_operasjoner.html">💻 Vanlige geometriske operasjoner</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_geokoding_i_geopandas.html">💻 Geokoding i geopandas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/04_oving-4.html">📥 Øving 4</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Uke 5</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../pages/05_info.html">ℹ️ Info</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_romlig_utvelgelse.html">💻 Romlig utvelgelse</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_romlig_kobling.html">💻 Romlig kobling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/05_oving-5.html">📥 Øving 5</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Uke 6</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../pages/06_info.html">ℹ️ Info</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_reklassifisering.html">💻 Reklassifisering av data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_aggregering_av_data.html">💻 Aggregering av data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/06_oving-6.html">📥 Øving 6</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Uke 7</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../pages/07_info.html">ℹ️ Info</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_overlay.html">💻 Overlay</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Uke 8</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../pages/08_info.html">ℹ️ Info</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_statiske_kart.html">💻 Statiske kart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_interaktive_kart.html">💻 Interaktive kart</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Prosjektarbeid</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../pages/13_prosjektarbeid.html">📖 Prosjektarbeid</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/13_prosjektkarakter.html">📖 Karaktersetting for prosjektoppgaven</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/13_prosjekttips.html">📖 Tips til prosjektoppgaven</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/haavardaagesen/gmgi221" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/haavardaagesen/gmgi221/issues/new?title=Issue%20on%20page%20%2Fcontent/notebooks/03_vektor.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/content/notebooks/03_vektor.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>💻 Vektor Data I/O</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#filformater">Filformater</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lesing-og-skriving-av-romlige-data">Lesing og skriving av romlige data</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#skrive-romlige-data-til-en-fil">Skrive romlige data til en fil</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lesing-og-skriving-fra-og-til-databaser-rdbms">Lesing og skriving fra og til databaser (RDBMS)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lesing-av-data-direkte-fra-en-wfs-web-feature-service-endepunkt">Lesing av data direkte fra en WFS (Web feature service) endepunkt</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="vektor-data-i-o">
+<h1>💻 Vektor Data I/O<a class="headerlink" href="#vektor-data-i-o" title="Link to this heading">#</a></h1>
+<p><a class="reference external" href="https://colab.research.google.com/github/GMGI221-2024/forelesninger/blob/main/03_vektor.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></p>
+<p>Et av de første trinnene i mange analysearbeidsflyter er å lese data fra en fil, et av de siste trinnene skriver ofte data til en fil. Til skrekk og gru for mange geoinformatikkforskere, finnes det mange filformater for GIS-data: den gamle og forhatte, men også elskede og etablerte <a class="reference external" href="https://en.wikipedia.org/wiki/Shapefile">ESRI Shapefile</a>, den universelle <a class="reference external" href="https://en.wikipedia.org/wiki/GeoPackage">Geopackage (GPKG)</a>, og den web-optimaliserte <a class="reference external" href="https://en.wikipedia.org/wiki/GeoJSON">GeoJSON</a> er bare noen av de mer kjente eksemplene.</p>
+<p>De fleste av dagens Python GIS-pakker er avhengige av <a class="reference external" href="https://gdal.org/">GDAL/OGR</a>-bibliotekene, som det finnes moderne grensesnitt for i form av Python-pakkene <a class="reference external" href="https://fiona.readthedocs.io">fiona</a> og <a class="reference external" href="https://rasterio.readthedocs.io">rasterio</a>.</p>
+<p>I dag skal vi konsentrere oss om vektordata, så la oss først ta en nærmere titt på fionas egenskaper, og deretter importere og eksportere data ved hjelp av <a class="reference external" href="https://geopandas.org/">geopandas</a>, som bruker fiona.</p>
+<hr class="docutils" />
+<div class="note admonition">
+<p class="admonition-title">Definere en konstant for datamappen</p>
+<p>For å gjøre det lettere å håndtere stiene til inngangs- og utgangsdatafiler, er det en god vane å <a class="reference internal" href="03_filstier.html"><span class="doc std std-doc">definere en konstant som peker på datamappen</span></a> øverst i en notatbok:</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pathlib</span> 
+<span class="n">NOTEBOOK_PATH</span> <span class="o">=</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">()</span><span class="o">.</span><span class="n">resolve</span><span class="p">()</span>
+<span class="n">DATA_MAPPE</span> <span class="o">=</span> <span class="n">NOTEBOOK_PATH</span> <span class="o">/</span> <span class="s2">&quot;data&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<hr class="docutils" />
+<section id="filformater">
+<h2>Filformater<a class="headerlink" href="#filformater" title="Link to this heading">#</a></h2>
+<p>Fiona kan lese (nesten) alle geospatiale filformater, og skrive mange av dem. For å finne ut nøyaktig hvilke (det kan avhenge av den lokale installasjonen og versjonen), kan vi skrive ut listen over dens filformatdrivere:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">fiona</span>
+<span class="n">fiona</span><span class="o">.</span><span class="n">supported_drivers</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;DXF&#39;: &#39;rw&#39;,
+ &#39;CSV&#39;: &#39;raw&#39;,
+ &#39;OpenFileGDB&#39;: &#39;raw&#39;,
+ &#39;ESRIJSON&#39;: &#39;r&#39;,
+ &#39;ESRI Shapefile&#39;: &#39;raw&#39;,
+ &#39;FlatGeobuf&#39;: &#39;raw&#39;,
+ &#39;GeoJSON&#39;: &#39;raw&#39;,
+ &#39;GeoJSONSeq&#39;: &#39;raw&#39;,
+ &#39;GPKG&#39;: &#39;raw&#39;,
+ &#39;GML&#39;: &#39;rw&#39;,
+ &#39;OGR_GMT&#39;: &#39;rw&#39;,
+ &#39;GPX&#39;: &#39;rw&#39;,
+ &#39;Idrisi&#39;: &#39;r&#39;,
+ &#39;MapInfo File&#39;: &#39;raw&#39;,
+ &#39;DGN&#39;: &#39;raw&#39;,
+ &#39;PCIDSK&#39;: &#39;raw&#39;,
+ &#39;OGR_PDS&#39;: &#39;r&#39;,
+ &#39;S57&#39;: &#39;r&#39;,
+ &#39;SQLite&#39;: &#39;raw&#39;,
+ &#39;TopoJSON&#39;: &#39;r&#39;}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>I denne listen markerer <code class="docutils literal notranslate"><span class="pre">r</span></code> filformater som Fiona kan <em>l</em>ese, og <code class="docutils literal notranslate"><span class="pre">w</span></code> formater det kan <em>s</em>krive. En <code class="docutils literal notranslate"><span class="pre">a</span></code> markerer formater som Fiona kan <em>a</em>ppendere (legge til) nye data til eksisterende filer.</p>
+<p>Merk at hver av de listede ‘formatene’ faktisk er navnet på driverimplementasjonen, og mange av driverne kan åpne flere relaterte filformater.</p>
+<p>Mange flere ‘eksotiske’ filformater kan kanskje ikke vises i denne listen over din lokale installasjon, fordi du må installere ekstra biblioteker. Du kan finne en fullstendig liste over filformater som støttes av GDAL/OGR (og Fiona) på nettsiden: <a class="reference external" href="https://gdal.org/drivers/vector/">gdal.org/drivers/vector/</a>.</p>
+</div>
+<section id="lesing-og-skriving-av-romlige-data">
+<h3>Lesing og skriving av romlige data<a class="headerlink" href="#lesing-og-skriving-av-romlige-data" title="Link to this heading">#</a></h3>
+<p>Fiona gir tilgang til geodatafiler på et lavt nivå. Dette er noen ganger nødvendig, men i typiske analysearbeidsflyter er det mer praktisk å bruke et høyere-nivå bibliotek. Den mest brukte for geospatiale/romlige vektordata er <a class="reference external" href="https://geopandas.org">geopandas</a>. Som nevnt ovenfor, bruker den Fiona for lesing og skriving av filer, og støtter dermed de samme filformatene.</p>
+<p>For å lese data fra en <em>GeoPackage</em> -fil til en <code class="docutils literal notranslate"><span class="pre">geopandas.GeoDataFrame</span></code> (en romlig versjon av en <code class="docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code>), bruk <code class="docutils literal notranslate"><span class="pre">geopandas.read_file()</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">geopandas</span>
+<span class="n">kommuner</span> <span class="o">=</span> <span class="n">geopandas</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span>
+    <span class="n">DATA_MAPPE</span> <span class="o">/</span> <span class="s2">&quot;kommuner&quot;</span> <span class="o">/</span> <span class="s2">&quot;kommuner.gpkg&quot;</span>
+<span class="p">)</span>
+<span class="n">kommuner</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>gml_id</th>
+      <th>lokalId</th>
+      <th>navnerom</th>
+      <th>versjonId</th>
+      <th>oppdateringsdato</th>
+      <th>gyldigFra</th>
+      <th>datauttaksdato</th>
+      <th>navn</th>
+      <th>språk</th>
+      <th>kommunenummer</th>
+      <th>kommunenavn</th>
+      <th>samiskForvaltningsområde</th>
+      <th>geometry</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>kommune.1</td>
+      <td>0466e7c3-6a23-4b70-97d4-cf81f949490b</td>
+      <td>https://data.geonorge.no/sosi/inndelinger/innd...</td>
+      <td>3</td>
+      <td>2023-11-28T17:47:39</td>
+      <td>2024-01-01</td>
+      <td>2024-03-04T12:27:57</td>
+      <td>Ibestad</td>
+      <td>nor</td>
+      <td>5514</td>
+      <td>Ibestad</td>
+      <td>False</td>
+      <td>MULTIPOLYGON (((589669.263 7630312.979, 589669...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>kommune.2</td>
+      <td>0f821a2d-a307-41ec-9b64-f01c80e39357</td>
+      <td>https://data.geonorge.no/sosi/inndelinger/innd...</td>
+      <td>4</td>
+      <td>2023-11-07T23:33:28</td>
+      <td>2023-11-07</td>
+      <td>2024-03-04T12:27:57</td>
+      <td>Rendalen</td>
+      <td>nor</td>
+      <td>3424</td>
+      <td>Rendalen</td>
+      <td>False</td>
+      <td>MULTIPOLYGON (((327391.890 6869419.570, 327363...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>kommune.3</td>
+      <td>251a3fdd-ac96-4ef2-badb-a9b75e6ab2e6</td>
+      <td>https://data.geonorge.no/sosi/inndelinger/innd...</td>
+      <td>3</td>
+      <td>2023-11-28T15:42:05</td>
+      <td>2024-01-01</td>
+      <td>2024-03-04T12:27:57</td>
+      <td>Rakkestad</td>
+      <td>nor</td>
+      <td>3120</td>
+      <td>Rakkestad</td>
+      <td>False</td>
+      <td>MULTIPOLYGON (((284560.990 6591094.550, 284575...</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>kommune.4</td>
+      <td>2758a7b8-edba-4d6a-936e-4754ce03ca8f</td>
+      <td>https://data.geonorge.no/sosi/inndelinger/innd...</td>
+      <td>3</td>
+      <td>2023-11-28T15:56:10</td>
+      <td>2024-01-01</td>
+      <td>2024-03-04T12:27:57</td>
+      <td>Nordre Follo</td>
+      <td>nor</td>
+      <td>3207</td>
+      <td>Nordre Follo</td>
+      <td>False</td>
+      <td>MULTIPOLYGON (((269615.270 6638265.470, 269615...</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>kommune.5</td>
+      <td>340fff7f-b153-4a87-814d-12ca4f2d1682</td>
+      <td>https://data.geonorge.no/sosi/inndelinger/innd...</td>
+      <td>4</td>
+      <td>2023-11-07T23:33:28</td>
+      <td>2023-11-07</td>
+      <td>2024-03-04T12:27:57</td>
+      <td>Overhalla</td>
+      <td>nor</td>
+      <td>5047</td>
+      <td>Overhalla</td>
+      <td>False</td>
+      <td>MULTIPOLYGON (((359415.100 7152572.930, 359412...</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Å lese en lokal GPKG-fil er mest sannsynlig den enkleste oppgaven for en GIS-pakke. Imidlertid kan geopandas også lese Shapefiles <strong>innenfor en ZIP-arkiv</strong>, og/eller direkte <strong>fra en Internett-URL</strong>. For eksempel, nedlasting, utpakking og åpning av et datasett av NUTS-regioner fra <a class="reference external" href="https://ec.europa.eu/eurostat/web/gisco/geodata/reference-data/administrative-units-statistical-units/nuts">European Union’s GISCO/eurostat download page</a> er en linje med kode:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nuts_regions</span> <span class="o">=</span> <span class="n">geopandas</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="s2">&quot;https://gisco-services.ec.europa.eu/distribution/v2/nuts/shp/NUTS_RG_60M_2021_3035.shp.zip&quot;</span><span class="p">)</span>
+<span class="n">nuts_regions</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>NUTS_ID</th>
+      <th>LEVL_CODE</th>
+      <th>CNTR_CODE</th>
+      <th>NAME_LATN</th>
+      <th>NUTS_NAME</th>
+      <th>MOUNT_TYPE</th>
+      <th>URBN_TYPE</th>
+      <th>COAST_TYPE</th>
+      <th>geometry</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>DE149</td>
+      <td>3</td>
+      <td>DE</td>
+      <td>Sigmaringen</td>
+      <td>Sigmaringen</td>
+      <td>4.0</td>
+      <td>3</td>
+      <td>3</td>
+      <td>POLYGON ((4272515.778 2791989.118, 4291502.208...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>DE211</td>
+      <td>3</td>
+      <td>DE</td>
+      <td>Ingolstadt, Kreisfreie Stadt</td>
+      <td>Ingolstadt, Kreisfreie Stadt</td>
+      <td>4.0</td>
+      <td>2</td>
+      <td>3</td>
+      <td>POLYGON ((4430560.572 2849070.969, 4426522.606...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>DE212</td>
+      <td>3</td>
+      <td>DE</td>
+      <td>München, Kreisfreie Stadt</td>
+      <td>München, Kreisfreie Stadt</td>
+      <td>4.0</td>
+      <td>1</td>
+      <td>3</td>
+      <td>POLYGON ((4426190.454 2780289.957, 4425325.775...</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>DE213</td>
+      <td>3</td>
+      <td>DE</td>
+      <td>Rosenheim, Kreisfreie Stadt</td>
+      <td>Rosenheim, Kreisfreie Stadt</td>
+      <td>4.0</td>
+      <td>2</td>
+      <td>3</td>
+      <td>POLYGON ((4470814.937 2743662.905, 4477767.129...</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>DE214</td>
+      <td>3</td>
+      <td>DE</td>
+      <td>Altötting</td>
+      <td>Altötting</td>
+      <td>4.0</td>
+      <td>2</td>
+      <td>3</td>
+      <td>POLYGON ((4539906.565 2792493.475, 4525936.167...</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<section id="skrive-romlige-data-til-en-fil">
+<h4>Skrive romlige data til en fil<a class="headerlink" href="#skrive-romlige-data-til-en-fil" title="Link to this heading">#</a></h4>
+<p>Å skrive data til en fil er like enkelt: bruk bare <a class="reference external" href="https://geopandas.org/en/stable/docs/reference/api/geopandas.GeoDataFrame.to_file.html#geopandas.GeoDataFrame.to_file"><code class="docutils literal notranslate"><span class="pre">to_file()</span></code> metoden</a> til en <code class="docutils literal notranslate"><span class="pre">GeoDataFrame</span></code>.</p>
+<p>Hvis vi vil beholde en lokal kopi av NUTS-region datasettet vi nettopp åpnet ‘on-the-fly’ fra en internettadress kan vi lagre dataene til en GeoJSON-fil (filformatet blir gjettet fra filnavnet). Før vi gjør det må vi sikre oss at datatypene er riktig formatert (ofte når data komprimeres, sånn som med NUTS-dataene, blir formateringen forenklet). Først kan vi sjekke hva slags datatype de ulike kolonnene har:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">nuts_regions</span><span class="o">.</span><span class="n">dtypes</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>NUTS_ID         object
+LEVL_CODE        int64
+CNTR_CODE       object
+NAME_LATN       object
+NUTS_NAME       object
+MOUNT_TYPE     float64
+URBN_TYPE        int64
+COAST_TYPE       int64
+geometry      geometry
+dtype: object
+</pre></div>
+</div>
+</div>
+</div>
+<p>Her ser vi at vi har mange kolonner av typen <code class="docutils literal notranslate"><span class="pre">object</span></code>, noe som bør endres. I dette tilfellet inneholder alle de gjeldende kolonnene tekststrenger, så vi kan endre de til <code class="docutils literal notranslate"><span class="pre">str</span></code> før vi lagrer:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nuts_regions</span> <span class="o">=</span> <span class="n">nuts_regions</span><span class="o">.</span><span class="n">astype</span><span class="p">({</span><span class="n">col</span><span class="p">:</span> <span class="s1">&#39;str&#39;</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">nuts_regions</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="s1">&#39;object&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">columns</span><span class="p">})</span>
+<span class="n">nuts_regions</span><span class="o">.</span><span class="n">to_file</span><span class="p">(</span><span class="n">DATA_MAPPE</span> <span class="o">/</span> <span class="s2">&quot;europe_nuts_regions.geojson&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Lesing og skriving av romlige data fra eller til en fil er nesten identisk for alle filformater som støttes av geopandas, fiona, og GDAL. Sjekk ut <a class="reference external" href="https://geopandas.org/en/stable/docs/user_guide/io.html">geopandas’ dokumentasjon</a> for tips om hvordan du kan finjustere lesing eller skriving av en fil, og hvordan du kan bruke forskjellige filtre.</p>
+</div>
+</section>
+</section>
+<section id="lesing-og-skriving-fra-og-til-databaser-rdbms">
+<h3>Lesing og skriving fra og til databaser (RDBMS)<a class="headerlink" href="#lesing-og-skriving-fra-og-til-databaser-rdbms" title="Link to this heading">#</a></h3>
+<p>Geopandas har innebygd støtte for lese/skrive-tilgang til PostgreSQL/PostGIS-databaser, ved hjelp av dens <a class="reference external" href="https://geopandas.org/en/stable/docs/reference/api/geopandas.read_postgis.html"><code class="docutils literal notranslate"><span class="pre">geopandas.read_postgis()</span></code></a> funksjon og <a class="reference external" href="https://geopandas.org/en/stable/docs/reference/api/geopandas.GeoDataFrame.to_postgis.html"><code class="docutils literal notranslate"><span class="pre">GeoDataFrame.to_postgis()</span></code></a> metode. For databasetilkoblingen kan du bruke, for eksempel, <code class="docutils literal notranslate"><span class="pre">sqlalchemy</span></code>-pakken.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Siden dette ikke er en ekte database, må informasjonen endres hvis den skal kjøre</span>
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">import sqlalchemy</span>
+<span class="sd">DB_CONNECTION_URL = &quot;postgresql://myusername:mypassword@myhost:5432/mydatabase&quot;;</span>
+<span class="sd">db_engine = sqlalchemy.create_engine(DB_CONNECTION_URL)</span>
+
+<span class="sd">countries = geopandas.read_postgis(</span>
+<span class="sd">    &quot;SELECT name, geometry FROM countries&quot;,</span>
+<span class="sd">    db_engine</span>
+<span class="sd">)</span>
+<span class="sd">countries.to_postgis(</span>
+<span class="sd">    &quot;new_table&quot;, </span>
+<span class="sd">    db_engine</span>
+<span class="sd">)</span>
+<span class="sd">&#39;&#39;&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;\nimport sqlalchemy\nDB_CONNECTION_URL = &quot;postgresql://myusername:mypassword@myhost:5432/mydatabase&quot;;\ndb_engine = sqlalchemy.create_engine(DB_CONNECTION_URL)\n\ncountries = geopandas.read_postgis(\n    &quot;SELECT name, geometry FROM countries&quot;,\n    db_engine\n)\ncountries.to_postgis(\n    &quot;new_table&quot;, \n    db_engine\n)\n&#39;
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="lesing-av-data-direkte-fra-en-wfs-web-feature-service-endepunkt">
+<h3>Lesing av data direkte fra en WFS (Web feature service) endepunkt<a class="headerlink" href="#lesing-av-data-direkte-fra-en-wfs-web-feature-service-endepunkt" title="Link to this heading">#</a></h3>
+<p>Geopandas kan også lese data direkte fra en WFS-endepunkt, som for eksempel geodata-APIene til <a class="reference external" href="https://kartkatalog.geonorge.no/metadata/administrative-enheter-wfs/57c7fca8-c652-44f0-9762-688614891286">Kartverket</a>. Å konstruere en gyldig WFS-URI (adresse) er ikke en del av dette kurset (men sjekk, for eksempel, egenskapene til et lag lagt til QGIS).</p>
+<p>Følgende kode laster et administrative enheter for Norge. Parameterne kodet inn i WFS-adressen spesifiserer lagets navn og det forespurte referansesystemet.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">administrative_enheter</span> <span class="o">=</span> <span class="n">geopandas</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span>
+    <span class="s2">&quot;https://wfs.geonorge.no/skwms1/wfs.administrative_enheter?&quot;</span>
+    <span class="s2">&quot;service=WFS&quot;</span>
+    <span class="s2">&quot;&amp;version=2.0.0&quot;</span>
+    <span class="s2">&quot;&amp;request=GetFeature&quot;</span>
+    <span class="s2">&quot;&amp;srsname=EPSG:25833&quot;</span>
+    <span class="s2">&quot;&amp;restrictToRequestBBOX=258331&quot;</span>
+    <span class="s2">&quot;&amp;typename=app:Kommune&quot;</span>
+<span class="p">)</span>
+<span class="n">administrative_enheter</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>gml_id</th>
+      <th>lokalId</th>
+      <th>navnerom</th>
+      <th>versjonId</th>
+      <th>oppdateringsdato</th>
+      <th>gyldigFra</th>
+      <th>datauttaksdato</th>
+      <th>navn</th>
+      <th>språk</th>
+      <th>kommunenummer</th>
+      <th>kommunenavn</th>
+      <th>samiskForvaltningsområde</th>
+      <th>geometry</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>kommune.1</td>
+      <td>3e4c0835-3425-4f81-8cee-b047d5c559d4</td>
+      <td>https://data.geonorge.no/sosi/inndelinger/innd...</td>
+      <td>10</td>
+      <td>2025-06-25T14:06:14</td>
+      <td>2025-06-25</td>
+      <td>2025-07-04T08:56:00</td>
+      <td>[Vestnes]</td>
+      <td>[nor]</td>
+      <td>1535</td>
+      <td>Vestnes</td>
+      <td>False</td>
+      <td>MULTIPOLYGON (((76621.660 6974710.270, 76242.0...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>kommune.2</td>
+      <td>6b2f8859-3624-4c03-a619-720fda1ec03b</td>
+      <td>https://data.geonorge.no/sosi/inndelinger/innd...</td>
+      <td>13</td>
+      <td>2025-06-25T14:06:16</td>
+      <td>2025-06-25</td>
+      <td>2025-07-04T08:56:00</td>
+      <td>[Tønsberg]</td>
+      <td>[nor]</td>
+      <td>3905</td>
+      <td>Tønsberg</td>
+      <td>False</td>
+      <td>MULTIPOLYGON (((242446.190 6575176.470, 242459...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>kommune.3</td>
+      <td>85253364-c56c-4140-bd1e-fd77ad3474d5</td>
+      <td>https://data.geonorge.no/sosi/inndelinger/innd...</td>
+      <td>12</td>
+      <td>2025-06-25T14:06:13</td>
+      <td>2025-06-25</td>
+      <td>2025-07-04T08:56:00</td>
+      <td>[Flekkefjord]</td>
+      <td>[nor]</td>
+      <td>4207</td>
+      <td>Flekkefjord</td>
+      <td>False</td>
+      <td>MULTIPOLYGON (((-145.935 6476904.035, -145.930...</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>kommune.4</td>
+      <td>20f6d491-f96b-413f-bb5e-cd0a2b92b69f</td>
+      <td>https://data.geonorge.no/sosi/inndelinger/innd...</td>
+      <td>12</td>
+      <td>2025-06-25T14:06:15</td>
+      <td>2025-06-25</td>
+      <td>2025-07-04T08:56:00</td>
+      <td>[Skaun]</td>
+      <td>[nor]</td>
+      <td>5029</td>
+      <td>Skaun</td>
+      <td>False</td>
+      <td>MULTIPOLYGON (((247645.710 7014635.910, 247647...</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>kommune.5</td>
+      <td>c32c8d89-abe1-4729-a8ce-540ba1b64d5a</td>
+      <td>https://data.geonorge.no/sosi/inndelinger/innd...</td>
+      <td>10</td>
+      <td>2025-06-25T14:06:13</td>
+      <td>2025-06-25</td>
+      <td>2025-07-04T08:56:00</td>
+      <td>[Kvænangen]</td>
+      <td>[nor]</td>
+      <td>5546</td>
+      <td>Kvænangen</td>
+      <td>False</td>
+      <td>MULTIPOLYGON (((788032.470 7772635.950, 787267...</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">administrative_enheter</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: &gt;
+</pre></div>
+</div>
+<img alt="../../_images/f62cf979db79678e1346d6114a9395e89d0fd4a61d179dd464bc5474890545db.png" src="../../_images/f62cf979db79678e1346d6114a9395e89d0fd4a61d179dd464bc5474890545db.png" />
+</div>
+</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./content/notebooks"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="03_filstier.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">💻 Håndtering av filstier</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="03_geopandas.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">💻 Geopandas: en introduksjon</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#filformater">Filformater</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lesing-og-skriving-av-romlige-data">Lesing og skriving av romlige data</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#skrive-romlige-data-til-en-fil">Skrive romlige data til en fil</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lesing-og-skriving-fra-og-til-databaser-rdbms">Lesing og skriving fra og til databaser (RDBMS)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lesing-av-data-direkte-fra-en-wfs-web-feature-service-endepunkt">Lesing av data direkte fra en WFS (Web feature service) endepunkt</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Håvard Wallin Aagesen
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  <p>This course is heavily based on the <a href="https://autogis-site.readthedocs.io/en/latest/" target="_blank">Automating GIS processes</a> course at the University of Helsinki.</p>
+
+</div>
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
