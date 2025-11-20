@@ -61,6 +61,8 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'content/notebooks/09_OSM_data';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="💻 Nettverksanalyse i Python" href="09_nettverksanalyse.html" />
+    <link rel="prev" title="ℹ️ Info" href="../pages/09_info.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -122,8 +124,6 @@
     <div class="bd-container__inner bd-page-width">
       
       
-      
-        
       
       <div class="bd-sidebar-primary bd-sidebar">
         
@@ -247,6 +247,14 @@
 <li class="toctree-l1"><a class="reference internal" href="../pages/08_info.html">ℹ️ Info</a></li>
 <li class="toctree-l1"><a class="reference internal" href="08_statiske_kart.html">💻 Statiske kart</a></li>
 <li class="toctree-l1"><a class="reference internal" href="08_interaktive_kart.html">💻 Interaktive kart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/08_oving-8.html">📥 Øving 8 Kartografisk visualisering</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Uke 9</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../pages/09_info.html">ℹ️ Info</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">💻 Henting av data fra OpenStreetMap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09_nettverksanalyse.html">💻 Nettverksanalyse i Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/09_oving-9.html">📥 Øving 9</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Prosjektarbeid</span></p>
 <ul class="nav bd-sidenav">
@@ -483,7 +491,7 @@ document.write(`
 <figure class="align-default" id="id1">
 <img alt="Logoet til OpenStreetMap (OSM)" src="../../_images/osm-logo_256x256px.svg" />
 <figcaption>
-<p><span class="caption-text">OpenStreetMap er en gratis og åpen karttjeneste, men - først og fremst - er det
+<p><span class="caption-number">Fig. 2 </span><span class="caption-text">OpenStreetMap er en gratis og åpen karttjeneste, men - først og fremst - er det
 et globalt samarbeidsprosjekt for å samle inn frie og åpne geodata. <em>Kilde:
 <a class="reference external" href="https://wiki.openstreetmap.org/wiki/Logos">wiki.openstreetmap.org</a></em></span><a class="headerlink" href="#id1" title="Link to this image">#</a></p>
 </figcaption>
@@ -1442,56 +1450,6 @@ hente ut alle restauranters navn, adresse og åpningstider?</p>
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">18</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">parks</span> <span class="o">=</span> <span class="n">osmnx</span><span class="o">.</span><span class="n">features_from_place</span><span class="p">(</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span>     <span class="n">PLACE_NAME</span><span class="p">,</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span>     <span class="p">{</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span>         <span class="s2">&quot;leisure&quot;</span><span class="p">:</span> <span class="s2">&quot;park&quot;</span><span class="p">,</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span>         <span class="s2">&quot;landuse&quot;</span><span class="p">:</span> <span class="s2">&quot;grass&quot;</span><span class="p">,</span>
-<span class="g g-Whitespace">      </span><span class="mi">6</span>     <span class="p">},</span>
-<span class="g g-Whitespace">      </span><span class="mi">7</span> <span class="p">)</span>
-
-<span class="nn">File ~/miniconda3/envs/book/lib/python3.12/site-packages/osmnx/features.py:304,</span> in <span class="ni">features_from_place</span><span class="nt">(query, tags, which_result, buffer_dist)</span>
-<span class="g g-Whitespace">    </span><span class="mi">301</span> <span class="n">utils</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="s2">&quot;Constructed place geometry polygon(s) to query API&quot;</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">303</span> <span class="c1"># create GeoDataFrame using this polygon(s) geometry</span>
-<span class="ne">--&gt; </span><span class="mi">304</span> <span class="k">return</span> <span class="n">features_from_polygon</span><span class="p">(</span><span class="n">polygon</span><span class="p">,</span> <span class="n">tags</span><span class="p">)</span>
-
-<span class="nn">File ~/miniconda3/envs/book/lib/python3.12/site-packages/osmnx/features.py:355,</span> in <span class="ni">features_from_polygon</span><span class="nt">(polygon, tags)</span>
-<span class="g g-Whitespace">    </span><span class="mi">352</span> <span class="n">response_jsons</span> <span class="o">=</span> <span class="n">_overpass</span><span class="o">.</span><span class="n">_download_overpass_features</span><span class="p">(</span><span class="n">polygon</span><span class="p">,</span> <span class="n">tags</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">354</span> <span class="c1"># create GeoDataFrame from the downloaded data</span>
-<span class="ne">--&gt; </span><span class="mi">355</span> <span class="k">return</span> <span class="n">_create_gdf</span><span class="p">(</span><span class="n">response_jsons</span><span class="p">,</span> <span class="n">polygon</span><span class="p">,</span> <span class="n">tags</span><span class="p">)</span>
-
-<span class="nn">File ~/miniconda3/envs/book/lib/python3.12/site-packages/osmnx/features.py:446,</span> in <span class="ni">_create_gdf</span><span class="nt">(response_jsons, polygon, tags)</span>
-<span class="g g-Whitespace">    </span><span class="mi">443</span> <span class="n">relation_types</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;boundary&quot;</span><span class="p">,</span> <span class="s2">&quot;multipolygon&quot;</span><span class="p">}</span>
-<span class="g g-Whitespace">    </span><span class="mi">445</span> <span class="c1"># extract geometries from the downloaded osm data</span>
-<span class="ne">--&gt; </span><span class="mi">446</span> <span class="k">for</span> <span class="n">response_json</span> <span class="ow">in</span> <span class="n">response_jsons</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">447</span>     <span class="n">response_count</span> <span class="o">+=</span> <span class="mi">1</span>
-<span class="g g-Whitespace">    </span><span class="mi">449</span>     <span class="c1"># Parses the JSON of OSM nodes, ways and (multipolygon) relations</span>
-<span class="g g-Whitespace">    </span><span class="mi">450</span>     <span class="c1"># to dictionaries of coordinates, Shapely Points, LineStrings,</span>
-<span class="g g-Whitespace">    </span><span class="mi">451</span>     <span class="c1"># Polygons and MultiPolygons</span>
-
-<span class="nn">File ~/miniconda3/envs/book/lib/python3.12/site-packages/osmnx/_overpass.py:395,</span> in <span class="ni">_download_overpass_features</span><span class="nt">(polygon, tags)</span>
-<span class="g g-Whitespace">    </span><span class="mi">393</span> <span class="k">for</span> <span class="n">polygon_coord_str</span> <span class="ow">in</span> <span class="n">polygon_coord_strs</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">394</span>     <span class="n">query_str</span> <span class="o">=</span> <span class="n">_create_overpass_query</span><span class="p">(</span><span class="n">polygon_coord_str</span><span class="p">,</span> <span class="n">tags</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">395</span>     <span class="k">yield</span> <span class="n">_overpass_request</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="n">query_str</span><span class="p">})</span>
-
-<span class="nn">File ~/miniconda3/envs/book/lib/python3.12/site-packages/osmnx/_overpass.py:474,</span> in <span class="ni">_overpass_request</span><span class="nt">(data, pause, error_pause)</span>
-<span class="g g-Whitespace">    </span><span class="mi">469</span>     <span class="n">msg</span> <span class="o">=</span> <span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">470</span>         <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">domain</span><span class="si">!r}</span><span class="s2"> responded </span><span class="si">{</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">response</span><span class="o">.</span><span class="n">reason</span><span class="si">}</span><span class="s2">: &quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">471</span>         <span class="sa">f</span><span class="s2">&quot;we&#39;ll retry in </span><span class="si">{</span><span class="n">this_pause</span><span class="si">}</span><span class="s2"> secs&quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">472</span>     <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">473</span>     <span class="n">utils</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="n">lg</span><span class="o">.</span><span class="n">WARNING</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">474</span>     <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">this_pause</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">475</span>     <span class="k">return</span> <span class="n">_overpass_request</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">pause</span><span class="p">,</span> <span class="n">error_pause</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">477</span> <span class="n">response_json</span> <span class="o">=</span> <span class="n">_downloader</span><span class="o">.</span><span class="n">_parse_response</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
-
-<span class="ne">KeyboardInterrupt</span>: 
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1639,7 +1597,7 @@ hente ut alle restauranters navn, adresse og åpningstider?</p>
     </tr>
     <tr>
       <th>3236548</th>
-      <td>POLYGON ((10.75745 59.92331, 10.7575 59.92246,...</td>
+      <td>POLYGON ((10.75745 59.92331, 10.75750 59.92246...</td>
       <td>NaN</td>
       <td>park</td>
       <td>Olaf Ryes plass</td>
@@ -1697,7 +1655,7 @@ hente ut alle restauranters navn, adresse og åpningstider?</p>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: &gt;
 </pre></div>
 </div>
-<img alt="../../_images/4f33b06693b7bd4088e08acd3a332432234aab54fe7a91353b996866f1a1dd8b.png" src="../../_images/4f33b06693b7bd4088e08acd3a332432234aab54fe7a91353b996866f1a1dd8b.png" />
+<img alt="../../_images/da0067220ca93d1947fa078a75aa237eb93d4ca610853c6e014c088ffd336fa3.png" src="../../_images/da0067220ca93d1947fa078a75aa237eb93d4ca610853c6e014c088ffd336fa3.png" />
 </div>
 </div>
 </section>
@@ -1730,7 +1688,7 @@ hente ut alle restauranters navn, adresse og åpningstider?</p>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: &gt;
 </pre></div>
 </div>
-<img alt="../../_images/6b3d3ae900473fd130efaa3f78bab8cef60e291e20146ec116470a2816afa586.png" src="../../_images/6b3d3ae900473fd130efaa3f78bab8cef60e291e20146ec116470a2816afa586.png" />
+<img alt="../../_images/dec1f6dace51e43459a2ccf70cf133a9521d7ab053c4d13cac77c6b1320317f1.png" src="../../_images/dec1f6dace51e43459a2ccf70cf133a9521d7ab053c4d13cac77c6b1320317f1.png" />
 </div>
 </div>
 <p>Kult! Nå har vi et kart der vi har plottet restaurantene, bygningene,
@@ -1833,6 +1791,24 @@ dokumentasjonen</a>.</p>
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="../pages/09_info.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">ℹ️ Info</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="09_nettverksanalyse.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">💻 Nettverksanalyse i Python</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div>
                 </footer>
               

@@ -61,6 +61,8 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'content/notebooks/09_nettverksanalyse';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="📥 Øving 9" href="../pages/09_oving-9.html" />
+    <link rel="prev" title="💻 Henting av data fra OpenStreetMap" href="09_OSM_data.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -122,8 +124,6 @@
     <div class="bd-container__inner bd-page-width">
       
       
-      
-        
       
       <div class="bd-sidebar-primary bd-sidebar">
         
@@ -247,6 +247,14 @@
 <li class="toctree-l1"><a class="reference internal" href="../pages/08_info.html">ℹ️ Info</a></li>
 <li class="toctree-l1"><a class="reference internal" href="08_statiske_kart.html">💻 Statiske kart</a></li>
 <li class="toctree-l1"><a class="reference internal" href="08_interaktive_kart.html">💻 Interaktive kart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/08_oving-8.html">📥 Øving 8 Kartografisk visualisering</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Uke 9</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../pages/09_info.html">ℹ️ Info</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09_OSM_data.html">💻 Henting av data fra OpenStreetMap</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">💻 Nettverksanalyse i Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/09_oving-9.html">📥 Øving 9</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Prosjektarbeid</span></p>
 <ul class="nav bd-sidenav">
@@ -744,7 +752,7 @@ navnene deres er ganske selvforklarende. Kolonnene <code class="docutils literal
 topologisk forhold innen nettverket: de betegner start- og slutt-noden
 for hver kant.</p>
 <div class="pst-scrollable-table-container"><table class="table" id="columns-in-edges">
-<caption><span class="caption-text">Kolonner i <code class="docutils literal notranslate"><span class="pre">edges</span></code></span><a class="headerlink" href="#columns-in-edges" title="Link to this table">#</a></caption>
+<caption><span class="caption-number">Table 1 </span><span class="caption-text">Kolonner i <code class="docutils literal notranslate"><span class="pre">edges</span></code></span><a class="headerlink" href="#columns-in-edges" title="Link to this table">#</a></caption>
 <thead>
 <tr class="row-odd"><th class="head"><p>Kolonne</p></th>
 <th class="head"><p>Beskrivelse</p></th>
@@ -823,19 +831,20 @@ trunk                                     37
 trunk_link                                27
 [residential, cycleway]                   26
 [residential, service]                    20
-[service, cycleway]                        6
+[cycleway, living_street]                  4
 [residential, path]                        4
-[unclassified, service]                    4
-[living_street, cycleway]                  4
+[service, unclassified]                    4
+[service, cycleway]                        4
+[cycleway, service]                        2
+[service, pedestrian, living_street]       2
+[residential, unclassified]                2
+[cycleway, unclassified]                   2
 [residential, service, pedestrian]         2
-[unclassified, residential]                2
-[service, path, cycleway]                  2
-[service, living_street, pedestrian]       2
 [service, pedestrian]                      2
-[unclassified, cycleway]                   2
-[trunk, trunk_link]                        1
-[cycleway, pedestrian]                     1
-[pedestrian, cycleway]                     1
+[cycleway, pedestrian]                     2
+[trunk_link, trunk]                        1
+[cycleway, service, path]                  1
+[service, cycleway, path]                  1
 Name: count, dtype: int64
 </pre></div>
 </div>
@@ -2344,6 +2353,24 @@ dtype: object
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="09_OSM_data.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">💻 Henting av data fra OpenStreetMap</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../pages/09_oving-9.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">📥 Øving 9</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div>
                 </footer>
               
