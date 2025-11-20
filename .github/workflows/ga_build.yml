@@ -1,35 +1,60 @@
-name: Build and publish Jupyter Book
+# This is a basic workflow to help you get started with Actions
 
+name: deploy-book
+
+# Controls when the workflow will run
 on:
+  # Triggers the workflow on push or pull request events but only for the "main" branch
   push:
-    branches: [ main ]
+    branches: main
 
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# This job installs dependencies, builds the book, and pushes it to `gh-pages`
 jobs:
-  build-and-deploy:
+  deploy-book:
     runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
+    - uses: actions/checkout@v4
 
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.11'
+    # Install dependencies
+    - name: Set up Python 3.11
+      uses: actions/setup-python@v5
+      with:
+        python-version: 3.11
 
-      - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install jupyter-book
+    - name: Install dependencies
+      run: |
+        pip install -r requirements.txt
 
-      - name: Build Jupyter Book
-        run: jupyter-book build .
+    # (optional) Cache your executed notebooks between runs
+    # if you have config:
+    # execute:
+    #   execute_notebooks: cache
+    #- name: cache executed notebooks
+    #  uses: actions/cache@v4
+    #  with:
+    #    path: _build/.jupyter_cache
+    #    key: jupyter-book-cache-${{ hashFiles('requirements.txt') }}
 
-      - name: Deploy to GitHub Pages (clean)
-        uses: JamesIves/github-pages-deploy-action@v4
-        with:
-          branch: gh-pages
-          folder: _build/html
-          clean: true
-          token: ${{ secrets.GITHUB_TOKEN }}
+    # Build the book
+    - name: Build the book
+      run: |
+        jupyter-book build .
+
+    # Upload the book's HTML as an artifact
+    - name: Upload artifact
+      uses: actions/upload-pages-artifact@v3
+      with:
+        path: "_build/html"
+
+    # Deploy the book's HTML to GitHub Pages
+    - name: Deploy to GitHub Pages
+      id: deployment
+      uses: actions/deploy-pages@v4
+      with:
+        clean: true
