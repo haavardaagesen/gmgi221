@@ -16,7 +16,6 @@ jobs:
   deploy-book:
     runs-on: ubuntu-latest
     permissions:
-      contents: read
       pages: write
       id-token: write
     steps:
@@ -30,13 +29,7 @@ jobs:
 
     - name: Install dependencies
       run: |
-        python -m pip install --upgrade pip
-        # Ensure jupyter-book is available so the build step can run
-        pip install jupyter-book
-        # Install a minimal set of doc-build requirements (avoid heavy GIS packages in CI)
-        if [ -f requirements-docs.txt ]; then pip install -r requirements-docs.txt || true; fi
-        # Optionally install full requirements (may include heavy native deps) but don't fail the job
-        if [ -f requirements.txt ]; then pip install -r requirements.txt || true; fi
+        pip install -r requirements.txt
 
     # (optional) Cache your executed notebooks between runs
     # if you have config:
@@ -48,84 +41,16 @@ jobs:
         path: _build/.jupyter_cache
         key: jupyter-book-cache-${{ hashFiles('requirements.txt') }}
 
-    - name: Validate TOC and source files
-      run: |
-        python .github/scripts/validate_toc.py
-
     # Build the book
-    - name: Build the book (simple)
+    - name: Build the book
       run: |
-        set -euo pipefail
-        echo "Disable notebook execution in CI: set execute_notebooks: off in _config.yml"
-        if [ -f _config.yml ]; then
-          if grep -q "execute_notebooks" _config.yml; then
-            sed -i 's/execute_notebooks: force/execute_notebooks: off/' _config.yml || true
-          else
-            printf "\nexecute:\n  execute_notebooks: off\n" >> _config.yml
-          fi
-        fi
-
-        echo "Installing lightweight doc dependencies (requirements-docs.txt)"
-        if [ -f requirements-docs.txt ]; then python -m pip install -r requirements-docs.txt || true; fi
-
-        echo "Building book at repository root (this uses _config.yml and _toc.yml at repo root)"
-        jupyter-book build . --html -v > build_root.log 2>&1 || true
-
-        echo "-- tail build_root.log --"
-        if [ -f build_root.log ]; then tail -n 400 build_root.log || true; else echo "build_root.log not found"; fi
-
-        echo "-- Find any generated HTML files --"
-        find . -type f -name 'index.html' -print || true
-
-        echo "-- List _build/html (if present) --"
-        if [ -d _build/html ]; then ls -la _build/html || true; else echo "_build/html not present"; fi
-
-        echo "-- Show _build/logs content --"
-        if [ -d _build/logs ]; then for lg in _build/logs/*; do echo "==== $lg ===="; sed -n '1,200p' "$lg" || true; done; else echo "_build/logs not present"; fi
-
-    - name: Diagnostic show installed jupyter-book/sphinx packages
-      run: |
-        echo "--- pip list (filtered) ---"
-        pip list --disable-pip-version-check --format=columns | egrep -i 'jupyter-book|jupyter_book|sphinx|myst|sphinx-book-theme|myst-nb|myst-parser' || true
-        echo "--- pip show details ---"
-        for pkg in jupyter-book jupyter_book sphinx myst-nb myst-parser sphinx-book-theme; do
-          echo "--- pkg: $pkg ---"
-          pip show "$pkg" || true
-        done
-        echo "--- python module locations ---"
-        python .github/scripts/diagnose_modules.py
-
-    - name: Verify build output
-      run: |
-        echo "Listing _build directory (if present)"
-        if [ -d "_build" ]; then ls -la _build || true; else echo "_build not present"; fi
-        echo "Listing _build/html directory (if present)"
-        if [ -d "_build/html" ]; then ls -la _build/html || true; else echo "_build/html not present"; fi
-
-    # Detect where the built HTML was emitted (some jupyter-book versions/ configs
-    # may write the built site to a different directory). We look for the first
-    # index.html and use its directory as the upload path.
-    - name: Detect built site directory
-      id: find-site
-      run: |
-        set -euo pipefail
-        echo "Searching repository for a generated index.html..."
-        found=$(find . -type f -name index.html -print -quit || true)
-        if [ -n "$found" ]; then
-          dir=$(dirname "$found")
-          echo "Found index.html at: $found"
-          echo "path=$dir" >> "$GITHUB_OUTPUT"
-        else
-          # Fallback to the traditional location
-          echo "No index.html found. Falling back to _build/html"
-          echo "path=_build/html" >> "$GITHUB_OUTPUT"
-        fi
+        jupyter-book build .
 
     # Upload the book's HTML as an artifact
     - name: Upload artifact
       uses: actions/upload-pages-artifact@v3
       with:
-        path: "${{ steps.find-site.outputs.path }}"
+        path: "_build/html"
 
     # Deploy the book's HTML to GitHub Pages
     - name: Deploy to GitHub Pages
