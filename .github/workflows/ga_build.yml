@@ -25,7 +25,7 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install -r requirements.txt
-        pip install jupyter-book
+        pip install jupyter-book==1.0.2
 
     - name: Clean previous build + remove checkpoints
       run: |
