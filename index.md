@@ -2,7 +2,7 @@
 # Velkommen til GMGI221 
 ![Logo](logo.png)
 
-Velkommen til nettsiden for GMGI221 - Automatisering av GIS-prosesser ved NMBU høsten 2025.
+Velkommen til nettsiden for GMGI221 - Automatisering av GIS-prosesser ved NMBU.
 Emnet gir en innføring i programmering for geografiske analyser og programmatisk behandling av geografiske data. Gjennom emnet vil du få en innføring i ulike analysemetoder innenfor geografisk informasjonsvitenskap (GIS), og praktisk erfaring i databehandling og analyse med geografiske data.
 
 ## Formål med emnet
