@@ -37,7 +37,21 @@ jobs:
         git ls-files | egrep -i "\.ipynb_checkpoints|_toc-checkpoint.yml" || true
 
     - name: Build the book
-      run: jupyter-book build .
+      run: jupyter-book build . -v
+
+    - name: Verify build output
+      run: |
+        echo "Listing _build:"
+        ls -la _build || true
+        echo "Listing _build/html:"
+        if [ -d "_build/html" ]; then
+        ls -la _build/html
+        else
+        echo "_build/html missing — build failed"
+        # print any sphinx/jupyter-book build logs (if present)
+        tail -n +1 _build/.log || true
+        exit 1
+        fi
 
     - name: Upload artifact
       uses: actions/upload-pages-artifact@v3
