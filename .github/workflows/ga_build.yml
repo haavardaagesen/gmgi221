@@ -27,22 +27,13 @@ jobs:
         pip install -r requirements.txt
         pip install jupyter-book
 
-    - name: Debug + remove notebook checkpoints and stray TOC checkpoints
+    - name: Clean previous build + remove checkpoints
       run: |
-        echo "PWD: $(pwd)"
-        echo "Listing top-level files:"
-        ls -lah
-        echo "Find any .ipynb_checkpoints, _toc-checkpoint.yml or _toc.yml files:"
-        find . -name ".ipynb_checkpoints" -print || true
-        find . -name "_toc-checkpoint.yml" -print || true
-        find . -name "_toc.yml" -print | sed -n '1,200p' || true
-        echo "Removing all .ipynb_checkpoints and any _toc-checkpoint.yml"
+        echo "Removing prior _build and any .ipynb_checkpoints or _toc-checkpoint.yml"
+        rm -rf _build
         find . -type d -name ".ipynb_checkpoints" -prune -exec rm -rf {} + || true
         find . -name "_toc-checkpoint.yml" -exec rm -f {} + || true
-        echo "Verify removal:"
-        find . -name ".ipynb_checkpoints" -print || echo "no checkpoints found"
-        find . -name "_toc-checkpoint.yml" -print || echo "no _toc-checkpoint.yml found"
-        echo "Show repo status (tracked files):"
+        echo "Tracked checkpoint files (should be none):"
         git ls-files | egrep -i "\.ipynb_checkpoints|_toc-checkpoint.yml" || true
 
     - name: Build the book
