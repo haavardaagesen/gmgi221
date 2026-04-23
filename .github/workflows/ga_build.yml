@@ -45,7 +45,8 @@ jobs:
     #    path: _build/.jupyter_cache
     #    key: jupyter-book-cache-${{ hashFiles('requirements.txt') }}
     - name: Remove notebook checkpoints
-      run: rm -rf .ipynb_checkpoints
+      run: |
+        find . -type d -name ".ipynb_checkpoints" -prune -exec rm -rf {} +
     # Build the book
     - name: Build the book
       run: jupyter-book build .
