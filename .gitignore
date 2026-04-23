@@ -2,3 +2,5 @@
 content/notebooks/.ipynb_checkpoints
 content/notebooks/cache
 content/notebooks/data/osm_data/OSM_Grunerlokka.*
+
+.ipynb_checkpoints/
