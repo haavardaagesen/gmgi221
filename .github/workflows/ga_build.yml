@@ -36,6 +36,31 @@ jobs:
         echo "Tracked checkpoint files (should be none):"
         git ls-files | egrep -i "\.ipynb_checkpoints|_toc-checkpoint.yml" || true
 
+    - name: CI diagnostics
+      run: |
+        echo "===== Environment ====="
+        python --version
+        which python || true
+        pip --version
+        pip list --disable-pip-version-check
+        echo
+        echo "===== jupyter-book binary ====="
+        command -v jupyter-book || echo "jupyter-book not found"
+        jupyter-book --version || true
+        echo
+        echo "===== Repo top ====="
+        pwd
+        ls -la
+        echo "Contents of _toc.yml (head):"
+        sed -n '1,120p' _toc.yml || true
+        echo
+        echo "===== Git tracked checkpoints ====="
+        git ls-files | egrep -i '\.ipynb_checkpoints|_toc-checkpoint.yml' || echo "none tracked"
+        echo
+        echo "===== Show last 200 lines of pip install (if any) ====="
+        # print pip install logs if available from previous step (optional)
+        if [ -f /home/runner/.cache/pip/log/debug.log ]; then tail -n 200 /home/runner/.cache/pip/log/debug.log; fi
+
     - name: Build the book
       run: jupyter-book build . -v
 
