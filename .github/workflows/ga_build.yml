@@ -61,8 +61,14 @@ jobs:
         # print pip install logs if available from previous step (optional)
         if [ -f /home/runner/.cache/pip/log/debug.log ]; then tail -n 200 /home/runner/.cache/pip/log/debug.log; fi
 
-    - name: Build the book
-      run: jupyter-book build . -v
+    - name: Build the book (verbose log)
+      run: |
+        echo "jupyter-book version: $(jupyter-book --version || true)"
+        echo "Start build at $(date)"
+        set -o pipefail
+        jupyter-book build . > build.log 2>&1 || { echo "Build failed — dumping build.log"; tail -n 500 build.log; exit 1; }
+        echo "Build succeeded — tail of build.log:"
+        tail -n 200 build.log
 
     - name: Verify build output
       run: |
