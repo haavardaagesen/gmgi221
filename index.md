@@ -15,30 +15,28 @@ De fleste øvingene innebærer eksempler og data fra den virkelige verden. For h
 
 ## 🏫 Forelesninger
 
-Forelesningene vil finne sted i TF1-105 kl 10-12 torsdager.
+Forelesningene vil finne sted i TF1-204 kl 14-16 tirsdager.
 
-<iframe style="overflow: hidden;" src="https://use.mazemap.com/embed.html#v=1&amp;campusid=241&amp;zlevel=1&amp;center=10.775907,59.665473&amp;zoom=19.3&amp;sharepoitype=poi&amp;sharepoi=730117&amp;utm_medium=iframe" width="720" height="405"></iframe>
+<iframe style="border: 1px solid grey;" title="Map by MazeMap" src="https://use.mazemap.com/embed.html#v=1&amp;campusid=241&amp;center=10.775878,59.665569&amp;zoom=18&amp;zlevel=2&amp;sharepoitype=identifier&amp;sharepoi=TF%20fl%C3%B8y1-TF1-204&amp;utm_medium=iframe" width="600" height="420" allow="geolocation" frameborder="0" scrolling="no"></iframe>
+
 
 ### Forelesningsplan
 
-
 | Uke         | Dato        | Tema                        |
 | ----------- | ----------- | --------------------------- |
-| -           | 04.09.25    | Ingen undervisning                       |
-| 1           | 11.09.25    | Intro                     |
-| 2           | 18.09.25    | Shapely                   |
-| 3           | 25.09.25    | Geopandas|
-| -           | 02.10.25    | Høstferie|
-| 4           | 09.10.25    | Projeksjoner og geokoding   |
-| 5           | 16.10.25    | Romlige utvelgelser og koblinger|
-| 6           | 23.10.25    | Reklassifisering og aggregering|
-| 7           | 30.10.25    | Overlay og prosjekt         |
-| 8           | 06.11.25    | Statiske og interaktive kart|
-| -           | 13.11.25    | Ingen undervisning|
-| 9           | 20.11.25    | Nettverksanalyse og OSM     |
-| 10          | 27.11.25    | Rasteranalyse               |
-| -          | 04.12.25    | Prosjektveiledning (frivillig)|
-
+| -           | 08.09.25    | Ingen undervisning          |
+| 1           | 15.09.25    | Intro                       |
+| 2           | 22.09.25    | Shapely                     |
+| -           | 29.09.25    | Høstferie                   |
+| 3           | 06.10.25    | Geopandas                   |
+| 4           | 13.10.25    | Projeksjoner og geokoding   |
+| 5           | 20.10.25    | Romlige utvelgelser og koblinger|
+| 6           | 27.10.25    | Reklassifisering og aggregering|
+| 7           | 03.11.25    | Overlay og prosjekt         |
+| 8           | 10.11.25    | Statiske og interaktive kart|
+| 9           | 17.11.25    | Nettverksanalyse og OSM     |
+| 10          | 24.11.25    | Rasteranalyse og Prosjektveiledning |
+| -           | 01.12.25    | Prosjektveiledning (frivillig) |
 
 
 ## 💻 Nettsider
