@@ -33,6 +33,7 @@ parts:
       #      - file: content/notebooks/03_filstier
       #      - file: content/notebooks/03_vektor
       #      - file: content/notebooks/03_geopandas
+      #      - file: content/notebooks/03_feilsoking
       #      - file: content/pages/03_oving-3
       #  - caption: Uke 4
       #    chapters:

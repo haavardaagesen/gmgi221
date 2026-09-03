@@ -44,6 +44,7 @@ _Fra enkeltgeometrier til hele datasett: lese, utforske og skrive vektordata._
 * liste tilgjengelige filformat/drivere og skrive en GeoDataFrame til fil med `to_file()`
 * forklare oppbygningen av en GeoDataFrame: rader, attributtkolonner og geometry-kolonnen
 * gruppere data med `groupby()` og iterere over gruppene, f.eks. for Ã¥ skrive Ã©n fil per gruppe
+* bruke en traceback til Ã¥ finne og rette vanlige feil€ý,€ý,
 
 ## Uke 4 â€“ Projeksjoner, geometriske operasjoner og geokoding
 
