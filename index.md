@@ -24,19 +24,19 @@ Forelesningene vil finne sted i TF1-204 kl 14-16 tirsdager.
 
 | Uke         | Dato        | Tema                        |
 | ----------- | ----------- | --------------------------- |
-| -           | 08.09.25    | Ingen undervisning          |
-| 1           | 15.09.25    | Intro                       |
-| 2           | 22.09.25    | Shapely                     |
-| -           | 29.09.25    | Høstferie                   |
-| 3           | 06.10.25    | Geopandas                   |
-| 4           | 13.10.25    | Projeksjoner og geokoding   |
-| 5           | 20.10.25    | Romlige utvelgelser og koblinger|
-| 6           | 27.10.25    | Reklassifisering og aggregering|
-| 7           | 03.11.25    | Overlay og prosjekt         |
-| 8           | 10.11.25    | Statiske og interaktive kart|
-| 9           | 17.11.25    | Nettverksanalyse og OSM     |
-| 10          | 24.11.25    | Rasteranalyse og Prosjektveiledning |
-| -           | 01.12.25    | Prosjektveiledning (frivillig) |
+| -           | 08.09.26    | Ingen undervisning          |
+| 1           | 15.09.26    | Intro                       |
+| 2           | 22.09.26    | Shapely                     |
+| -           | 29.09.26    | Høstferie                   |
+| 3           | 06.10.26    | Geopandas                   |
+| 4           | 13.10.26    | Projeksjoner og geokoding   |
+| 5           | 20.10.26    | Romlige utvelgelser og koblinger|
+| 6           | 27.10.26    | Reklassifisering og aggregering|
+| 7           | 03.11.26    | Overlay og prosjekt         |
+| 8           | 10.11.26    | Statiske og interaktive kart|
+| 9           | 17.11.26    | Nettverksanalyse og OSM     |
+| 10          | 24.11.26    | Rasteranalyse og Prosjektveiledning |
+| -           | 01.12.26    | Prosjektveiledning (frivillig) |
 
 
 ## 💻 Nettsider
