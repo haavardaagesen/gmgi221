@@ -1,0 +1,157 @@
+Traceback (most recent call last):
+  File "/home/aagesenh/miniconda3/envs/gmgi221/lib/python3.12/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
+    executenb(
+  File "/home/aagesenh/miniconda3/envs/gmgi221/lib/python3.12/site-packages/nbclient/client.py", line 1323, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aagesenh/miniconda3/envs/gmgi221/lib/python3.12/site-packages/jupyter_core/utils/__init__.py", line 165, in wrapped
+    return loop.run_until_complete(inner)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aagesenh/miniconda3/envs/gmgi221/lib/python3.12/asyncio/base_events.py", line 691, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/home/aagesenh/miniconda3/envs/gmgi221/lib/python3.12/site-packages/nbclient/client.py", line 709, in async_execute
+    await self.async_execute_cell(
+  File "/home/aagesenh/miniconda3/envs/gmgi221/lib/python3.12/site-packages/nbclient/client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/home/aagesenh/miniconda3/envs/gmgi221/lib/python3.12/site-packages/nbclient/client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+import shapely.geometry
+polygon = shapely.geometry.Polygon(
+    [
+        (10.744868,59.913090),
+        (10.744548,59.912731),
+        (10.745796,59.912435),
+        (10.746048,59.912704)
+    ]
+)
+navn = "Stortorget"
+
+ny_geodataframe.loc[
+    len(ny_geodataframe),  # in which row,
+    ["navn", "geometry"]    # in which columns to save values
+] = [navn, polygon]
+
+ny_geodataframe
+------------------
+
+
+[31m---------------------------------------------------------------------------[39m
+[31mTypeError[39m                                 Traceback (most recent call last)
+[36mCell[39m[36m [39m[32mIn[5][39m[32m, line 12[39m
+[32m      8[39m     ]
+[32m      9[39m )
+[32m     10[39m navn = [33m"Stortorget"[39m
+[32m     11[39m 
+[32m---> [39m[32m12[39m ny_geodataframe.loc[
+[32m     13[39m     len(ny_geodataframe),  [38;5;66;03m# in which row,[39;00m
+[32m     14[39m     [[33m"navn"[39m, [33m"geometry"[39m]    [38;5;66;03m# in which columns to save values[39;00m
+[32m     15[39m ] = [navn, polygon]
+
+[36mFile [39m[32m~/miniconda3/envs/gmgi221/lib/python3.12/site-packages/pandas/core/indexing.py:938[39m, in [36m_LocationIndexer.__setitem__[39m[34m(self, key, value)[39m
+[32m    933[39m [38;5;28mself[39m._has_valid_setitem_indexer(key)
+[32m    935[39m iloc: _iLocIndexer = (
+[32m    936[39m     cast([33m"[39m[33m_iLocIndexer[39m[33m"[39m, [38;5;28mself[39m) [38;5;28;01mif[39;00m [38;5;28mself[39m.name == [33m"[39m[33miloc[39m[33m"[39m [38;5;28;01melse[39;00m [38;5;28mself[39m.obj.iloc
+[32m    937[39m )
+[32m--> [39m[32m938[39m [30;43miloc[39;49m[30;43m.[39;49m[30;43m_setitem_with_indexer[39;49m[30;43m([39;49m[30;43mindexer[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mvalue[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mself[39;49m[30;43m.[39;49m[30;43mname[39;49m[30;43m)[39;49m
+
+[36mFile [39m[32m~/miniconda3/envs/gmgi221/lib/python3.12/site-packages/pandas/core/indexing.py:1928[39m, in [36m_iLocIndexer._setitem_with_indexer[39m[34m(self, indexer, value, name)[39m
+[32m   1926[39m taker[-[32m1[39m] = -[32m1[39m
+[32m   1927[39m reindexers = {i: (labels, taker)}
+[32m-> [39m[32m1928[39m new_obj = [30;43mself[39;49m[30;43m.[39;49m[30;43mobj[39;49m[30;43m.[39;49m[30;43m_reindex_with_indexers[39;49m[30;43m([39;49m
+[32m   1929[39m [30;43m    [39;49m[30;43mreindexers[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mallow_dups[39;49m[30;43m=[39;49m[30;43;01mTrue[39;49;00m
+[32m   1930[39m [30;43m[39;49m[30;43m)[39;49m
+[32m   1931[39m [38;5;28mself[39m.obj._mgr = new_obj._mgr
+[32m   1933[39m nindexer.append(labels.get_loc(key))
+
+[36mFile [39m[32m~/miniconda3/envs/gmgi221/lib/python3.12/site-packages/pandas/core/generic.py:5546[39m, in [36mNDFrame._reindex_with_indexers[39m[34m(self, reindexers, fill_value, allow_dups)[39m
+[32m   5542[39m 
+[32m   5543[39m         [38;5;28;01mif[39;00m new_data [38;5;28;01mis[39;00m self._mgr:
+[32m   5544[39m             new_data = new_data.copy(deep=[38;5;28;01mFalse[39;00m)
+[32m   5545[39m 
+[32m-> [39m[32m5546[39m         return self._constructor_from_mgr(new_data, axes=new_data.axes).__finalize__(
+[32m   5547[39m             self
+[32m   5548[39m         )
+
+[36mFile [39m[32m~/miniconda3/envs/gmgi221/lib/python3.12/site-packages/geopandas/geodataframe.py:2047[39m, in [36mGeoDataFrame._constructor_from_mgr[39m[34m(self, mgr, axes)[39m
+[32m   2043[39m [38;5;28;01mdef[39;00m[38;5;250m [39m[34m_constructor_from_mgr[39m([38;5;28mself[39m, mgr, axes) -> DataFrame | GeoDataFrame:
+[32m   2044[39m     [38;5;66;03m# replicate _geodataframe_constructor_with_fallback behaviour[39;00m
+[32m   2045[39m     [38;5;66;03m# unless safe to skip[39;00m
+[32m   2046[39m     [38;5;28;01mif[39;00m [38;5;129;01mnot[39;00m [38;5;28many[39m([38;5;28misinstance[39m(block.dtype, GeometryDtype) [38;5;28;01mfor[39;00m block [38;5;129;01min[39;00m mgr.blocks):
+[32m-> [39m[32m2047[39m         [38;5;28;01mreturn[39;00m [30;43mself[39;49m[30;43m.[39;49m[30;43m_geodataframe_constructor_with_fallback[39;49m[30;43m([39;49m
+[32m   2048[39m [30;43m            [39;49m[30;43mpd[39;49m[30;43m.[39;49m[30;43mDataFrame[39;49m[30;43m.[39;49m[30;43m_from_mgr[39;49m[30;43m([39;49m[30;43mmgr[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43maxes[39;49m[30;43m)[39;49m
+[32m   2049[39m [30;43m        [39;49m[30;43m)[39;49m
+[32m   2050[39m     gdf = [38;5;28mself[39m._from_mgr(mgr, axes)
+[32m   2051[39m     [38;5;66;03m# _from_mgr doesn't preserve metadata (expect __finalize__ to be called)[39;00m
+[32m   2052[39m     [38;5;66;03m# still need to mimic __init__ behaviour with geometry=None[39;00m
+
+[36mFile [39m[32m~/miniconda3/envs/gmgi221/lib/python3.12/site-packages/geopandas/geodataframe.py:2030[39m, in [36mGeoDataFrame._geodataframe_constructor_with_fallback[39m[34m(cls, *args, **kwargs)[39m
+[32m   2022[39m [38;5;129m@classmethod[39m
+[32m   2023[39m [38;5;28;01mdef[39;00m[38;5;250m [39m[34m_geodataframe_constructor_with_fallback[39m(
+[32m   2024[39m     [38;5;28mcls[39m, *args, **kwargs
+[32m   2025[39m ) -> pd.DataFrame | GeoDataFrame:
+[32m   2026[39m [38;5;250m    [39m[33;03m"""A flexible constructor for GeoDataFrame._constructor, which falls back[39;00m
+[32m   2027[39m [33;03m    to returning a DataFrame (if a certain operation does not preserve the[39;00m
+[32m   2028[39m [33;03m    geometry column).[39;00m
+[32m   2029[39m [33;03m    """[39;00m  [38;5;66;03m# noqa: D401[39;00m
+[32m-> [39m[32m2030[39m     df = [30;43mcls[39;49m[30;43m([39;49m[30;43m*[39;49m[30;43margs[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43m*[39;49m[30;43m*[39;49m[30;43mkwargs[39;49m[30;43m)[39;49m
+[32m   2032[39m     geometry_cols_mask = df.dtypes == [33m"[39m[33mgeometry[39m[33m"[39m
+[32m   2034[39m     [38;5;28;01mif[39;00m [38;5;28mlen[39m(geometry_cols_mask) == [32m0[39m [38;5;129;01mor[39;00m geometry_cols_mask.sum() == [32m0[39m:
+
+[36mFile [39m[32m~/miniconda3/envs/gmgi221/lib/python3.12/site-packages/geopandas/geodataframe.py:216[39m, in [36mGeoDataFrame.__init__[39m[34m(self, data, geometry, crs, *args, **kwargs)[39m
+[32m    208[39m [38;5;66;03m# If "geometry" is potentially coercible to geometry, we try and convert it[39;00m
+[32m    209[39m geom_dtype = [38;5;28mself[39m[[33m"[39m[33mgeometry[39m[33m"[39m].dtype
+[32m    210[39m [38;5;28;01mif[39;00m (
+[32m    211[39m     geom_dtype == [33m"[39m[33mgeometry[39m[33m"[39m  [38;5;66;03m# noqa: PLR1714[39;00m
+[32m    212[39m     [38;5;129;01mor[39;00m geom_dtype == [33m"[39m[33mobject[39m[33m"[39m
+[32m    213[39m     [38;5;66;03m# special case for geometry = [], has float dtype[39;00m
+[32m    214[39m     [38;5;129;01mor[39;00m ([38;5;28mlen[39m([38;5;28mself[39m) == [32m0[39m [38;5;129;01mand[39;00m geom_dtype == [33m"[39m[33mfloat[39m[33m"[39m)
+[32m    215[39m     [38;5;66;03m# special case for geometry = [np.nan][39;00m
+[32m--> [39m[32m216[39m     [38;5;129;01mor[39;00m (([38;5;129;01mnot[39;00m [38;5;28mself[39m.empty) [38;5;129;01mand[39;00m [30;43mself[39;49m[30;43m[[39;49m[30;43m"[39;49m[30;43mgeometry[39;49m[30;43m"[39;49m[30;43m][39;49m[30;43m.[39;49m[30;43misna[39;49m[30;43m([39;49m[30;43m)[39;49m.all())
+[32m    217[39m ):
+[32m    218[39m     [38;5;28;01mtry[39;00m:
+[32m    219[39m         [38;5;28mself[39m[[33m"[39m[33mgeometry[39m[33m"[39m] = _ensure_geometry([38;5;28mself[39m[[33m"[39m[33mgeometry[39m[33m"[39m].values, crs)
+
+[36mFile [39m[32m~/miniconda3/envs/gmgi221/lib/python3.12/site-packages/pandas/core/series.py:6337[39m, in [36mSeries.isna[39m[34m(self)[39m
+[32m   6293[39m [38;5;28;01mdef[39;00m[38;5;250m [39m[34misna[39m([38;5;28mself[39m) -> Series:
+[32m   6294[39m [38;5;250m    [39m[33;03m"""[39;00m
+[32m   6295[39m [33;03m    Detect missing values.[39;00m
+[32m   6296[39m 
+[32m   (...)[39m[32m   6335[39m [33;03m    dtype: bool[39;00m
+[32m   6336[39m [33;03m    """[39;00m
+[32m-> [39m[32m6337[39m     [38;5;28;01mreturn[39;00m [30;43mNDFrame[39;49m[30;43m.[39;49m[30;43misna[39;49m[30;43m([39;49m[30;43mself[39;49m[30;43m)[39;49m
+
+[36mFile [39m[32m~/miniconda3/envs/gmgi221/lib/python3.12/site-packages/pandas/core/generic.py:8326[39m, in [36mNDFrame.isna[39m[34m(self)[39m
+[32m   8322[39m         [32m1[39m    [38;5;28;01mFalse[39;00m
+[32m   8323[39m         [32m2[39m     [38;5;28;01mTrue[39;00m
+[32m   8324[39m         dtype: bool
+[32m   8325[39m         """
+[32m-> [39m[32m8326[39m         [38;5;28;01mreturn[39;00m isna(self).__finalize__(self, method=[33m"isna"[39m)
+
+[36mFile [39m[32m~/miniconda3/envs/gmgi221/lib/python3.12/site-packages/pandas/core/dtypes/missing.py:174[39m, in [36misna[39m[34m(obj)[39m
+[32m     97[39m [38;5;129m@set_module[39m([33m"[39m[33mpandas[39m[33m"[39m)
+[32m     98[39m [38;5;28;01mdef[39;00m[38;5;250m [39m[34misna[39m(obj: [38;5;28mobject[39m) -> [38;5;28mbool[39m | npt.NDArray[np.bool_] | NDFrame:
+[32m     99[39m [38;5;250m    [39m[33;03m"""[39;00m
+[32m    100[39m [33;03m    Detect missing values for an array-like object.[39;00m
+[32m    101[39m 
+[32m   (...)[39m[32m    172[39m [33;03m    Name: 1, dtype: bool[39;00m
+[32m    173[39m [33;03m    """[39;00m
+[32m--> [39m[32m174[39m     [38;5;28;01mreturn[39;00m [30;43m_isna[39;49m[30;43m([39;49m[30;43mobj[39;49m[30;43m)[39;49m
+
+[36mFile [39m[32m~/miniconda3/envs/gmgi221/lib/python3.12/site-packages/pandas/core/dtypes/missing.py:209[39m, in [36m_isna[39m[34m(obj)[39m
+[32m    206[39m     [38;5;28;01mreturn[39;00m _isna_array(obj._values)
+[32m    208[39m [38;5;28;01melif[39;00m [38;5;28misinstance[39m(obj, ABCSeries):
+[32m--> [39m[32m209[39m     result = [30;43m_isna_array[39;49m[30;43m([39;49m[30;43mobj[39;49m[30;43m.[39;49m[30;43m_values[39;49m[30;43m)[39;49m
+[32m    210[39m     [38;5;66;03m# box[39;00m
+[32m    211[39m     result = obj._constructor(result, index=obj.index, name=obj.name, copy=[38;5;28;01mFalse[39;00m)
+
+[36mFile [39m[32m~/miniconda3/envs/gmgi221/lib/python3.12/site-packages/pandas/core/dtypes/missing.py:255[39m, in [36m_isna_array[39m[34m(values)[39m
+[32m    253[39m     result = values.view([33m"[39m[33mi8[39m[33m"[39m) == iNaT
+[32m    254[39m [38;5;28;01melse[39;00m:
+[32m--> [39m[32m255[39m     result = [30;43mnp[39;49m[30;43m.[39;49m[30;43misnan[39;49m[30;43m([39;49m[30;43mvalues[39;49m[30;43m)[39;49m
+[32m    257[39m [38;5;28;01mreturn[39;00m result
+
+[31mTypeError[39m: ufunc 'isnan' not supported for the input types, and the inputs could not be safely coerced to any supported types according to the casting rule ''safe''
+

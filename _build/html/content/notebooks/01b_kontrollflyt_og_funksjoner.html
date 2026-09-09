@@ -1,0 +1,1490 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>💻 Kontrollflyt og funksjoner &#8212; GMGI221 - Automatisering av GIS-prosesser</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=7cf0485e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'content/notebooks/01b_kontrollflyt_og_funksjoner';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo.png" class="logo__image only-light" alt="GMGI221 - Automatisering av GIS-prosesser - Home"/>
+    <script>document.write(`<img src="../../_static/logo.png" class="logo__image only-dark" alt="GMGI221 - Automatisering av GIS-prosesser - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../index.html">
+                    Velkommen til GMGI221
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Generell info</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../pages/00_generell.html">ℹ️ Generell info</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/00_laeringsmaal.html">📖 Læringsmål</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/00_ovingsoppgaver.html">📖 Øvingsoppgaver</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/00_karakterer.html">📖 Karakterer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/00_installere-python.html">📖 Installering av Python og Python pakker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/00_bruk_av_ai.html">📖 Bruk av KI-verktøy</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/haavardaagesen/gmgi221" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/haavardaagesen/gmgi221/issues/new?title=Issue%20on%20page%20%2Fcontent/notebooks/01b_kontrollflyt_og_funksjoner.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/content/notebooks/01b_kontrollflyt_og_funksjoner.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>💻 Kontrollflyt og funksjoner</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#oversikt">Oversikt</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sammenligninger-og-boolske-uttrykk">1. Sammenligninger og boolske uttrykk</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kombinere-flere-betingelser-and-or-not">Kombinere flere betingelser: <code class="docutils literal notranslate"><span class="pre">and</span></code>, <code class="docutils literal notranslate"><span class="pre">or</span></code>, <code class="docutils literal notranslate"><span class="pre">not</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#in-er-noe-med-i-en-samling"><code class="docutils literal notranslate"><span class="pre">in</span></code>: er noe med i en samling?</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#betingelser-if-elif-else">2. Betingelser: <code class="docutils literal notranslate"><span class="pre">if</span></code>, <code class="docutils literal notranslate"><span class="pre">elif</span></code>, <code class="docutils literal notranslate"><span class="pre">else</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#else-hva-ellers"><code class="docutils literal notranslate"><span class="pre">else</span></code>: hva ellers?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#elif-flere-alternativer"><code class="docutils literal notranslate"><span class="pre">elif</span></code>: flere alternativer</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#delvis-utfylt-eksempel">Delvis utfylt eksempel</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lokker-for">3. Løkker: <code class="docutils literal notranslate"><span class="pre">for</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#range-lokke-et-bestemt-antall-ganger"><code class="docutils literal notranslate"><span class="pre">range()</span></code>: løkke et bestemt antall ganger</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#enumerate-bade-posisjon-og-element"><code class="docutils literal notranslate"><span class="pre">enumerate()</span></code>: både posisjon og element</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lokke-over-en-ordbok-dict">Løkke over en ordbok (<code class="docutils literal notranslate"><span class="pre">dict</span></code>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bygge-opp-et-resultat-akkumulator-monsteret">Bygge opp et resultat: “akkumulator-mønsteret”</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lokke-betingelse-filtrere">Løkke + betingelse: filtrere</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Delvis utfylt eksempel</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#funksjoner-def">4. Funksjoner: <code class="docutils literal notranslate"><span class="pre">def</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#en-funksjon-med-if-elif">En funksjon med <code class="docutils literal notranslate"><span class="pre">if</span></code>/<code class="docutils literal notranslate"><span class="pre">elif</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#standardverdier-for-parametere">Standardverdier for parametere</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#returnere-flere-verdier">Returnere flere verdier</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Delvis utfylt eksempel</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#import-bruke-kode-andre-har-skrevet">5. <code class="docutils literal notranslate"><span class="pre">import</span></code>: bruke kode andre har skrevet</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tre-mater-a-importere-pa">Tre måter å importere på</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#konvensjoner-du-vil-se-hele-kurset">Konvensjoner du vil se hele kurset</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#en-forsmak-pa-neste-uke">En forsmak på neste uke</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#oppsummering">6. Oppsummering</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="kontrollflyt-og-funksjoner">
+<h1>💻 Kontrollflyt og funksjoner<a class="headerlink" href="#kontrollflyt-og-funksjoner" title="Link to this heading">#</a></h1>
+<section id="oversikt">
+<h2>Oversikt<a class="headerlink" href="#oversikt" title="Link to this heading">#</a></h2>
+<p>I forrige forelesning (“En smakebit av Python”) så vi på variabler og datatyper.
+Den siste kodecellen der regnet ut midtpunktet av fire byer med denne linjen:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">centroid_lengdegrad</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">([</span><span class="n">punkt</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">punkt</span> <span class="ow">in</span> <span class="n">punkter</span><span class="p">])</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">punkter</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Den linjen inneholder tre ting vi ikke har forklart ennå: en <em>løkke</em>, en måte å
+<em>bygge opp et resultat</em> på, og funksjonene <code class="docutils literal notranslate"><span class="pre">sum()</span></code> og <code class="docutils literal notranslate"><span class="pre">len()</span></code>. I denne
+forelesningen tetter vi det hullet. Vi ser på:</p>
+<ul class="simple">
+<li><p><strong>Sammenligninger og boolske uttrykk</strong> – hvordan Python svarer <code class="docutils literal notranslate"><span class="pre">True</span></code>/<code class="docutils literal notranslate"><span class="pre">False</span></code></p></li>
+<li><p><strong>Betingelser</strong> – <code class="docutils literal notranslate"><span class="pre">if</span></code>, <code class="docutils literal notranslate"><span class="pre">elif</span></code>, <code class="docutils literal notranslate"><span class="pre">else</span></code>: kjøre kode bare når noe stemmer</p></li>
+<li><p><strong>Løkker</strong> – <code class="docutils literal notranslate"><span class="pre">for</span></code>: gjøre det samme for hvert element i en samling</p></li>
+<li><p><strong>Funksjoner</strong> – <code class="docutils literal notranslate"><span class="pre">def</span></code>: pakke kode i noe du kan gi navn, gjenbruke og teste</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">import</span></code></strong> – hente inn kode som andre har skrevet</p></li>
+</ul>
+<p>Dette er byggeklossene resten av kurset hviler på. Allerede neste uke skal du
+skrive funksjoner med <code class="docutils literal notranslate"><span class="pre">assert</span></code> (se forelesningen om <em>defensive programming</em>), og
+fra uke 3 leser vi data i løkker og skriver egne funksjoner for å behandle
+geometrier.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Kjør hver kodecelle etter hvert som du leser (Shift + Enter). Prøv å endre en
+verdi og kjør på nytt – det er den raskeste måten å forstå hva koden gjør.</p>
+</div>
+</section>
+<section id="sammenligninger-og-boolske-uttrykk">
+<h2>1. Sammenligninger og boolske uttrykk<a class="headerlink" href="#sammenligninger-og-boolske-uttrykk" title="Link to this heading">#</a></h2>
+<p>Før vi kan be Python om å gjøre noe “bare hvis …”, trenger vi uttrykk som
+svarer <code class="docutils literal notranslate"><span class="pre">True</span></code> eller <code class="docutils literal notranslate"><span class="pre">False</span></code>. Det får vi fra <strong>sammenligningsoperatorene</strong>:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Operator</p></th>
+<th class="head"><p>Betydning</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">==</span></code></p></td>
+<td><p>er lik</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">!=</span></code></p></td>
+<td><p>er ikke lik</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">&lt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&gt;</span></code></p></td>
+<td><p>mindre enn, større enn</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">&lt;=</span></code>, <code class="docutils literal notranslate"><span class="pre">&gt;=</span></code></p></td>
+<td><p>mindre/større enn eller lik</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Ett likhetstegn (<code class="docutils literal notranslate"><span class="pre">=</span></code>) <em>tilordner</em> en verdi til en variabel. To likhetstegn
+(<code class="docutils literal notranslate"><span class="pre">==</span></code>) <em>sammenligner</em>. Dette er en av de vanligste skrivefeilene i Python.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lengdegrad</span> <span class="o">=</span> <span class="mf">10.776</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">lengdegrad</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>        <span class="c1"># er punktet øst for nullmeridianen?</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">lengdegrad</span> <span class="o">==</span> <span class="mf">10.776</span><span class="p">)</span>  <span class="c1"># er verdien nøyaktig 10.776?</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">lengdegrad</span> <span class="o">!=</span> <span class="mf">5.0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+True
+True
+</pre></div>
+</div>
+</div>
+</div>
+<p>Resultatet av en sammenligning er en <code class="docutils literal notranslate"><span class="pre">bool</span></code> – akkurat samme datatype som
+<code class="docutils literal notranslate"><span class="pre">er_georeferert</span> <span class="pre">=</span> <span class="pre">True</span></code> fra forrige forelesning. Vi kan lagre den i en variabel:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">er_ost_for_null</span> <span class="o">=</span> <span class="n">lengdegrad</span> <span class="o">&gt;</span> <span class="mi">0</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">er_ost_for_null</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">er_ost_for_null</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+&lt;class &#39;bool&#39;&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<section id="kombinere-flere-betingelser-and-or-not">
+<h3>Kombinere flere betingelser: <code class="docutils literal notranslate"><span class="pre">and</span></code>, <code class="docutils literal notranslate"><span class="pre">or</span></code>, <code class="docutils literal notranslate"><span class="pre">not</span></code><a class="headerlink" href="#kombinere-flere-betingelser-and-or-not" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">and</span></code> – sann bare hvis <strong>begge</strong> sidene er sanne</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">or</span></code> – sann hvis <strong>minst én</strong> side er sann</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">not</span></code> – snur <code class="docutils literal notranslate"><span class="pre">True</span></code> til <code class="docutils literal notranslate"><span class="pre">False</span></code> og omvendt</p></li>
+</ul>
+<p>Fastlands-Norge ligger omtrent mellom 4° og 31° østlig lengde og mellom 58° og
+71° nordlig bredde. Vi kan sjekke om et punkt er innenfor denne “boksen”:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lengdegrad</span> <span class="o">=</span> <span class="mf">10.776</span>
+<span class="n">breddegrad</span> <span class="o">=</span> <span class="mf">59.665</span>
+
+<span class="n">innenfor_norge</span> <span class="o">=</span> <span class="p">(</span><span class="mi">4</span> <span class="o">&lt;</span> <span class="n">lengdegrad</span> <span class="o">&lt;</span> <span class="mi">31</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="mi">58</span> <span class="o">&lt;</span> <span class="n">breddegrad</span> <span class="o">&lt;</span> <span class="mi">71</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">innenfor_norge</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+<p>Legg merke til <code class="docutils literal notranslate"><span class="pre">4</span> <span class="pre">&lt;</span> <span class="pre">lengdegrad</span> <span class="pre">&lt;</span> <span class="pre">31</span></code>. I Python kan du lenke sammenligninger slik
+– det leses som “4 er mindre enn lengdegrad, som er mindre enn 31”.</p>
+</section>
+<section id="in-er-noe-med-i-en-samling">
+<h3><code class="docutils literal notranslate"><span class="pre">in</span></code>: er noe med i en samling?<a class="headerlink" href="#in-er-noe-med-i-en-samling" title="Link to this heading">#</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">in</span></code> sjekker om en verdi finnes i en liste (eller andre samlinger), og gir også
+en <code class="docutils literal notranslate"><span class="pre">bool</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">stottede_epsg</span> <span class="o">=</span> <span class="p">[</span><span class="mi">25832</span><span class="p">,</span> <span class="mi">25833</span><span class="p">,</span> <span class="mi">25835</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="mi">25833</span> <span class="ow">in</span> <span class="n">stottede_epsg</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="mi">4326</span> <span class="ow">in</span> <span class="n">stottede_epsg</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="mi">4326</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">stottede_epsg</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+False
+True
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="betingelser-if-elif-else">
+<h2>2. Betingelser: <code class="docutils literal notranslate"><span class="pre">if</span></code>, <code class="docutils literal notranslate"><span class="pre">elif</span></code>, <code class="docutils literal notranslate"><span class="pre">else</span></code><a class="headerlink" href="#betingelser-if-elif-else" title="Link to this heading">#</a></h2>
+<p>Med boolske uttrykk på plass kan vi la programmet <em>velge</em> hva det skal gjøre.</p>
+<p>Grunnformen:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="o">&lt;</span><span class="n">betingelse</span><span class="o">&gt;</span><span class="p">:</span>
+    <span class="c1"># denne blokken kjører bare hvis betingelsen er True</span>
+    <span class="o">...</span>
+</pre></div>
+</div>
+<p>Alt som er <strong>rykket inn</strong> (vanligvis 4 mellomrom) under <code class="docutils literal notranslate"><span class="pre">if</span></code>-linjen hører til
+betingelsen. Innrykk er ikke bare pynt i Python – det er slik språket vet hva
+som er “inni” <code class="docutils literal notranslate"><span class="pre">if</span></code>-en.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">breddegrad</span> <span class="o">=</span> <span class="mf">69.65</span>  <span class="c1"># Tromsø</span>
+
+<span class="k">if</span> <span class="n">breddegrad</span> <span class="o">&gt;</span> <span class="mf">66.5</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Dette punktet ligger nord for polarsirkelen.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Dette punktet ligger nord for polarsirkelen.
+</pre></div>
+</div>
+</div>
+</div>
+<section id="else-hva-ellers">
+<h3><code class="docutils literal notranslate"><span class="pre">else</span></code>: hva ellers?<a class="headerlink" href="#else-hva-ellers" title="Link to this heading">#</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">else</span></code> fanger opp alle tilfellene der <code class="docutils literal notranslate"><span class="pre">if</span></code>-betingelsen var <code class="docutils literal notranslate"><span class="pre">False</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">breddegrad</span> <span class="o">=</span> <span class="mf">59.91</span>  <span class="c1"># Oslo</span>
+
+<span class="k">if</span> <span class="n">breddegrad</span> <span class="o">&gt;</span> <span class="mf">66.5</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Nord for polarsirkelen.&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Sør for polarsirkelen.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Sør for polarsirkelen.
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="elif-flere-alternativer">
+<h3><code class="docutils literal notranslate"><span class="pre">elif</span></code>: flere alternativer<a class="headerlink" href="#elif-flere-alternativer" title="Link to this heading">#</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">elif</span></code> (kort for “else if”) lar deg teste flere betingelser etter hverandre.
+Python går gjennom dem ovenfra og ned og kjører <strong>den første</strong> som er sann –
+resten hoppes over.</p>
+<p>Et GIS-eksempel: hvilken UTM-sone (og dermed hvilket EPSG-nummer for ETRS89)
+bør vi bruke for et punkt i Norge, basert på lengdegraden?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lengdegrad</span> <span class="o">=</span> <span class="mf">10.776</span>
+
+<span class="k">if</span> <span class="n">lengdegrad</span> <span class="o">&lt;</span> <span class="mi">6</span><span class="p">:</span>
+    <span class="n">epsg</span> <span class="o">=</span> <span class="mi">25831</span>   <span class="c1"># UTM-sone 31</span>
+<span class="k">elif</span> <span class="n">lengdegrad</span> <span class="o">&lt;</span> <span class="mi">12</span><span class="p">:</span>
+    <span class="n">epsg</span> <span class="o">=</span> <span class="mi">25832</span>   <span class="c1"># UTM-sone 32</span>
+<span class="k">elif</span> <span class="n">lengdegrad</span> <span class="o">&lt;</span> <span class="mi">18</span><span class="p">:</span>
+    <span class="n">epsg</span> <span class="o">=</span> <span class="mi">25833</span>   <span class="c1"># UTM-sone 33</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">epsg</span> <span class="o">=</span> <span class="mi">25835</span>   <span class="c1"># UTM-sone 35 (Øst-Finnmark)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Bruk EPSG:&quot;</span><span class="p">,</span> <span class="n">epsg</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Bruk EPSG: 25832
+</pre></div>
+</div>
+</div>
+</div>
+<p>Prøv å endre <code class="docutils literal notranslate"><span class="pre">lengdegrad</span></code> til <code class="docutils literal notranslate"><span class="pre">15.2</span></code> eller <code class="docutils literal notranslate"><span class="pre">4.1</span></code> og kjør cellen på nytt.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Rekkefølgen betyr noe. Da <code class="docutils literal notranslate"><span class="pre">lengdegrad</span> <span class="pre">=</span> <span class="pre">10.776</span></code>, er både <code class="docutils literal notranslate"><span class="pre">&lt;</span> <span class="pre">12</span></code> og <code class="docutils literal notranslate"><span class="pre">&lt;</span> <span class="pre">18</span></code>
+sanne, men Python stopper ved det første treffet (<code class="docutils literal notranslate"><span class="pre">elif</span> <span class="pre">lengdegrad</span> <span class="pre">&lt;</span> <span class="pre">12</span></code>).</p>
+</div>
+</section>
+<section id="delvis-utfylt-eksempel">
+<h3>Delvis utfylt eksempel<a class="headerlink" href="#delvis-utfylt-eksempel" title="Link to this heading">#</a></h3>
+<p>Cellen under klassifiserer et areal (i kvadratmeter) i “lite”, “middels” eller
+“stort”. To av grenene er fylt ut – fyll inn resten der det står <code class="docutils literal notranslate"><span class="pre">___</span></code>.</p>
+<div class="cell tag_skip-execution docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">areal_m2</span> <span class="o">=</span> <span class="mi">45000</span>
+
+<span class="k">if</span> <span class="n">areal_m2</span> <span class="o">&lt;</span> <span class="mi">10000</span><span class="p">:</span>
+    <span class="n">kategori</span> <span class="o">=</span> <span class="s2">&quot;lite&quot;</span>
+<span class="k">elif</span> <span class="n">areal_m2</span> <span class="o">&lt;</span> <span class="mi">100000</span><span class="p">:</span>
+    <span class="n">kategori</span> <span class="o">=</span> <span class="n">___</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">kategori</span> <span class="o">=</span> <span class="n">___</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Et areal på </span><span class="si">{</span><span class="n">areal_m2</span><span class="si">}</span><span class="s2"> m2 er </span><span class="si">{</span><span class="n">kategori</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="dropdown admonition">
+<p class="admonition-title">Løsningsforslag</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>if areal_m2 &lt; 10000:
+    kategori = &quot;lite&quot;
+elif areal_m2 &lt; 100000:
+    kategori = &quot;middels&quot;
+else:
+    kategori = &quot;stort&quot;
+</pre></div>
+</div>
+</div>
+<div class="tip admonition">
+<p class="admonition-title">Sjekk din forståelse</p>
+<p>Skriv en <code class="docutils literal notranslate"><span class="pre">if</span></code>/<code class="docutils literal notranslate"><span class="pre">elif</span></code>/<code class="docutils literal notranslate"><span class="pre">else</span></code> som setter variabelen <code class="docutils literal notranslate"><span class="pre">retning</span></code> til <code class="docutils literal notranslate"><span class="pre">&quot;nord&quot;</span></code>,
+<code class="docutils literal notranslate"><span class="pre">&quot;sør&quot;</span></code> eller <code class="docutils literal notranslate"><span class="pre">&quot;ekvator&quot;</span></code> ut fra en breddegrad <code class="docutils literal notranslate"><span class="pre">bredde</span></code>:</p>
+<ul class="simple">
+<li><p>positiv breddegrad → <code class="docutils literal notranslate"><span class="pre">&quot;nord&quot;</span></code></p></li>
+<li><p>negativ breddegrad → <code class="docutils literal notranslate"><span class="pre">&quot;sør&quot;</span></code></p></li>
+<li><p>nøyaktig 0 → <code class="docutils literal notranslate"><span class="pre">&quot;ekvator&quot;</span></code></p></li>
+</ul>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bredde</span> <span class="o">=</span> <span class="mf">59.91</span>
+
+<span class="c1"># Din kode her:</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="dropdown admonition">
+<p class="admonition-title">Løsningsforslag</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>bredde = 59.91
+
+if bredde &gt; 0:
+    retning = &quot;nord&quot;
+elif bredde &lt; 0:
+    retning = &quot;sør&quot;
+else:
+    retning = &quot;ekvator&quot;
+
+print(retning)
+</pre></div>
+</div>
+</div>
+</section>
+</section>
+<section id="lokker-for">
+<h2>3. Løkker: <code class="docutils literal notranslate"><span class="pre">for</span></code><a class="headerlink" href="#lokker-for" title="Link to this heading">#</a></h2>
+<p>En <code class="docutils literal notranslate"><span class="pre">for</span></code>-løkke gjør det samme for <strong>hvert element</strong> i en samling – for eksempel
+hver rad i et datasett, hver fil i en mappe, eller hvert koordinatpar i en
+liste.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="o">&lt;</span><span class="n">element</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">samling</span><span class="o">&gt;</span><span class="p">:</span>
+    <span class="c1"># denne blokken kjører én gang per element</span>
+    <span class="o">...</span>
+</pre></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">byer</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Oslo&quot;</span><span class="p">,</span> <span class="s2">&quot;Bergen&quot;</span><span class="p">,</span> <span class="s2">&quot;Trondheim&quot;</span><span class="p">,</span> <span class="s2">&quot;Tromsø&quot;</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">by</span> <span class="ow">in</span> <span class="n">byer</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Behandler:&quot;</span><span class="p">,</span> <span class="n">by</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Behandler: Oslo
+Behandler: Bergen
+Behandler: Trondheim
+Behandler: Tromsø
+</pre></div>
+</div>
+</div>
+</div>
+<p>Variabelen <code class="docutils literal notranslate"><span class="pre">by</span></code> er ikke noe spesielt – den peker bare på ett element om gangen,
+og navnet velger du selv. Etter løkka er <code class="docutils literal notranslate"><span class="pre">by</span></code> lik det siste elementet.</p>
+<section id="range-lokke-et-bestemt-antall-ganger">
+<h3><code class="docutils literal notranslate"><span class="pre">range()</span></code>: løkke et bestemt antall ganger<a class="headerlink" href="#range-lokke-et-bestemt-antall-ganger" title="Link to this heading">#</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">range(n)</span></code> gir tallene <code class="docutils literal notranslate"><span class="pre">0,</span> <span class="pre">1,</span> <span class="pre">...,</span> <span class="pre">n-1</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0
+1
+2
+3
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="enumerate-bade-posisjon-og-element">
+<h3><code class="docutils literal notranslate"><span class="pre">enumerate()</span></code>: både posisjon og element<a class="headerlink" href="#enumerate-bade-posisjon-og-element" title="Link to this heading">#</a></h3>
+<p>Ofte vil du ha <em>både</em> radnummeret og verdien. <code class="docutils literal notranslate"><span class="pre">enumerate()</span></code> gir deg begge:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">byer</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Oslo&quot;</span><span class="p">,</span> <span class="s2">&quot;Bergen&quot;</span><span class="p">,</span> <span class="s2">&quot;Trondheim&quot;</span><span class="p">,</span> <span class="s2">&quot;Tromsø&quot;</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">nr</span><span class="p">,</span> <span class="n">by</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">byer</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">nr</span><span class="p">,</span> <span class="n">by</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0 Oslo
+1 Bergen
+2 Trondheim
+3 Tromsø
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="lokke-over-en-ordbok-dict">
+<h3>Løkke over en ordbok (<code class="docutils literal notranslate"><span class="pre">dict</span></code>)<a class="headerlink" href="#lokke-over-en-ordbok-dict" title="Link to this heading">#</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">.items()</span></code> gir deg nøkkel og verdi samtidig:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">attributter</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;navn&quot;</span><span class="p">:</span> <span class="s2">&quot;Ås&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;befolkning&quot;</span><span class="p">:</span> <span class="mi">10962</span><span class="p">,</span>
+    <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;tettsted&quot;</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="k">for</span> <span class="n">nokkel</span><span class="p">,</span> <span class="n">verdi</span> <span class="ow">in</span> <span class="n">attributter</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">nokkel</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">verdi</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>navn: Ås
+befolkning: 10962
+type: tettsted
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="bygge-opp-et-resultat-akkumulator-monsteret">
+<h3>Bygge opp et resultat: “akkumulator-mønsteret”<a class="headerlink" href="#bygge-opp-et-resultat-akkumulator-monsteret" title="Link to this heading">#</a></h3>
+<p>Dette er mønsteret som gjemte seg i <code class="docutils literal notranslate"><span class="pre">sum([punkt[0]</span> <span class="pre">for</span> <span class="pre">punkt</span> <span class="pre">in</span> <span class="pre">punkter])</span></code> fra
+forrige forelesning. Ideen: start med et tomt resultat (ofte <code class="docutils literal notranslate"><span class="pre">0</span></code> eller en tom
+liste), og oppdater det inni løkka.</p>
+<p>Her regner vi ut gjennomsnittlig lengdegrad for de fire byene – akkurat samme
+tall som listekomprehensjonen ga:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">punkter</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">[</span><span class="mf">10.738</span><span class="p">,</span> <span class="mf">59.913</span><span class="p">],</span>     <span class="c1"># Oslo</span>
+    <span class="p">[</span><span class="mf">5.323333</span><span class="p">,</span> <span class="mf">60.3925</span><span class="p">],</span>  <span class="c1"># Bergen</span>
+    <span class="p">[</span><span class="mf">10.4</span><span class="p">,</span> <span class="mf">63.44</span><span class="p">],</span>        <span class="c1"># Trondheim</span>
+    <span class="p">[</span><span class="mf">18.96366</span><span class="p">,</span> <span class="mf">69.65455</span><span class="p">],</span> <span class="c1"># Tromsø</span>
+<span class="p">]</span>
+
+<span class="n">sum_lengde</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">punkt</span> <span class="ow">in</span> <span class="n">punkter</span><span class="p">:</span>
+    <span class="n">sum_lengde</span> <span class="o">+=</span> <span class="n">punkt</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>   <span class="c1"># legg til lengdegraden fra dette punktet</span>
+
+<span class="n">snitt_lengde</span> <span class="o">=</span> <span class="n">sum_lengde</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">punkter</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Gjennomsnittlig lengdegrad:&quot;</span><span class="p">,</span> <span class="n">snitt_lengde</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Gjennomsnittlig lengdegrad: 11.35624825
+</pre></div>
+</div>
+</div>
+</div>
+<p>Sammenlign med den korte varianten fra forrige forelesning:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">snitt_lengde</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">([</span><span class="n">punkt</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">punkt</span> <span class="ow">in</span> <span class="n">punkter</span><span class="p">])</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">punkter</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Uttrykket <code class="docutils literal notranslate"><span class="pre">[punkt[0]</span> <span class="pre">for</span> <span class="pre">punkt</span> <span class="pre">in</span> <span class="pre">punkter]</span></code> kalles en <em>listekomprehensjon</em>. Det
+er en kortform for “lag en ny liste ved å løkke over <code class="docutils literal notranslate"><span class="pre">punkter</span></code> og plukke ut
+<code class="docutils literal notranslate"><span class="pre">punkt[0]</span></code> fra hver”. Du trenger ikke skrive slike selv ennå – men nå vet du hva
+de betyr når du ser dem.</p>
+</section>
+<section id="lokke-betingelse-filtrere">
+<h3>Løkke + betingelse: filtrere<a class="headerlink" href="#lokke-betingelse-filtrere" title="Link to this heading">#</a></h3>
+<p>Kombinerer du <code class="docutils literal notranslate"><span class="pre">for</span></code> og <code class="docutils literal notranslate"><span class="pre">if</span></code>, kan du plukke ut bare de elementene du vil ha. Her
+teller vi hvor mange byer som ligger nord for polarsirkelen:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">byer</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">{</span><span class="s2">&quot;navn&quot;</span><span class="p">:</span> <span class="s2">&quot;Oslo&quot;</span><span class="p">,</span> <span class="s2">&quot;bredde&quot;</span><span class="p">:</span> <span class="mf">59.913</span><span class="p">},</span>
+    <span class="p">{</span><span class="s2">&quot;navn&quot;</span><span class="p">:</span> <span class="s2">&quot;Bergen&quot;</span><span class="p">,</span> <span class="s2">&quot;bredde&quot;</span><span class="p">:</span> <span class="mf">60.3925</span><span class="p">},</span>
+    <span class="p">{</span><span class="s2">&quot;navn&quot;</span><span class="p">:</span> <span class="s2">&quot;Trondheim&quot;</span><span class="p">,</span> <span class="s2">&quot;bredde&quot;</span><span class="p">:</span> <span class="mf">63.44</span><span class="p">},</span>
+    <span class="p">{</span><span class="s2">&quot;navn&quot;</span><span class="p">:</span> <span class="s2">&quot;Tromsø&quot;</span><span class="p">,</span> <span class="s2">&quot;bredde&quot;</span><span class="p">:</span> <span class="mf">69.65455</span><span class="p">},</span>
+<span class="p">]</span>
+
+<span class="n">antall_nord</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">by</span> <span class="ow">in</span> <span class="n">byer</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">by</span><span class="p">[</span><span class="s2">&quot;bredde&quot;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mf">66.5</span><span class="p">:</span>
+        <span class="n">antall_nord</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">by</span><span class="p">[</span><span class="s2">&quot;navn&quot;</span><span class="p">],</span> <span class="s2">&quot;ligger nord for polarsirkelen&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Totalt:&quot;</span><span class="p">,</span> <span class="n">antall_nord</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Tromsø ligger nord for polarsirkelen
+Totalt: 1
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id1">
+<h3>Delvis utfylt eksempel<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
+<p>Cellen under skal lage en <strong>ny liste</strong> <code class="docutils literal notranslate"><span class="pre">store_byer</span></code> med navnene på byene som har
+mer enn 100 000 innbyggere. Fyll inn der det står <code class="docutils literal notranslate"><span class="pre">___</span></code>.</p>
+<div class="cell tag_skip-execution docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">byer</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">{</span><span class="s2">&quot;navn&quot;</span><span class="p">:</span> <span class="s2">&quot;Oslo&quot;</span><span class="p">,</span> <span class="s2">&quot;befolkning&quot;</span><span class="p">:</span> <span class="mi">709037</span><span class="p">},</span>
+    <span class="p">{</span><span class="s2">&quot;navn&quot;</span><span class="p">:</span> <span class="s2">&quot;Bergen&quot;</span><span class="p">,</span> <span class="s2">&quot;befolkning&quot;</span><span class="p">:</span> <span class="mi">291940</span><span class="p">},</span>
+    <span class="p">{</span><span class="s2">&quot;navn&quot;</span><span class="p">:</span> <span class="s2">&quot;Ås&quot;</span><span class="p">,</span> <span class="s2">&quot;befolkning&quot;</span><span class="p">:</span> <span class="mi">10962</span><span class="p">},</span>
+    <span class="p">{</span><span class="s2">&quot;navn&quot;</span><span class="p">:</span> <span class="s2">&quot;Tromsø&quot;</span><span class="p">,</span> <span class="s2">&quot;befolkning&quot;</span><span class="p">:</span> <span class="mi">77544</span><span class="p">},</span>
+<span class="p">]</span>
+
+<span class="n">store_byer</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">by</span> <span class="ow">in</span> <span class="n">byer</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">___</span> <span class="o">&gt;</span> <span class="mi">100000</span><span class="p">:</span>
+        <span class="n">store_byer</span><span class="o">.</span><span class="n">___</span><span class="p">(</span><span class="n">by</span><span class="p">[</span><span class="s2">&quot;navn&quot;</span><span class="p">])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">store_byer</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="dropdown admonition">
+<p class="admonition-title">Løsningsforslag</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>store_byer = []
+for by in byer:
+    if by[&quot;befolkning&quot;] &gt; 100000:
+        store_byer.append(by[&quot;navn&quot;])
+
+print(store_byer)   # [&#39;Oslo&#39;, &#39;Bergen&#39;]
+</pre></div>
+</div>
+</div>
+<div class="tip admonition">
+<p class="admonition-title">Sjekk din forståelse</p>
+<p>Bruk <code class="docutils literal notranslate"><span class="pre">punkter</span></code>-listen fra tidligere (lengdegrad, breddegrad for fire byer).
+Skriv en løkke som regner ut <strong>gjennomsnittlig breddegrad</strong> (<code class="docutils literal notranslate"><span class="pre">punkt[1]</span></code>), på
+samme måte som vi gjorde for lengdegrad.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">punkter</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">[</span><span class="mf">10.738</span><span class="p">,</span> <span class="mf">59.913</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">5.323333</span><span class="p">,</span> <span class="mf">60.3925</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">10.4</span><span class="p">,</span> <span class="mf">63.44</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">18.96366</span><span class="p">,</span> <span class="mf">69.65455</span><span class="p">],</span>
+<span class="p">]</span>
+
+<span class="c1"># Din kode her:</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="dropdown admonition">
+<p class="admonition-title">Løsningsforslag</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>sum_bredde = 0
+for punkt in punkter:
+    sum_bredde += punkt[1]
+
+snitt_bredde = sum_bredde / len(punkter)
+print(snitt_bredde)   # 63.3500125
+</pre></div>
+</div>
+</div>
+</section>
+</section>
+<section id="funksjoner-def">
+<h2>4. Funksjoner: <code class="docutils literal notranslate"><span class="pre">def</span></code><a class="headerlink" href="#funksjoner-def" title="Link to this heading">#</a></h2>
+<p>En <strong>funksjon</strong> er en bit kode du gir et navn, slik at du kan kjøre den igjen og
+igjen uten å skrive den på nytt. Du har allerede brukt mange: <code class="docutils literal notranslate"><span class="pre">print()</span></code>,
+<code class="docutils literal notranslate"><span class="pre">len()</span></code>, <code class="docutils literal notranslate"><span class="pre">sum()</span></code>, <code class="docutils literal notranslate"><span class="pre">range()</span></code>, <code class="docutils literal notranslate"><span class="pre">math.radians()</span></code>.</p>
+<p>Hvorfor skrive egne?</p>
+<ul class="simple">
+<li><p><strong>Gjenbruk</strong> – skriv logikken én gang, bruk den mange steder</p></li>
+<li><p><strong>Navngiving</strong> – <code class="docutils literal notranslate"><span class="pre">utm_sone_epsg(lengdegrad)</span></code> sier hva koden gjør; ti linjer
+med <code class="docutils literal notranslate"><span class="pre">if</span></code>/<code class="docutils literal notranslate"><span class="pre">elif</span></code> gjør det ikke</p></li>
+<li><p><strong>Testing</strong> – en funksjon med tydelig inn- og utdata er lett å sjekke. Neste
+uke legger vi til <code class="docutils literal notranslate"><span class="pre">assert</span></code> i funksjoner akkurat som disse.</p></li>
+</ul>
+<p>Grunnformen:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">funksjonsnavn</span><span class="p">(</span><span class="n">parameter1</span><span class="p">,</span> <span class="n">parameter2</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Kort forklaring av hva funksjonen gjør.&quot;&quot;&quot;</span>
+    <span class="o">...</span>
+    <span class="k">return</span> <span class="n">resultat</span>
+</pre></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">polarsirkelen</span><span class="p">(</span><span class="n">breddegrad</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Returnerer True hvis breddegraden er nord for polarsirkelen (66,5 grader N).&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">breddegrad</span> <span class="o">&gt;</span> <span class="mf">66.5</span>
+
+
+<span class="nb">print</span><span class="p">(</span><span class="n">polarsirkelen</span><span class="p">(</span><span class="mf">69.65</span><span class="p">))</span>   <span class="c1"># Tromsø  -&gt; True</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">polarsirkelen</span><span class="p">(</span><span class="mf">59.91</span><span class="p">))</span>   <span class="c1"># Oslo    -&gt; False</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+False
+</pre></div>
+</div>
+</div>
+</div>
+<p>Noen begreper:</p>
+<ul class="simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">def</span></code></strong> starter definisjonen. Å definere funksjonen <em>kjører</em> den ikke – det
+skjer først når du <em>kaller</em> den, som <code class="docutils literal notranslate"><span class="pre">polarsirkelen(69.65)</span></code>.</p></li>
+<li><p><strong>Parametere</strong> (<code class="docutils literal notranslate"><span class="pre">breddegrad</span></code>) er navnene funksjonen bruker på det den får inn.</p></li>
+<li><p><strong>Docstring</strong> – teksten i trippel-hermetegn rett under <code class="docutils literal notranslate"><span class="pre">def</span></code>-linjen. Den
+forklarer funksjonen for den neste som leser koden (ofte deg selv om tre uker).</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">return</span></code></strong> sender en verdi tilbake til den som kalte funksjonen. Uten
+<code class="docutils literal notranslate"><span class="pre">return</span></code> gir funksjonen <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p></li>
+</ul>
+<section id="en-funksjon-med-if-elif">
+<h3>En funksjon med <code class="docutils literal notranslate"><span class="pre">if</span></code>/<code class="docutils literal notranslate"><span class="pre">elif</span></code><a class="headerlink" href="#en-funksjon-med-if-elif" title="Link to this heading">#</a></h3>
+<p>La oss pakke UTM-sone-logikken fra del 2 inn i en funksjon:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">utm_sone_epsg</span><span class="p">(</span><span class="n">lengdegrad</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Returnerer EPSG-koden for riktig ETRS89 / UTM-sone i Norge.&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">lengdegrad</span> <span class="o">&lt;</span> <span class="mi">6</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">25831</span>
+    <span class="k">elif</span> <span class="n">lengdegrad</span> <span class="o">&lt;</span> <span class="mi">12</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">25832</span>
+    <span class="k">elif</span> <span class="n">lengdegrad</span> <span class="o">&lt;</span> <span class="mi">18</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">25833</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">25835</span>
+
+
+<span class="nb">print</span><span class="p">(</span><span class="n">utm_sone_epsg</span><span class="p">(</span><span class="mf">10.776</span><span class="p">))</span>   <span class="c1"># -&gt; 25832</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">utm_sone_epsg</span><span class="p">(</span><span class="mf">15.2</span><span class="p">))</span>     <span class="c1"># -&gt; 25833</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>25832
+25833
+</pre></div>
+</div>
+</div>
+</div>
+<p>Legg merke til at vi kan bruke <code class="docutils literal notranslate"><span class="pre">return</span></code> flere ganger. Så snart Python treffer en
+<code class="docutils literal notranslate"><span class="pre">return</span></code>, hopper det ut av funksjonen.</p>
+</section>
+<section id="standardverdier-for-parametere">
+<h3>Standardverdier for parametere<a class="headerlink" href="#standardverdier-for-parametere" title="Link to this heading">#</a></h3>
+<p>Du kan gi en parameter en <strong>standardverdi</strong>, som brukes hvis den som kaller
+funksjonen ikke oppgir noe:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">nord_for</span><span class="p">(</span><span class="n">breddegrad</span><span class="p">,</span> <span class="n">grense</span><span class="o">=</span><span class="mf">66.5</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;True hvis punktet ligger nord for en gitt breddegrad (standard: polarsirkelen).&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">breddegrad</span> <span class="o">&gt;</span> <span class="n">grense</span>
+
+
+<span class="nb">print</span><span class="p">(</span><span class="n">nord_for</span><span class="p">(</span><span class="mf">64.0</span><span class="p">))</span>             <span class="c1"># bruker grense=66.5  -&gt; False</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">nord_for</span><span class="p">(</span><span class="mf">64.0</span><span class="p">,</span> <span class="n">grense</span><span class="o">=</span><span class="mi">63</span><span class="p">))</span>  <span class="c1"># egen grense         -&gt; True</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>False
+True
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="returnere-flere-verdier">
+<h3>Returnere flere verdier<a class="headerlink" href="#returnere-flere-verdier" title="Link to this heading">#</a></h3>
+<p>En funksjon kan returnere flere verdier på én gang (teknisk sett en <code class="docutils literal notranslate"><span class="pre">tuple</span></code>).
+Her samler vi opp midtpunkt-koden fra del 3 i én gjenbrukbar funksjon:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">midtpunkt</span><span class="p">(</span><span class="n">punkter</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Gjennomsnittlig lengde- og breddegrad for en liste med [lengde, bredde]-par.&quot;&quot;&quot;</span>
+    <span class="n">sum_lengde</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">sum_bredde</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">punkt</span> <span class="ow">in</span> <span class="n">punkter</span><span class="p">:</span>
+        <span class="n">sum_lengde</span> <span class="o">+=</span> <span class="n">punkt</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">sum_bredde</span> <span class="o">+=</span> <span class="n">punkt</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">snitt_lengde</span> <span class="o">=</span> <span class="n">sum_lengde</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">punkter</span><span class="p">)</span>
+    <span class="n">snitt_bredde</span> <span class="o">=</span> <span class="n">sum_bredde</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">punkter</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">snitt_lengde</span><span class="p">,</span> <span class="n">snitt_bredde</span>
+
+
+<span class="n">punkter</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">[</span><span class="mf">10.738</span><span class="p">,</span> <span class="mf">59.913</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">5.323333</span><span class="p">,</span> <span class="mf">60.3925</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">10.4</span><span class="p">,</span> <span class="mf">63.44</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">18.96366</span><span class="p">,</span> <span class="mf">69.65455</span><span class="p">],</span>
+<span class="p">]</span>
+
+<span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">midtpunkt</span><span class="p">(</span><span class="n">punkter</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Midtpunkt: </span><span class="si">{</span><span class="n">x</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">y</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Midtpunkt: 11.3562, 63.3500
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Variabler som lages inne i en funksjon (<code class="docutils literal notranslate"><span class="pre">sum_lengde</span></code>, <code class="docutils literal notranslate"><span class="pre">snitt_bredde</span></code>) finnes
+<strong>bare der</strong>. Prøv å skrive <code class="docutils literal notranslate"><span class="pre">print(sum_lengde)</span></code> i en egen celle etterpå – du får
+en <code class="docutils literal notranslate"><span class="pre">NameError</span></code>. Funksjonen kommuniserer med omverdenen gjennom parameterne den
+tar inn og verdien den returnerer.</p>
+</div>
+</section>
+<section id="id2">
+<h3>Delvis utfylt eksempel<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
+<p>Fullfør funksjonen <code class="docutils literal notranslate"><span class="pre">tell_nord</span></code>, som skal telle hvor mange punkter i en liste som
+ligger nord for polarsirkelen. Bruk <code class="docutils literal notranslate"><span class="pre">nord_for</span></code>-funksjonen fra tidligere.</p>
+<div class="cell tag_skip-execution docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">tell_nord</span><span class="p">(</span><span class="n">punkter</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Teller hvor mange [lengde, bredde]-punkter som ligger nord for polarsirkelen.&quot;&quot;&quot;</span>
+    <span class="n">antall</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">punkt</span> <span class="ow">in</span> <span class="n">punkter</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">___</span><span class="p">:</span>
+            <span class="n">antall</span> <span class="n">___</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="n">antall</span>
+
+
+<span class="nb">print</span><span class="p">(</span><span class="n">tell_nord</span><span class="p">(</span><span class="n">punkter</span><span class="p">))</span>   <span class="c1"># forventet: 1</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="dropdown admonition">
+<p class="admonition-title">Løsningsforslag</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>def tell_nord(punkter):
+    antall = 0
+    for punkt in punkter:
+        if nord_for(punkt[1]):
+            antall += 1
+    return antall
+</pre></div>
+</div>
+</div>
+<div class="tip admonition">
+<p class="admonition-title">Sjekk din forståelse</p>
+<p>Skriv en funksjon <code class="docutils literal notranslate"><span class="pre">km_til_m(distanse_km)</span></code> som gjør om en distanse i kilometer
+til meter, med en docstring. Test den med <code class="docutils literal notranslate"><span class="pre">km_til_m(4.2)</span></code> (skal gi <code class="docutils literal notranslate"><span class="pre">4200.0</span></code>).</p>
+<p>(Neste uke skal du legge til en <code class="docutils literal notranslate"><span class="pre">assert</span></code> som sier fra hvis noen sender inn et
+negativt tall.)</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Din kode her:</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="dropdown admonition">
+<p class="admonition-title">Løsningsforslag</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>def km_til_m(distanse_km):
+    &quot;&quot;&quot;Gjør om en distanse fra kilometer til meter.&quot;&quot;&quot;
+    return distanse_km * 1000
+
+print(km_til_m(4.2))   # 4200.0
+</pre></div>
+</div>
+</div>
+</section>
+</section>
+<section id="import-bruke-kode-andre-har-skrevet">
+<h2>5. <code class="docutils literal notranslate"><span class="pre">import</span></code>: bruke kode andre har skrevet<a class="headerlink" href="#import-bruke-kode-andre-har-skrevet" title="Link to this heading">#</a></h2>
+<p>Python kommer med et stort <strong>standardbibliotek</strong>, og i dette kurset installerer
+vi i tillegg pakker som <code class="docutils literal notranslate"><span class="pre">geopandas</span></code>, <code class="docutils literal notranslate"><span class="pre">shapely</span></code> og <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code>. <code class="docutils literal notranslate"><span class="pre">import</span></code> er
+hvordan du henter dem inn.</p>
+<p>Du så allerede <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">math</span></code> i forrige forelesning:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">math</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">144</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>12.0
+3.141592653589793
+</pre></div>
+</div>
+</div>
+</div>
+<section id="tre-mater-a-importere-pa">
+<h3>Tre måter å importere på<a class="headerlink" href="#tre-mater-a-importere-pa" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">math</span>               <span class="c1"># hele modulen – bruk som  math.sqrt(...)</span>
+<span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">sqrt</span>      <span class="c1"># bare én ting – bruk som  sqrt(...)</span>
+<span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>    <span class="c1"># gi modulen et kortnavn – bruk som  gpd.read_file(...)</span>
+</pre></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">hypot</span>
+
+<span class="c1"># rett-linje-avstand mellom to punkter (i et plant koordinatsystem, meter)</span>
+<span class="n">dx</span> <span class="o">=</span> <span class="mi">599200</span> <span class="o">-</span> <span class="mi">601000</span>
+<span class="n">dy</span> <span class="o">=</span> <span class="mi">6643000</span> <span class="o">-</span> <span class="mi">6651000</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">hypot</span><span class="p">(</span><span class="n">dx</span><span class="p">,</span> <span class="n">dy</span><span class="p">),</span> <span class="s2">&quot;meter&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>8200.0 meter
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="konvensjoner-du-vil-se-hele-kurset">
+<h3>Konvensjoner du vil se hele kurset<a class="headerlink" href="#konvensjoner-du-vil-se-hele-kurset" title="Link to this heading">#</a></h3>
+<p>Noen pakker importeres nesten alltid med et fast kortnavn. Følg samme
+konvensjon, så er koden din lett å lese for andre:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</pre></div>
+</div>
+</section>
+<section id="en-forsmak-pa-neste-uke">
+<h3>En forsmak på neste uke<a class="headerlink" href="#en-forsmak-pa-neste-uke" title="Link to this heading">#</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">shapely</span></code> (uke 2) er allerede installert i kursmiljøet. Slik henter du inn
+<code class="docutils literal notranslate"><span class="pre">Point</span></code>-klassen og lager et punkt:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">shapely.geometry</span> <span class="kn">import</span> <span class="n">Point</span>
+
+<span class="n">oslo</span> <span class="o">=</span> <span class="n">Point</span><span class="p">(</span><span class="mf">10.738</span><span class="p">,</span> <span class="mf">59.913</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">oslo</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">oslo</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>POINT (10.738 59.913)
+&lt;class &#39;shapely.geometry.point.Point&#39;&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<p>Og <code class="docutils literal notranslate"><span class="pre">pathlib</span></code> fra standardbiblioteket, som vi bruker til filstier fra uke 3:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pathlib</span>
+
+<span class="n">mappe</span> <span class="o">=</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">()</span><span class="o">.</span><span class="n">resolve</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Denne notebooken ligger i:&quot;</span><span class="p">,</span> <span class="n">mappe</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Denne notebooken ligger i: /home/aagesenh/GoogleDrive/Samfunnsgeo/phd/teaching/gmgi221/gmgi221/content/notebooks
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Hvis en <code class="docutils literal notranslate"><span class="pre">import</span></code> gir <code class="docutils literal notranslate"><span class="pre">ModuleNotFoundError</span></code>, er som regel pakken ikke installert i
+miljøet du kjører – eller du kjører feil kjerne (kernel). Sjekk at du har
+aktivert <code class="docutils literal notranslate"><span class="pre">gmgi221</span></code>-miljøet og valgt riktig kjerne i Jupyter.</p>
+</div>
+</section>
+</section>
+<section id="oppsummering">
+<h2>6. Oppsummering<a class="headerlink" href="#oppsummering" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Konsept</p></th>
+<th class="head"><p>Nøkkelord</p></th>
+<th class="head"><p>Hvor du møter det videre i kurset</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Boolske uttrykk</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">==</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;</span></code>, <code class="docutils literal notranslate"><span class="pre">and</span></code>, <code class="docutils literal notranslate"><span class="pre">or</span></code>, <code class="docutils literal notranslate"><span class="pre">in</span></code></p></td>
+<td><p>Filtrere GeoDataFrames (uke 5), <code class="docutils literal notranslate"><span class="pre">assert</span></code> (uke 2)</p></td>
+</tr>
+<tr class="row-odd"><td><p>Betingelser</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">if</span></code> / <code class="docutils literal notranslate"><span class="pre">elif</span></code> / <code class="docutils literal notranslate"><span class="pre">else</span></code></p></td>
+<td><p>Velge CRS, klassifisere data (uke 6)</p></td>
+</tr>
+<tr class="row-even"><td><p>Løkker</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">for</span> <span class="pre">...</span> <span class="pre">in</span> <span class="pre">...</span></code></p></td>
+<td><p>Lese/skrive mange filer, gå gjennom rader (uke 3+)</p></td>
+</tr>
+<tr class="row-odd"><td><p>Funksjoner</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">def</span></code>, <code class="docutils literal notranslate"><span class="pre">return</span></code></p></td>
+<td><p>Egne funksjoner i prosjektet, <code class="docutils literal notranslate"><span class="pre">.apply()</span></code> (uke 3, 6)</p></td>
+</tr>
+<tr class="row-even"><td><p>Import</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">import</span></code>, <code class="docutils literal notranslate"><span class="pre">from</span> <span class="pre">...</span> <span class="pre">import</span></code>, <code class="docutils literal notranslate"><span class="pre">as</span></code></p></td>
+<td><p>Hver eneste forelesning fra og med uke 2</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Du trenger ikke huske alt utenat. Målet er at du skal <strong>kjenne igjen</strong> disse
+mønstrene når du ser dem i forelesningsnotebookene.</p>
+<div class="tip admonition">
+<p class="admonition-title">Avsluttende oppgave</p>
+<p>Sett sammen det vi har vært gjennom. Skriv en funksjon
+<code class="docutils literal notranslate"><span class="pre">beskriv_punkt(lengdegrad,</span> <span class="pre">breddegrad)</span></code> som:</p>
+<ol class="arabic simple">
+<li><p>bruker <code class="docutils literal notranslate"><span class="pre">utm_sone_epsg</span></code> til å finne riktig EPSG-kode</p></li>
+<li><p>sjekker om punktet ligger nord for polarsirkelen</p></li>
+<li><p>returnerer en tekst som f.eks.
+<code class="docutils literal notranslate"><span class="pre">&quot;Punktet</span> <span class="pre">(10.74,</span> <span class="pre">59.91)</span> <span class="pre">hører</span> <span class="pre">til</span> <span class="pre">EPSG:25832</span> <span class="pre">og</span> <span class="pre">ligger</span> <span class="pre">sør</span> <span class="pre">for</span> <span class="pre">polarsirkelen.&quot;</span></code></p></li>
+</ol>
+<p>Test den med Oslo (10.738, 59.913) og Tromsø (18.955, 69.649).</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Din kode her:</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="dropdown admonition">
+<p class="admonition-title">Løsningsforslag</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>def beskriv_punkt(lengdegrad, breddegrad):
+    &quot;&quot;&quot;Kort tekstbeskrivelse: UTM-sone og forhold til polarsirkelen.&quot;&quot;&quot;
+    epsg = utm_sone_epsg(lengdegrad)
+    if breddegrad &gt; 66.5:
+        polart = &quot;nord for polarsirkelen&quot;
+    else:
+        polart = &quot;sør for polarsirkelen&quot;
+    return (
+        f&quot;Punktet ({lengdegrad}, {breddegrad}) hører til &quot;
+        f&quot;EPSG:{epsg} og ligger {polart}.&quot;
+    )
+
+print(beskriv_punkt(10.738, 59.913))
+print(beskriv_punkt(18.955, 69.649))
+</pre></div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./content/notebooks"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#oversikt">Oversikt</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sammenligninger-og-boolske-uttrykk">1. Sammenligninger og boolske uttrykk</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kombinere-flere-betingelser-and-or-not">Kombinere flere betingelser: <code class="docutils literal notranslate"><span class="pre">and</span></code>, <code class="docutils literal notranslate"><span class="pre">or</span></code>, <code class="docutils literal notranslate"><span class="pre">not</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#in-er-noe-med-i-en-samling"><code class="docutils literal notranslate"><span class="pre">in</span></code>: er noe med i en samling?</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#betingelser-if-elif-else">2. Betingelser: <code class="docutils literal notranslate"><span class="pre">if</span></code>, <code class="docutils literal notranslate"><span class="pre">elif</span></code>, <code class="docutils literal notranslate"><span class="pre">else</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#else-hva-ellers"><code class="docutils literal notranslate"><span class="pre">else</span></code>: hva ellers?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#elif-flere-alternativer"><code class="docutils literal notranslate"><span class="pre">elif</span></code>: flere alternativer</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#delvis-utfylt-eksempel">Delvis utfylt eksempel</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lokker-for">3. Løkker: <code class="docutils literal notranslate"><span class="pre">for</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#range-lokke-et-bestemt-antall-ganger"><code class="docutils literal notranslate"><span class="pre">range()</span></code>: løkke et bestemt antall ganger</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#enumerate-bade-posisjon-og-element"><code class="docutils literal notranslate"><span class="pre">enumerate()</span></code>: både posisjon og element</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lokke-over-en-ordbok-dict">Løkke over en ordbok (<code class="docutils literal notranslate"><span class="pre">dict</span></code>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bygge-opp-et-resultat-akkumulator-monsteret">Bygge opp et resultat: “akkumulator-mønsteret”</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lokke-betingelse-filtrere">Løkke + betingelse: filtrere</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Delvis utfylt eksempel</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#funksjoner-def">4. Funksjoner: <code class="docutils literal notranslate"><span class="pre">def</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#en-funksjon-med-if-elif">En funksjon med <code class="docutils literal notranslate"><span class="pre">if</span></code>/<code class="docutils literal notranslate"><span class="pre">elif</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#standardverdier-for-parametere">Standardverdier for parametere</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#returnere-flere-verdier">Returnere flere verdier</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Delvis utfylt eksempel</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#import-bruke-kode-andre-har-skrevet">5. <code class="docutils literal notranslate"><span class="pre">import</span></code>: bruke kode andre har skrevet</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tre-mater-a-importere-pa">Tre måter å importere på</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#konvensjoner-du-vil-se-hele-kurset">Konvensjoner du vil se hele kurset</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#en-forsmak-pa-neste-uke">En forsmak på neste uke</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#oppsummering">6. Oppsummering</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Håvard Wallin Aagesen
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  <p>This course is heavily based on the <a href="https://autogis-site.readthedocs.io/en/latest/" target="_blank">Automating GIS processes</a> course at the University of Helsinki.</p>
+
+</div>
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

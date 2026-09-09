@@ -63,7 +63,7 @@ I denne oppgaven er målet å utvikle et verktøy for urban analyse og anvende d
 ### Data
 Du kan bruke hvilken som helst (romlig) data som du kan finne, og generere din egen rapport som beskriver hvordan bydelene skiller seg fra hverandre basert på forskjellige perspektiver (se nedenfor for hint om mulige analyser). Du kan bruke hvilken som helst data som er tilgjengelig, for eksempel fra følgende kilder:
 
-* OpenStreetMap (f.eks. gater, bygninger, interessepunkter) etter tilnærmingen fra leksjon 6.
+* OpenStreetMap (f.eks. gater, bygninger, interessepunkter) etter tilnærmingen fra uke 9.
 * [Geonorge](https://www.geonorge.no/kartdata/datasett-i-geonorge/)
 * [SSB sin statistikkbank](https://www.ssb.no/statbank)
 * [Oslo kommunes statistikkbank](https://statistikkbanken.oslo.kommune.no/)

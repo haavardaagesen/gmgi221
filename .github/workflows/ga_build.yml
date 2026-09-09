@@ -11,21 +11,19 @@ jobs:
     permissions:
       pages: write
       id-token: write
+    defaults:
+      run:
+        shell: bash -el {0}
     steps:
     - uses: actions/checkout@v4
       with:
         fetch-depth: 0
 
-    - name: Set up Python 3.11
-      uses: actions/setup-python@v5
+    - name: Set up the gmgi221 conda environment
+      uses: mamba-org/setup-micromamba@v2
       with:
-        python-version: 3.11
-
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install -r requirements.txt
-        pip install jupyter-book==1.0.2
+        environment-file: environment.yml
+        cache-environment: true
 
     - name: Clean previous build + remove checkpoints
       run: |
@@ -36,34 +34,21 @@ jobs:
         echo "Tracked checkpoint files (should be none):"
         git ls-files | egrep -i "\.ipynb_checkpoints|_toc-checkpoint.yml" || true
 
-    - name: CI diagnostics
+    - name: Diagnostics
       run: |
         echo "===== Environment ====="
         python --version
-        which python || true
-        pip --version
-        pip list --disable-pip-version-check
+        which python
+        jupyter-book --version
         echo
-        echo "===== jupyter-book binary ====="
-        command -v jupyter-book || echo "jupyter-book not found"
-        jupyter-book --version || true
+        echo "===== Installed packages ====="
+        micromamba list
         echo
-        echo "===== Repo top ====="
-        pwd
-        ls -la
-        echo "Contents of _toc.yml (head):"
-        sed -n '1,120p' _toc.yml || true
-        echo
-        echo "===== Git tracked checkpoints ====="
-        git ls-files | egrep -i '\.ipynb_checkpoints|_toc-checkpoint.yml' || echo "none tracked"
-        echo
-        echo "===== Show last 200 lines of pip install (if any) ====="
-        # print pip install logs if available from previous step (optional)
-        if [ -f /home/runner/.cache/pip/log/debug.log ]; then tail -n 200 /home/runner/.cache/pip/log/debug.log; fi
+        echo "===== _toc.yml (head) ====="
+        sed -n '1,60p' _toc.yml || true
 
     - name: Build the book (verbose log)
       run: |
-        echo "jupyter-book version: $(jupyter-book --version || true)"
         echo "Start build at $(date)"
         set -o pipefail
         jupyter-book build . > build.log 2>&1 || { echo "Build failed — dumping build.log"; tail -n 500 build.log; exit 1; }
@@ -72,16 +57,11 @@ jobs:
 
     - name: Verify build output
       run: |
-        echo "Listing _build:"
-        ls -la _build || true
-        echo "Listing _build/html:"
         if [ -d "_build/html" ]; then
-        ls -la _build/html
+          ls -la _build/html
         else
-        echo "_build/html missing — build failed"
-        # print any sphinx/jupyter-book build logs (if present)
-        tail -n +1 _build/.log || true
-        exit 1
+          echo "_build/html missing — build failed"
+          exit 1
         fi
 
     - name: Upload artifact

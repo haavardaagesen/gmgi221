@@ -1,0 +1,54 @@
+name: gmgi221
+
+# Single source of truth for the GMGI221 environment.
+# Used by students (conda/mamba env create), the CI build (.github/workflows/ga_build.yml)
+# and the dev container (.devcontainer/Dockerfile).
+#
+# Create it with:   conda env create -f environment.yml
+# Update it with:    conda env update -f environment.yml --prune
+
+channels:
+  - conda-forge
+
+dependencies:
+  - python=3.12
+
+  # --- Jupyter Book / authoring ---
+  - jupyter-book>=1.0,<2     # this book uses the Jupyter Book 1.x (Sphinx) config
+                             # format (_config.yml / _toc.yml). Jupyter Book 2.x is a
+                             # rewrite with a different config (myst.yml).
+  - jupyterlab>=4.2
+  - jupyterlab-myst
+  - jupytext
+  - ipykernel
+
+  # --- Core scientific stack ---
+  - numpy>=1.26
+  - pandas>=2.2
+  - matplotlib-base>=3.8
+
+  # --- Vector GIS ---
+  - geopandas>=1.0
+  - shapely>=2.0
+  - pyproj>=3.6
+  - pyogrio>=0.9          # default I/O engine for GeoPandas 1.x
+  - fiona>=1.9            # alternative I/O engine; 03_vektor.ipynb inspects fiona.supported_drivers
+  - mapclassify>=2.6      # classification schemes + GeoDataFrame.explore()
+  - contextily>=1.5       # basemaps (week 8)
+
+  # --- Geocoding / OSM / networks ---
+  - geopy>=2.4
+  - networkx>=3.2
+  - osmnx=1.9.*           # week 9 notebooks use the osmnx 1.9 API.
+                          # Bumping to osmnx>=2.0 requires code changes in
+                          # 09_OSM_data.ipynb and 09_nettverksanalyse.ipynb
+                          # (nearest_nodes / shortest_path / basic_stats /
+                          # geocode_to_gdf moved to submodules).
+
+  # --- Interactive maps ---
+  - folium>=0.16
+
+  # --- Raster (week 10) ---
+  - rasterio>=1.3
+  - rioxarray>=0.15
+  - xarray>=2024.6
