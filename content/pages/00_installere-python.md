@@ -47,7 +47,6 @@ Du trenger fila `environment.yml` fra emnets repo. Velg **én** av måtene:
 - **Last ned fra GitHub:** Åpne
   [environment.yml](https://github.com/haavardaagesen/gmgi221/blob/main/environment.yml)
   på GitHub og trykk **Download raw file** (nedlastingsikonet oppe til høyre).
-- **Kan du git?** `git clone https://github.com/haavardaagesen/gmgi221.git`
 
 ## 3. Opprett miljøet
 
