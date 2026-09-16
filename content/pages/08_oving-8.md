@@ -2,7 +2,7 @@
 
 Øvingsoppgaven finner du på Canvas under Oppgaver, eller på [dette GitHub-repoet](https://github.com/GMGI221/ovinger-2026).
 
-Last den ned, åpne den i Jupyter Notebooks/Lab eller den editoren du bruker og følg instruksjonene i Notebooken. Lever den så inn på Canvas sammen med inputfilene etter du har endret navn til "oving8-ditt_navn.ipynb".
+Last den ned, åpne den i Jupyter Notebooks/Lab eller den editoren du bruker og følg instruksjonene i Notebooken. Lever den så inn på Canvas sammen med inputfilene.
 
 Denne ukens øving fokuserer på å lage statiske og interaktive kart. Målet er å la deg konsentrere deg om kartografisk visualisering ved hjelp av Python-verktøy. Oppgaven er å leke seg, utforske forskjellige muligheter og kanskje prøve ut andre visualiseringspakker enn de vi brukte i leksjonen.
 
