@@ -28,6 +28,10 @@ Du kan skrive koden din i Python-skriptfiler og/eller jupyter-notebooks. Du kan 
 
 Arbeidsflyten skal være gjentakbar og godt dokumentert. Med andre ord, alle som får en kopi av koden din skal kunne kjøre koden din, og lese koden din.
 
+## Bruk av KI
+
+I emnet er bruk av KI tillat, men utelukker samtidig bruk av agentisk KI. Dersom du bruker KI skal det dokumenteres grundig i en form hvor du beskriver hvordan du har brukt KI, til hva og hvorfor du har tatt det i bruk. Bruk av KI skal til enhver tid være i tråd med universitetets retningslinjer. 
+
 ## Hva skal leveres?
 
 Organiser all koden din / notebooks i en mappe og legg til lenker til alle relevante filer i README.md-filen. Man skal kunne lese koden din og dokumentasjonen og forstå hva som skjer, og kjøre koden din for å reprodusere de samme resultatene. Du leverer inn **èn zip-mappe** med alle relevante filer på Canvas. 
@@ -70,7 +74,7 @@ Du kan bruke hvilken som helst (romlig) data som du kan finne, og generere din e
 * Data fra [Oslo Bysykkel](https://oslobysykkel.no/apne-data)
 * Datakilder er ikke begrenset til disse, så du kan også bruke andre data fra hvilken som helst kilde du kan finne (husk å dokumentere hvor dataene kommer fra!).
 
-#### Eksempel analyser
+#### Eksempelanalyser
 
 Verktøyet bør beregne 2-4 indikatorer om de urbane områdene. Her er noen eksempler på potensielle målinger:
 
