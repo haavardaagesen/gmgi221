@@ -9,6 +9,7 @@ Du kan velge et forhåndsdefinert tema, eller utvikle ditt eget forskningsspørs
 Du kan velge mellom disse to prosjektoppgavene:
 
 * [Urbane indikatorer](#urbane-indikatorer)
+* [Kommuneplanens arealdel](#kommuneplanens-arealdel)
 * [Egendefinert prosjekt](#egendefinert-prosjekt)
 
 Tenk på prosjektoppgaven som en utfordring for deg selv og en mulighet til å vise og implementere ferdighetene du har lært i emnet så langt.
@@ -32,6 +33,10 @@ Arbeidsflyten skal være gjentakbar og godt dokumentert. Med andre ord, alle som
 
 I emnet er bruk av KI tillat, men utelukker samtidig bruk av agentisk KI. Dersom du bruker KI skal det dokumenteres grundig i en form hvor du beskriver hvordan du har brukt KI, til hva og hvorfor du har tatt det i bruk. Bruk av KI skal til enhver tid være i tråd med universitetets retningslinjer. 
 
+### Erklæring om bruk av KI
+
+Alle innleveringer skal inneholde en erklæring om bruk av KI, også dersom du ikke har brukt KI. Erklæringen skrives enten som en egen seksjon nederst i README.md, med overskriften '## Bruk av KI', eller i en egen fil som har navnet 'KI-erklaering.md', som det lenkes til fra README.md. For hvert verktøy du har brukt, skal du oppgi navnet på verktøyet (f.eks. ChatGPT, Copilot eller Claude), hva du brukte det til, og hvilke deler av prosjektet det gjelder (f.eks. hvilke funksjoner, notatbøker eller deler av teksten). Du skal også kort forklare hvorfor du valgte å bruke KI, og hvordan du kontrollerte og eventuelt endret det du fikk. Ta gjerne med eksempler på spørsmål (prompts) du brukte. Du er selv ansvarlig for all kode og tekst du leverer, og du må kunne forklare den. Hvis du ikke har brukt KI, skriver du det. Husk at agentisk KI, altså verktøy som selv skriver, kjører og endrer koden din uten at du styrer hvert steg, ikke er tillatt i emnet.
+
 ## Hva skal leveres?
 
 Organiser all koden din / notebooks i en mappe og legg til lenker til alle relevante filer i README.md-filen. Man skal kunne lese koden din og dokumentasjonen og forstå hva som skjer, og kjøre koden din for å reprodusere de samme resultatene. Du leverer inn **èn zip-mappe** med alle relevante filer på Canvas. 
@@ -42,15 +47,17 @@ Frist for å levere er **15.12.2026**.
 
 ## Vurdering
 
-Vurderingen av prosjektoppgaven er basert på en typisk 0-5 skala. Se detaljerte [vurderingskriterier her](#13_prosjektkarakter). Den endelige oppgaven vurderes basert på:
+Se detaljerte [vurderingskriterier her](#13_prosjektkarakter). Den endelige oppgaven vurderes basert på:
 
-* Hovedanalysesteg (datainnhenting, dataanalyse, visualisering)
+* Datainnhenting og databehandling
 
-* Gjentakbarhet (det skal være mulig å gjenta hovedanalysetrinnene for forskjellige inngangsfiler / inngangsparametere)
+* Romlig analyse og indikatorer  
 
-* Kvalitet på visualiseringer (kart og grafer)
+* Visualisering   
 
-* Generell dokumentasjon av arbeidet (bruk markdown celler for å strukturere arbeidet, og kodekommentarer for å forklare detaljer)
+* Kodekvalitet og gjentakbarhet  
+
+* Dokumentasjon og rapport
 
 God dokumentasjon av koden og prosjektet ditt er høyt verdsatt! Du bør legge til nødvendige detaljer i README.md-filen, og bruke inline kommentarer og Markdown celler for å dokumentere arbeidet ditt underveis. Ta en titt på disse tipsene for å bruke markdown:
 
@@ -139,6 +146,96 @@ Pass på at du:
     * Lag andre typer grafer (f.eks. stolpediagrammer, linjediagrammer, spredningsplott osv.)
     * Bruk underplott som gjør det enkelt å sammenligne resultater side om side
 * Når du skriver kodene, anbefaler vi sterkt at du bruker og skriver funksjoner for repeterende deler av koden. Som en motivasjon: tenk at du skal gjenta analysene dine for alle byer i Norge, skriv kodene dine på en måte som gjør dette mulig. Videre anbefaler vi at du lagrer disse funksjonene i en egen .py-skriptfil som du importerer til notatboken
+
+### Kommuneplanens arealdel
+
+I denne oppgaven er målet å utvikle et verktøy som analyserer en kommuneplans arealdel, og å bruke det på kommuneplanen for Aurskog-Høland. Kommuneplanens arealdel er det juridisk bindende kartet som viser hva arealene i kommunen kan brukes til (arealformål), og hvilke hensyn som må tas (hensynssoner for blant annet flom, skred, støy, kulturmiljø og drikkevann). Du skal sammenligne minst to steder i kommunen (f.eks. tettstedene Bjørkelangen, Aursmoen, Løken, Hemnes eller Rømskog) ut fra et sett med indikatorer. Du velger selv hvordan du avgrenser stedene, for eksempel med SSB sine tettstedsavgrensninger eller en buffer rundt sentrum.
+
+Det overordnede spørsmålet er: **Hvor planlegger kommunen ny utbygging, og hvilke konflikter og hensyn berører denne utbyggingen?** Du skal beregne 2-4 indikatorer, og velge dem selv ut fra hva du synes er interessant (se eksempler nedenfor).
+
+### Data
+
+Du finner kommuneplanen for Aurskog-Høland som shapefiler i én zip-fil på canvas. De viktigste lagene er:
+
+| Lag                   | Innhold                                     | Viktige kolonner                                                                          |
+| --------------------- | ------------------------------------------- | ----------------------------------------------------------------------------------------- |
+| `KpArealformålOmråde` | Arealformål (1725 polygoner)                | `KPAREALFOR` (formålskode), `AREALST` (1 = nåværende, 2 = framtidig), `PLANID`, `OMRNAVN` |
+| `KpOmråde`            | Plangrensen (yttergrensen for planen)       | `PLANID`, `PLANNAVN`                                                                      |
+| `KpFareSone`          | Faresoner                                   | `KPFARE` (310 = skred, 320 = flom, 370 = høyspent)                                        |
+| `KpStøySone`          | Støysoner                                   | `KPSTØY` (210 = rød sone, 220 = gul sone)                                                 |
+| `KpAngittHensynSone`  | Hensyn til kulturmiljø og friluftsliv       | `KPANGITTHE` (570 = kulturmiljø, 530 = friluftsliv), `BESKRIVELS`                         |
+| `KpBåndleggingSone`   | Båndlagte områder (naturvern, kulturminner) | `KPBÅNDLEGG` (710/720/730), `BESKRIVELS`                                                  |
+| `KpSikringSone`       | Nedslagsfelt for drikkevann                 | `KPSIKRING` (110)                                                                         |
+| `KpSamferdselLinje`   | Veger i planen                              | `TYPESAMFLI`, `HOLDNINGSK`                                                                |
+
+Formålskodene følger SOSI-standarden for plan. De viktigste kodene er: 1110 boligbebyggelse, 1120 fritidsbebyggelse, 1130 sentrumsformål, 1160 offentlig eller privat tjenesteyting, 1300 næringsvirksomhet, 1400 idrettsanlegg, 2010 veg, 3001/3020/3040 grønnstruktur, 5100 LNFR (landbruks-, natur- og friluftsformål), 5200/5210 LNFR spredt bebyggelse og 6600/6700 natur- og friluftsområde i vassdrag. Den fullstendige kodelisten finner du i [SOSI-produktspesifikasjonen for plan](https://sosi.geonorge.no/produktspesifikasjoner/). En del av oppgaven er å lage en oppslagstabell som oversetter kodene til lesbare navn.
+
+**Merk:** Dataene kommer rett fra kommunens plansystem og er ikke ferdig vasket. Du må regne med at noe datarensing er nødvendig før analysen (f.eks. tegnkoding, verdier med skjulte tegn, objekter som overlapper hverandre, og tomme lag). Beskriv hva du finner og hvordan du har håndtert det.
+
+Du skal kombinere kommuneplanen med minst én annen datakilde, for eksempel:
+
+* [AR5 arealressurskart](https://www.geonorge.no/) fra NIBIO (fulldyrka jord, skog, myr) via Geonorge
+* Befolkning på rutenett (250 m) og tettstedsavgrensninger fra SSB
+* Bygninger, skoler, butikker og veinett fra OpenStreetMap, etter tilnærmingen fra forelesning
+* NVEs aktsomhetskart for flom og skred via [NVE Atlas](https://atlas.nve.no/) eller Geonorge
+* [SSB sin statistikkbank](https://www.ssb.no/statbank) (befolkningsutvikling, boligbygging)
+
+#### Eksempelanalyser
+
+Verktøyet skal beregne 2-4 indikatorer for de områdene du sammenligner. Her er noen eksempler:
+
+**Arealregnskap**
+
+- Beregn hvor stor andel av arealet som er avsatt til de ulike formålene, både nåværende og framtidig
+- Beregn hvor mye nytt areal som er avsatt til bolig, fritidsbolig og næring
+- Visualiser arealfordelingen som kart og grafer (f.eks. stolpediagram per sted)
+
+**Konflikt med fare og støy**
+
+- Finn hvor mye av de framtidige byggeområdene som ligger innenfor flom-, skred- eller støysoner (overlay)
+- Beregn andelen per formål og per sted, og finn de mest utsatte områdene
+- Lag kart som viser konfliktområdene
+
+**Jordvern**
+
+- Hent AR5-data og finn hvor mye fulldyrka jord som ligger i framtidige byggeområder
+- Sammenlign stedene
+- Visualiser resultatene i kart og grafer
+
+**Lokalisering og tilgjengelighet**
+
+- Beregn avstand fra nye boligområder til tettstedssenter, skole eller butikk (buffer, nærmeste nabo, eller korteste vei i et nettverk)
+- Vurder om ny utbygging legges nær eksisterende sentre eller spres utover
+- Visualiser fordelingen av avstander (f.eks. histogram) og lag kart
+
+**Vern og hensyn**
+
+- Finn hvor mye av utbyggingsarealet som berører hensynssoner for kulturmiljø, naturvern eller drikkevann
+- Oppsummer hvilke hensyn som oftest blir berørt
+
+#### Struktur i oppgaven for kommuneplanens arealdel
+
+Strukturen er den samme som for urbane indikatorer. Arbeidet bør inkludere:
+
+* Et emne for arbeidet ditt (f.eks. "Kommuneplanens arealdel: utbygging, flomfare og jordvern i Bjørkelangen og Løken").
+* En kort introduksjon til emnet (presenter 2-4 forskningsspørsmål som du vil besvare ved hjelp av indikatorene)
+* Kort beskrivelse av datasettene du brukte, og hvordan du har (pre-)prosessert dataene
+* Kort generell beskrivelse av metodene du brukte
+* Faktiske koder og visualiseringer for å produsere resultatene
+* Kort diskusjon relatert til resultatene (hva bør vi forstå og se fra dem?)
+* Kort refleksjon om analysen, for eksempel: Hvilke antakelser, skjevheter eller usikkerheter er knyttet til dataene og/eller analysene? (Hint: hvor nøyaktig er en plangrense, og hva betyr det at et byggeområde overlapper en faresone med noen få kvadratmeter?)
+
+#### Tekniske hensyn
+
+Pass på at du:
+
+* Dokumenterer analysene dine godt ved å bruke Markdown-celler og beskriver 1) hva du gjør og 2) hva du kan se fra dataene og resultatene dine.
+* Bruker informative visualiseringer
+  * Lag kart (statisk eller interaktivt), med en fargeskala som gjør det lett å skille arealformålene fra hverandre
+  * Lag andre typer grafer (f.eks. stolpediagrammer, histogrammer osv.)
+  * Bruk flere plott som gjør det enkelt å sammenligne områdene side om side
+* Skriver funksjoner for de repeterende delene av koden, og lagrer dem i en egen .py-fil som du importerer i notatboken. Som en motivasjon: alle kommuner i Norge leverer kommuneplanen sin etter den samme SOSI-standarden. Skriv koden slik at den kan kjøres på kommuneplanen til en annen kommune, eller på andre steder i kommunen, bare ved å endre inndata eller parametere.
+
 
 ### Egendefinert prosjekt
 
