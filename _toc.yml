@@ -46,8 +46,8 @@ parts:
   - caption: Uke 5
     chapters:
       - file: content/pages/05_info
-      #      - file: content/notebooks/05_romlig_utvelgelse
-      #      - file: content/notebooks/05_romlig_kobling
+      - file: content/notebooks/05_romlig_utvelgelse
+      - file: content/notebooks/05_romlig_kobling
       - file: content/pages/05_oving-5
       #  - caption: Uke 6
       #    chapters:
