@@ -1,5 +1,7 @@
 # 📖 Prosjektarbeid
 
+<iframe style="overflow: hidden;" src="https://haavardaagesen.github.io/presentations/gmgi221/h_2026/13/13_notes.html" width="720" height="405"></iframe>
+
 I prosjektoppgaven er målet å bruke Python-programmering til å automatisere en GIS-analyseprosess. Hovedmålet er å lage en arbeidsflyt for GIS-prosesser som enkelt kan gjentas for lignende input-data.
 
 Du kan velge et forhåndsdefinert tema, eller utvikle ditt eget forskningsspørsmål. Du bør dra nytte av dine programmeringsferdigheter (grunnleggende bruk av Python, definere dine egne funksjoner, lese og skrive data, dataanalyse ved hjelp av Pandas, romlig analyse ved hjelp av Geopandas, lage statiske og/eller interaktive datavisualiseringer, med mer), og gode kodingspraksiser (skrive lesbar og godt dokumentert kode) når du gjør den endelige prosjektoppgaven.
