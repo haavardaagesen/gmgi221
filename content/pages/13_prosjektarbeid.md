@@ -176,7 +176,7 @@ Formålskodene følger SOSI-standarden for plan. De viktigste kodene er: 1110 bo
 
 Du skal kombinere kommuneplanen med minst én annen datakilde, for eksempel:
 
-* [AR5 arealressurskart](https://www.geonorge.no/) fra NIBIO (fulldyrka jord, skog, myr) via Geonorge
+* [AR50 arealressurskart](https://www.geonorge.no/) fra NIBIO (fulldyrka jord, skog, myr) via Geonorge
 * Befolkning på rutenett (250 m) og tettstedsavgrensninger fra SSB
 * Bygninger, skoler, butikker og veinett fra OpenStreetMap, etter tilnærmingen fra forelesning
 * NVEs aktsomhetskart for flom og skred via [NVE Atlas](https://atlas.nve.no/) eller Geonorge
